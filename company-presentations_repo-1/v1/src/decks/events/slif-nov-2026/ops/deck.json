@@ -1,0 +1,53 @@
+{
+  "title": "Ops",
+  "description": "Care deck: how Budy AI teammates uncover issues and drive execution in senior living operations.",
+  "order": 1,
+  "listed": true,
+  "app": {
+    "teammate": "megan",
+    "name": "Megan",
+    "text": "The care teammate one operator already works with, live on a real community."
+  },
+  "slides": [
+    {
+      "alt": "Building AI Teammates for Senior Living"
+    },
+    {
+      "alt": "How it connects: works with your existing systems"
+    },
+    {
+      "alt": "Uncover issues: box 1",
+      "group": "build"
+    },
+    {
+      "alt": "Uncover issues: boxes 1 and 2",
+      "group": "build"
+    },
+    {
+      "alt": "Boxes 1 to 3, with Drive execution",
+      "group": "build"
+    },
+    {
+      "alt": "Uncover issues. Drive execution.",
+      "group": "build"
+    },
+    {
+      "live": true
+    },
+    {
+      "alt": "Private pay: one resident"
+    },
+    {
+      "alt": "Medi-Cal / ALW: one resident"
+    },
+    {
+      "alt": "What it’s worth"
+    },
+    {
+      "alt": "What would you like us to demo?"
+    },
+    {
+      "alt": "Getting started"
+    }
+  ]
+}

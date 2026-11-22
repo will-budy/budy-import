@@ -1,0 +1,50 @@
+{
+  "title": "Families who toured and went quiet",
+  "date": "yesterday",
+  "question": {
+    "time": "15:00",
+    "audio": "question.mp3",
+    "text": "Claire, show me every family that toured in the last forty-five days, has not had a completed follow-up, has no date-specific next step, and has not had another decision-maker engaged. Of those families, show me which ones had multiple interactions before going quiet. What patterns do you see across them? And show me the salesperson, community, lead source and stage where this breakdown happens most often."
+  },
+  "ack": {
+    "time": "15:01",
+    "audio": "ack.mp3",
+    "text": "Got it. I will pull every family that toured since September fourteenth and check their follow-ups, next steps and who else is involved. Then I will look for patterns by salesperson, community, lead source and stage. I will send you the full report when it is ready."
+  },
+  "report": {
+    "time": "21:07",
+    "workedFor": "6 hours",
+    "audio": "01-claire-report.mp3",
+    "text": "I checked into what you asked. I emailed you the full report, and here is a quick summary.\n\nI found thirty-four stalled families. They toured in the last forty-five days, and they have no completed follow-up, no dated next step, and nobody else involved. Twenty-four of them talked with us three or more times before they went quiet.\n\nThey have a lot in common. Twenty-three of the twenty-four named another decision-maker on the tour, a son, a sister, someone with power of attorney, and nobody contacted that person. After the tour, we left voicemails and texts, but we did not have a conversation.\n\nPine Harbor has the most stalled families. Eleven of its twenty-one families still deciding have stalled. Agency referrals stall more often too: fifteen of their twenty-seven. And all thirty-four stalled families stopped right after the first tour. None of them has a second visit booked. The full list of families is in the report.",
+    "card": {
+      "label": "Insight · needs follow-up",
+      "title": "Families who toured and went quiet",
+      "subtitle": "Tours since Sep 14 · all five communities",
+      "graphic": {
+        "type": "steps",
+        "steps": [
+          {
+            "value": 34,
+            "label": "open families with no completed follow-up, no dated next step and no second decision-maker."
+          },
+          {
+            "value": 24,
+            "label": "talked with us three or more times, then went quiet after the tour."
+          },
+          {
+            "value": 23,
+            "label": "named another decision-maker on the tour. Nobody contacted that person."
+          }
+        ]
+      },
+      "file": "report.html"
+    }
+  },
+  "followUp": {
+    "question": "Has this happened before? Compare it with the same weeks last year.",
+    "ack": {
+      "audio": "follow-up-ack.mp3",
+      "text": "Let me look into that. If I have more questions, I will let you know."
+    }
+  }
+}

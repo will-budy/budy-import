@@ -1,0 +1,3938 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Janus Cluster — TRD - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#janus-cluster-trd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Janus Cluster — TRD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-and-constants-sharedcontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types and constants (shared/contract)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types and constants (shared/contract)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id-and-key-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ID and key construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables-after-migration-00008" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables (after migration 00008)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capabilities-of-connection-registry-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities of connection-registry-1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capabilities of connection-registry-1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requestconnection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        requestConnection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorization-inside-the-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorization inside the registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-and-workflow-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and workflow ids
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nexus-callback-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nexus callback implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intake-intake-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intake (intake-1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intake (intake-1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-intake-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (intake-1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nango-client-and-webhook-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nango client and webhook verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-registry-1-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        connection-registry-1 configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gateway-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publish-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        publish-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vault-manager-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vault-manager-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oauth-provider-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oauth-provider-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openfga-bootstrap-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        openfga-bootstrap-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-policy-1-built-listener-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        outbound-policy-1 (built, listener off)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        console-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vault-paths-and-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault paths and policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-and-gitops-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart and GitOps wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-and-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD and release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runbooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#confirm-a-connect-flow-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confirm a connect flow (dev)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failures-seen-while-bringing-janus-up-cause-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failures seen while bringing Janus up (cause → fix)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#not-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not verified
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="janus-cluster-trd">Janus Cluster — TRD<a class="headerlink" href="#janus-cluster-trd" title="Permanent link">&para;</a></h1>
+<p>How <code>janus-cluster-1</code> is built, as built on <strong>2026-11-17</strong>: the code layout, configuration, schema, capability shapes, wiring and operations. Product intent is in the <a href="prd.html">PRD</a>, architecture and decisions in the <a href="hld.html">HLD</a>, the caller contract in <a href="nexus-contracts.html">nexus-contracts</a>, the service summary in <a href="info.html">info</a>. The repository's own <code>docs/content/</code> keeps the deeper per-component notes this document points at.</p>
+<p><strong>Scope.</strong> Everything that is built and running in dev: the gateway, the connection registry, the connect page backend (<code>intake-1</code>), the console, the catalog editor, the Nango provider, the Janus Vault and OpenFGA wiring. <strong>Outbound enforcement is not described here</strong>: <code>outbound-policy-1</code> and the Envoy gateway are listed as built-not-enforcing (their configuration surface only) because that work is owner-led and open.</p>
+<p><strong>Status of verification.</strong> Facts below were read from the code, charts and GitOps repositories at the dates in each section. Items that could only be inferred are collected under <a href="#not-verified">Not verified</a>.</p>
+<h2 id="implementation-stack">Implementation Stack<a class="headerlink" href="#implementation-stack" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Choice</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language (cluster)</td>
+<td>Go 1.26 (one module per component, <code>go.work</code> for local dev)</td>
+<td>Nexus-first clusters are Go; consistent with the platform's shared kit</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>TypeScript on Node 26 (<code>&gt;=26.13 &lt;27</code>), Fastify 5, React 19, Vite 8, <code>@budybot/console-kit</code> 0.6.0</td>
+<td>The platform console standard; the kit supplies session, STS verification, adapters and the write routes</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Temporal (Worker Deployment Versioning, <strong>Pinned</strong>); one workflow per component, <code>&lt;Component&gt;WorkflowV1</code>, one activity (<code>Execute</code>)</td>
+<td>A component is only reached through the gateway as a child workflow; behaviour changes by shipping a new build</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>Shared kit <code>budy-common-modules</code> <code>go/capability/gateway/{stsauth,dispatch}</code>, version <code>capability v0.3.0</code></td>
+<td>No business logic in <code>gateway-1</code>; it loads capability manifests and validates payloads</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>PostgreSQL (<code>ob1-janus-db-1</code>), <code>pgx</code>, <code>goose</code> migrations embedded in the registry image, run by a chart Job</td>
+<td>One schema owner (the registry); publish-1 and vault-manager-1 read and write their own tables</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Janus Vault (<code>janus-vault-cluster-1</code>, KV v2 mount <code>janus-connections</code>); platform Vault for service secrets via VSO</td>
+<td>Tenant credentials are isolated from the platform Vault</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>OpenFGA (<code>janus-openfga-1</code>), model <code>components/publish-1/authz/janus.fga</code></td>
+<td>A dedicated instance; the bootstrap Job owns the store and model</td>
+</tr>
+<tr>
+<td>Third-party credentials</td>
+<td>Nango (hosted, <code>api.nango.dev</code>) for OAuth</td>
+<td>Nango holds the OAuth tokens; Janus holds ids only</td>
+</tr>
+<tr>
+<td>Packaging</td>
+<td>One parameterized <code>Dockerfile</code> for every Go component (<code>COMPONENT</code>, <code>BINARY_TARGET</code>); the console has its own</td>
+<td>Non-root, read-only root filesystem, <code>emptyDir</code> on <code>/tmp</code></td>
+</tr>
+<tr>
+<td>Release</td>
+<td>changesets, the shared <code>app-cluster-ci</code> / <code>app-cluster-release</code> workflows (<code>@v1</code>), Kargo promotion</td>
+<td>See <a href="#cicd-and-release">CI/CD and release</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">janus-cluster-1_repo-1/
+├── shared/contract/          MODULE  public contract: endpoint, service, component and capability names, payload types, the intake
+│                                     session token, the Nexus callback receiver (nexuscallback/), request validation helpers
+├── components/
+│   ├── gateway-1/            Go  cmd/worker, internal/worker: thin wiring over the shared gateway kit (manifests from charts/gateway-1/files/capabilities)
+│   ├── connection-registry-1/ Go  cmd/worker; internal/{workflow,activities,capabilities,nango,store,worker}; store/migrations/00001..00008
+│   ├── intake-1/             Go  cmd/server; internal/{app,config,server,registry,nango,sts,vault}: the connect page's HTTP backend
+│   ├── oauth-provider-1/     Go  cmd/server: internal OAuth providers (built, not wired to a provider; see Not done)
+│   ├── publish-1/            Go  cmd/worker + authz/: registerPublication / retirePublication, writes OpenFGA tuples
+│   ├── vault-manager-1/      Go  cmd/worker: the only writer of the Janus Vault's configuration; works the secret-destruction queue
+│   ├── outbound-policy-1/    Go  cmd/worker: ext_authz policy decision point (built, listener OFF) and audit sink
+│   ├── openfga-bootstrap-1/  Go  cmd/bootstrap: creates the store and writes the model (a Job and a CronJob, not a worker)
+│   └── console-1/            TS  src/server (Fastify + console-kit), src/web (React), test/
+├── charts/
+│   ├── janus-cluster-1/      umbrella chart &quot;janus-cluster-1-repo-1&quot; (the only published chart)
+│   ├── &lt;component&gt;/          one sub-chart per component
+│   ├── gateway-1/files/capabilities/   one &lt;component&gt;.yaml manifest per routed component
+│   └── janus-catalog-1/      Tool and Skill resources published to the context catalog (not a component)
+├── deploy/                   janus-vault-bootstrap/, outbound-gateway-1/ (Envoy, not validated), outbound-policy-rules/ (examples)
+├── configs/runtime/          runtime config manifests (paths fixed by the platform)
+├── docs/content/             per-component design and operations notes
+└── .github/{components.json,workflows/}   the component catalog (the only thing CI reads about the repo's shape) and two thin workflow callers
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Kind</th>
+<th>Binary / entry</th>
+<th>Ports</th>
+<th>Task queue / purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gateway-1</code></td>
+<td>Temporal worker + Nexus handler</td>
+<td><code>cmd/worker</code></td>
+<td>health <code>3000</code></td>
+<td><code>janus-cluster-1-gateway-1-tq</code>; authenticates, validates, routes</td>
+</tr>
+<tr>
+<td><code>connection-registry-1</code></td>
+<td>Temporal worker</td>
+<td><code>cmd/worker</code> (<code>worker</code> runs; <code>migrate</code> argument applies migrations)</td>
+<td>health <code>3000</code></td>
+<td><code>janus-cluster-1-connection-registry-1-tq</code></td>
+</tr>
+<tr>
+<td><code>publish-1</code></td>
+<td>Temporal worker</td>
+<td><code>cmd/worker</code></td>
+<td></td>
+<td><code>janus-cluster-1-publish-1-tq</code></td>
+</tr>
+<tr>
+<td><code>vault-manager-1</code></td>
+<td>Temporal worker</td>
+<td><code>cmd/worker</code></td>
+<td></td>
+<td><code>janus-cluster-1-vault-manager-1-tq</code></td>
+</tr>
+<tr>
+<td><code>outbound-policy-1</code></td>
+<td>Temporal worker (+ ext_authz when enabled)</td>
+<td><code>cmd/worker</code></td>
+<td>callback <code>3001</code>; ext_authz <code>EXT_AUTHZ_ADDR</code> (off)</td>
+<td><code>janus-cluster-1-outbound-policy-1-tq</code></td>
+</tr>
+<tr>
+<td><code>intake-1</code></td>
+<td>HTTP</td>
+<td><code>cmd/server</code></td>
+<td>app <code>8080</code>, health <code>3000</code>, Nexus callback <code>3001</code></td>
+<td>none (not a worker)</td>
+</tr>
+<tr>
+<td><code>oauth-provider-1</code></td>
+<td>HTTP</td>
+<td><code>cmd/server</code></td>
+<td>app <code>8080</code>, health <code>3000</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>console-1</code></td>
+<td>HTTP</td>
+<td><code>node</code> (<code>src/server/main.ts</code>)</td>
+<td>web <code>3000</code> (<code>CONSOLE_PORT</code>), Nexus callback <code>3001</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>openfga-bootstrap-1</code></td>
+<td>Job / CronJob</td>
+<td><code>cmd/bootstrap</code></td>
+<td></td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>Naming: every component name ends in <code>-1</code> (the generation suffix). The Nexus endpoint is <code>ob1-nexus-janus-cluster-1-endpoint-1</code>, service <code>ConnectionServiceV1</code>, operations <code>Execute</code> and <code>DescribeCapabilities</code>, Temporal namespace <code>ob1-temporal-janus-cluster-1-ns-1</code>. The Go constant and the chart's derived name must agree (a test enforces it).</p>
+<h2 id="types-and-constants-sharedcontract">Types and constants (<code>shared/contract</code>)<a class="headerlink" href="#types-and-constants-sharedcontract" title="Permanent link">&para;</a></h2>
+<p>The contract module is the only module tagged for external use. Cross-reference: field documentation is in the HLD; these are the names an implementer needs.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>components.go</code></td>
+<td><code>ComponentConnectionRegistry1</code>, <code>ComponentPublish1</code>, <code>ComponentOutboundPolicy1</code>, <code>ComponentVaultManager1</code>; <code>Capabilities(component)</code> (the names each offers; the manifest test compares them with the YAML)</td>
+</tr>
+<tr>
+<td><code>connections.go</code></td>
+<td>capability name constants; <code>Connection</code>, <code>ConnectionType</code>, <code>TypeProviderLink</code>, <code>Provider</code>, <code>Placement</code>, request and response types; <code>ConnectionsMount = "janus-connections"</code>; <code>ConnectionVaultPath(tenant, id)</code>; <code>ConnectionReaderRole = "janus-conn-reader"</code>; <code>ConnectionReadPolicyGlob = "janus-conn-*-read"</code>; <code>MetadataKeyRE</code>, <code>MaxMetadataKeys = 20</code>, <code>MaxMetadataValue = 500</code>; <code>LooseBool</code> (JSON boolean or the strings <code>"true"</code> / <code>"false"</code>)</td>
+</tr>
+<tr>
+<td><code>connect_page.go</code></td>
+<td>the connect page routes: <code>RouteSessionInspect</code>, <code>RouteCredentials</code>, <code>RouteSessionConnect</code>, <code>RouteSessionStatus</code> (all <code>POST /v1/connections/...</code>), <code>RouteNangoWebhook</code></td>
+</tr>
+<tr>
+<td><code>intakesession.go</code></td>
+<td><code>IntakeSession</code>, <code>SignIntakeSession</code>, <code>VerifyIntakeSession</code>, <code>ErrIntakeSessionInvalid</code>, <code>ErrIntakeSessionExpired</code></td>
+</tr>
+<tr>
+<td><code>catalog_editor.go</code></td>
+<td>request and answer types of the <code>system*</code> editor capabilities, audit row, limits</td>
+</tr>
+<tr>
+<td><code>credential_use.go</code>, <code>connect_page_caps.go</code></td>
+<td><code>recordCredentialUse</code> and <code>inspectConnection</code> types</td>
+</tr>
+<tr>
+<td><code>nexuscallback/</code></td>
+<td>the Go Nexus callback <code>Receiver</code> (see <a href="#nexus-callback-implementation">Nexus callback</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><code>Connection</code> (JSON): <code>id</code>, <code>tenant</code>, <code>name</code>, <code>typeCode</code>, <code>providerCode</code>, <code>providerRef?</code>, <code>state</code>, <code>currentRevision</code>, <code>host?</code>, <code>pathPrefix?</code>, <code>createdBy</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>lastUsedAt?</code>, <code>reason?</code>, <code>metadata?</code>. States: <code>pending</code>, <code>active</code>, <code>needs-reauth</code>, <code>revoked</code>. <code>ConnectionType</code>: <code>id</code>, <code>code</code>, <code>name</code>, <code>description</code>, <code>category</code>, <code>state</code> (<code>active</code> | <code>retired</code>), <code>credentialKind</code>, <code>host?</code>, <code>pathPrefix?</code>, <code>scopes</code> (kept for old readers) and <code>defaultScopes</code>, <code>placement {in, name, format}</code>; <strong>platform scope only</strong>: <code>normaliser</code>, <code>updatedAt</code>, <code>links[]</code>, <code>activeProvider</code>. A tenant answer carries no provider (changed 2026-11-17).</p>
+<h3 id="id-and-key-construction">ID and key construction<a class="headerlink" href="#id-and-key-construction" title="Permanent link">&para;</a></h3>
+<pre><code class="language-go">// Connection id: &quot;conn_&quot; + 26 Crockford base32 characters from 16 random bytes (ULID-length, not ordered).
+//   components/connection-registry-1/internal/activities/activities.go (`newID`)
+
+// Vault path of a connection's secret fields (under the KV mount janus-connections):
+func ConnectionVaultPath(tenant, connectionID string) string { return &quot;tenants/&quot; + tenant + &quot;/connections/&quot; + connectionID }
+
+// Intake session (&quot;link&quot; payload): base64url(json(IntakeSession)) + &quot;.&quot; + base64url(hmac-sha256(key, that json)).
+//   IntakeSession{c: connection id, t: tenant, y: type code, k: credential kind, p: provider, a: actor, n: nonce, e: expiry}
+//   TTL 60 minutes (activities.DefaultLinkTTL). Key: INTAKE_SESSION_KEY_FILE, shared by the registry (signs) and intake-1 (verifies).
+
+// Nexus callback URL: &lt;origin&gt;/internal/nexus/callback/&lt;id&gt;.&lt;sig&gt;
+//   id  = base64url(32 random bytes)  (43 characters), sig = base64url(hmac-sha256(per-process random key, id))
+</code></pre>
+<p><strong>Connection naming</strong> (<code>request_connection.go</code>, <code>connectionBaseName</code>, <code>nextName</code>):</p>
+<ul>
+<li>A type with a <strong>fixed host</strong> (<code>ConnectionType.Host != ""</code>) is named by the type's name: <code>Google Calendar</code>.</li>
+<li>A <strong>generic type</strong> (no fixed host) is named <code>&lt;type name&gt; – &lt;host&gt;&lt;path&gt;</code> with an en dash and spaces; the path is included only when it is not empty and not <code>/</code>: <code>API key – welcomehome.com</code>, <code>Bearer token – api.example.com/v2</code>.</li>
+<li>The first connection of that base name keeps it; later ones get the number after the highest in use for that tenant, type and base: <code>... 2</code>, <code>... 3</code>. <strong>Every state counts</strong>, so a revoked connection keeps its number and numbers are never reused.</li>
+<li>The whole name is at most 200 runes: the base is cut to leave room for a space and five digits (<code>nameNumberRoom = 6</code>) and a long host/path is cut with <code>…</code>.</li>
+<li>Uniqueness is enforced by the unique index <code>connection_name_idx (tenant_id, connection_type_id, lower(name))</code>. On a unique violation the name is picked again (<code>maxNameTries = 5</code>), then the capability fails <code>UNAVAILABLE</code> ("could not pick a free connection name; try again").</li>
+</ul>
+<h2 id="database-schema">Database Schema<a class="headerlink" href="#database-schema" title="Permanent link">&para;</a></h2>
+<p>PostgreSQL database <code>ob1-janus-db-1</code>. The registry owns the schema; migrations are <code>goose</code> SQL files embedded in the registry image (<code>internal/store/migrations</code>), applied by the chart's <strong>migration Job</strong> (<code>&lt;release&gt;-connection-registry-1-migrate</code>, Helm hook <code>pre-install,pre-upgrade</code> which ArgoCD runs as a PreSync hook, weight <code>-5</code>, the registry binary with the argument <code>migrate</code>, database admin credentials from VSO). Enabled by <code>migration.enabled: true</code> in the GitOps base values, so <strong>every environment applies pending migrations when its chart upgrades</strong>.</p>
+<h3 id="tables-after-migration-00008">Tables (after migration 00008)<a class="headerlink" href="#tables-after-migration-00008" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+<th>Key columns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>credential_kind</code></td>
+<td>the shape of a secret: <code>oauth2</code>, <code>api_key</code>, <code>basic</code>, <code>bearer</code></td>
+<td><code>code</code> PK (CHECK), <code>collection</code> (<code>form</code> | <code>redirect</code>), <code>secret_fields</code>, <code>default_placement</code></td>
+</tr>
+<tr>
+<td><code>connection_provider</code></td>
+<td>what holds and refreshes a credential</td>
+<td><code>id</code> PK (<code>vault-static-1</code>, <code>nango-1</code>), <code>name</code>, <code>kind</code> (<code>internal</code> | <code>third-party</code>), <code>config_ref</code>, <code>state</code> (<code>active</code> | <code>disabled</code>)</td>
+</tr>
+<tr>
+<td><code>provider_credential_kind</code></td>
+<td>which kinds a provider can hold</td>
+<td>PK <code>(provider_id, credential_kind)</code></td>
+</tr>
+<tr>
+<td><code>connection_type</code></td>
+<td>what callers think in (<code>google-calendar</code>, <code>generic-api-key</code>, ...)</td>
+<td><code>id</code> PK, <code>name</code>, <code>description</code> (NOT NULL, CHECK non-empty), <code>category</code>, <code>credential_kind</code> FK, <code>placement</code> jsonb, <code>default_scopes</code> text[], <code>normaliser</code>, <code>host</code>, <code>path_prefix</code>, <code>state</code> (<code>active</code> | <code>retired</code>), <code>created_at</code>, <code>updated_at</code></td>
+</tr>
+<tr>
+<td><code>type_provider</code></td>
+<td>a provider offering a type; settings hold <code>integrationKey</code></td>
+<td>PK <code>(connection_type_id, provider_id)</code>, <code>state</code> (<code>active</code>, <code>available</code>, <code>deprecated</code>, <code>retired</code>), <code>settings</code> jsonb; <strong>unique partial index <code>type_provider_one_active (connection_type_id) WHERE state = 'active'</code></strong></td>
+</tr>
+<tr>
+<td><code>connection</code></td>
+<td>a tenant's instance of a type</td>
+<td><code>id</code> PK, <code>tenant_id</code>, <code>name</code>, <code>connection_type_id</code>, <code>provider_id</code> (composite FK to <code>type_provider</code>), <code>provider_ref</code>, <code>state</code>, <code>current_revision</code>, <code>host</code>, <code>path_prefix</code>, <code>creator_kind</code>/<code>creator_id</code> (<code>created_by</code>), <code>dt_id</code>, <code>request_key</code>, <code>request_reason</code>, <code>last_used_at</code>, timestamps</td>
+</tr>
+<tr>
+<td><code>connection_revision</code></td>
+<td>immutable credential revisions</td>
+<td>PK <code>(connection_id, revision)</code>, <code>vault_path</code>, <code>vault_version</code> (0 when the secret is not in the Janus Vault, e.g. Nango), <code>created_by</code>; <strong>trigger <code>connection_revision_immutable</code> blocks UPDATE and DELETE</strong></td>
+</tr>
+<tr>
+<td><code>connection_metadata</code></td>
+<td>display-only facts about a connection, empty at first</td>
+<td>PK <code>(connection_id, key)</code> FK <code>ON DELETE CASCADE</code>, <code>value</code>, <code>source</code>, <code>updated_at</code></td>
+</tr>
+<tr>
+<td><code>publication</code>, <code>publication_grant</code></td>
+<td>Janus's slice of a Mission publish: grants and request rules; <code>fga_tuples jsonb</code> = every tuple the store may hold for it</td>
+<td><code>publication_grant</code> PK <code>(publication_id, activity_id, connection_id)</code></td>
+</tr>
+<tr>
+<td><code>audit</code></td>
+<td>one row per credential use and per change; append-only by convention</td>
+<td><code>id</code>, <code>at</code>, <code>tenant_id</code>, <code>actor</code>, <code>action</code>, <code>connection_id</code> (no FK), <code>run_id</code>, <code>activity_id</code>, <code>decision</code> (<code>''</code>, <code>allow</code>, <code>deny</code>), <code>detail</code> jsonb</td>
+</tr>
+<tr>
+<td><code>catalog_audit</code></td>
+<td>one row per successful catalog-editor write, written in the same transaction; <strong>trigger <code>catalog_audit_immutable</code> blocks UPDATE and DELETE</strong></td>
+<td><code>actor</code>, <code>action</code>, <code>subject</code>, <code>before</code>/<code>after</code> jsonb, <code>request_id</code>, <code>request_hash</code>, <code>result</code> json</td>
+</tr>
+<tr>
+<td><code>vault_destroy_request</code></td>
+<td>work for vault-manager-1: Vault KV versions to destroy</td>
+<td><code>connection_id</code>, <code>vault_path</code>, <code>versions int[]</code>, <code>requested_at</code>, <code>completed_at</code>, <code>attempts</code>, <code>last_error</code>; partial index on pending rows</td>
+</tr>
+</tbody>
+</table>
+<p>Indexes worth knowing: <code>connection_tenant_idx (tenant_id, state)</code>, <code>connection_type_idx (connection_type_id, tenant_id)</code>, <code>connection_type_provider_idx (connection_type_id, provider_id)</code> (the editor's "is this link used" count), <code>connection_request_key_idx (tenant_id, connection_type_id, request_key) WHERE request_key &lt;&gt; ''</code> (unique), <strong><code>connection_name_idx (tenant_id, connection_type_id, lower(name))</code> (unique, every state)</strong>, <code>catalog_audit_request_idx (action, request_id) WHERE request_id &lt;&gt; ''</code> (unique, the replay backstop), <code>catalog_audit_at_idx (at DESC, id DESC)</code>, <code>audit_tenant_at_idx</code>, <code>audit_connection_idx</code>, <code>publication_tenant_idx</code>, <code>publication_grant_connection_idx</code>.</p>
+<p>Seed (migration 00002, then edited by 00006/00008): providers <code>vault-static-1</code> (internal; kinds <code>api_key</code>, <code>basic</code>, <code>bearer</code>) and <code>nango-1</code> (third-party; <code>oauth2</code>); types <code>google-calendar</code> (Nango, host <code>www.googleapis.com</code>, path prefix <code>/calendar/v3/</code>, scope <code>https://www.googleapis.com/auth/calendar</code>), and the generic types <code>generic-api-key</code>, <code>generic-basic-auth</code>, <code>generic-bearer-token</code> (Vault static; no fixed host).</p>
+<h3 id="migrations">Migrations<a class="headerlink" href="#migrations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>File</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00001</td>
+<td><code>schema</code></td>
+<td><code>connection_type</code>, <code>connection_provider</code>, <code>type_provider</code> (+ one-active index), <code>connection</code>, <code>connection_revision</code> (+ immutability trigger), <code>publication</code>, <code>audit</code></td>
+</tr>
+<tr>
+<td>00002</td>
+<td><code>layers_and_seed</code></td>
+<td><code>credential_kind</code>, <code>provider_credential_kind</code>; <code>connection_type.credential_kind</code> replaces <code>auth_scheme</code>; <code>connection.{name,host,path_prefix,last_used_at}</code>; <code>connection_revision.vault_version</code>; <code>vault_destroy_request</code>; <code>publication_grant</code>; the seed</td>
+</tr>
+<tr>
+<td>00003</td>
+<td><code>request_key</code></td>
+<td><code>connection.request_key</code> + the unique request-key index (an idempotent <code>requestConnection</code>)</td>
+</tr>
+<tr>
+<td>00004</td>
+<td><code>publication_fga_tuples</code></td>
+<td><code>publication.fga_tuples</code> (widened before an OpenFGA write, narrowed after, so a failed write is reconcilable)</td>
+</tr>
+<tr>
+<td>00005</td>
+<td><code>catalog_editor</code></td>
+<td><code>connection_type.state</code>; <code>catalog_audit</code> (+ immutability trigger, unique replay index); <code>connection_type_provider_idx</code></td>
+</tr>
+<tr>
+<td>00006</td>
+<td><code>type_description</code></td>
+<td><code>connection_type.description</code>: seeds real sentences, sets <code>description = name</code> for editor-made rows, adds <code>CHECK (btrim(description, E' \t\r\n') &lt;&gt; '')</code>, drops the default</td>
+</tr>
+<tr>
+<td>00007</td>
+<td><code>connection_names_and_reason</code></td>
+<td><code>connection.request_reason</code>; renumbers existing duplicate names (oldest keeps its name, later get the smallest free number from 2); unique <code>connection_name_idx</code></td>
+</tr>
+<tr>
+<td>00008</td>
+<td><code>reset_connections_names_and_metadata</code></td>
+<td><strong>Destructive on purpose</strong> (nothing was in use). In order: (1) queue every stored secret version in <code>vault_destroy_request</code> (grouped by connection and path, only <code>vault_version &gt; 0</code>) so nothing is orphaned in the Janus Vault; (2) one <code>audit</code> row <code>registry.connections_reset</code> with counts; (3) delete <code>publication_grant</code>; (4) <strong>disable</strong> the <code>connection_revision_immutable</code> trigger, delete <code>connection_revision</code>, <strong>re-enable</strong> it (inside the migration transaction, the only way to delete them); (5) delete <code>connection</code>; (6) rename the three generic types to <code>API key</code>, <code>Basic auth</code>, <code>Bearer token</code> (only if still named as seeded); (7) create <code>connection_metadata</code>. Keeps <code>audit</code> and the <code>publication</code> rows. Does <strong>not</strong> delete Nango-side connections or the OpenFGA tuples publish-1 wrote. The Down restores the type names and drops the table; deleted rows are not restored. It runs once per database in every environment the chart reaches.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="capabilities-of-connection-registry-1">Capabilities of <code>connection-registry-1</code><a class="headerlink" href="#capabilities-of-connection-registry-1" title="Permanent link">&para;</a></h2>
+<p>Every capability is a Nexus <code>Execute</code> call <code>{component, capability, payload, auth:{token}}</code> answered <code>{ok, data | error:{code, message}}</code>. The gateway validates <code>payload</code> against the manifest schema (<code>charts/gateway-1/files/capabilities/connection-registry-1.yaml</code>, <code>additionalProperties: false</code> everywhere) <strong>before</strong> the registry sees it. The registry additionally decodes strictly and re-asserts identity. Error codes are the kit's <code>dispatch.Code</code>: <code>INVALID_ARGUMENT</code>, <code>PERMISSION_DENIED</code>, <code>NOT_FOUND</code>, <code>FAILED_PRECONDITION</code> (a stale <code>expectedUpdatedAt</code> or lost concurrent write; the console maps it to 409), <code>UNAVAILABLE</code>, <code>UNIMPLEMENTED</code>, <code>INTERNAL</code>. A refusal message starts with the field or reason (<code>reason:</code>, <code>name:</code>, <code>type_retired:</code>, <code>id:</code>, <code>conflict:</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Caller</th>
+<th>Request</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>describeConnectionTypes</code>, <code>listConnectionTypes</code></td>
+<td>tenant</td>
+<td><code>{}</code></td>
+<td>types (tenant view; no <code>normaliser</code>, <code>links</code>, <code>activeProvider</code>)</td>
+</tr>
+<tr>
+<td><code>getConnectionType</code></td>
+<td>tenant</td>
+<td><code>{code}</code></td>
+<td>one type</td>
+</tr>
+<tr>
+<td><code>listConnections</code></td>
+<td>tenant</td>
+<td><code>{typeCode?, state?, limit?≤200, cursor?}</code></td>
+<td>the tenant's connections, metadata only</td>
+</tr>
+<tr>
+<td><code>getConnection</code>, <code>listConnectionRevisions</code>, <code>listConnectionAudit</code></td>
+<td>tenant</td>
+<td><code>{connectionId}</code> / <code>{connectionId?, limit?}</code></td>
+<td>the connection (with <code>reason</code>, <code>metadata</code>); revisions (versions and times, never values); audit</td>
+</tr>
+<tr>
+<td><code>createConnection</code></td>
+<td>tenant</td>
+<td><code>{typeCode, name, host?, pathPrefix?}</code></td>
+<td>pending connection with <code>mode: form</code> (<code>intakeUrl</code>, <code>intakeSession</code>) or <code>mode: redirect</code> (<code>connectUrl</code>). The name must be unused for tenant+type in any state (<code>name:</code>). Normally replaced by <code>requestConnection</code></td>
+</tr>
+<tr>
+<td><strong><code>requestConnection</code></strong></td>
+<td>tenant</td>
+<td>below</td>
+<td><code>{connection, link:{url, message, expiresAt}, reused, reusedFromRequestedAt?}</code></td>
+</tr>
+<tr>
+<td><code>revokeConnection</code></td>
+<td>tenant</td>
+<td><code>{connectionId}</code></td>
+<td>revokes, queues the secret versions in <code>vault_destroy_request</code>; idempotent</td>
+</tr>
+<tr>
+<td><code>listPublications</code></td>
+<td>tenant</td>
+<td><code>{automation?, limit?}</code></td>
+<td>publications and which connections each activity uses</td>
+</tr>
+<tr>
+<td><code>completeConnection</code></td>
+<td><strong>internal</strong></td>
+<td><code>{connectionId, providerRef?, vaultPath?, vaultVersion?, actor?}</code></td>
+<td>pending → active; a non-pending connection is refused (this is what makes a link single use)</td>
+</tr>
+<tr>
+<td><code>inspectConnection</code></td>
+<td><strong>internal</strong> (intake-1)</td>
+<td><code>{connectionId}</code></td>
+<td>the connection, its type and provider (code, kind, non-secret integration key); never a provider reference or Vault path</td>
+</tr>
+<tr>
+<td><code>setConnectionMetadata</code></td>
+<td><strong>internal</strong></td>
+<td><code>{connectionId, set?{k:v}, remove?[k]}</code></td>
+<td>the connection's metadata after the change</td>
+</tr>
+<tr>
+<td><code>recordCredentialUse</code></td>
+<td><strong>internal</strong> (outbound-policy-1)</td>
+<td><code>{events[1..100]}</code></td>
+<td>all-or-nothing <code>credential.use</code> audit rows (no credential, header or token in an event)</td>
+</tr>
+<tr>
+<td><code>systemListConnectionTypes</code>, <code>systemListProviders</code>, <code>systemConnectionTypeUsage</code></td>
+<td>platform</td>
+<td><code>{}</code></td>
+<td>full types with <code>links</code>, providers with credential kinds, per-type tenant/connection counts</td>
+</tr>
+<tr>
+<td><code>systemUpsertConnectionType</code></td>
+<td>platform, boundary editor/admin</td>
+<td><code>{id, name, description, credentialKind, placement{in,name,format}, defaultScopes?, normaliser?, host?, pathPrefix?, category?, expectedUpdatedAt?}</code></td>
+<td>the type as stored, with links</td>
+</tr>
+<tr>
+<td><code>systemSetConnectionTypeState</code></td>
+<td>platform, editor/admin</td>
+<td><code>{id, state: active\|retired, expectedUpdatedAt?}</code></td>
+<td>the type</td>
+</tr>
+<tr>
+<td><code>systemDeleteConnectionType</code></td>
+<td>platform, editor/admin</td>
+<td><code>{id, expectedUpdatedAt}</code> (required)</td>
+<td><code>{id, deleted}</code>; refused (<code>id:</code>) if any connection of the type exists in any state</td>
+</tr>
+<tr>
+<td><code>systemSetTypeProvider</code></td>
+<td>platform, editor/admin</td>
+<td><code>{connectionTypeId, providerId, state, settings{integrationKey?}, expectedUpdatedAt?}</code></td>
+<td>the link; <code>active</code> demotes the type's other active link in the same transaction</td>
+</tr>
+<tr>
+<td><code>systemRemoveTypeProvider</code></td>
+<td>platform, editor/admin</td>
+<td><code>{connectionTypeId, providerId, expectedUpdatedAt?}</code></td>
+<td><code>{.., removed}</code>; refused while a connection uses the link</td>
+</tr>
+<tr>
+<td><code>systemCheckTypeProvider</code></td>
+<td>platform, any boundary</td>
+<td><code>{connectionTypeId, providerId, integrationKey?}</code></td>
+<td><code>{ok, checks[{name, ok, detail}]}</code> (fixed sentences only)</td>
+</tr>
+<tr>
+<td><code>systemListCatalogAudit</code></td>
+<td>platform, any boundary</td>
+<td><code>{limit?, cursor?}</code></td>
+<td>newest first, <code>before</code>/<code>after</code> per row, <code>nextCursor</code></td>
+</tr>
+</tbody>
+</table>
+<p>There is <strong>no provider-editing capability</strong>: providers are added in code (a registry migration, as <code>00002</code> does). <code>systemUpsertProvider</code> was removed on 2026-11-17.</p>
+<h3 id="requestconnection"><code>requestConnection</code><a class="headerlink" href="#requestconnection" title="Permanent link">&para;</a></h3>
+<pre><code class="language-jsonc">// request (manifest: additionalProperties false; the registry also rejects any other field, e.g. `name`, with `name: not accepted`)
+{ &quot;typeCode&quot;: &quot;generic-api-key&quot;,        // required, 1..64
+  &quot;reason&quot;: &quot;Read the sales API&quot;,       // required, trimmed, 1..500, plain text (a newline is a control character)
+  &quot;idempotencyKey&quot;: &quot;k-123&quot;,            // optional, &lt;= 128; the DT tool sends the runtime placeholder
+  &quot;host&quot;: &quot;api.example.com&quot;,            // generic types only (a host is required for them)
+  &quot;pathPrefix&quot;: &quot;/v2&quot;,                  // optional
+  &quot;forceNew&quot;: false }                   // boolean, or the strings &quot;true&quot; / &quot;false&quot; (a tool template can only send strings)
+
+// answer
+{ &quot;connection&quot;: { ...Connection, &quot;reason&quot;: &quot;...&quot;, &quot;metadata&quot;: {} },
+  &quot;link&quot;: { &quot;url&quot;: &quot;https://&lt;connectBaseUrl&gt;/connections/connect#s=&lt;session&gt;&quot;, &quot;message&quot;: &quot;...&quot;, &quot;expiresAt&quot;: &quot;&lt;RFC3339, +60 min&gt;&quot; },
+  &quot;reused&quot;: false, &quot;reusedFromRequestedAt&quot;: null }
+</code></pre>
+<p>Processing:</p>
+<ol>
+<li>Tenant scope required (<code>this capability needs a tenant-scoped caller</code>). <code>reason</code> and <code>forceNew</code> validated (<code>reason: is required; ...</code>, <code>reason: is at most 500 characters</code>, <code>reason: must be plain text without control characters</code>). A retired type is refused <code>type_retired: ...</code>. The registry needs <code>CONNECT_BASE_URL</code> (and <code>INTAKE_BASE_URL</code> for form kinds): unset fails <code>UNAVAILABLE</code> (<code>connect_base_url_not_configured</code>, <code>intake_base_url_not_configured</code>) and <strong>stores nothing</strong>.</li>
+<li><strong>Idempotency key hit first</strong>: the same <code>(tenant, type, key)</code> finds its own connection again, even with <code>forceNew</code>, and mints a fresh link; <code>reused</code> is false. If that connection is no longer pending: <code>INVALID_ARGUMENT conflict: this idempotencyKey already produced a connection that is &lt;state&gt;; use a new key to request another</code>.</li>
+<li><strong>Reuse</strong> unless <code>forceNew</code>: inside one transaction holding an advisory lock on <code>(tenant, type, host, pathPrefix, creator)</code> (<code>pg_advisory_xact_lock(hashtextextended(...))</code>), a pending connection of the same tenant, <strong>same user</strong> (<code>creator_id</code>), type, host and path prefix created within the last 60 minutes (<code>PendingWindow.Since</code>) is returned: <code>reused: true</code>, <code>reusedFromRequestedAt = created_at</code>, a <strong>fresh signed link for that same connection</strong> (older links stay valid until their own expiry), and <code>link.message</code> starts "A connection request for <Type> (<name>) made N minutes ago is still pending, so this is the link for that same connection instead of a new one. To start another connection of the same type, request again with forceNew set to true; the pending one stays as it is." The reuse keeps the <strong>first</strong> request's reason; the new reason goes only into the audit row.</li>
+<li>Otherwise insert a new <code>pending</code> connection with the generated name (see naming) and <code>request_reason</code>; <code>forceNew</code> always takes this path and leaves the old pending connection untouched.</li>
+<li>Write the audit row <code>connection.link_minted</code> (type, <code>reused</code>, <code>forceNew</code>, expiry, reason) and log <code>connection requested</code>.</li>
+<li>A refusal for an unknown or retired type, a missing host for a generic type, or a bad field never creates a row.</li>
+</ol>
+<p><code>setConnectionMetadata</code> rules: keys <code>^[a-z][a-z0-9_.-]{0,63}$</code>; values plain text 1..500 characters, trimmed, newline counts as a control character; at most 20 keys per connection (enforced under a row lock: 30 racing writes leave exactly 20 keys); <code>set</code> and <code>remove</code> are exclusive per key; an unchanged key is not rewritten and writes no audit row; one <code>connection.metadata_changed</code> audit row per change with <strong>key names only, never values</strong>; errors <code>NOT_FOUND</code>, or <code>INVALID_ARGUMENT</code> starting <code>set:</code> / <code>remove:</code>. Nothing writes metadata yet; the intended writer is a provider on completion (<code>account_label</code>).</p>
+<h3 id="authorization-inside-the-registry">Authorization inside the registry<a class="headerlink" href="#authorization-inside-the-registry" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component name must be <code>connection-registry-1</code>; <code>req.User</code> required; tenant scope needs a tenant id; scopes other than <code>tenant</code> and <code>platform</code> refused</td>
+<td><code>assertCaller</code> (activities.go)</td>
+</tr>
+<tr>
+<td>Tenant capabilities: tenant scope, tenant from the gateway-fixed identity (never a request field)</td>
+<td><code>tenantOf</code></td>
+</tr>
+<tr>
+<td><code>system*</code> reads: platform scope</td>
+<td><code>systemOnly</code></td>
+</tr>
+<tr>
+<td><code>system*</code> writes: platform scope <strong>and</strong> <code>ComponentRequest.SessionBoundary</code> of <code>editor</code> or <code>admin</code>; first thing each does, before the payload is read</td>
+<td><code>catalogWriter</code> (catalog.go)</td>
+</tr>
+<tr>
+<td>Internal capabilities (<code>completeConnection</code>, <code>inspectConnection</code>, <code>setConnectionMetadata</code>, <code>recordCredentialUse</code>): platform scope <strong>and</strong> <code>req.User</code> in <code>INTERNAL_CALLERS</code> (the STS token's <code>sub</code>)</td>
+<td><code>internalOnly</code></td>
+</tr>
+<tr>
+<td><code>requestConnection</code> checks tenant scope only. The <code>editor</code> boundary for connecting is enforced by <strong>console-1's adapter</strong> (<code>requiresBoundary: "editor"</code>), not by the registry</td>
+<td>console <code>connect.ts</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>INTERNAL_CALLERS</code> is the comma-separated env var built from the chart value <strong><code>registry.internalCallers</code></strong> (not under <code>nango:</code>). In GitOps it lists <code>janus-intake-1</code> and <code>janus-outbound-policy-1</code>. If it is empty or unset every internal call answers <code>PERMISSION_DENIED: this capability is internal</code>.</p>
+<h3 id="idempotency-and-workflow-ids">Idempotency and workflow ids<a class="headerlink" href="#idempotency-and-workflow-ids" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Gateway workflow id.</strong> When a call carries no <code>idempotencyKey</code> the gateway derives the workflow id (<code>gateway-&lt;hash&gt;</code>) from tenant, user, capability, boundary and a hash of the payload. Two identical calls in flight at once therefore share an id and the second fails with <strong><code>Workflow execution is already running</code></strong> (HTTP 500 from the Nexus handler). With a key, the id derives from the key. <strong>Every caller that can issue identical calls concurrently must send a fresh key per try</strong>: the console sends <code>read-&lt;uuid&gt;</code> for reads (and the browser's <code>Idempotency-Key</code> for writes); <code>intake-1</code> sends <code>intake-call-&lt;32 hex&gt;</code> on every try of a registry call.</li>
+<li><strong>Catalog editor writes</strong> are idempotent: the call's dedupe key is the caller's idempotency key (the console sends one per intended edit), else <code>run:</code> + the <strong>workflow run id</strong>, never the bare workflow id (the same edit made at different times shares a workflow id and must still execute). Each write looks its call up in <code>catalog_audit</code> first, inside the same transaction under a <code>pg_advisory_xact_lock</code> of <code>(action, key)</code>, and replays the stored <code>result</code> byte for byte on a hit. A key reused for a different request (<code>request_hash</code> mismatch) is refused <code>INVALID_ARGUMENT idempotencyKey: ...</code>.</li>
+<li><strong>Optimistic concurrency</strong>: <code>expectedUpdatedAt</code> must equal the stored <code>updated_at</code> or the write fails <code>FAILED_PRECONDITION</code> (console: 409 <code>conflict</code>). The console always sends it when editing, never when creating (creating an existing id is a console-side 409).</li>
+<li><strong>Temporal retries</strong>: the registry workflow runs one activity with <code>StartToCloseTimeout 10s</code>, <code>MaximumAttempts 3</code>, backoff 200 ms → 2 s; failures return as a typed <code>Response</code>, never a workflow failure.</li>
+</ul>
+<h2 id="session-boundary">Session boundary<a class="headerlink" href="#session-boundary" title="Permanent link">&para;</a></h2>
+<p>The STS token carries <code>sessionBoundary</code> (<code>viewer</code>, <code>editor</code>, <code>admin</code>); <code>ComponentRequest.SessionBoundary</code> (<code>capability</code> module v0.3.0, the version the registry and gateway are pinned to) delivers it to the component. The console reads it from the session and lists a write adapter for a principal only when its scope and boundary are met (the bootstrap <code>adapters</code> array), so a viewer sees disabled controls with the reason, and the server refuses the call (<code>403 boundary_required</code>) before any gateway call. Platform sessions come from the portal's platform Google groups; the highest boundary is the group's.</p>
+<h2 id="nexus-callback-implementation">Nexus callback implementation<a class="headerlink" href="#nexus-callback-implementation" title="Permanent link">&para;</a></h2>
+<p><code>gateway-1</code>'s <code>Execute</code> is a <strong>workflow-run Nexus operation</strong>: Temporal answers the HTTP call <code>201 {"token": "&lt;operation token&gt;"}</code> immediately and later <strong>POSTs the result</strong> to the callback URL the caller sent as <code>?callback=&lt;url&gt;</code>. Headers on that POST: <code>Nexus-Operation-Token</code>, <code>Nexus-Operation-State</code> (<code>succeeded</code> | <code>failed</code> | <code>canceled</code>). A <code>200</code> is also accepted and carries the answer directly. The caller sends <code>Operation-Timeout: &lt;whole seconds&gt;s</code>, never shorter than its own wait.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Go (<code>intake-1</code>, <code>outbound-policy-1</code>)</th>
+<th>TypeScript (<code>console-1</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Implementation</td>
+<td><code>shared/contract/nexuscallback.Receiver</code> (<code>Register()</code> returns the URL, a wait function and a cancel)</td>
+<td><code>src/server/callback.ts</code> <code>Callbacks</code> (<code>register()</code>, <code>wait()</code>, <code>accept()</code>, <code>server()</code>)</td>
+</tr>
+<tr>
+<td>Path</td>
+<td><code>/internal/nexus/callback/&lt;id&gt;.&lt;sig&gt;</code></td>
+<td>same</td>
+</tr>
+<tr>
+<td>Per-call id</td>
+<td>43 characters (base64url of 32 random bytes)</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>HMAC-SHA256 of the id with a key that lives <strong>in this process only</strong> (random at start)</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>own listener, <code>NEXUS_CALLBACK_ADDR</code> default <code>:3001</code> (intake-1), 3001 (outbound-policy-1)</td>
+<td><code>NEXUS_CALLBACK_PORT</code> 3001</td>
+</tr>
+<tr>
+<td>Service</td>
+<td><code>janus-intake-1-callback</code>, <code>janus-outbound-policy-1-callback</code> (stable names), port 3001</td>
+<td><code>console-1-callback</code>, port 3001</td>
+</tr>
+<tr>
+<td>Body cap</td>
+<td>1 MiB</td>
+<td>8 MiB</td>
+</tr>
+<tr>
+<td>Replicas</td>
+<td><strong>one pod</strong> per caller (the key and the pending map are per process); a callback delivered to another replica or after a restart is refused</td>
+<td>one replica (<code>Recreate</code>; the chart refuses <code>replicaCount &gt; 1</code>)</td>
+</tr>
+<tr>
+<td>Errors</td>
+<td><code>FailedError{State}</code>, <code>ErrNoToken</code>, <code>ErrTokenMismatch</code> (an operation that ended failed or canceled, a 201 without a token, or another operation's token)</td>
+<td><code>CallbackError</code> <code>timeout</code> / <code>failed</code> / <code>token</code></td>
+</tr>
+<tr>
+<td>Timeouts</td>
+<td>intake-1: 10 s per try, up to 3 tries (200 ms, 400 ms backoff), reads and the completion only on transient failures</td>
+<td>console: 20 s read, 60 s write (<code>timeoutMs</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>A valid-signature callback for an unknown or late call is acknowledged <code>204</code> and dropped. A bad signature or unknown path is refused (403/404) and counted.</p>
+<p><strong>What must exist for a callback to arrive</strong> (all three Janus receivers, each checked on 2026-11-17):</p>
+<ol>
+<li>Temporal's <code>component.callbacks.allowedAddresses</code> lists the Service and port (<code>argocd-eks-stack</code>, <code>v2/apps/platform/wrflw/temporal-cluster-3/values/base.values.yaml</code>): <code>console-1-callback.ob1-tf-eks-de-v2-janus-1-ns-1.svc.cluster.local:3001</code>, <code>janus-intake-1-callback...:3001</code>, <code>janus-outbound-policy-1-callback...:3001</code> (<code>AllowInsecure: true</code>).</li>
+<li>A Cilium ingress policy from Temporal's <strong>history</strong> pods on port 3001 (<code>console-1.allow-temporal-callback.yaml</code>, <code>intake-1.allow-temporal-callback.yaml</code>, <code>outbound-policy-1.allow-temporal-callback.yaml</code>).</li>
+<li>Egress from the caller to the Temporal frontend <code>7243</code> (and the STS <code>8080</code>) (<code>&lt;component&gt;.allow-required.yaml</code>).</li>
+<li><strong>If the workload has an Istio <code>ALLOW</code> AuthorizationPolicy</strong> (only <code>intake-1</code> does), it must also admit Temporal's service account on 3001: <code>intake-1.allow-temporal-callback.authorizationpolicy.yaml</code> (principal <code>cluster.local/ns/ob1-tf-eks-temporal-3-ns-1/sa/ob1-acd-eks-temporal-cluster-3-sa-1</code>, port <code>3001</code>, ports and principals only because L7 rules are not enforced by ztunnel). Without it Temporal's delivery is refused with 403 and the caller sees "Nexus Callback has failed ... handler error (UNAUTHORIZED)".</li>
+<li>The namespace is <code>STRICT</code> mTLS (<code>strict-mtls.peerauthentication.yaml</code>, no port exceptions).</li>
+</ol>
+<h2 id="intake-intake-1">Intake (<code>intake-1</code>)<a class="headerlink" href="#intake-intake-1" title="Permanent link">&para;</a></h2>
+<p>HTTP backend of the connect page. Routes (all <code>POST</code>, <code>application/json</code>, session in the body, edge auth mode <code>capability</code>, <code>Cache-Control: no-store</code>, <code>Referrer-Policy: no-referrer</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Request</th>
+<th>Success</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/v1/connections/session/inspect</code></td>
+<td><code>{session}</code></td>
+<td>200 connection, type, provider, <code>mode</code> (<code>form</code> | <code>redirect</code>), <code>fields[]</code>, <code>expiresAt</code></td>
+<td>refuses a connection that left pending (409 <code>already_completed</code>)</td>
+</tr>
+<tr>
+<td><code>/v1/connections/credentials</code></td>
+<td><code>{session, fields{}}</code></td>
+<td>201 <code>{state: "active"}</code></td>
+<td>validates the closed field set (4 KiB each, no control characters), reserves the session nonce, writes a <strong>new revision</strong> to the Janus Vault with KV check-and-set, then <code>completeConnection</code></td>
+</tr>
+<tr>
+<td><code>/v1/connections/session/connect</code></td>
+<td><code>{session}</code></td>
+<td>200 <code>{connectUrl, expiresAt}</code></td>
+<td>creates the Nango connect session lazily (<code>POST /connect/sessions</code>, tags <code>connection_id</code>)</td>
+</tr>
+<tr>
+<td><code>/v1/connections/session/status</code></td>
+<td><code>{session}</code></td>
+<td>200 <code>{state, completed, typeName, completedAt?}</code></td>
+<td>also answers for a connection that already completed</td>
+</tr>
+<tr>
+<td><code>/v1/connections/webhooks/nango</code></td>
+<td>Nango's event</td>
+<td>200</td>
+<td>signature auth, below</td>
+</tr>
+</tbody>
+</table>
+<p>Errors: 401 <code>session_invalid</code> (forged or mismatched), 410 expired, 403 <code>origin_not_allowed</code>, 415, 429 <code>rate_limited</code> (+ <code>Retry-After</code>), 502 <code>vault_unavailable</code> / <code>provider_unavailable</code>, 503 <code>registry_unavailable</code> / <code>provider_not_configured</code>. A refused completion triggers a second <code>inspectConnection</code>: <code>revoked</code> → 404 <code>connection_not_found</code>, otherwise 409 <code>already_completed</code>. Rate limits (per minute, burst): IP 60/30, read 30/10, connect 10/5, credentials 10/5.</p>
+<p><strong>Vault write</strong>: KV v2 at <code>janus-connections/tenants/&lt;tenant&gt;/connections/&lt;id&gt;</code>, one key per field (<code>key</code>, <code>username</code>, <code>password</code>, <code>token</code>), check-and-set with the version this replica last stored (0 when unknown); on a refused CAS it reads the metadata version and retries once. Single use has two layers: the registry is authoritative (completing a non-pending connection is refused, and <code>inspect</code> runs before any write so a replay cannot overwrite an active credential) and an in-memory nonce set closes the window between inspect and completion. The registry client is <code>internal/registry</code> (Nexus HTTP, the callback receiver, STS workload token, STS <code>session:viewer</code> platform scope with <code>STS_SCOPE_ID=janus-platform-1</code>).</p>
+<h3 id="configuration-intake-1">Configuration (<code>intake-1</code>)<a class="headerlink" href="#configuration-intake-1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Env var</th>
+<th>Chart value / source</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LISTEN_ADDR</code>, <code>HEALTH_ADDR</code></td>
+<td><code>:8080</code>, <code>:3000</code></td>
+<td>listeners</td>
+</tr>
+<tr>
+<td><code>LOG_LEVEL</code></td>
+<td><code>logLevel</code> (default <code>info</code>)</td>
+<td><code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>; a typo stops the start</td>
+</tr>
+<tr>
+<td><code>INTAKE_SESSION_KEY_FILE</code></td>
+<td><code>secrets.sessionKey</code> (key <code>session-key</code>)</td>
+<td>HMAC key that verifies intake sessions (shared with the registry)</td>
+</tr>
+<tr>
+<td><code>VAULT_ADDR</code>, <code>VAULT_CA_FILE</code>, <code>VAULT_K8S_ROLE</code>, <code>VAULT_K8S_MOUNT</code> (<code>kubernetes</code>), <code>VAULT_KV_MOUNT</code> (<code>janus-connections</code>), <code>SA_TOKEN_FILE</code></td>
+<td><code>vault.*</code></td>
+<td>Janus Vault login (projected token with audience <code>vault.tokenAudience</code>) and mount</td>
+</tr>
+<tr>
+<td><code>NEXUS_URL</code>, <code>NEXUS_ENDPOINT_ID</code>, <code>NEXUS_SERVICE</code> (<code>ConnectionServiceV1</code>), <code>NEXUS_CALLBACK_ADDR</code> (<code>:3001</code>), <code>NEXUS_CALLBACK_URL</code></td>
+<td><code>nexus.*</code></td>
+<td>registry transport; setting <code>NEXUS_URL</code> without the rest (incl. an origin-only callback URL) fails at start</td>
+</tr>
+<tr>
+<td><code>STS_TOKEN_URL</code>, <code>STS_PROJECTED_TOKEN_PATH</code>, <code>STS_SCOPE_ID</code>, <code>STS_RESOURCE</code>, <code>STS_SCOPE</code> (<code>session:viewer</code>), <code>STS_SCOPE_TYPE</code> (<code>platform</code>)</td>
+<td><code>sts.*</code></td>
+<td>workload token exchange</td>
+</tr>
+<tr>
+<td><code>NANGO_BASE_URL</code>, <code>NANGO_CONNECT_URL</code></td>
+<td><code>nango.baseUrl</code>, <code>nango.connectUrl</code></td>
+<td>Nango API; connect UI origin fallback</td>
+</tr>
+<tr>
+<td><code>NANGO_SECRET_KEY_FILE</code></td>
+<td><code>secrets.nango</code> key <code>apiKey</code></td>
+<td>Nango <strong>API key</strong> (scoped: <code>environment:connect_sessions:write</code>)</td>
+</tr>
+<tr>
+<td><code>NANGO_WEBHOOK_SIGNING_KEY_FILE</code></td>
+<td><code>secrets.nango</code> key <code>signingKey</code></td>
+<td>Nango <strong>webhook signing key</strong> (a different secret). <strong>Neither file falls back to the other</strong></td>
+</tr>
+<tr>
+<td><code>CONNECT_ALLOWED_ORIGIN</code>, <code>CLIENT_IP_HEADER</code>, <code>CLIENT_IP_HOPS</code></td>
+<td><code>connect.*</code></td>
+<td>the only CORS/request origin; which header carries the client address and how many hops from the right</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nango-client-and-webhook-verification">Nango client and webhook verification<a class="headerlink" href="#nango-client-and-webhook-verification" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>API calls (by component):</strong> <code>intake-1</code> → <code>POST /connect/sessions</code> (needs <code>environment:connect_sessions:write</code>). <code>connection-registry-1</code> → <code>GET /integrations/{key}?include[]=credentials</code> for the editor's Check (only the scopes are kept; needs <code>environment:integrations:read_credentials</code>) and <code>POST /connect/sessions</code> for <code>createConnection</code> (a path the DT and console flow does not use). <code>outbound-policy-1</code> → <code>GET /connection/{ref}?provider_config_key=&lt;key&gt;</code> (the access token; needs <code>environment:connections:read_credentials</code>; the singular path is deprecated by Nango). Scope names come from Nango's documentation and are not verified against the dashboard (see Not verified); the repository's <code>docs/content/nango-keys.md</code> has the per-component key table and rollout order.</li>
+<li><strong>Webhook verification</strong> (<code>internal/nango.Verify</code>): the <code>X-Nango-Hmac-Sha256</code> header is the hex HMAC-SHA256 of the <strong>raw body</strong> keyed with the environment's <strong>webhook signing key</strong> (Nango: Environment Settings &gt; Webhooks &gt; Signing key), compared in constant time. The older <code>X-Nango-Signature</code> is <strong>not accepted</strong>. The body is read with a 1 MiB cap before parsing. A completion event is <code>type: auth</code>, <code>operation: creation</code>, <code>success: true</code> with the connection id taken from the end-user tag <code>connection_id</code>; other events are acknowledged <code>200 {"ignored": true}</code>.</li>
+<li>On a refused signature the log carries <code>hmac_header_hex_len</code>, <code>legacy_header_hex_len</code>, <code>body_bytes</code>, <code>content_type</code>, <code>content_encoding</code>, <code>secret_len</code> and <code>secret_fp</code> (the first six hex digits of the key's SHA-256), never the key, a signature or any body text. Compare <code>secret_fp</code> with <code>printf %s "$KEY" | sha256sum | cut -c1-6</code>.</li>
+</ul>
+<h2 id="other-components">Other components<a class="headerlink" href="#other-components" title="Permanent link">&para;</a></h2>
+<h3 id="connection-registry-1-configuration"><code>connection-registry-1</code> configuration<a class="headerlink" href="#connection-registry-1-configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Env var</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TASK_QUEUE</code></td>
+<td>default <code>janus-cluster-1-connection-registry-1-tq</code></td>
+</tr>
+<tr>
+<td><code>LOG_LEVEL</code></td>
+<td><code>debug</code> / <code>info</code> (default) / <code>warn</code> / <code>error</code>; a typo stops the start</td>
+</tr>
+<tr>
+<td><code>PGHOST</code>, <code>PGPORT</code>, <code>PGDATABASE</code>, <code>PGSSLMODE</code>, <code>PGUSER_FILE</code>, <code>PGPASSWORD_FILE</code>, <code>PGMAXCONNLIFETIME</code></td>
+<td>database (dynamic Vault credentials re-read per connection); unset <code>PGHOST</code> starts the worker answering <code>UNAVAILABLE</code></td>
+</tr>
+<tr>
+<td><code>INTAKE_BASE_URL</code>, <code>CONNECT_BASE_URL</code></td>
+<td>public bases of intake-1 (form URLs) and the connect page (<code>requestConnection</code>'s link); https without credentials, query or fragment</td>
+</tr>
+<tr>
+<td><code>INTAKE_SESSION_KEY_FILE</code></td>
+<td>signs intake sessions</td>
+</tr>
+<tr>
+<td><code>INTERNAL_CALLERS</code></td>
+<td>from <code>registry.internalCallers</code></td>
+</tr>
+<tr>
+<td><code>NANGO_BASE_URL</code>, <code>NANGO_SECRET_KEY_FILE</code></td>
+<td>Nango client (<code>secretKey</code> of its own Secret; scoped key <code>environment:integrations:read_credentials</code>)</td>
+</tr>
+<tr>
+<td><code>METRICS_ENABLED</code></td>
+<td>worker metrics</td>
+</tr>
+</tbody>
+</table>
+<p>Chart values: <code>database.{host,credentialsSecret,migratorCredentialsSecret}</code>, <code>registry.{intakeBaseUrl,connectBaseUrl,internalCallers,intakeSessionKeySecret}</code>, <code>nango.{baseUrl,secretKeySecret}</code>, <code>migration.{enabled,serviceAccount}</code>, <code>vso.*</code>, <code>logLevel</code>.</p>
+<h3 id="gateway-1"><code>gateway-1</code><a class="headerlink" href="#gateway-1" title="Permanent link">&para;</a></h3>
+<p>Env: <code>TASK_QUEUE</code>, <code>CAPABILITIES_DIR</code> (the mounted manifests), <code>METRICS_ENABLED</code>. Manifest default <code>executionTimeout: 30s</code>. A manifest change rolls the pod (<code>checksum/capabilities</code> annotation); there is no runtime discovery. Manifests: <code>connection-registry-1</code> (capabilities above), <code>publish-1</code> (<code>describePublications</code>, <code>registerPublication</code>, <code>retirePublication</code>), <code>vault-manager-1</code> (<code>describeVaultState</code>), <code>outbound-policy-1</code> (<code>describePolicy</code>; the last two are phase-0 stubs that say so).</p>
+<h3 id="publish-1"><code>publish-1</code><a class="headerlink" href="#publish-1" title="Permanent link">&para;</a></h3>
+<p>Env: <code>TASK_QUEUE</code>, database variables, <code>OPENFGA_URL</code>, <code>OPENFGA_API_TOKEN_FILE</code>, <code>OPENFGA_STORE_NAME</code> (resolved to the id at start, waiting a bounded time for the bootstrap Job; a missing or duplicated store stops the process), <code>OPENFGA_STORE_ID</code>/<code>OPENFGA_MODEL_ID</code> (unset by default), <code>PUBLISH_CALLERS</code> (identities allowed to call), <code>METRICS_ENABLED</code>. <code>registerPublication</code> / <code>retirePublication</code> write the publication row and its tuples idempotently, widening <code>publication.fga_tuples</code> before and narrowing after the OpenFGA write.</p>
+<h3 id="vault-manager-1"><code>vault-manager-1</code><a class="headerlink" href="#vault-manager-1" title="Permanent link">&para;</a></h3>
+<p>Env: <code>TASK_QUEUE</code>, database variables, <code>VAULT_ADDR</code>, <code>VAULT_CA_FILE</code>, <code>VAULT_K8S_ROLE</code>, <code>VAULT_K8S_AUTH_MOUNT</code>, <code>VAULT_TOKEN_FILE</code>, <code>VAULT_TOKEN_AUDIENCE</code>, <code>RECONCILE_INTERVAL</code> (default 1 minute), <code>VAULT_COMPONENT_ROLES</code> (<code>false</code> skips the component Kubernetes-auth roles), <code>JANUS_NAMESPACE</code>, <code>JANUS_INTAKE_SERVICE_ACCOUNT</code>, <code>JANUS_OAUTH_PROVIDER_SERVICE_ACCOUNT</code>, <code>JANUS_OUTBOUND_POLICY_SERVICE_ACCOUNT</code>. Each pass ensures the Janus Vault's mounts (<code>janus-connections</code>, <code>janus-platform</code>), policies and component roles, then works the <code>vault_destroy_request</code> queue (batch 50). Fixed policy <code>janus-connection-writer</code> gives the intake components <code>create</code> and <code>update</code> on <code>janus-connections/data/tenants/+/connections/+</code> and <code>read</code> on its metadata, never read, list or delete of a value. Roles: <code>ob1_janus_intake-1_role_1</code>, <code>ob1_janus_oauth-provider-1_role_1</code>, <code>ob1_janus_outbound-policy-1_role_1</code>, <code>ob1_janus_vault-manager-1_role_1</code>, <code>ob1_janus_raft-snapshot_role_1</code>. Policy <code>janus-outbound-policy-1</code> may only <code>update</code> <code>auth/token/create/janus-conn-reader</code>; that token role may attach only <code>janus-conn-*-read</code> policies, has no default policy and lives at most 15 minutes (the just-in-time read path used by outbound enforcement; not exercised yet).</p>
+<h3 id="oauth-provider-1"><code>oauth-provider-1</code><a class="headerlink" href="#oauth-provider-1" title="Permanent link">&para;</a></h3>
+<p>Env: <code>LISTEN_ADDR</code>, <code>HEALTH_ADDR</code>, <code>PUBLIC_BASE_URL</code>, <code>INTAKE_SESSION_KEY_FILE</code>, <code>VAULT_ADDR</code>, <code>VAULT_CA_FILE</code>, <code>VAULT_K8S_ROLE</code>, <code>VAULT_K8S_MOUNT</code>, <code>VAULT_KV_MOUNT</code>, <code>SA_TOKEN_FILE</code>, <code>GOOGLE_CLIENT_ID</code>, <code>GOOGLE_CLIENT_SECRET_FILE</code>. Built, not wired to a registered internal OAuth provider: intake-1 answers <code>501 provider_not_supported</code> for such a type.</p>
+<h3 id="openfga-bootstrap-1"><code>openfga-bootstrap-1</code><a class="headerlink" href="#openfga-bootstrap-1" title="Permanent link">&para;</a></h3>
+<p>Env: <code>OPENFGA_URL</code> (required), <code>OPENFGA_STORE_NAME</code> (default <code>janus-cluster-1</code>), <code>OPENFGA_API_TOKEN_FILE</code>, <code>OPENFGA_CREATE_STORE</code> (the sync Job <code>true</code>, the hourly drift CronJob <code>false</code>), <code>OPENFGA_BOOTSTRAP_MESH</code> (wait for the Istio sidecar and ask it to quit). One run: read the key; wait for the sidecar and <code>GET /healthz</code>; list stores and take the one named exactly <code>OPENFGA_STORE_NAME</code> (two with the name fails); create only when allowed; compare the store's latest model with Git's as canonical JSON and write a new model only when it differs (<code>written</code> / <code>unchanged</code>); retries on transport, 5xx and 429 (4 attempts), never on 401/403; keys and bodies are never logged. The Job is an ArgoCD Sync hook (wave 0). The model source is <code>components/publish-1/authz/janus.fga</code>, with generated <code>internal/model/janus.model.json</code> and a drift test; run <code>make openfga-model</code> to regenerate.</p>
+<p>Model (schema 1.1): <code>user</code>, <code>tenant</code>, <code>janus_dt_1</code> (<code>owning_tenant</code>), <code>janus_automation_1</code> (<code>dt</code>, <code>running</code>), <code>janus_activity_1</code> (<code>automation</code>, <code>runnable_in</code>), <code>janus_run_1</code>, <code>janus_connection_1</code> (<code>owning_tenant</code>, <code>user_activity</code>, <code>creator</code>, <code>dt_user</code>, <code>dt_manager</code>; <code>can_use = user_activity or dt_user or dt_manager</code>, <code>can_revoke = creator or dt_manager</code>). <strong>No tuple is static</strong>: every tuple is written by publish-1 at publish or supplied as a contextual tuple from the run token. OpenFGA preshared keys have no roles (any holder can do anything): one shared key today, with per-consumer VSO secrets so it can be split later. Details: <code>docs/content/openfga-operations.md</code>.</p>
+<h3 id="outbound-policy-1-built-listener-off"><code>outbound-policy-1</code> (built, listener off)<a class="headerlink" href="#outbound-policy-1-built-listener-off" title="Permanent link">&para;</a></h3>
+<p>Env: <code>EXT_AUTHZ_ENABLED</code> (must be <code>true</code> to serve; default off), <code>EXT_AUTHZ_ADDR</code>, <code>RULES_DIR</code>, <code>CONNECTIONS_FILE</code>, <code>RUN_TOKEN_AUDIENCE</code>, <code>STS_ISSUER</code>, <code>STS_JWKS_URL</code>, <code>OPENFGA_URL</code>, <code>OPENFGA_STORE_NAME</code>/<code>OPENFGA_STORE_ID</code>/<code>OPENFGA_MODEL_ID</code>, <code>OPENFGA_TOKEN_FILE</code>, <code>VAULT_ADDR</code>, <code>VAULT_MOUNT</code>, <code>VAULT_TOKEN_FILE</code>, <code>VAULT_TOKEN_ROLE</code>, <code>NANGO_BASE_URL</code>, <code>NANGO_SECRET_KEY_FILE</code>, <code>AUDIT_NEXUS_URL</code> (the audit sink; decisions go to the registry's <code>recordCredentialUse</code> through Nexus with its own callback on <code>NEXUS_CALLBACK_ADDR</code>, 3001), <code>TASK_QUEUE</code>, <code>METRICS_ENABLED</code>. Nothing in this repository enforces outbound calls yet; see the outbound enforcement thread for the open work.</p>
+<h3 id="console-1"><code>console-1</code><a class="headerlink" href="#console-1" title="Permanent link">&para;</a></h3>
+<p>Fastify server serving a React app; one session cookie (key <code>sessionSecret</code>, from the Janus-owned KV path <code>.../janus-cluster-1-console-1/session</code>, read once at start). Environment (set by the chart): <code>CONSOLE_PORT</code>, <code>CONSOLE_PUBLIC_URL</code>, <code>CONSOLE_PORTAL_URL</code>, <code>CONSOLE_ACCEPTED_SCOPES</code> (<code>system,tenant</code>), <code>CONSOLE_LOG_LEVEL</code> (chart default <code>warn</code>; dev <code>debug</code>), <code>CONSOLE_STS_ISSUER</code>, <code>CONSOLE_STS_JWKS_URL</code>, <code>CONSOLE_STS_AUDIENCE</code>, <code>CONSOLE_HANDOFF_REDEEM_URL</code>, <code>CONSOLE_HANDOFF_APP_ID</code>, <code>CONSOLE_HANDOFF_RESOURCE</code>, <code>CONSOLE_HANDOFF_TOKEN_PATH</code>, <code>CONSOLE_SESSION_SECRET_FILE</code>, <code>NEXUS_URL</code>, <code>NEXUS_SERVICE</code>, <code>NEXUS_ENDPOINT_ID</code> (the server-assigned endpoint id from the TemporalNexusEndpoint connection Secret, key <code>id</code>), <code>NEXUS_CALLBACK_PORT</code>, <code>NEXUS_CALLBACK_URL</code>. No database and no other secret.</p>
+<p>Routes (the console's own API; all behind the console-kit session; unknown query parameters 400; a tenant session gets 403 from <code>/api/system/*</code> and a platform session 403 from tenant routes without calling the gateway):</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Scope</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/connection-types[/:code]</code>, <code>GET /api/connections[/:id]</code>, <code>GET /api/audit</code>, <code>GET /api/publications</code></td>
+<td>tenant</td>
+<td>any</td>
+</tr>
+<tr>
+<td><code>POST /api/connections/request</code> <code>{typeCode, reason, host?, pathPrefix?, forceNew?}</code> + <code>Idempotency-Key</code> (required)</td>
+<td>tenant</td>
+<td><strong>editor</strong></td>
+</tr>
+<tr>
+<td><code>GET /api/system/types</code>, <code>/providers</code>, <code>/usage</code></td>
+<td>system</td>
+<td>any</td>
+</tr>
+<tr>
+<td><code>GET /api/system/audit?limit=&amp;cursor=</code></td>
+<td>system</td>
+<td>viewer (explicit)</td>
+</tr>
+<tr>
+<td><code>PUT /api/system/types/:id</code>, <code>PUT .../state</code>, <code>DELETE /api/system/types/:id</code> (body <code>{expectedUpdatedAt}</code>)</td>
+<td>system</td>
+<td>editor</td>
+</tr>
+<tr>
+<td><code>PUT</code> / <code>DELETE /api/system/types/:id/providers/:providerId</code>, <code>POST .../check</code> (<code>{}</code> or <code>{integrationKey}</code>)</td>
+<td>system</td>
+<td>editor</td>
+</tr>
+<tr>
+<td><code>/healthz</code>, <code>/auth/callback</code>, <code>/auth/logout</code> (204), <code>/api/bootstrap</code>, the static app</td>
+<td></td>
+<td>console-kit</td>
+</tr>
+</tbody>
+</table>
+<p>Server rules worth knowing: reads send <code>read-&lt;uuid&gt;</code> as the gateway idempotency key; a request body with unknown fields is refused; the connect route returns only the connection's <code>id</code>, <code>name</code>, <code>typeCode</code>, <code>state</code>, <code>host</code>, <code>pathPrefix</code>, <code>reason</code>, <code>createdAt</code>, <code>metadata</code>, the link <code>{url, message, expiresAt}</code>, <code>reused</code> and <code>reusedFromRequestedAt</code> (never a provider, provider reference or Vault path); the link is never logged, never cached (<code>no-store</code>) and held only in component state until the dialog closes; only an <code>https</code> link (or <code>http</code> on localhost) without credentials is offered; the registry's error text never reaches the browser (the console's own sentences, field messages on a 400). The web app expires the session by its <code>expiresAt</code> (timer capped and re-armed, re-checked on <code>visibilitychange</code>/<code>focus</code>), shows a two-minute notice, and offers Sign out (<code>POST /auth/logout</code>, then the portal URL).</p>
+<h2 id="vault-paths-and-policies">Vault paths and policies<a class="headerlink" href="#vault-paths-and-policies" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Vault</th>
+<th>Mount / path</th>
+<th>Written by</th>
+<th>Read by</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Janus Vault</strong> (<code>janus-vault-cluster-1</code>)</td>
+<td>KV v2 <code>janus-connections/tenants/&lt;tenant&gt;/connections/&lt;id&gt;</code></td>
+<td>intake-1 (and oauth-provider-1) via role <code>ob1_janus_intake-1_role_1</code>, policy <code>janus-connection-writer</code></td>
+<td>outbound-policy-1 through a 15-minute child token (<code>janus-conn-reader</code>, per-connection read policies); not exercised yet</td>
+<td>tenant credential fields, one KV version per revision</td>
+</tr>
+<tr>
+<td>Janus Vault</td>
+<td><code>janus-platform</code></td>
+<td>vault-manager-1</td>
+<td></td>
+<td>provider keys (reserved)</td>
+</tr>
+<tr>
+<td><strong>Platform Vault</strong> (<code>vault-cluster-2</code>), <code>app-kv-secrets-1</code>, base <code>v1/de-v2/ob1-tf-eks-de-v2-janus-1-ns-1/</code></td>
+<td><code>connection-registry-1/intake-session-key</code> (<code>key</code>), <code>connection-registry-1/nango</code> (<code>secretKey</code>), <code>janus-cluster-1-intake-1/nango</code> (<code>secretKey</code> = API key, <code>webhookSigningKey</code> = signing key), <code>janus-cluster-1-outbound-policy-1/nango</code> (<code>secretKey</code>), <code>janus-cluster-1-console-1/session</code> (<code>sessionSecret</code>)</td>
+<td>the owner</td>
+<td>VSO into Kubernetes Secrets</td>
+<td>service secrets</td>
+</tr>
+</tbody>
+</table>
+<p><code>intake-1-nango</code> (VSO <code>VaultStaticSecret</code> in <code>resources/base/intake-nango.vss.yaml</code>) maps <code>apiKey</code> ← <code>secretKey</code>, <code>signingKey</code> ← <code>get .Secrets "webhookSigningKey"</code> (an empty value, not a literal, when the field is missing), and keeps <code>secret</code> ← <code>secretKey</code> only while the previous chart runs; remove <code>secret</code> and <code>secrets.nangoWebhook</code> once the new chart is everywhere. The janus Vault's own bootstrap (initialization, recovery keys, break-glass) is in <code>docs/content/janus-vault-operations.md</code> and <code>deploy/janus-vault-bootstrap/</code>. The root token is documented as revoked; custody of recovery keys is the owner's.</p>
+<h2 id="chart-and-gitops-wiring">Chart and GitOps wiring<a class="headerlink" href="#chart-and-gitops-wiring" title="Permanent link">&para;</a></h2>
+<p><strong>Umbrella chart</strong> <code>charts/janus-cluster-1</code> (published as <code>janus-cluster-1-repo-1</code> to OCI on ECR): top-level values keys <code>global</code>, <code>temporal</code>, <code>config</code>, <code>gateway-1</code>, <code>connection-registry-1</code>, <code>publish-1</code>, <code>outbound-policy-1</code>, <code>vault-manager-1</code>, <code>intake-1</code>, <code>oauth-provider-1</code>, <code>openfga-bootstrap-1</code>, <code>console-1</code>, <code>janus-catalog-1</code>. Temporal resources (namespace, connection, Nexus endpoint and its connection Secret) are created by the umbrella through Crossplane. <code>config.logLevel</code> configures the <strong>Temporal worker library</strong> only; intake-1 and the registry read their own <code>logLevel</code>.</p>
+<p><strong>GitOps</strong> (<code>ob1_mn_gh_de-v2_gitops_repo_1</code>, <code>charts/apps/janus-cluster-1/</code>): <code>app.yaml</code> (ArgoCD Application <code>janus-cluster-1-app</code>, project <code>apps-janus-cluster-1-acd-proj-1</code>; Kargo owns <code>targetRevision</code>), <code>values/default.values.yaml</code> (written by Kargo), <code>values/base.values.yaml</code>, <code>values/profiles/{dev,stage,prod}.values.yaml</code>, <code>values/env/{dev-1,stage-1,prod-2}.values.yaml</code>, <code>resources/base/</code> (VSO secrets <code>intake-nango</code>, <code>intake-session-key</code>, <code>outbound-policy-nango</code>, <code>vault-auth</code>). Layers apply in that order, later wins. In the dev profile intake-1 and the registry run at <code>debug</code>.</p>
+<p><strong>ArgoCD projects</strong> (<code>ob1_mn_gh_argocd-critical-stack_repo_1</code>, <code>v2/env/_base/bootstrap/projects/applications/</code>): <code>apps-janus-cluster-1-acd-proj-1</code> (the Janus namespace, the Temporal namespace and Nexus endpoint kinds), <code>apps-janus-supporting-1-acd-proj-1</code> (Janus Vault and OpenFGA namespaces). <strong><code>apps-de-v2-services-acd-proj-1</code> must list <code>ob1-tf-eks-de-v2-janus-1-ns-1</code> as a destination</strong>: the <code>backend-services-cluster-1</code> chart's <code>api-gateway-1</code> renders a <code>ReferenceGrant</code> in that namespace so the gateway can route <code>/v1/connections/*</code> to <code>intake-1</code>; without the destination ArgoCD refuses the resource and the whole app does not sync (fixed in argocd-critical-stack PR 197).</p>
+<p><strong>Edge routing</strong> (<code>backend-services-cluster-1</code>, chart <code>api-gateway-1</code>): <code>contracts/intake</code> declares <code>inspectConnectionSession</code>, <code>/credentials</code>, <code>/session/connect</code>, <code>/session/status</code> (auth <code>capability</code>: the signed session in the body) and <code>POST /v1/connections/webhooks/nango</code> (signature auth); all five route to backend <code>intake-1</code> (Service <code>intake-1</code>, namespace <code>ob1-tf-eks-de-v2-janus-1-ns-1</code>, port 80 → pod 8080) and are listed as <code>unauthenticated</code> in the gateway's <code>AuthorizationPolicy</code> (so no bearer token is needed). The edge replies for a denied path are rewritten to <code>401 application/problem+json</code> ("Sign in to continue"): a <strong>403 from Istio RBAC and a missing token look identical</strong> at the edge.</p>
+<p><strong>Network and mesh policy</strong> (<code>ob1_mn_github_k8s-security_gitops_repo_1</code>, <code>v1/objects/netpol/manifests/de-v2-janus-1-ns-1/</code>): namespace default deny; <code>ingress/</code> <code>console-1.allow-istio-ingress-gateway</code>, <code>console-1.allow-temporal-callback</code>, <code>intake-1.allow-api-gateway-1</code> (+ <code>.authorizationpolicy</code>: principal <code>cluster.local/ns/ob1-tf-eks-api-gateway-ns-1/sa/api-gateway-1-istio</code>, port 8080), <code>intake-1.allow-temporal-callback</code> (+ <code>.authorizationpolicy</code>), <code>outbound-policy-1.allow-temporal-callback</code>, <code>outbound-policy-1.allow-outbound-gateway-1</code>, <code>outbound-gateway-1.allow-workers</code>, <code>namespace-wide.allow-prometheus-envoy-stats</code>; <code>egress/</code> per-component <code>*.allow-required</code> (registry, console, intake, oauth-provider, publish, vault-manager, outbound-policy, outbound-gateway, gateway), <code>janus-components.allow-janus-vault</code>, <code>janus-components.allow-janus-openfga-1</code>, <code>temporal-workers.allow-external-payload-store-and-vault</code>, <code>namespace-wide.allow-required</code>, <code>namespace-wide.deny-missing-label</code>; <code>strict-mtls.peerauthentication.yaml</code>. Pods are matched by the label <code>budybot.io/netpol: janus-&lt;component&gt;</code>; Gatekeeper <code>budy-netpol-identity</code> lists the allowed identities. The generated <code>inventory/</code> must be regenerated in the same commit (<code>python3 tools/policy-inventory/policy_inventory.py --write</code>).</p>
+<p><strong>Environments</strong>: dev-1 (<code>main</code>), stage-1 (<code>release/stage</code>), prod-2 (<code>release/prod</code>), one AWS account each. The owner reports stage and prod running older charts than dev (<code>0.1.18</code> and <code>0.1.17</code> on 2026-11-17); they apply pending migrations, including the destructive <code>00008</code>, when their chart reaches it.</p>
+<h2 id="cicd-and-release">CI/CD and release<a class="headerlink" href="#cicd-and-release" title="Permanent link">&para;</a></h2>
+<p>Shared pipeline pinned at <code>@v1</code>, driven by <code>.github/components.json</code>.</p>
+<ul>
+<li><strong>Pull request</strong> (<code>ci.yml</code> → <code>app-cluster-ci.yml</code>): <code>detect</code>, <code>changeset</code> (a <code>.changeset/*.md</code> file or label <code>no-changeset</code>, package names must equal catalog packages, a dry run of <code>changeset version</code>), <code>validate-chart</code>, <code>check-go</code> per Go module (vet, test, build; the registry's store tests run against Postgres), <code>check-node</code> for console-1, <code>catalog-chart</code> (<code>scripts/lint-catalog-chart.sh</code>: the Tool and Skill resources; <code>setConnectionMetadata</code> and the other internal capabilities are forbidden in any tool), and the aggregate <code>ci-required</code>. A superseded run shows <code>cancelled</code> and the aggregate reports failure: it is not a real failure.</li>
+<li><strong>Release</strong> (<code>release.yml</code>, on push to <code>main</code>): a merged changeset opens the Release PR <code>changeset-release/janus-cluster-1</code>, which may change only <code>package.json</code>, <code>CHANGELOG.md</code> and <code>.changeset/**</code>. Merging it builds and pushes the changed images (<code>&lt;component&gt;-&lt;version&gt;-&lt;sha7&gt;</code>), tags <code>shared/contract/v&lt;version&gt;</code>, creates <code>&lt;component&gt;/v&lt;version&gt;</code> tags, and opens the <strong>chart-release PR</strong> (<code>automation/chart-release/janus-cluster-1</code>, the only thing that bumps the umbrella chart; CI owns chart versions, never hand-bump). A chart-only change needs the label <code>no-changeset</code>; after it merges CI opens the chart PR from the shared <code>resolve-chart-release</code> + <code>chart-release-pr</code>. Merging the chart PR publishes the chart and opens a CHANGELOG-only PR in de-v2 (<code>kargo_managed: true</code>).</li>
+<li><strong>Promotion</strong>: Kargo discovers the chart and promotes dev → dev-bake (1 h) → stage → stage-bake (4 h) → prod → prod-verify (15 min); bake stages check restarts, 5xx and ArgoCD health.</li>
+<li><strong>Local</strong>: <code>make test</code>, <code>make lint-catalog-chart</code>, <code>make openfga-model</code>, <code>npm run changeset</code>. Commit the root <code>package-lock.json</code> (changesets needs it to see the workspaces); console-kit comes from GitHub Packages with <code>min-release-age=7</code>, so a new kit version needs its lockfiles regenerated through a disposable workflow when offline.</li>
+</ul>
+<h2 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h2>
+<p>Structured <code>slog</code> lines (text format through the process default logger for Go; JSON for the console). IDs, outcomes and fixed-word causes only: <strong>never</strong> a session, link, credential, Vault path contents, webhook body or signature, client address, request path or header, or the text of a dependency's error (tests assert this for intake, the registry and the console).</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th><code>LOG_LEVEL</code></th>
+<th>Info</th>
+<th>Debug</th>
+<th>Warn</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>intake-1</code></td>
+<td>env <code>LOG_LEVEL</code>, default <code>info</code></td>
+<td><code>startup</code> (hosts and ids only, once), <code>connection_completed</code></td>
+<td><code>session_inspected</code>, <code>session_status</code>, <code>provider_session_created</code>, <code>credential_written</code>, <code>webhook_received</code>, <code>webhook_ignored</code>, <code>callback_delivered</code></td>
+<td><code>request_refused</code> (with <code>reason</code>), <code>rate_limited</code>, <code>vault_cas_conflict</code>, <code>completion_refused</code>, <code>webhook_refused</code>, <code>webhook_unknown_connection</code>, <code>webhook_completion_refused</code>, <code>callback_refused</code></td>
+<td><code>provider_session_failed</code>, <code>provider_not_configured</code>, <code>vault_write_failed</code>, <code>registry_unavailable</code> (with <code>cause</code>), <code>webhook_refused</code> for <code>secret_not_configured</code></td>
+</tr>
+<tr>
+<td><code>connection-registry-1</code></td>
+<td>env <code>LOG_LEVEL</code>, default <code>info</code></td>
+<td><code>connection requested</code>, <code>connection completed</code>, <code>connection revoked</code>, <code>vault destruction queued</code></td>
+<td><code>catalog write</code>, <code>connection metadata changed</code></td>
+<td><code>connection request refused</code>, <code>connection create refused</code>, <code>connection completion refused</code>, <code>connection revoke refused</code> (code + fixed refusal text), <code>nango connect session failed</code>, <code>nango integration check failed</code></td>
+<td>an internal failure (<code>code=INTERNAL</code>)</td>
+</tr>
+<tr>
+<td><code>console-1</code></td>
+<td><code>CONSOLE_LOG_LEVEL</code>, chart default <code>warn</code></td>
+<td><code>connection requested</code> (outcome <code>created</code>/<code>reused</code>/<code>forced</code>)</td>
+<td>registry call timings and statuses</td>
+<td><code>connection request refused</code>, <code>registry call failed</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Every intake line has <code>event</code> and <code>request</code>. The request id is the edge's <code>X-Request-Id</code> when it matches <code>^[A-Za-z0-9._:-]{8,64}$</code>, otherwise a fresh 16-hex id; it is answered in the same header and <strong>sent to the gateway on every registry try</strong>, so intake's lines, the gateway's and Temporal's share it. The registry's <code>request</code> field is the idempotency key the gateway passed, else <code>run:&lt;workflow run id&gt;</code> (the capability request carries no console or edge request id). <code>registry_unavailable</code> carries a fixed-word <strong>cause</strong>: <code>no_identity_token</code>, <code>gateway_unreachable</code>, <code>gateway_timeout</code>, <code>gateway_status_&lt;code&gt;</code>, <code>answer_unreadable</code>, <code>no_callback</code> (the wait ended with nothing), <code>operation_failed</code> (the callback said failed or canceled), <code>callback_token_mismatch</code>, <code>no_operation_token</code>. A refused identity (401/403) is logged separately ("the registry refused this service's identity") and carries no cause.</p>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Suite</th>
+<th>What it covers</th>
+<th>How it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shared/contract</code></td>
+<td>validation helpers, intake session sign/verify, capability name lists vs manifests, the callback receiver, <code>LooseBool</code></td>
+<td><code>go test</code></td>
+</tr>
+<tr>
+<td><code>connection-registry-1/internal/activities</code></td>
+<td>every capability against an in-memory fake repository: identity checks, naming (host-aware bases, numbering, truncation, unicode), reuse and <code>forceNew</code>, key hits, reason rules, metadata rules and the 20-key limit, the catalog editor (replay, stale writes, retired and delete rules), logging (no link, session or reason in a line)</td>
+<td><code>go test -race</code></td>
+</tr>
+<tr>
+<td><code>connection-registry-1/internal/store</code></td>
+<td>the PostgreSQL repository and <strong>every migration</strong> (up, down, up again; 00007 renumbering; 00008 with seeded revisions and grants: the destroy queue holds the right path and versions, the immutability trigger is back and still blocks deletes, an editor-renamed type is left alone, metadata cascades); concurrency (30 racing metadata writes)</td>
+<td>needs <code>TEST_DATABASE_URL</code> (a scratch PostgreSQL 16); skipped without it; CI provides one</td>
+</tr>
+<tr>
+<td><code>internal/capabilities</code></td>
+<td>each manifest schema accepts and refuses the payloads it should (<code>capabilitytest.Verify</code>)</td>
+<td><code>go test</code></td>
+</tr>
+<tr>
+<td><code>intake-1</code></td>
+<td>every route and failure mode with a recognisable secret, session and token asserting none reaches a log line or an error body; the registry client against a fake Temporal (201 + callback before and after the answer, failed/canceled/mismatched token, retries and distinct per-try keys, causes); config and app wiring; the Nango client and <code>Verify</code></td>
+<td><code>go test</code></td>
+</tr>
+<tr>
+<td><code>console-1</code></td>
+<td>server routes (scope and boundary, write mapping, error sentences, the connect route and the link-never-logged check), the shared rule modules, static-render tests of the pages and dialogs, the session timer rules; about 330 tests</td>
+<td><code>vitest</code>, <code>tsc --noEmit</code>, <code>vite build</code></td>
+</tr>
+<tr>
+<td><code>openfga-bootstrap-1</code></td>
+<td>the bootstrap run against a fake OpenFGA; the model drift test (the <code>.fga</code> source vs the embedded JSON)</td>
+<td><code>go test</code></td>
+</tr>
+<tr>
+<td>Not covered</td>
+<td>browser behaviour of the console (focus, the native dialogs, clipboard, CSS truncation) is not exercised by the HTML-render tests; the catalog Helm lint needs <code>helm</code> and runs in CI; outbound enforcement has no end-to-end test</td>
+<td>see runbooks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="runbooks">Runbooks<a class="headerlink" href="#runbooks" title="Permanent link">&para;</a></h2>
+<h3 id="confirm-a-connect-flow-dev">Confirm a connect flow (dev)<a class="headerlink" href="#confirm-a-connect-flow-dev" title="Permanent link">&para;</a></h3>
+<ol>
+<li>As a tenant user with an <code>editor</code> session open the console, Connection types → <strong>Connect</strong> on a type, enter a reason. Expect the answer with a link; a second Connect within the hour returns the same pending connection with the reuse notice; <strong>Start another</strong> creates a numbered second one.</li>
+<li>Open the link: the connect page loads (<code>session/inspect</code> 200 in intake's debug log as <code>session_inspected</code>). For an API-key type enter the key (<code>credential_written</code>, <code>connection_completed via=form</code>, the connection shows <code>active</code>). For a Nango type the page sends you to Nango's connect UI; after approval Nango's webhook (<code>webhook_received</code>, <code>connection_completed via=webhook</code>) moves it to <code>active</code>.</li>
+<li>Check Temporal: the gateway workflow for each call shows the child <code>ConnectionRegistryWorkflowV1</code> completing, and the Nexus callback state <code>Succeeded</code>.</li>
+</ol>
+<h3 id="failures-seen-while-bringing-janus-up-cause-fix">Failures seen while bringing Janus up (cause → fix)<a class="headerlink" href="#failures-seen-while-bringing-janus-up-cause-fix" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connect page <code>session/inspect</code> returns <code>401 application/problem+json</code> "Sign in to continue", intake has no logs</td>
+<td>the gateway did not have the intake routes: <code>apps-de-v2-services-acd-proj-1</code> lacked the Janus namespace as a destination, so the <code>api-gateway-1</code> ReferenceGrant failed and the app did not sync (no <code>intake-1</code> HTTPRoute; the gateway policy kept the old open-path list)</td>
+<td>add <code>ob1-tf-eks-de-v2-janus-1-ns-1</code> to the project's destinations (argocd-critical-stack PR 197); check the Application's sync result</td>
+</tr>
+<tr>
+<td>Gateway workflow returns <code>PERMISSION_DENIED: this capability is internal</code></td>
+<td><code>INTERNAL_CALLERS</code> unset in the registry because <code>internalCallers</code> sat under <code>nango:</code> in the GitOps values</td>
+<td>put it under <code>connection-registry-1.registry.internalCallers</code></td>
+</tr>
+<tr>
+<td>Workflow completes but intake shows <code>registry_unavailable</code> / the page waits; Temporal shows "Nexus Callback has failed ... handler error (UNAUTHORIZED)"</td>
+<td>an Istio <code>ALLOW</code> policy on intake-1 listed only the API gateway and denied Temporal's delivery to port 3001 (403)</td>
+<td>the Temporal-callback AuthorizationPolicy (k8s-security PR 629); any new ALLOW policy on a callback receiver needs the same rule</td>
+</tr>
+<tr>
+<td><code>cause=gateway_status_500</code> with the gateway log "Workflow execution is already running"</td>
+<td>two identical gateway calls without an idempotency key shared a workflow id (a retry of a call still running, or concurrent polls)</td>
+<td>send a fresh <code>idempotencyKey</code> per try (done in console reads and intake)</td>
+</tr>
+<tr>
+<td>Nango webhook <code>webhook_refused reason=invalid_signature</code> while the connect session works</td>
+<td>the webhook was verified with the API key; Nango signs with the separate <strong>webhook signing key</strong></td>
+<td>store the signing key in <code>webhookSigningKey</code> and use the two-file configuration; compare <code>secret_fp</code></td>
+</tr>
+<tr>
+<td><code>UNAVAILABLE connect_base_url_not_configured</code> / <code>intake_base_url_not_configured</code></td>
+<td>the registry has no public base URLs</td>
+<td>set <code>registry.connectBaseUrl</code> / <code>intakeBaseUrl</code> in the environment values</td>
+</tr>
+<tr>
+<td>New pod in <code>CreateContainerConfigError</code> after a chart upgrade</td>
+<td>the chart reads a Secret key the Secret lacks (for example <code>apiKey</code> / <code>signingKey</code> before the VSO template added them)</td>
+<td>upgrade the GitOps resources first (keep the legacy key while the old chart runs), then the chart</td>
+</tr>
+<tr>
+<td>Console "service not answering" 503</td>
+<td>historical: <code>Execute</code> answers 201 and the console treated it as unavailable</td>
+<td>the callback listener, allowlist and policies above</td>
+</tr>
+</tbody>
+</table>
+<h2 id="not-verified">Not verified<a class="headerlink" href="#not-verified" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Live cluster state.</strong> Nothing here was read from a running cluster; policy, sync and rollout statements come from the repositories on 2026-11-17. The k8s-security policies, the ArgoCD project change and the registry <code>internalCallers</code> fix were merged by the owner during the session, whose dev results (the API-key connect flow completing) are the owner's report.</li>
+<li><strong>Stage and prod.</strong> The owner states they run older charts (0.1.18 and 0.1.17); the tier profiles read in the repository show the chart switched off outside dev, which does not match, so the actual state of those branches was not confirmed.</li>
+<li><strong>Nango scope names</strong> (<code>environment:connect_sessions:write</code>, <code>integrations:read</code> / <code>read_credentials</code>, <code>connections:read</code> / <code>read_credentials</code>, <code>connections:delete</code>) come from Nango's public documentation found by search, because <code>docs.nango.dev</code> could not be opened from the session; confirm in the dashboard when creating each key. Whether the integration Check strictly needs <code>read_credentials</code> was not tested.</li>
+<li><strong>Shared-kit behaviour</strong> (<code>budy-common-modules</code>): the gateway's workflow-id derivation, the edge <code>401</code> rewriting and the STS verification are described from this repository's docs and the observed behaviour, not from the kit's source.</li>
+<li><strong>Image and chart versions</strong> are not stated here; they move with each release (changesets). The Release PR for the 2026-11-17 changes (registry 0.5 → next minor, contract, gateway-1, intake-1, console-1) had not been released when this was written.</li>
+<li><strong>Kargo stage durations</strong> are copied from the repository's <code>AGENTS.md</code>, not re-read from the Kargo project.</li>
+<li>Gatekeeper <code>budy-netpol-identity</code> entries and the OPA rules were not re-read in this pass.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

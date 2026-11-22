@@ -1,0 +1,9 @@
+verbose = "info"
+no_progress = true
+include_verbatim = false
+max_concurrency = 8
+retry_wait_time = 2
+accept = [200, 206, 429]
+# Budybot repositories are private (CI's token cannot read other repos, so they 404);
+# kubernetes.default.svc is an in-cluster address.
+exclude = ["^mailto:", "^https://github\\.com/Budybot/", "^https?://kubernetes\\.default\\.svc"]

@@ -1,0 +1,4275 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="hld.html">
+      
+      
+        <link rel="next" href="nexus-contracts.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>TRD - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pit-crew-cluster-trd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TRD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="trd.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model (PostgreSQL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model (PostgreSQL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddl-migration-0001_initsql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DDL (migration 0001_init.sql)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ptsop-custom-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PTSOP Custom Resource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PTSOP Custom Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-1-content-approval-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample 1: content-approval-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-2-skill-publish-review-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample 2: skill-publish-review-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflows-and-activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows and Activities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bff-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BFF API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BFF API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporter-metrics-and-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporter Metrics and Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seed-job-dev-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed Job (dev only)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vault-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-skeleton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Skeleton
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-built-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As built (Phase 1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="As built (Phase 1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout-and-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout and names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-and-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database and Vault
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ptsop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PTSOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capabilities-and-the-gateway-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities and the gateway manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability-and-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability and alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not verified
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model (PostgreSQL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model (PostgreSQL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddl-migration-0001_initsql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DDL (migration 0001_init.sql)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ptsop-custom-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PTSOP Custom Resource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PTSOP Custom Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-1-content-approval-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample 1: content-approval-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-2-skill-publish-review-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample 2: skill-publish-review-v1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflows-and-activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows and Activities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bff-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BFF API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BFF API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporter-metrics-and-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporter Metrics and Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seed-job-dev-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seed Job (dev only)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vault-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-skeleton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Skeleton
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-built-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As built (Phase 1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="As built (Phase 1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout-and-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout and names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-and-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database and Vault
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ptsop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PTSOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capabilities-and-the-gateway-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities and the gateway manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability-and-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability and alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not verified
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pit-crew-cluster-trd">Pit Crew Cluster — TRD<a class="headerlink" href="#pit-crew-cluster-trd" title="Permanent link">&para;</a></h1>
+<p>Technical requirements for Phase 1 of <code>pitcrew-cluster-1</code>: what to build, with the exact shapes. Product intent is in the <a href="prd.html">PRD</a>, architecture in the <a href="hld.html">HLD</a>, the caller contract in <a href="nexus-contracts.html">nexus-contracts</a>, and how it was built in the "As built" section at the end.</p>
+<p>Names below follow the existing cluster conventions and are checked against the reference repositories (studio-services-cluster-1, the nainai console and the platform console standard). Where a name is derived from a pattern rather than copied, it is marked <em>derive</em>, and the implementer confirms it against the repository before use.</p>
+<h2 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Worker language</td>
+<td>Go (version from <code>go.mod</code> of the sibling cluster repos), module <code>github.com/budybot/pitcrew-cluster-1/ticket-engine-1</code> <em>derive</em></td>
+</tr>
+<tr>
+<td>Temporal</td>
+<td>Go SDK, Worker Deployment Versioning (Pinned), one task queue <code>pitcrew-ticket-engine-1</code></td>
+</tr>
+<tr>
+<td>Database</td>
+<td>PostgreSQL <code>ob1-pitcrew-db-1</code> (provisioned), <code>pgx/v5</code> pool, <code>goose</code> migrations with advisory lock</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>React 19, Vite, Node 26, Fastify BFF on <code>@budybot/console-kit</code> 0.3.x, Zod 4 (versions as pinned in <code>nainai-cluster-1</code> <code>console-1</code>)</td>
+</tr>
+<tr>
+<td>Kubernetes access</td>
+<td><code>client-go</code> dynamic informer on the PTSOP resource, namespace-scoped</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><code>go/authz</code> against OpenFGA through the auth cluster</td>
+</tr>
+<tr>
+<td>Exporter</td>
+<td><code>sql_exporter</code> (burningalchemist) as a separate Deployment, image mirrored to the platform registry</td>
+</tr>
+<tr>
+<td>Packaging</td>
+<td>Umbrella Helm chart <code>pitcrew-cluster-1</code>; one sub-chart per component</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Prometheus operator <code>ServiceMonitor</code> and <code>PrometheusRule</code></td>
+</tr>
+<tr>
+<td>Docs checks</td>
+<td><code>markdownlint-cli2</code> and <code>mkdocs build --strict</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<p>Repository <code>pitcrew-cluster-1_repo-1</code>:</p>
+<pre><code class="language-text">charts/
+  pitcrew-cluster-1/            umbrella (Chart.yaml, values.yaml, values-&lt;env&gt;.yaml)
+  gateway-1/                    exists; add files/capabilities/ticket-engine-1.yaml
+  ticket-engine-1/              worker Deployment, migrate Job, VaultAuth and secrets, SA, RBAC for PTSOP read
+  console-1/                    SPA + BFF Deployment, Service, VaultAuth and secrets, HTTPRoute inputs
+  sql-exporter-1/               exporter Deployment, ConfigMap (collectors), Service, ServiceMonitor
+  ptsop-crd/                    the PTSOP CRD and the two sample PTSOP resources
+  pitcrew-seed-1/               dev-only CronJob that seeds sample tickets (disabled by default)
+shared/contract/                Go types for Execute, capability names, error reasons, manifests
+ticket-engine-1/
+  cmd/worker/main.go            modes: worker (default), migrate
+  internal/
+    capabilities/               manifest YAML (embedded) and the conformance test
+    sop/                        PTSOP types, cache, informer, validator
+    store/                      pool.go, migrate.go, store.go, migrations/*.sql
+    workflow/                   entrypoint.go, ticket.go (TicketWorkflowV1), updates.go
+    activities/                 register, loadsop, runai, assignhuman, transition, notify, expire
+    worker/                     Register (Pinned entry workflow and lifecycle workflow)
+    authz/                      FGA checks
+    seed/                       seed generator used by the seed CronJob (cmd/seed)
+  cmd/seed/main.go
+console-1/
+  src/server/                   main.ts, db.ts, nexus.ts, routes.ts, actions.ts, content.ts
+  src/ui/                       the approved mock, split into components
+  Dockerfile
+</code></pre>
+<h2 id="data-model-postgresql">Data Model (PostgreSQL)<a class="headerlink" href="#data-model-postgresql" title="Permanent link">&para;</a></h2>
+<p>Two schemas separate what the console may read from what only the worker and the user's own session may read.</p>
+<table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Holds</th>
+<th>Readable by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td>Envelope data: no tenant content, nothing a requester typed</td>
+<td>worker role, <code>meta_read</code> role (console BFF, exporter)</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>Subject content, comments, event payloads</td>
+<td>worker role only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ddl-migration-0001_initsql">DDL (migration <code>0001_init.sql</code>)<a class="headerlink" href="#ddl-migration-0001_initsql" title="Permanent link">&para;</a></h3>
+<pre><code class="language-sql">CREATE SCHEMA IF NOT EXISTS meta;
+CREATE SCHEMA IF NOT EXISTS content;
+
+CREATE TABLE meta.tickets (
+  ticket_id        text PRIMARY KEY,                      -- tkt_&lt;ULID&gt;
+  tenant_id        text NOT NULL,
+  requester        text NOT NULL,                         -- identity from token
+  idempotency_key  text NOT NULL,
+  sop_name         text NOT NULL,
+  sop_version      int  NOT NULL,
+  sop_digest       text NOT NULL,
+  state            text NOT NULL CHECK (state IN
+                   ('accepted','in_progress','waiting','resolved','rejected','cancelled','expired')),
+  step             text NOT NULL,
+  attempt          int  NOT NULL DEFAULT 0,
+  owner_kind       text NOT NULL CHECK (owner_kind IN ('agent','human','system','requester')),
+  owner_queue      text,
+  assignee         text,
+  priority         text NOT NULL DEFAULT 'normal' CHECK (priority IN ('low','normal','high','urgent')),
+  summary          text,                                  -- up to 140 chars, visible to all staff
+  due_at           timestamptz,
+  created_at       timestamptz NOT NULL DEFAULT now(),
+  updated_at       timestamptz NOT NULL DEFAULT now(),
+  resolved_at      timestamptz,
+  result_state     text,                                  -- final state label only; result body is in content
+  UNIQUE (tenant_id, requester, idempotency_key)
+);
+CREATE INDEX tickets_open_idx ON meta.tickets (owner_queue, due_at) WHERE state IN ('accepted','in_progress','waiting');
+CREATE INDEX tickets_tenant_idx ON meta.tickets (tenant_id, created_at DESC);
+
+CREATE TABLE meta.ticket_events (
+  ticket_id   text NOT NULL REFERENCES meta.tickets(ticket_id),
+  seq         int  NOT NULL,
+  type        text NOT NULL,                              -- accepted, step_started, ai_decision, human_action,
+                                                          -- content_opened, sla_breached, escalated, transitioned, comment, resolved
+  actor_kind  text NOT NULL,                              -- user, service, agent, system
+  actor_id    text NOT NULL,
+  assumed_tenant text,                                    -- set when the actor acted in an assumed tenant session
+  step        text,
+  at          timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (ticket_id, seq)
+);
+
+CREATE TABLE meta.queue_entries (
+  ticket_id    text PRIMARY KEY REFERENCES meta.tickets(ticket_id),
+  queue        text NOT NULL,
+  step         text NOT NULL,
+  claimed_by   text,
+  claimed_at   timestamptz,
+  due_at       timestamptz NOT NULL,
+  breached_at  timestamptz,                               -- set once by the worker timer; exporter counts these
+  created_at   timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX queue_due_idx ON meta.queue_entries (due_at) WHERE breached_at IS NULL;
+
+CREATE TABLE content.ticket_content (
+  ticket_id   text PRIMARY KEY REFERENCES meta.tickets(ticket_id),
+  tenant_id   text NOT NULL,
+  input       jsonb NOT NULL,                             -- requester's validated input
+  subject     jsonb,                                      -- material under review, or an artifact reference
+  result      jsonb                                       -- SOP result body when final
+);
+
+CREATE TABLE content.event_payloads (
+  ticket_id   text NOT NULL,
+  seq         int  NOT NULL,
+  payload     jsonb NOT NULL,                             -- AI reasoning, human edits, comment text
+  PRIMARY KEY (ticket_id, seq),
+  FOREIGN KEY (ticket_id, seq) REFERENCES meta.ticket_events(ticket_id, seq)
+);
+
+CREATE VIEW meta.ticket_queue_v AS
+  SELECT t.ticket_id, t.tenant_id, t.sop_name, t.sop_version, t.state, t.step, t.owner_kind,
+         t.owner_queue, t.assignee, t.priority, t.summary, t.due_at, t.created_at, t.updated_at,
+         q.claimed_by, q.breached_at
+    FROM meta.tickets t LEFT JOIN meta.queue_entries q USING (ticket_id);
+</code></pre>
+<p><code>summary</code> is requester-written and is shown to every staff member who can see the queue. The capability contract tells requesters to keep sensitive material in <code>input</code>.</p>
+<h3 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h3>
+<p>Standard roles (<code>-admin</code>, <code>-user</code>, <code>-read-role</code>) and standard grants on <code>public</code> come from the existing database provisioning and are not changed. Migration objects live in <code>meta</code> and <code>content</code>, so the standard <code>-read-role</code> does not apply to them. The custom grants file <code>ob1-pitcrew-db-1.sql</code> in the EKS stack's postgres-objs jobs (the per-database custom grants location) adds:</p>
+<pre><code class="language-sql">-- Console metadata read role: the BFF and the exporter use this and nothing else.
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'pitcrew_meta_read') THEN
+    CREATE ROLE pitcrew_meta_read NOLOGIN;
+  END IF;
+END $$;
+
+GRANT USAGE ON SCHEMA meta TO pitcrew_meta_read;
+GRANT SELECT ON ALL TABLES IN SCHEMA meta TO pitcrew_meta_read;
+ALTER DEFAULT PRIVILEGES IN SCHEMA meta GRANT SELECT ON TABLES TO pitcrew_meta_read;
+REVOKE ALL ON SCHEMA content FROM pitcrew_meta_read;
+
+-- Worker role: full DML on both schemas.
+GRANT USAGE ON SCHEMA meta, content TO &quot;ob1-pitcrew-db-1-user&quot;;    -- role name: derive from the standard
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA meta, content TO &quot;ob1-pitcrew-db-1-user&quot;;
+ALTER DEFAULT PRIVILEGES IN SCHEMA meta, content GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO &quot;ob1-pitcrew-db-1-user&quot;;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA meta, content TO &quot;ob1-pitcrew-db-1-user&quot;;
+</code></pre>
+<p>The Vault database engine (<code>db-eng-1</code>) gets a precreated role for the console, with creation statements that <code>GRANT pitcrew_meta_read TO "{{name}}"</code>. Its name follows <code>&lt;service&gt;_&lt;suffix&gt;_vault_pg_role_1</code> with suffix <code>meta_read</code> (<em>derive</em>). The worker's dynamic role uses the standard <code>-user</code> suffix. The migration Job uses the static admin role, as in the other clusters.</p>
+<p><code>ALTER DEFAULT PRIVILEGES</code> applies to objects created by the role that runs it. The migration runs as the static admin, so the grants job must run <code>ALTER DEFAULT PRIVILEGES FOR ROLE &lt;admin&gt;</code> (<em>derive</em>), or the migration must re-grant at its end. The implementer verifies with a test that a new table created by migration is readable by <code>pitcrew_meta_read</code> and, for <code>content</code>, is not.</p>
+<h2 id="ptsop-custom-resource">PTSOP Custom Resource<a class="headerlink" href="#ptsop-custom-resource" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Group, version</td>
+<td><code>pitcrew.budy.bot/v1alpha1</code></td>
+</tr>
+<tr>
+<td>Kind, plural, short name</td>
+<td><code>PTSOP</code>, <code>ptsops</code>, <code>ptsop</code></td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Namespaced (the Pit Crew namespace)</td>
+</tr>
+<tr>
+<td>Immutability</td>
+<td><code>spec</code> equals its old value, except <code>spec.lifecycle</code>, enforced by a CEL transition rule</td>
+</tr>
+<tr>
+<td>Prompts</td>
+<td>Inline in the step; there is no separate prompt kind in Phase 1</td>
+</tr>
+</tbody>
+</table>
+<p>CRD validation rules (CEL): every value in a step's <code>outcomes</code> is a step name or one of <code>resolved</code>, <code>rejected</code>; <code>start</code> is a step name; a step has exactly one of <code>type: agent|human|system|wait</code>; <code>uses</code> is one of the shipped templates; <code>sla</code> and <code>timeout</code> match a duration pattern.</p>
+<p>Schema (abridged to the fields the worker reads):</p>
+<pre><code class="language-yaml">spec:
+  sop: string                    # name, e.g. content-approval
+  version: int                   # &gt;= 1
+  lifecycle: active|deprecated|retired
+  maxRuntime: 72h
+  input:  { schema: &lt;JSON Schema&gt; }
+  result: { schema: &lt;JSON Schema&gt; }
+  start: string
+  steps:
+    &lt;name&gt;:
+      type: agent|human|system|wait
+      uses: human-approval       # human steps only
+      queue: string              # human steps
+      session: viewer|editor     # tenant session boundary to act
+      sla: duration
+      onSlaBreach: { escalateTo: string }
+      maxAttempts: int           # agent steps
+      prompt:                    # agent steps
+        model: string            # hint passed to the LLM router
+        system: string
+        template: string         # Go text/template over {input, subject}
+        outputSchema: &lt;JSON Schema&gt;   # must include `outcome` (enum of the step's outcome keys)
+      action: { capability: string }  # system steps
+      wait: { for: duration }         # wait steps
+      outcomes: { &lt;outcome&gt;: &lt;step|resolved|rejected&gt; }
+</code></pre>
+<h3 id="sample-1-content-approval-v1">Sample 1: <code>content-approval-v1</code><a class="headerlink" href="#sample-1-content-approval-v1" title="Permanent link">&para;</a></h3>
+<p>An AI reviewer approves or rejects a draft message; unsure or invalid output goes to a person.</p>
+<pre><code class="language-yaml">apiVersion: pitcrew.budy.bot/v1alpha1
+kind: PTSOP
+metadata:
+  name: content-approval-v1
+spec:
+  sop: content-approval
+  version: 1
+  lifecycle: active
+  maxRuntime: 72h
+  input:
+    schema:
+      type: object
+      required: [channel, draft]
+      properties:
+        channel: { type: string, enum: [email, sms, whatsapp] }
+        draft:   { type: string, minLength: 1, maxLength: 4000 }
+        context: { type: string }
+  result:
+    schema:
+      type: object
+      required: [decision]
+      properties:
+        decision: { type: string, enum: [approved, rejected] }
+        editedDraft: { type: string }
+        reason: { type: string }
+  start: auto_review
+  steps:
+    auto_review:
+      type: agent
+      maxAttempts: 2
+      sla: 2m
+      prompt:
+        model: default-reasoning
+        system: &gt;-
+          You review outbound customer messages for policy, tone and accuracy.
+          Return approve only when the message is safe to send unchanged.
+        template: |
+          Channel: {{.input.channel}}
+          Draft: {{.input.draft}}
+          Context: {{.input.context}}
+        outputSchema:
+          type: object
+          required: [outcome, reasoning]
+          properties:
+            outcome: { type: string, enum: [approve, reject, unsure] }
+            reasoning: { type: string }
+      outcomes: { approve: resolved, reject: rejected, unsure: human_review, failed: human_review }
+    human_review:
+      type: human
+      uses: human-approval
+      queue: agent-success
+      session: editor
+      sla: 4h
+      onSlaBreach: { escalateTo: agent-success-lead }
+      outcomes: { approve: resolved, edit_approve: resolved, reject: rejected, send_back: auto_review }
+</code></pre>
+<h3 id="sample-2-skill-publish-review-v1">Sample 2: <code>skill-publish-review-v1</code><a class="headerlink" href="#sample-2-skill-publish-review-v1" title="Permanent link">&para;</a></h3>
+<p>A person always reviews; a system step then publishes. Shows a system actor and a non-AI path.</p>
+<pre><code class="language-yaml">apiVersion: pitcrew.budy.bot/v1alpha1
+kind: PTSOP
+metadata:
+  name: skill-publish-review-v1
+spec:
+  sop: skill-publish-review
+  version: 1
+  lifecycle: active
+  maxRuntime: 72h
+  input:
+    schema:
+      type: object
+      required: [skillId, skillVersion]
+      properties:
+        skillId: { type: string }
+        skillVersion: { type: string }
+        changeNote: { type: string }
+  result:
+    schema:
+      type: object
+      required: [decision]
+      properties:
+        decision: { type: string, enum: [published, rejected] }
+        reason: { type: string }
+  start: triage
+  steps:
+    triage:
+      type: human
+      uses: human-approval
+      queue: agent-success
+      session: editor
+      sla: 8h
+      onSlaBreach: { escalateTo: agent-success-lead }
+      outcomes: { approve: publish, reject: rejected, send_back: triage }
+    publish:
+      type: system
+      sla: 5m
+      action: { capability: publishSkill }
+      outcomes: { done: resolved, failed: triage }
+</code></pre>
+<p>In Phase 1 the <code>publishSkill</code> system action is a stub that records an event and returns <code>done</code>, because the target capability belongs to another cluster. The real binding is a later change to the SOP version.</p>
+<h2 id="capabilities">Capabilities<a class="headerlink" href="#capabilities" title="Permanent link">&para;</a></h2>
+<p>The contract is in <a href="nexus-contracts.html">nexus-contracts</a>. The component manifest <code>charts/gateway-1/files/capabilities/ticket-engine-1.yaml</code> has this shape (one entry shown; the others follow the contract table):</p>
+<pre><code class="language-yaml">apiVersion: capabilities.budy.bot/v1
+kind: ComponentCapabilities
+component: ticket-engine-1
+taskQueue: pitcrew-ticket-engine-1
+workflowType: TicketEngineEntryV1
+defaults: { timeout: 10s }
+capabilities:
+  - name: submitTicket
+    mutating: true
+    scope: tenant
+    schema:
+      type: object
+      required: [sop, input]
+      additionalProperties: false
+      properties:
+        sop:      { type: object, required: [name, version], properties: { name: {type: string}, version: {type: integer, minimum: 1} } }
+        input:    { type: object }
+        summary:  { type: string, maxLength: 140 }
+        priority: { type: string, enum: [low, normal, high, urgent] }
+</code></pre>
+<p>The <code>capabilitytest.Verify</code> conformance test runs against the manifest and the registered handlers, as in <code>engagement-manager-1</code>.</p>
+<h2 id="workflows-and-activities">Workflows and Activities<a class="headerlink" href="#workflows-and-activities" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Registered as</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TicketEngineEntryV1</code></td>
+<td>Pinned entry workflow, switch on capability</td>
+<td>Short path for <code>submitTicket</code>, <code>getTicket</code>, <code>cancelTicket</code>, <code>describeSops</code>, <code>awaitTicket</code>; envelope and content capabilities query the database or send an Update</td>
+</tr>
+<tr>
+<td><code>TicketWorkflowV1</code></td>
+<td>Pinned, workflow ID = ticket ID, started as an independent run</td>
+<td>Interpreter; carries only ticket ID, SOP reference and digest, step, attempt</td>
+</tr>
+<tr>
+<td>Lifecycle workflow</td>
+<td>AutoUpgrade, as in <code>engagement-manager-1</code></td>
+<td>Per the standard</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Retries</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RegisterTicket</code></td>
+<td>Default</td>
+<td>One transaction: insert ticket, <code>accepted</code> event, content row; unique on (tenant, requester, key); a repeat returns the same ticket</td>
+</tr>
+<tr>
+<td><code>LoadSOP</code></td>
+<td>Default</td>
+<td>Reads the pinned name, version and digest from the cache; result recorded in history</td>
+</tr>
+<tr>
+<td><code>RunAIStep</code></td>
+<td>2 attempts plus the step's <code>maxAttempts</code>; non-retryable on schema failure after the last attempt</td>
+<td>Renders the template, calls the LLM router, validates against <code>outputSchema</code>; <code>failed</code> outcome on exhaustion</td>
+</tr>
+<tr>
+<td><code>AssignHuman</code></td>
+<td>Default</td>
+<td>Inserts the <code>queue_entries</code> row, sets owner</td>
+</tr>
+<tr>
+<td><code>Transition</code></td>
+<td>Default</td>
+<td>Applies an outcome in one transaction (ticket, event, queue entry); idempotent on (ticket, seq)</td>
+</tr>
+<tr>
+<td><code>NotifyBreach</code></td>
+<td>Limited</td>
+<td>Phase 1 writes an event and logs; provider integration is later</td>
+</tr>
+<tr>
+<td><code>ExpireTicket</code></td>
+<td>Default</td>
+<td>Ends the ticket as <code>expired</code> at <code>maxRuntime</code></td>
+</tr>
+</tbody>
+</table>
+<p>Updates on <code>TicketWorkflowV1</code>: <code>HumanAction{action, expectedStep, edits, comment, actor}</code>, with a validator that rejects when the ticket is not at a human step, the step differs from <code>expectedStep</code>, or the action is not allowed. Queries: none; state is read from PostgreSQL.</p>
+<p>Search attributes: <code>TicketId</code>, <code>TenantId</code>, <code>SopName</code>, <code>SopVersion</code>, <code>Step</code>, <code>TicketState</code>.</p>
+<h2 id="bff-api">BFF API<a class="headerlink" href="#bff-api" title="Permanent link">&para;</a></h2>
+<p>The BFF runs on <code>@budybot/console-kit</code> with a user adapter (the signed-in staff member) and a pod adapter limited to system scope. All routes require a valid session cookie. All write routes are same-origin JSON with a CSRF guard, as in the reference console.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Source</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/queue</code></td>
+<td><code>meta.ticket_queue_v</code> via <code>meta_read</code></td>
+<td>Filters: <code>queue</code>, <code>state</code>, <code>sop</code>, <code>owner</code>; keyset pagination on (<code>due_at</code>, <code>ticket_id</code>); no tenant filter beyond the token (see below)</td>
+</tr>
+<tr>
+<td><code>GET /api/stats</code></td>
+<td><code>meta</code> aggregates</td>
+<td>Open, breached, due within 1 hour, resolved today</td>
+</tr>
+<tr>
+<td><code>GET /api/tickets/:id</code></td>
+<td><code>meta.tickets</code>, <code>meta.ticket_events</code> via <code>meta_read</code></td>
+<td>Envelope and event list without payloads</td>
+</tr>
+<tr>
+<td><code>GET /api/tickets/:id/content</code></td>
+<td>Gateway <code>getTicketContent</code></td>
+<td>Needs a tenant session (below); records <code>content_opened</code></td>
+</tr>
+<tr>
+<td><code>POST /api/tickets/:id/claim</code></td>
+<td>Gateway <code>claimTicket</code></td>
+<td>System-scope user token</td>
+</tr>
+<tr>
+<td><code>POST /api/tickets/:id/release</code></td>
+<td>Gateway <code>releaseTicket</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST /api/tickets/:id/resolve</code></td>
+<td>Gateway <code>resolveTicket</code></td>
+<td>Body <code>{action, expectedStep, comment?, edits?}</code>; tenant session</td>
+</tr>
+<tr>
+<td><code>POST /api/tickets/:id/comment</code></td>
+<td>Gateway <code>addComment</code></td>
+<td>Tenant session</td>
+</tr>
+<tr>
+<td><code>GET /healthz</code>, <code>GET /readyz</code></td>
+<td></td>
+<td>Readiness checks the pool</td>
+</tr>
+</tbody>
+</table>
+<h3 id="read-access">Read access<a class="headerlink" href="#read-access" title="Permanent link">&para;</a></h3>
+<p>The BFF holds a Vault-issued credential for <code>pitcrew_meta_read</code>. This is an own-store read of envelope data, behind a verified system-scope user token whose session carries the agent success role. The BFF checks the role before every query and refuses (fail closed) on a missing or unverifiable token. The queue is a platform-wide view by design for this role.</p>
+<h3 id="content-access">Content access<a class="headerlink" href="#content-access" title="Permanent link">&para;</a></h3>
+<p>Opening or acting on content needs a session for the ticket's tenant. Phase 1 behaviour:</p>
+<ol>
+<li>The BFF calls <code>getTicketContent</code> or <code>resolveTicket</code> through the gateway with the staff member's token.</li>
+<li>The component authorizes with the Pit Crew OpenFGA model: the caller must hold the agent success role on the platform <strong>and</strong> the ticket must be open at a step whose <code>session</code> boundary the caller's role grants.</li>
+<li>The component records <code>content_opened</code> with the caller and, where present, the assumed tenant.</li>
+</ol>
+<p>A true tenant assume (the STS exchanging a system session for a tenant session for a chosen tenant) is the intended end state. The portal performs it at launch through the auth-code flow, and the BFF cannot mint it. Until the platform provides a console-callable exchange, Phase 1 uses the check above and fails closed if the Pit Crew model denies. It is a platform dependency, not a Pit Crew change.</p>
+<h2 id="exporter-metrics-and-alerts">Exporter Metrics and Alerts<a class="headerlink" href="#exporter-metrics-and-alerts" title="Permanent link">&para;</a></h2>
+<p><code>sql_exporter</code> runs with the <code>meta_read</code> credential (the same Vault role the BFF uses, a separate <code>VaultDynamicSecret</code> in the exporter's own chart). Collector queries:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Type</th>
+<th>Query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pitcrew_sla_breached_open</code></td>
+<td>gauge</td>
+<td><code>SELECT count(*) FROM meta.queue_entries q JOIN meta.tickets t USING (ticket_id) WHERE q.breached_at IS NOT NULL AND t.state IN ('accepted','in_progress','waiting')</code></td>
+</tr>
+<tr>
+<td><code>pitcrew_queue_depth</code></td>
+<td>gauge, labels <code>queue</code>, <code>sop</code></td>
+<td>open entries grouped by queue and SOP</td>
+</tr>
+<tr>
+<td><code>pitcrew_oldest_open_age_seconds</code></td>
+<td>gauge, label <code>queue</code></td>
+<td><code>max(extract(epoch from now() - created_at))</code> per queue</td>
+</tr>
+<tr>
+<td><code>pitcrew_due_unbreached_overdue</code></td>
+<td>gauge</td>
+<td>entries with <code>due_at &lt; now()</code> and <code>breached_at IS NULL</code> (the worker timer is late)</td>
+</tr>
+<tr>
+<td><code>pitcrew_tickets_by_state</code></td>
+<td>gauge, label <code>state</code></td>
+<td>counts by state</td>
+</tr>
+</tbody>
+</table>
+<p>Rules (<code>PrometheusRule</code>, in the EKS stack under the <code>agent-success/</code> rules directory, evaluator label <code>thanos-ruler</code>, Alertmanager label <code>team: agent-success</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Alert</th>
+<th>Condition</th>
+<th>For</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PitcrewSlaBreached</code></td>
+<td><code>pitcrew_sla_breached_open &gt; 0</code></td>
+<td>5m</td>
+<td>warning</td>
+</tr>
+<tr>
+<td><code>PitcrewSlaBreachedMany</code></td>
+<td><code>pitcrew_sla_breached_open &gt; 10</code></td>
+<td>10m</td>
+<td>critical</td>
+</tr>
+<tr>
+<td><code>PitcrewWorkerTimerLate</code></td>
+<td><code>pitcrew_due_unbreached_overdue &gt; 0</code></td>
+<td>10m</td>
+<td>warning</td>
+</tr>
+<tr>
+<td><code>PitcrewExporterDown</code></td>
+<td><code>up{job="pitcrew-sql-exporter"} == 0</code></td>
+<td>5m</td>
+<td>critical</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>ServiceMonitor</code> lives in the exporter's chart so <code>prometheus-obs-1</code> scrapes it, and carries the labels that instance selects on (<em>derive</em> from an existing ServiceMonitor in the EKS stack).</p>
+<h2 id="seed-job-dev-only">Seed Job (dev only)<a class="headerlink" href="#seed-job-dev-only" title="Permanent link">&para;</a></h2>
+<p><code>pitcrew-seed-1</code> is a <code>CronJob</code> (suspended by default, enabled only in the dev values file through GitOps). It runs <code>cmd/seed</code>, which uses the worker role to insert tickets through the same <code>RegisterTicket</code> path and starts workflows, so seeded tickets behave like real ones.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schedule</td>
+<td><code>*/30 * * * *</code>, <code>concurrencyPolicy: Forbid</code></td>
+</tr>
+<tr>
+<td>Tenant</td>
+<td>A fixed dev seed tenant ID from values (<code>seedTenantId</code>)</td>
+</tr>
+<tr>
+<td>Tickets</td>
+<td>Up to 12: a mix across both sample SOPs, priorities and states, a few with <code>dueAt</code> in the past to exercise SLA breach</td>
+</tr>
+<tr>
+<td>Idempotency</td>
+<td>Keys are deterministic (<code>seed-&lt;n&gt;</code>), so re-runs do not duplicate</td>
+</tr>
+<tr>
+<td>Guard</td>
+<td>The binary refuses to run unless <code>PITCREW_ENV=dev</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Component</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PGHOST</code>, <code>PGPORT</code>, <code>PGDATABASE</code>, <code>PGSSLMODE</code></td>
+<td>worker, console, exporter</td>
+<td>Connection target</td>
+</tr>
+<tr>
+<td><code>PGUSER_FILE</code>, <code>PGPASSWORD_FILE</code></td>
+<td>worker, console, exporter</td>
+<td>Vault-rendered credential files; the pool re-reads on rotation</td>
+</tr>
+<tr>
+<td><code>PGMAXCONNS</code>, <code>PGMAXCONNLIFETIME</code></td>
+<td>worker, console</td>
+<td>Pool sizing</td>
+</tr>
+<tr>
+<td><code>TEMPORAL_ADDRESS</code>, <code>TEMPORAL_NAMESPACE</code>, <code>TEMPORAL_TASK_QUEUE</code></td>
+<td>worker</td>
+<td>Cluster connection</td>
+</tr>
+<tr>
+<td><code>PITCREW_NAMESPACE</code></td>
+<td>worker</td>
+<td>Namespace the informer watches</td>
+</tr>
+<tr>
+<td><code>PITCREW_ENV</code></td>
+<td>worker, seed</td>
+<td><code>dev</code>, <code>stage</code>, <code>prod</code></td>
+</tr>
+<tr>
+<td><code>GATEWAY_NEXUS_ENDPOINT</code>, <code>NEXUS_HTTP_URL</code></td>
+<td>console</td>
+<td><code>ob1-nexus-pitcrew-cluster-1-endpoint-1</code> and the Temporal Nexus HTTP address (port 7243)</td>
+</tr>
+<tr>
+<td><code>STS_URL</code>, <code>STS_AUDIENCE</code></td>
+<td>console</td>
+<td>Token verification and the audience for this cluster</td>
+</tr>
+<tr>
+<td><code>SESSION_KEY_FILE</code></td>
+<td>console</td>
+<td>Cookie signing key from Vault KV</td>
+</tr>
+<tr>
+<td><code>PUBLIC_HOST</code></td>
+<td>console</td>
+<td><code>pitcrew.&lt;environment&gt;.orangebox.ai</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vault-paths">Vault paths<a class="headerlink" href="#vault-paths" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Secret</th>
+<th>Path or role</th>
+<th>Consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Worker database credential</td>
+<td>DB engine <code>db-eng-1</code>, role <code>pitcrew_user_vault_pg_role_1</code> (<em>derive</em>)</td>
+<td>worker</td>
+</tr>
+<tr>
+<td>Console and exporter database credential</td>
+<td>DB engine <code>db-eng-1</code>, role <code>pitcrew_meta_read_vault_pg_role_1</code> (<em>derive</em>)</td>
+<td>console, exporter</td>
+</tr>
+<tr>
+<td>Migration credential</td>
+<td>static admin role</td>
+<td>migrate Job</td>
+</tr>
+<tr>
+<td>Console session key</td>
+<td>KV <code>app-kv-secrets-1</code>, path <code>pitcrew/console-1/session-key</code> (<em>derive</em>), manual write</td>
+<td>console</td>
+</tr>
+</tbody>
+</table>
+<p>Each chart carries a <code>VaultAuth</code> and <code>VaultDynamicSecret</code> or <code>VaultStaticSecret</code>, with the namespace added to <code>VaultAuthGlobal.allowedNamespaces</code>.</p>
+<h2 id="error-matrix">Error Matrix<a class="headerlink" href="#error-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Code</th>
+<th>Reason token</th>
+<th>Retryable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOP not found</td>
+<td><code>NOT_FOUND</code></td>
+<td><code>SOP_UNKNOWN</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>SOP deprecated or retired</td>
+<td><code>INVALID_ARGUMENT</code></td>
+<td><code>SOP_DEPRECATED</code>, <code>SOP_RETIRED</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Input fails the SOP input schema</td>
+<td><code>INVALID_ARGUMENT</code></td>
+<td><code>INPUT_INVALID</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Ticket not found, or not the caller's</td>
+<td><code>NOT_FOUND</code></td>
+<td><code>TICKET_NOT_FOUND</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Step moved, held by another, action not allowed</td>
+<td><code>INVALID_ARGUMENT</code></td>
+<td><code>CONFLICT</code></td>
+<td>After re-read</td>
+</tr>
+<tr>
+<td>FGA denies, or boundary too low</td>
+<td><code>PERMISSION_DENIED</code></td>
+<td><code>NOT_PERMITTED</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>FGA unreachable</td>
+<td><code>UNAVAILABLE</code></td>
+<td><code>AUTHZ_UNAVAILABLE</code></td>
+<td>Yes (fail closed meanwhile)</td>
+</tr>
+<tr>
+<td>Database unreachable</td>
+<td><code>UNAVAILABLE</code></td>
+<td><code>STORE_UNAVAILABLE</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LLM router failure after retries</td>
+<td>Step outcome <code>failed</code></td>
+<td></td>
+<td>Handled by the SOP</td>
+</tr>
+<tr>
+<td>Token missing, expired, wrong audience</td>
+<td><code>UNAUTHORIZED</code></td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="observability">Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metrics</td>
+<td>Worker: Temporal SDK metrics plus <code>pitcrew_transition_total{sop,outcome}</code>, <code>pitcrew_ai_step_duration_seconds</code>, <code>pitcrew_sop_cache_age_seconds</code>. Exporter metrics as above.</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td>Structured JSON with <code>ticketId</code>, <code>tenantId</code>, <code>sop</code>, <code>step</code>, never subject content</td>
+</tr>
+<tr>
+<td>Traces</td>
+<td>Propagated from the gateway through activities</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+<td>Queue depth, breaches, oldest age, transition rate (Grafana in the EKS stack, as a follow-up)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="testing-strategy">Testing Strategy<a class="headerlink" href="#testing-strategy" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit</td>
+<td>SOP validator (reachability, dead ends, every outcome target), template rendering, state transitions, idempotency key handling</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>Temporal test environment: accept path, AI approve, AI unsure to human, SLA breach timer, Update rejected at wrong step, <code>maxRuntime</code> expiry, replay of recorded histories</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>Against a real PostgreSQL (container): migration applies; <code>pitcrew_meta_read</code> can select <code>meta.*</code> and cannot select <code>content.*</code>; idempotent register; transition atomicity</td>
+</tr>
+<tr>
+<td>Contract</td>
+<td><code>capabilitytest.Verify</code> for the manifest; golden JSON for each capability's schema</td>
+</tr>
+<tr>
+<td>BFF</td>
+<td>Route tests with a fake gateway and a test database; role check refuses without the agent success role; same-origin guard; content routes fail closed</td>
+</tr>
+<tr>
+<td>Chart</td>
+<td><code>helm lint</code> and <code>helm template</code> for each env values file; CRD and sample CRs applied against a kind cluster; <code>kubeconform</code> on rendered output</td>
+</tr>
+<tr>
+<td>End to end (dev)</td>
+<td>Seed job populates tickets; UI lists them; claim, resolve and breach alert fire in a dev cluster</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deployment-skeleton">Deployment Skeleton<a class="headerlink" href="#deployment-skeleton" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release</td>
+<td>One Argo CD application from the umbrella chart, per environment values file; everything disabled by default outside dev</td>
+</tr>
+<tr>
+<td>Migration</td>
+<td><code>Job</code> with the static admin role, run as a PreSync hook; the worker starts after</td>
+</tr>
+<tr>
+<td>Rollout</td>
+<td>Worker Pinned versioning: new build gets a new deployment version, old builds drain until their tickets finish</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td><code>HTTPRoute</code> for <code>pitcrew.&lt;environment&gt;.orangebox.ai</code> on the platform gateway, TLS from the existing wildcard</td>
+</tr>
+<tr>
+<td>Network policy</td>
+<td>Pod labels <code>pitcrew-&lt;component&gt;</code>; allow console to gateway-1, DB, STS; worker to DB, Temporal, Kubernetes API, LLM router, auth cluster; exporter to DB; Prometheus to exporter</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>Worker ServiceAccount: <code>get</code>, <code>list</code>, <code>watch</code> on <code>ptsops</code> in its namespace</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>ECR repositories for <code>ticket-engine-1</code>, <code>console-1</code>, and the mirrored exporter image</td>
+</tr>
+</tbody>
+</table>
+<h2 id="as-built-phase-1">As built (Phase 1)<a class="headerlink" href="#as-built-phase-1" title="Permanent link">&para;</a></h2>
+<p>The sections above are the design. This section records where the build differs from them, and why. Nothing here is released or deployed, and nothing has been run against a real Temporal, OpenFGA, Vault or cluster.</p>
+<h3 id="layout-and-names">Layout and names<a class="headerlink" href="#layout-and-names" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Design</th>
+<th>Built</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ticket-engine-1/</code> at the repository root</td>
+<td><code>components/ticket-engine-1/</code>, module <code>github.com/Budybot/pitcrew-cluster-1_repo-1/components/ticket-engine-1</code></td>
+<td>The repository standard puts every component under <code>components/</code>, and the catalog, <code>go.work</code> and the shared Dockerfile expect it.</td>
+</tr>
+<tr>
+<td><code>cmd/seed</code> in its own binary and chart <code>pitcrew-seed-1</code></td>
+<td>A <code>seed</code> mode of the worker binary (<code>worker seed</code>, like <code>migrate</code>) and a CronJob template in the <code>ticket-engine-1</code> chart</td>
+<td>The shared Dockerfile builds one binary per image, and the seed must run the same build as the worker. The job has its own service account <code>pitcrew-seed-1</code>, its own Vault role and the netpol label <code>pitcrew-seed-1</code>.</td>
+</tr>
+<tr>
+<td>Two sample SOPs</td>
+<td>Three: <code>content-approval</code>, <code>skill-publish-review</code> and <code>demo-triage</code></td>
+<td><code>demo-triage</code> has a two-minute time limit, so the dev seed can exercise a breach and its alert within minutes; a step's due time is set when the ticket enters it, so a seed cannot back-date it.</td>
+</tr>
+<tr>
+<td>Task queue <code>pitcrew-ticket-engine-1</code></td>
+<td><code>pitcrew-cluster-1-ticket-engine-1-tq</code></td>
+<td>The standard derives <code>&lt;cluster&gt;-&lt;component&gt;-tq</code>; the chart's shared task-queue ConfigMap sets it.</td>
+</tr>
+<tr>
+<td><code>console-1</code> and <code>sql-exporter-1</code> charts</td>
+<td>Both are standalone charts like the reference consoles, off by default</td>
+<td>They are not Temporal workers. The exporter stays off until the <code>sql_exporter</code> image is mirrored into the platform registry.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="database-and-vault">Database and Vault<a class="headerlink" href="#database-and-vault" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>No <code>pitcrew_meta_read</code> role.</strong> The Vault catalog only grants the standard group roles, so the console and the exporter use <code>ob1-pitcrew-db-1-read-role</code>, limited to the <code>meta</code> schema by the custom grants file in the EKS stack. The worker uses <code>ob1-pitcrew-db-1-user-role</code> and the migration Job <code>ob1-pitcrew-db-1-admin-role</code>.</li>
+<li><strong>The migration role cannot <code>CREATE SCHEMA</code></strong> (the standard grants give it no <code>CREATE</code> on the database, even for <code>IF NOT EXISTS</code>). The grants file creates <code>meta</code> and <code>content</code>, owned by the admin role, and sets default privileges <code>FOR ROLE</code> the admin. <code>0001_init.sql</code> creates a schema only when it is missing (local and test databases) and re-grants at its end as a safety net.</li>
+<li><strong>Events carry a <code>dedupe_key</code>.</strong> <code>meta.ticket_events</code> has a <code>dedupe_key</code> column with a unique index per ticket, so a retried activity writes its event once. The design's "idempotent on (ticket, seq)" could not do that, because the sequence number is allocated by the database.</li>
+<li><strong>Vault names</strong> are the platform catalog's, not <code>pitcrew_&lt;suffix&gt;_vault_pg_role_1</code>: auth roles <code>ob1_tf_vault_pitcrew-cluster-1-&lt;service&gt;_role_1</code>, database paths <code>creds/pitcrew-cluster-1-&lt;service&gt;_readwrite_vault_pg_role_1</code> (worker, seed) and <code>..._readonly_...</code> (console, exporter), and the migration's static credentials. The console session key is <code>sessionSecret</code> at <code>v1/de-v2/ob1-tf-eks-de-v2-pitcrew-1-ns-1/pitcrew-cluster-1-console-1/session</code>. Service accounts are fixed in the chart defaults (<code>ticket-engine-1</code>, <code>ticket-engine-1-migrate</code>, <code>pitcrew-seed-1</code>, <code>console-1</code>, <code>sql-exporter-1</code>) because the Vault roles bind to exact names.</li>
+</ul>
+<h3 id="ptsop">PTSOP<a class="headerlink" href="#ptsop" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>results</code> per step.</strong> The design never said how an outcome becomes the result the requester receives. A step now declares <code>results: {&lt;outcome&gt;: &lt;JSON object&gt;}</code> for every outcome whose target is <code>resolved</code> or <code>rejected</code>. Each body must satisfy the SOP's result schema (validated when the resource is loaded). When a person resolves a ticket, their <code>edits</code> (a JSON object) are merged over the body key by key and their <code>comment</code> is added as <code>reason</code> if the result schema has that property; the merged result is checked against the schema, and an edit that breaks it is refused before the Update is accepted.</li>
+<li><strong>Admission.</strong> The CRD's CEL rules (start names a step, every outcome leads to a step, <code>resolved</code> or <code>rejected</code>, step shape per type, spec immutable except <code>lifecycle</code>) are checked in the repository's tests with the API server's own CRD validation and admission code, so the CEL compiles and stays inside the cost budget. The worker's validator adds what CEL cannot: reachability, dead ends, the model's <code>outcome</code> enum against the step's outcomes, and the results. A resource that fails the validator is kept out of the cache and counted, and does not affect other SOPs.</li>
+<li><strong>Scope of the CRD whitelist.</strong> A CRD is cluster-scoped, so the AppProject whitelist is by CRD name (<code>ptsops.pitcrew.budy.bot</code>), not by namespace.</li>
+</ul>
+<h3 id="capabilities-and-the-gateway-manifest">Capabilities and the gateway manifest<a class="headerlink" href="#capabilities-and-the-gateway-manifest" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The manifest format is a map keyed by capability name with a description, an optional <code>timeout</code> and a schema. It has no <code>scope</code> or <code>mutating</code> field, so the scope of a capability (tenant for requesters, platform for staff) is asserted by <code>ticket-engine-1</code> as the first thing every call does, before any authorization call. <code>awaitTicket</code> has a one-hour-one-minute timeout; every other capability inherits 15 seconds.</li>
+<li><code>listTicketEvents</code> returns event payloads (AI reasoning, edits, comments), so it is content access: it needs the same permission as <code>getTicketContent</code> and records a <code>content_opened</code> event. With the Phase 1 fail-closed check this means history with payloads is readable only while a ticket waits at a human step; the console shows event metadata for every ticket from the database.</li>
+</ul>
+<h3 id="workflows">Workflows<a class="headerlink" href="#workflows" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Human actions are Updates sent from an activity.</strong> A workflow cannot send an Update to another workflow, so <code>resolveTicket</code> runs in the <code>Execute</code> activity, which checks authorization and the ticket's state, then sends the Update through the worker's own client (<code>activity.GetClient</code>). The validator refuses an action at once when the ticket is not at a human step, the step moved, the action is not offered, an action is already being applied, or the result it would produce breaks the schema. The handler applies the transition, so the caller learns the outcome and the first of two concurrent actions wins.</li>
+<li><strong><code>awaitTicket</code> is a polling activity</strong> with heartbeats, bounded by <code>waitUpTo</code> (default 1800 seconds, maximum 3600); when it ends first the answer is <code>final: false</code>.</li>
+<li><strong>A ticket never stays silently open.</strong> If the workflow fails for any reason except cancellation or a conflict, it ends the ticket as <code>expired</code> and escalated, then reports the failure.</li>
+<li><strong>Search attributes are off by default</strong> (<code>engine.searchAttributes</code>), because upserting an attribute that is not registered on the Temporal namespace fails every workflow task. Registering <code>TicketId</code>, <code>TenantId</code>, <code>SopName</code>, <code>SopVersion</code>, <code>Step</code> and <code>TicketState</code> is a platform step; then the flag is turned on.</li>
+<li><strong>The AI step is behind an interface with a refusing default.</strong> Until the router's structured-output operation is confirmed, the default runner is not configured, so an agent step ends in its <code>failed</code> outcome after its attempts, which the sample SOPs route to a person. It never approves anything. System steps are labelled stubs (<code>publishSkill</code> records the call and succeeds).</li>
+<li>A time limit that passes escalates (an <code>sla_breached</code> and an <code>escalated</code> event, a log line) and keeps waiting; Phase 1 has no notification provider.</li>
+</ul>
+<h3 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">&para;</a></h3>
+<p>The model is <code>models/pitcrew.fga</code> in the authorization config. <code>ticket-engine-1</code> supplies the contextual edges from its own record of the ticket and the verified token: the ticket's tenant (<code>owning_tenant</code>), its requester, its SOP, the platform (<code>owning_platform</code>) and, only while the ticket waits at a human step, the boundary that step declares (<code>viewer_step_platform</code> or <code>editor_step_platform</code>). A ticket that is not at a human step has neither edge, so no content permission holds. The platform object is <code>platform:budy</code>; the live session is stated as <code>user session_&lt;boundary&gt; platform:budy</code> for staff and <code>... tenant:&lt;t&gt;</code> for requesters. <code>agent_success</code> is eligible for the viewer and editor boundaries only, through a new <code>assumable_platform_editor</code> union in the platform model; the STS needed no new Go mapping beyond using it.</p>
+<h3 id="console">Console<a class="headerlink" href="#console" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Results through Nexus callbacks.</strong> The console fires <code>Execute</code> and <code>getTicketContent</code>, <code>resolveTicket</code> and the other gateway calls need their result, so the backend passes <code>?callback=&lt;in-cluster URL&gt;</code> to Temporal's Nexus HTTP endpoint and resolves a pending promise when Temporal posts the completion (a <code>200</code> is a synchronous result, a <code>201</code> waits for the callback). This is the context-cluster control plane's pattern. Consequences: the chart runs <strong>one replica</strong> and refuses any other value (a callback lands on one pod, and a rollout loses in-flight results); the callback is served on a second port (3001) with its own Service, not on the public app; its only protection is a random one-time id in the path plus network isolation; and two platform changes are needed outside this repository: Temporal's callback allow-list must include <code>console-1-callback.ob1-tf-eks-de-v2-pitcrew-1-ns-1.svc.cluster.local:3001</code>, and a network policy must admit Temporal's history pods to that port.</li>
+<li><strong>How the backend knows the caller is staff.</strong> A platform-scope token does not by itself prove the <code>agent_success</code> role, and no repository shows how other system-scope consoles authorize staff. The backend asks the OpenFGA read-only proxy before every query and gateway call (<code>may_view_pitcrew_queue</code> for reads, <code>may_work_pitcrew_queue</code> with an editor or admin session for actions), using the wire format of <code>go/authz</code>, failing closed (deny is 403, an outage is 503) with a short cache. This is an assumption the platform owners must confirm.</li>
+<li><strong>Reads</strong> are the three pod adapters (queue, stats, ticket) over <code>meta</code> as the read role; the content route also needs an <code>x-pitcrew-intent: open-content</code> header and a same-origin request, because it has a recorded side effect. The content gate has no "assume tenant and reason" step, because Phase 1 has no tenant assume and <code>getTicketContent</code> takes no reason.</li>
+<li><strong>Kit version and npm setup.</strong> The console pins <code>@budybot/console-kit</code> 0.4.0. Because <code>console-1</code> is a root workspace, npm uses the <strong>root</strong> <code>.npmrc</code> (the <code>@budybot</code> scope mapping and the supply-chain settings) and the root lockfile; the image build uses the component's own <code>.npmrc</code> and lockfile. Both lockfiles must be committed.</li>
+<li><strong>Not verified.</strong> The typecheck and an end-to-end read test ran against a build of kit 0.4.0 made from its source, not the published package. The Docker image, a live callback and a browser or accessibility audit were not run.</li>
+</ul>
+<h3 id="observability-and-alerts">Observability and alerts<a class="headerlink" href="#observability-and-alerts" title="Permanent link">&para;</a></h3>
+<p>The exporter's Service is named <code>pitcrew-sql-exporter</code>, because the Prometheus job label is the Service name and <code>PitcrewExporterDown</code> matches <code>job="pitcrew-sql-exporter"</code>. <code>prometheus-obs-1</code> selects every ServiceMonitor, so none needs a selector label. The <code>agent-success</code> rules directory is included in the prod profile only, so the Pit Crew alerts do not evaluate in dev until the directory is added to the dev profile.</p>
+<h3 id="not-verified">Not verified<a class="headerlink" href="#not-verified" title="Permanent link">&para;</a></h3>
+<p>No Docker daemon, so the images were never built. <code>golangci-lint</code> was not run (its binary was built with an older Go than the modules). The <code>helm</code> checks used the library charts resolved from <code>file://</code> in the helm charts repository. The OpenFGA model was not validated with <code>fga model validate</code>. Nothing was exercised against Temporal's Nexus endpoint, the STS, Vault or a cluster.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

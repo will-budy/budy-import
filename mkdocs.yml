@@ -1,0 +1,95 @@
+site_name: OB Platform Wiki
+site_description: Central architecture and context repository for Budy platform systems
+repo_name: ob-platform-wiki
+docs_dir: v2
+site_dir: site
+use_directory_urls: false
+exclude_docs: |
+  **/*.excalidraw.md
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Product Vision: vision/ProductVision-Roadmap-Budy-2.md
+  - Microservices:
+      - Execution Mode Services:
+          - Overview: micro-services/execution-mode-services/info.md
+          - nainai-cluster-1:
+              - Service: micro-services/execution-mode-services/nainai-cluster-1/info.md
+              - Console: micro-services/execution-mode-services/nainai-cluster-1/console.md
+              - Tenant provisioning (proposal): micro-services/execution-mode-services/nainai-cluster-1/tenant-provisioning.md
+          - gitjib-cluster-1: micro-services/execution-mode-services/gitjib-cluster-1/info.md
+          - pitcrew-cluster-1:
+              - Overview: micro-services/execution-mode-services/pitcrew-cluster-1/info.md
+              - PRD: micro-services/execution-mode-services/pitcrew-cluster-1/prd.md
+              - HLD: micro-services/execution-mode-services/pitcrew-cluster-1/hld.md
+              - TRD: micro-services/execution-mode-services/pitcrew-cluster-1/trd.md
+              - Nexus contracts: micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.md
+          - dt-consulting-services-1:
+              - Service: micro-services/execution-mode-services/dt-consulting-services-1/info.md
+              - Engagement flow: micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.md
+              - Console: micro-services/execution-mode-services/dt-consulting-services-1/console.md
+          - karkhana-cluster-1:
+              - Service: micro-services/execution-mode-services/karkhana-cluster-1/info.md
+              - Sandboxes: micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.md
+              - Console: micro-services/execution-mode-services/karkhana-cluster-1/console.md
+          - events-cluster-1: micro-services/execution-mode-services/events-cluster-1/info.md
+          - janus-cluster-1: micro-services/execution-mode-services/janus-cluster-1/info.md
+          - glassbox-1: micro-services/execution-mode-services/glassbox-1/info.md
+          - studio-services-cluster-1:
+              - Overview: micro-services/execution-mode-services/studio-services-cluster-1/info.md
+              - HLD: micro-services/execution-mode-services/studio-services-cluster-1/hld.md
+              - Nexus contracts: micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.md
+  - GitOps:
+      - Overview: gitops/index.md
+      - Repository Guide:
+          - Overview: gitops/repositories/index.md
+          - github-infra: gitops/repositories/github-infra/index.md
+          - platform-actions: gitops/repositories/platform-actions/index.md
+          - budy-cloud-management: gitops/repositories/budy-cloud-management/index.md
+          - vault-management-1: gitops/repositories/vault-management-1/index.md
+          - k8s-security: gitops/repositories/k8s-security/index.md
+          - argocd-critical-stack: gitops/repositories/argocd-critical-stack/index.md
+          - argocd-eks-stack: gitops/repositories/argocd-eks-stack/index.md
+          - de-v2: gitops/repositories/de-v2/index.md
+          - design-services: gitops/repositories/design-services/index.md
+          - execution-services: gitops/repositories/execution-services/index.md
+          - shared-services: gitops/repositories/shared-services/index.md
+          - Application Source Repositories: gitops/repositories/application-source-repositories/index.md
+      - Repos & the App Model: gitops/repos-and-app-model.md
+      - Adding a New Operator: gitops/adding-a-new-operator.md
+      - Scaffolding an Application Repository: gitops/scaffolding-an-application-repo.md
+      - PostgreSQL Database Provisioning: gitops/postgres-database-provisioning.md
+      - Application Cluster CI/CD Standard: gitops/application-cicd-standard.md
+      - Component Authorization Module Standard: gitops/authorization-module-standard.md
+      - Network Policy & mTLS: gitops/network-policy-and-mtls.md
+      - Kargo Promotion Design: gitops/kargo-promotion-design.md
+      - Kargo Topology Decision: gitops/kargo-topology-decision.md
+  - Reference:
+      - Glossary: ref/glossary.md
+      - Platform Console Standard: ref/platform-console-standard.md
+      - Platform UI: ref/platform-ui.md
+      - Platforms and Platform Sessions: ref/platforms.md
+      - STS Token Claims: ref/sts-token-claims.md
+      - Usage Metering Standard: ref/usage-metering-standard.md

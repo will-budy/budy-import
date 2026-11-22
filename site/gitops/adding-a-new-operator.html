@@ -1,0 +1,2848 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="repos-and-app-model.html">
+      
+      
+        <link rel="next" href="scaffolding-an-application-repo.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Adding a New Operator - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adding-a-new-operator-or-any-new-k8s-workload" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Adding a New Operator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="adding-a-new-operator.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-research-before-writing-anything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Research before writing anything
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-budy-cloud-management-create-the-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. budy-cloud-management — create the namespace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-argocd-critical-stack-appproject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. argocd-critical-stack — AppProject
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-argocd-eks-stack-the-app-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. argocd-eks-stack — the app itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-k8s-security-rbac-only-if-you-disabled-the-charts-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. k8s-security — RBAC (only if you disabled the chart's own)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-k8s-security-networkpolicy-ciliumnetworkpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. k8s-security — NetworkPolicy / CiliumNetworkPolicy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-k8s-security-mtls-peerauthentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. k8s-security — mTLS (PeerAuthentication)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-if-the-workload-dashboardsuis-need-external-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. If the workload dashboards/UIs need external access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-if-the-workload-has-an-opt-in-per-namespace-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. If the workload has an opt-in-per-namespace pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-verify-before-opening-prs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Verify before opening PRs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes-from-real-prs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes (from real PRs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-research-before-writing-anything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Research before writing anything
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-budy-cloud-management-create-the-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. budy-cloud-management — create the namespace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-argocd-critical-stack-appproject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. argocd-critical-stack — AppProject
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-argocd-eks-stack-the-app-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. argocd-eks-stack — the app itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-k8s-security-rbac-only-if-you-disabled-the-charts-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. k8s-security — RBAC (only if you disabled the chart's own)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-k8s-security-networkpolicy-ciliumnetworkpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. k8s-security — NetworkPolicy / CiliumNetworkPolicy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-k8s-security-mtls-peerauthentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. k8s-security — mTLS (PeerAuthentication)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-if-the-workload-dashboardsuis-need-external-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. If the workload dashboards/UIs need external access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-if-the-workload-has-an-opt-in-per-namespace-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. If the workload has an opt-in-per-namespace pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-verify-before-opening-prs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Verify before opening PRs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes-from-real-prs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes (from real PRs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="adding-a-new-operator-or-any-new-k8s-workload">Adding a New Operator (or any new k8s workload)<a class="headerlink" href="#adding-a-new-operator-or-any-new-k8s-workload" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document</strong></td>
+<td>Adding a New Operator — Checklist</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Living Document</td>
+</tr>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Anyone deploying a new Helm chart, operator, or internal tool onto the cluster</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>The ordered, cross-repo checklist so nothing gets silently skipped (namespace, RBAC, netpol, mTLS...).</td>
+</tr>
+<tr>
+<td><strong>Last Updated</strong></td>
+<td>July 2026</td>
+</tr>
+</tbody>
+</table>
+<p>Worked examples referenced throughout: <strong>Reflector</strong> (cross-namespace ConfigMap replication, <code>apps/platform/cfg/reflector</code>), <strong>VPA</strong> (<code>apps/foundation/auto-scale/vpa</code>), and <strong>Goldilocks</strong> (<code>apps/foundation/auto-scale/goldilocks</code>) — added together in one pass, so they cover most of the variation you'll hit (single-component vs multi-component chart, inbound-serving vs controller-only, needs kube-apiserver access, needs external ingress).</p>
+<h2 id="0-research-before-writing-anything">0. Research before writing anything<a class="headerlink" href="#0-research-before-writing-anything" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Check the chart's actual latest version and repo.</strong> Don't trust a version a teammate remembers — <code>helm repo add &lt;name&gt; &lt;url&gt; &amp;&amp; helm search repo &lt;name&gt;/&lt;chart&gt; --versions</code> and use the top result. Prefer the chart maintained by the <em>upstream project itself</em> over third-party repackagings when both exist (e.g. VPA: <code>kubernetes.github.io/autoscaler</code>, the official <code>kubernetes-sig-autoscaling</code> chart, not a third-party mirror — check for one before assuming the first Helm repo you find is canonical).</li>
+<li><strong>Read the chart's own RBAC template</strong>, not just its values.yaml prose. Chart-bundled <code>ClusterRole</code>s are often broader than the workload actually needs (e.g. Reflector's chart grants <code>configmaps</code> <em>and</em> <code>secrets</code> with no values.yaml toggle to split them). If it's too broad and there's no values-level way to scope it down, plan on <code>rbac.enabled: false</code> + a hand-written <code>ClusterRole</code> in <code>k8s-security</code> (§3).</li>
+<li><strong><code>helm template</code> your actual values before committing them.</strong> This catches real bugs — chart-level validation errors, wrong key names, mutually-exclusive options set together — that pure YAML linting won't. Do this for every profile (<code>base</code> + each of <code>dev</code>/<code>stage</code>/<code>prod</code>), not just one.</li>
+<li><strong>Figure out what the workload's pods actually need to reach</strong>, and what needs to reach them. This drives §5 (netpol) and is much easier to get right before deploying than to reverse-engineer from a mysteriously-hanging pod afterward. In particular: does it need <code>kube-apiserver</code> access (most controllers do)? Does anything outside the mesh call into it directly (e.g. an admission webhook, called by <code>kube-apiserver</code> itself, which has no sidecar)?</li>
+</ul>
+<h2 id="1-budy-cloud-management-create-the-namespace">1. budy-cloud-management — create the namespace<a class="headerlink" href="#1-budy-cloud-management-create-the-namespace" title="Permanent link">&para;</a></h2>
+<p>Add an entry to <code>v2/stacks/shared-infra/k8s/v1/namespaces.tf</code> (<code>ob1-tf-eks-&lt;name&gt;-ns-1</code>). If the workload has an opt-in-per-namespace pattern (see §7), this is also where those labels get added to <em>other</em> namespaces, not the new one.</p>
+<h2 id="2-argocd-critical-stack-appproject">2. argocd-critical-stack — AppProject<a class="headerlink" href="#2-argocd-critical-stack-appproject" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Prefer reusing an existing project. Check whether the tier's project already has the namespace pre-staged as a commented-out destination (a sign someone planned for this).</li>
+<li>If reusing: add the chart's Helm repo URL to <code>sourceRepos</code> (if not already present) and the new namespace to <code>destinations</code>.</li>
+<li>If a genuinely new access pattern (e.g. governance-scoped, like <code>pfm-cfg-sources-acd-proj-1</code> which only allows <code>ConfigMap</code> into one namespace): create a new project, tightly scoped — don't default to <code>namespaceResourceWhitelist: [{group: '*', kind: '*'}]</code> unless the workload genuinely needs broad object creation.</li>
+</ul>
+<h2 id="3-argocd-eks-stack-the-app-itself">3. argocd-eks-stack — the app itself<a class="headerlink" href="#3-argocd-eks-stack-the-app-itself" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>app.yaml</code> + <code>values/base.values.yaml</code> + one values file per profile (<code>dev</code>/<code>stage</code>/<code>prod</code>), following the exact structure in <a href="repos-and-app-model.html#1-argocd-eks-stack--the-workloads">Repos &amp; the App Model</a>.</li>
+<li>Pin the chart version with <code>~x.y.z</code>.</li>
+<li>Set <code>deployedReleaseName</code> to <code>&lt;name&gt;-1</code>.</li>
+<li>Always keep the real defaults beside the values files that override them: <code>values/default.values.yaml</code>, unmodified and never referenced by <code>app.yaml</code>. Fetch the exact pinned chart version with <code>helm pull &lt;repo-or-oci-chart&gt; --version &lt;x&gt; --untar</code> and copy the extracted chart's <code>values.yaml</code>; alternatively, filter OCI transport lines from <code>helm show values &lt;repo-or-oci-chart&gt; --version &lt;x&gt;</code> before writing the file. Refresh this reference in the same PR whenever the chart version changes. Never hand-type it from memory or include Helm transport output such as <code>Pulled:</code>/<code>Digest:</code> lines.</li>
+<li>If the chart's default RBAC is broader than needed: <code>rbac.enabled: false</code> here, then write the narrower <code>ClusterRole</code>/<code>ClusterRoleBinding</code> in <code>k8s-security</code> (§4).</li>
+<li><strong>Add <code>budybot.io/netpol</code> to every Pod template</strong> the chart creates (<code>podLabels: {"budybot.io/netpol": &lt;name&gt;-1}</code>, or the chart's equivalent — some charts call it <code>additionalLabels</code> under a <code>deployment:</code> block; check the rendered output, do not assume the field name). This is required for the <code>k8s-security</code> netpol convention (§5) to select the workload. For multi-component charts, give each component a distinct value (<code>&lt;name&gt;-1-&lt;component&gt;</code>) when they have different network requirements. Add every value to the namespace-scoped, deny-mode <code>BudyNetpolIdentity</code> allow-list in <code>k8s-security</code>. Plain <code>app</code> labels are legacy and must not be used for new selectors.</li>
+<li><code>helm template</code> the final base+profile-layered values against the real chart one more time after adding labels, to confirm nothing broke.</li>
+</ul>
+<h2 id="4-k8s-security-rbac-only-if-you-disabled-the-charts-own">4. k8s-security — RBAC (only if you disabled the chart's own)<a class="headerlink" href="#4-k8s-security-rbac-only-if-you-disabled-the-charts-own" title="Permanent link">&para;</a></h2>
+<p><code>v1/objects/rbac/cluster/manifests/&lt;name&gt;-ns-1/</code>: a <code>ClusterRole</code> scoped to exactly the verbs/resources needed, a <code>ClusterRoleBinding</code> to the workload's ServiceAccount (name must match <code>serviceAccount.name</code> set in the app's values), and wire the new directory into <code>rbac/cluster/manifests/kustomization.yaml</code>'s <code>resources:</code> list. No new ArgoCD app needed — this rides on the existing <code>apps/foundation/rbac/cluster</code> app.</p>
+<h2 id="5-k8s-security-networkpolicy-ciliumnetworkpolicy">5. k8s-security — NetworkPolicy / CiliumNetworkPolicy<a class="headerlink" href="#5-k8s-security-networkpolicy-ciliumnetworkpolicy" title="Permanent link">&para;</a></h2>
+<p>Every new namespace needs its own netpol directory, even if it feels like overkill for a single controller pod. See <a href="network-policy-and-mtls.html">Network Policy &amp; mTLS</a> for the full pattern; summary:</p>
+<ul>
+<li><code>&lt;name&gt;-ns-1/ingress/namespace-wide.default-deny.yaml</code> — always. Deny-by-default, matched on <code>k8s:budybot.io/netpol Exists</code>.</li>
+<li><code>&lt;name&gt;-ns-1/ingress/&lt;workload&gt;.{netpol,ciliumnetpol}.yaml</code> — only for components that actually receive inbound traffic (a dashboard behind the gateway, an admission webhook). Most controller-only workloads need <strong>zero</strong> positive ingress rules.</li>
+<li><code>&lt;name&gt;-ns-1/egress/namespace-wide.allow-required.yaml</code> — DNS (CoreDNS) + istiod (15012). Copy verbatim from any existing namespace.</li>
+<li><code>&lt;name&gt;-ns-1/egress/namespace-wide.deny-missing-netpol-label.yaml</code> — catch-all deny for anything that lacks <code>budybot.io/netpol</code>. <strong>Check Helm-hook Jobs</strong> (cert-gen jobs, migration jobs): give them an approved network-policy label and narrow allow when they need traffic, or a deliberate reviewed exclusion when bootstrap-only.</li>
+<li><code>&lt;name&gt;-ns-1/egress/&lt;workload&gt;.allow-required.yaml</code> — whatever the workload actually needs: DB access, <code>kube-apiserver</code> (controllers almost always need this — use Cilium's <code>kube-apiserver</code> entity, not a static CIDR, since the EKS control plane isn't a cluster pod), other internal services.</li>
+<li>Wire the new namespace directory into <code>netpol/manifests/kustomization.yaml</code>'s top-level <code>resources:</code> list.</li>
+</ul>
+<h2 id="6-k8s-security-mtls-peerauthentication">6. k8s-security — mTLS (PeerAuthentication)<a class="headerlink" href="#6-k8s-security-mtls-peerauthentication" title="Permanent link">&para;</a></h2>
+<p>The mesh has sidecar injection on cluster-wide, but <strong>not every namespace has explicit <code>PeerAuthentication</code> set</strong> — check current state before assuming STRICT is already enforced elsewhere. When adding one:</p>
+<ul>
+<li><code>&lt;name&gt;-1-strict-mtls.peerauthentication.yaml</code>, <code>spec.mtls.mode: STRICT</code>, alongside the ingress/egress dirs (not inside either — it's neither).</li>
+<li><strong>If anything outside the mesh calls the workload directly</strong> (most commonly: <code>kube-apiserver</code> calling an admission/conversion webhook), add a <code>portLevelMtls</code> <code>PERMISSIVE</code> exception for just that port. Forgetting this silently breaks the webhook the moment STRICT mTLS is applied — the caller has no sidecar and no cert, so the plaintext connection gets rejected. Everything else in the namespace stays STRICT.</li>
+<li><code>portLevelMtls</code> port keys <strong>must be quoted strings</strong> in YAML (<code>"8000":</code>, not <code>8000:</code>) — Istio's API represents them as <code>map&lt;uint32, ...&gt;</code>, which the JSON/YAML conversion <code>kustomize build</code> performs requires as string keys. An unquoted integer key fails the build with a cryptic <code>unsupported type</code> error.</li>
+<li>Confirm the project (<code>fnd-network-policy-acd-proj-1</code> today) whitelists <code>security.istio.io/PeerAuthentication</code> in <code>namespaceResourceWhitelist</code> — it may not, if this is the first namespace to use it.</li>
+</ul>
+<h2 id="7-if-the-workload-dashboardsuis-need-external-access">7. If the workload dashboards/UIs need external access<a class="headerlink" href="#7-if-the-workload-dashboardsuis-need-external-access" title="Permanent link">&para;</a></h2>
+<p>Follow the existing OIDC-protected ingress pattern rather than inventing a new one: <code>apps/foundation/gtw/ingress/manifests/oidc-protected/&lt;name&gt;.ingress.yaml</code> — a <code>networking.k8s.io/v1 Ingress</code> (ALB, routes to <code>istio-gateway-1:443</code>) plus an Istio <code>VirtualService</code> (routes from the gateway to the workload's actual <code>Service</code>), host <code>&lt;name&gt;.ENV.orangebox.ai</code>. The <code>ENV</code> placeholder is substituted per-environment automatically by the existing Kustomize <code>replacements</code> transform in <code>env/&lt;environment&gt;/apps/foundation/gtw/ingress/manifests/kustomization.yaml</code> — <strong>don't hardcode an environment name into the shared manifest</strong>, and don't create a new per-environment ingress file; the substitution mechanism already handles it. Add the new file to <code>oidc-protected/kustomization.yaml</code>'s <code>resources:</code> list.</p>
+<h2 id="8-if-the-workload-has-an-opt-in-per-namespace-pattern">8. If the workload has an opt-in-per-namespace pattern<a class="headerlink" href="#8-if-the-workload-has-an-opt-in-per-namespace-pattern" title="Permanent link">&para;</a></h2>
+<p>Some tools (Goldilocks, Reflector) don't act on every namespace by default — they require a namespace-level label or annotation to opt in. If you're adding such a tool: document what the label/annotation is in the app's <code>base.values.yaml</code> as a comment, and <strong>don't</strong> flip any global "watch everything" flag as a shortcut — label the specific namespaces you actually want covered, in <code>budy-cloud-management</code>'s <code>namespaces.tf</code> (§1).</p>
+<h2 id="9-verify-before-opening-prs">9. Verify before opening PRs<a class="headerlink" href="#9-verify-before-opening-prs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>helm template</code> (or <code>kubectl kustomize</code> for <code>type: git</code> apps) every layer combination you touched. This is cheap and catches real errors — mutually exclusive chart options, bad label selectors, broken relative Kustomize paths — before they hit a live cluster.</li>
+<li>For netpol changes specifically: <code>kubectl kustomize v1/objects/netpol/manifests</code> should build the <strong>entire</strong> tree cleanly, not just your new namespace's subtree — a bad relative path or duplicate resource name elsewhere can break the whole app.</li>
+<li>Cross-check that every resource name your new <code>ClusterRoleBinding</code>/<code>CiliumNetworkPolicy</code>/<code>Ingress</code> references (ServiceAccount name, Service name, <code>app</code> label value) actually matches what the Helm chart renders — don't guess these, render the chart and read them off the output.</li>
+</ul>
+<h2 id="common-mistakes-from-real-prs">Common Mistakes (from real PRs)<a class="headerlink" href="#common-mistakes-from-real-prs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Writing an <code>app.yaml</code> values file that assumes a chart field exists without rendering the chart to confirm — chart schemas change between major versions and third-party repackagings diverge from upstream.</li>
+<li>Applying STRICT mTLS without checking whether anything outside the mesh (control plane webhooks, external health checkers) talks to the workload in plaintext.</li>
+<li>Forgetting that Helm-hook Jobs (cert-gen, DB migrations) often don't inherit the same pod labels as the main Deployment/StatefulSet — they need their own netpol carve-out.</li>
+<li>Using a static CIDR block for <code>kube-apiserver</code> egress/ingress instead of Cilium's <code>kube-apiserver</code> entity — CIDRs drift, the entity doesn't.</li>
+<li>Skipping the namespace's <code>NetworkPolicy</code>/<code>CiliumNetworkPolicy</code> entirely because "it's just a controller pod with no inbound traffic" — it still needs an explicit ingress default-deny and an egress allow-list; leaving it unmanaged means it's implicitly allow-all, not deny-all.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

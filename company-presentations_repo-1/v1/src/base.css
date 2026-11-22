@@ -1,0 +1,10 @@
+/* Page basics. The slides and the home page are styled in src/presentation/presentation.css. */
+:root {
+  font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #0B2038;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #EAF4FD; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+h1, h2, p { margin: 0; }

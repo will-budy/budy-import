@@ -1,0 +1,3247 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="adding-a-new-operator.html">
+      
+      
+        <link rel="next" href="postgres-database-provisioning.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Scaffolding an Application Repository - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scaffolding-an-application-repository" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scaffolding an Application Repository
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="scaffolding-an-application-repo.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-default-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Default architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-choose-the-ownership-and-names-before-creating-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Choose the ownership and names before creating files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-create-the-application-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create the application repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Create the application repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-application-ci-variable-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current application CI variable contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artifact-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-design-the-temporal-deployment-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Design the Temporal deployment first
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Design the Temporal deployment first">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worker-deployment-versioning-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worker Deployment Versioning contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-provision-the-platform-dependencies-in-dependency-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Provision the platform dependencies in dependency order
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Provision the platform dependencies in dependency order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numbered-pr-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Numbered PR handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vault-and-vso-model-access-per-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Vault and VSO: model access per workload
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Vault and VSO: model access per workload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vso-review-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VSO review checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-kubernetes-roles-and-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Kubernetes roles and security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-deploy-through-argocd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Deploy through ArgoCD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-definition-of-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Definition of done
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-default-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Default architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-choose-the-ownership-and-names-before-creating-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Choose the ownership and names before creating files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-create-the-application-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create the application repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Create the application repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-application-ci-variable-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current application CI variable contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artifact-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-design-the-temporal-deployment-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Design the Temporal deployment first
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Design the Temporal deployment first">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worker-deployment-versioning-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worker Deployment Versioning contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-provision-the-platform-dependencies-in-dependency-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Provision the platform dependencies in dependency order
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Provision the platform dependencies in dependency order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numbered-pr-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Numbered PR handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vault-and-vso-model-access-per-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Vault and VSO: model access per workload
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Vault and VSO: model access per workload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vso-review-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VSO review checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-kubernetes-roles-and-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Kubernetes roles and security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-deploy-through-argocd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Deploy through ArgoCD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-definition-of-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Definition of done
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="scaffolding-an-application-repository">Scaffolding an Application Repository<a class="headerlink" href="#scaffolding-an-application-repository" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document</strong></td>
+<td>Application Repository Scaffolding</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>0.3</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Draft — confirmed platform recipe; remaining owner decisions are linked</td>
+</tr>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Engineers creating a new product/application repository and the platform reviewers who provision its dependencies</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Define the intended repository, Temporal, GitOps, Vault/VSO, and Kubernetes-security work for a self-contained app.</td>
+</tr>
+<tr>
+<td><strong>Last Updated</strong></td>
+<td>July 2026</td>
+</tr>
+</tbody>
+</table>
+<p>This guide complements <a href="adding-a-new-operator.html">Adding a New Operator</a>. That guide is for installing shared infrastructure. This guide is for a product application cluster: source code and application deployment resources owned together, usually a Go multi-module monorepo containing several Temporal workers.</p>
+<p>It is a proposed platform recipe, grounded in the local <strong>Context Cluster</strong> and <strong>LLM Router</strong> implementations. Those references use an umbrella chart, separately deployable workers, Temporal worker versioning, and a stable Nexus contract.</p>
+<h2 id="1-default-architecture">1. Default architecture<a class="headerlink" href="#1-default-architecture" title="Permanent link">&para;</a></h2>
+<p>Use one self-contained repository and one Kubernetes namespace for a bounded application domain. The normal shape is:</p>
+<pre><code class="language-mermaid">flowchart LR
+    callers[&quot;Other Temporal callers&quot;] --&gt; nexus[&quot;Nexus endpoint&quot;]
+    nexus --&gt; gateway[&quot;Entrypoint worker / gateway&quot;]
+    gateway --&gt; componentA[&quot;Component worker A&quot;]
+    gateway --&gt; componentB[&quot;Component worker B&quot;]
+    componentA --&gt; deps[&quot;Vault-backed dependencies&quot;]
+    componentB --&gt; deps
+    git[&quot;Application repo&quot;] --&gt; image[&quot;Image and chart release&quot;]
+    image --&gt; gitops[&quot;argocd-eks-stack&quot;]
+    gitops --&gt; cluster[&quot;Application namespace&quot;]
+</code></pre>
+<ul>
+<li>The entrypoint worker owns the only externally visible Nexus service, request validation, authorization boundary, and routing. It should stay thin: no component-specific business logic or persistent state. Other workers and sub-applications are internal to the cluster and are not independently accessible from outside it.</li>
+<li>Each worker component owns a task queue, workflow/activity registrations, its own image, and its own dependency permissions. Internal routing is normally child workflows on the component task queues; use another Nexus endpoint only where the boundary crosses an independently owned service or Temporal namespace.</li>
+<li>Keep a stable, typed/versioned external contract. Additive operations are preferred; breaking input/output changes require a new operation or version.</li>
+<li>A simpler app with one worker does not need a gateway split. It still needs a named task queue, a service account, a deployment contract, secret access, and the GitOps/security work below.</li>
+</ul>
+<p>This is a design convention, not a requirement to create microservices. Split a worker only for an independently deployed capability, different scaling/failure characteristics, materially different secret/RBAC needs, or a clear contract boundary.</p>
+<h2 id="2-choose-the-ownership-and-names-before-creating-files">2. Choose the ownership and names before creating files<a class="headerlink" href="#2-choose-the-ownership-and-names-before-creating-files" title="Permanent link">&para;</a></h2>
+<p>Record these values in the app README and deployment values. Do not use one generic name for every component.</p>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Recommended value</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application slug</td>
+<td>lowercase, hyphenated domain name</td>
+<td><code>context-cluster-1</code></td>
+</tr>
+<tr>
+<td>Kubernetes namespace</td>
+<td><code>ob1-tf-eks-&lt;app&gt;-ns-1</code></td>
+<td><code>ob1-tf-eks-context-cluster-1-ns-1</code></td>
+</tr>
+<tr>
+<td>Helm release</td>
+<td><code>&lt;app&gt;-1</code></td>
+<td><code>context-cluster-1</code></td>
+</tr>
+<tr>
+<td>Temporal namespace</td>
+<td>one per application domain by default</td>
+<td><code>context-cluster-1</code></td>
+</tr>
+<tr>
+<td>Entrypoint task queue</td>
+<td><code>&lt;app&gt;-gateway-tq</code> or a deliberate equivalent</td>
+<td><code>context-gateway-tq</code></td>
+</tr>
+<tr>
+<td>Component task queue</td>
+<td>one queue per component</td>
+<td><code>context-file-tq</code></td>
+</tr>
+<tr>
+<td>Service account</td>
+<td>distinct per workload and privilege set</td>
+<td><code>&lt;app&gt;-gateway-sa-1</code></td>
+</tr>
+<tr>
+<td>Vault role/policy</td>
+<td>bound to the VSO service account and namespace</td>
+<td><strong>confirm exact naming</strong></td>
+</tr>
+</tbody>
+</table>
+<p>At design time, list each worker's inbound contract, task queue, dependencies, data stores, Vault paths, Kubernetes API access, and expected network peers. This becomes the source for the Vault policy, VSO resources, RBAC, and network policy.</p>
+<h2 id="3-create-the-application-repository">3. Create the application repository<a class="headerlink" href="#3-create-the-application-repository" title="Permanent link">&para;</a></h2>
+<p>Create the GitHub repository in <code>github-infra/v1/stacks/repos/repos-applications/&lt;group&gt;/v1</code>. Select <code>thinking-mode</code>, <code>muscle-memory-mode</code>, or <code>shared-apps</code>. Add a standard repository to <code>standard-repos-declare.tf</code>; use a repo-specific <code>&lt;name&gt;-repo.tf</code> only when its settings differ. Import a legacy UI-created repository before apply. Reuse existing modules/direct resources; introduce a custom module only once there are at least three present or planned uses, migrating existing direct resources with <code>moved</code> blocks before the fourth use.</p>
+<p>There is no canonical application source template yet. Start a new repository from scratch and select the GitHub <code>Go</code> <code>.gitignore</code> template for new application repositories. Do not copy Context Cluster history or application-specific configuration; use its layout and the common modules as a reference instead.</p>
+<p>For the usual multi-worker app, start with this repository shape:</p>
+<pre><code class="language-text">&lt;app&gt;/
+  README.md                         # owners, architecture, local run, operational links
+  docs/
+    design/                         # HLD, ADRs, contracts, data/security decisions
+    runbooks/                       # deploy, rollback, incident and secret-rotation notes
+  shared/                           # contract/bootstrapping module only; no component business logic
+  gateway/                          # Nexus entrypoint worker
+  components/
+    &lt;component-a&gt;/                   # independent Temporal worker
+    &lt;component-b&gt;/                   # independent Temporal worker
+  charts/
+    &lt;app&gt;/                          # umbrella chart: shared Temporal/config resources
+    gateway/
+    &lt;component-a&gt;/
+  configs/                          # non-secret ConfigMaps/capability manifests
+  .github/workflows/                # CI, image/chart release, GitOps update
+  Makefile
+</code></pre>
+<p>The Context Cluster reference is a Go multi-module monorepo (<code>go.work</code>, <code>shared</code>, <code>gateway</code>, and <code>components/*</code>) with an umbrella chart and independent subcharts. New applications should normally follow this Go shape and consume <code>github.com/Budybot/ob1_tf_gh_budy-common-modules-1_repo_1/go/runtimeconfig</code> and <code>/go/worker</code> at explicit versions. The local reference clone is under <code>aa-budy-OB1-micro-services/shared-ref-packages/ob1_tf_gh_budy-common-modules-1_repo_1</code>.</p>
+<p>Minimum repository deliverables:</p>
+<ol>
+<li>An architecture README identifying the entrypoint, each worker, contracts, task queues, Temporal namespace, and data dependencies.</li>
+<li>Versioned contract definitions and compatibility tests for every Nexus-facing interface.</li>
+<li>Dockerfiles and Helm templates/values for every deployed component; no plaintext credentials or build tokens in the repo, image layers, cache, or chart values. Retrieve private modules using the organization GitHub App token passed as a BuildKit secret.</li>
+<li>CI that runs unit/workflow tests, static analysis, image build, and <code>helm lint</code>/<code>helm template</code>.</li>
+<li>Release automation that follows the <a href="application-cicd-standard.html">Application Cluster CI/CD Standard</a>: immutable image/module/chart versions, required approvals, and the controlled GitOps version update.</li>
+</ol>
+<p>Follow <a href="application-cicd-standard.html">Application Cluster CI/CD Standard</a> for the required PR validation, component matrix, Changesets, approvals, image/module/chart tags, chart publication, and GitOps handoff.</p>
+<h3 id="current-application-ci-variable-contract">Current application CI variable contract<a class="headerlink" href="#current-application-ci-variable-contract" title="Permanent link">&para;</a></h3>
+<p>Use the Context Cluster workflows as the current reference:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GLOBAL_REFPACKAGE_APP_1_ID</code></td>
+<td>GitHub variable</td>
+<td>GitHub App client ID used to create a short-lived private-module token</td>
+</tr>
+<tr>
+<td><code>GLOBAL_REFPACKAGE_APP_1_PEM</code></td>
+<td>GitHub secret</td>
+<td>Private key for the reference-package GitHub App</td>
+</tr>
+<tr>
+<td><code>GLOBAL_GITOPS_APP_1_ID</code></td>
+<td>GitHub variable</td>
+<td>GitHub App client ID used for the application GitOps version-bump PR</td>
+</tr>
+<tr>
+<td><code>GLOBAL_GITOPS_APP_1_PEM</code></td>
+<td>GitHub secret</td>
+<td>Private key for the GitOps GitHub App</td>
+</tr>
+<tr>
+<td><code>AWS_ECR_1</code></td>
+<td>GitHub variable</td>
+<td>Central ECR account ID</td>
+</tr>
+<tr>
+<td><code>AWS_REGION_MAIN</code></td>
+<td>GitHub variable</td>
+<td>ECR/AWS region</td>
+</tr>
+<tr>
+<td><code>GLOBAL_VAR_AWS_ECR_IMAGE_BUILDER_2_ROLE_1_ARN</code></td>
+<td>GitHub variable</td>
+<td>OIDC role used to publish images/charts</td>
+</tr>
+<tr>
+<td><code>GLOBAL_ECR_HELM_REPO_V1</code></td>
+<td>GitHub variable</td>
+<td>Helm OCI root/prefix; the workflow appends the parent chart name to address the cluster's Helm ECR repository</td>
+</tr>
+</tbody>
+</table>
+<p>Generate the private-module token with <code>actions/create-github-app-token</code>, map it to BuildKit secret <code>github_token</code>, and consume it only in <code>RUN --mount=type=secret,id=github_token</code>. Do not persist the token in an <code>ARG</code>, <code>ENV</code>, <code>.netrc</code>, <code>.gitconfig</code>, image layer, or exported build cache.</p>
+<h3 id="artifact-layout">Artifact layout<a class="headerlink" href="#artifact-layout" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Provision one container image ECR repository per application cluster.</li>
+<li>Publish all component images into that repository with tags <code>&lt;component&gt;-&lt;version&gt;-&lt;short-sha&gt;</code>.</li>
+<li>Provision exactly one Helm ECR repository per application cluster.</li>
+<li>Publish only the parent/umbrella chart to that repository. Bundle subcharts as local dependencies; do not publish a Helm repository per subcomponent.</li>
+<li>The release workflow uses <code>GLOBAL_ECR_HELM_REPO_V1</code> as the root/prefix and appends the parent <code>Chart.yaml</code> name to reach the application's Helm repository path.</li>
+</ul>
+<h2 id="4-design-the-temporal-deployment-first">4. Design the Temporal deployment first<a class="headerlink" href="#4-design-the-temporal-deployment-first" title="Permanent link">&para;</a></h2>
+<p>Before creating the cluster resources, decide and document:</p>
+<ul>
+<li>Which worker is the Nexus entrypoint and the exact service/operation names it owns.</li>
+<li>Whether components are reached by child workflow (default inside the application Temporal namespace) or by Nexus (cross-service/cross-namespace contract).</li>
+<li>One task queue and one deployment/versioning unit per independently released worker.</li>
+<li>Workflow IDs/idempotency keys, retry/timeout policy, and activity idempotency. All network/database/Kubernetes I/O belongs in activities, not workflow code.</li>
+<li>A rollout and rollback policy. The reference applications use Temporal Worker Deployment Versioning with pinned executions so in-flight workflows finish on their starting build.</li>
+</ul>
+<h3 id="worker-deployment-versioning-contract">Worker Deployment Versioning contract<a class="headerlink" href="#worker-deployment-versioning-contract" title="Permanent link">&para;</a></h3>
+<p>For a Kubernetes-deployed Temporal worker, render a <code>temporal.io/v1alpha1</code> <code>WorkerDeployment</code> with its connection reference, Temporal namespace, task queue/workload template, and rollout policy. The application supplies the deployment spec and its image/build input; the WorkerDeployment controller injects the authoritative runtime values.</p>
+<p>Worker code must enable versioning only when <code>TEMPORAL_WORKER_BUILD_ID</code> is present, and use these controller-injected values directly:</p>
+<ul>
+<li><code>TEMPORAL_WORKER_BUILD_ID</code> as the Temporal Build ID;</li>
+<li><code>TEMPORAL_DEPLOYMENT_NAME</code> as the Temporal deployment name.</li>
+</ul>
+<p>Do not substitute a chart-local <code>BUILD_ID</code>, derive a deployment name from the component name, or invent a second identity. A chart may use its image tag or <code>appVersion</code> as the WorkerDeployment build input, but the process must consume the controller-injected values at runtime. This keeps local development versioning-off when no controller injects <code>TEMPORAL_WORKER_BUILD_ID</code>, while ensuring deployed workers register with the exact controller/Temporal identity.</p>
+<p>The application chart should own application-level Temporal CRs (for example, Temporal namespace, connection, Nexus endpoint, and WorkerDeployment) only after confirming that the target cluster has the relevant CRDs and that the app's AppProject permits them. Do not create a second endpoint for each internal component without a consumer-driven contract need.</p>
+<h2 id="5-provision-the-platform-dependencies-in-dependency-order">5. Provision the platform dependencies in dependency order<a class="headerlink" href="#5-provision-the-platform-dependencies-in-dependency-order" title="Permanent link">&para;</a></h2>
+<p>The following is the confirmed end-to-end ownership flow. Exact file names should still be located from the current repository before editing because stacks evolve.</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Owner/repository</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>github-infra</code></td>
+<td>Declare the application repository in the correct application-group stack; configure teams/protection/Actions settings and import any legacy UI resource before apply.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>budy-cloud-management</code> ECR stack</td>
+<td>Add exactly one container image ECR repository and one Helm ECR repository for the application cluster. All component images share the image repo with prefixed immutable tags; only the parent/umbrella chart is published to the Helm repo.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>budy-cloud-management</code> Kubernetes stack</td>
+<td>Create the application's dedicated Kubernetes namespace in <code>v2/stacks/shared-infra/k8s/v1/namespaces.tf</code>; add only required namespace labels.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Shared PostgreSQL control plane</td>
+<td>When the application needs PostgreSQL, add idempotent database/bootstrap, role/grant, and Vault-admin role-grant ConfigMaps to the shared job; do not create an application CNPG/AWS database resource.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>vault-management-1</code></td>
+<td>Add services to the correct catalog and create narrow policies/Kubernetes-auth roles bound to exact service accounts and the application namespace. Add <code>pg.precreated_roles</code> so Vault database-engine users receive only the required DB group role.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>k8s-security</code></td>
+<td>Create RBAC, default-deny and positive network policy, Cilium policy, Istio PeerAuthentication, and other externally governed security policy.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Application repo</td>
+<td>Define workloads, ConfigMaps, Services, umbrella/subcharts, application Temporal resources, and generic VaultAuth/VSO templates. Vault roles, mounts, paths, and destination configuration must be values-driven.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>argocd-critical-stack</code></td>
+<td>Reuse/extend the matching application AppProject under <code>projects/applications/</code> so its GitOps repo, ECR chart source, namespace, and application resource kinds are allowed while security kinds remain separated.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Group application GitOps repo</td>
+<td>Add the ArgoCD <code>Application</code>, base/profile values, and pinned OCI chart revision to <code>de-v2</code>, <code>design-services</code>, <code>execution-services</code>, or <code>shared-services</code> as appropriate.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>CI/CD and ArgoCD</td>
+<td>Render/lint every profile, reconcile in dev, run Nexus/security/dependency smoke tests, then promote by PR through stage and prod.</td>
+</tr>
+</tbody>
+</table>
+<p>The namespace must exist before ArgoCD deploys anything into it. The AppProject must allow every application resource kind before ArgoCD can reconcile it. See <a href="repos-and-app-model.html">Repos &amp; the App Model</a> for the current layering and AppProject rules.</p>
+<h3 id="numbered-pr-handoff">Numbered PR handoff<a class="headerlink" href="#numbered-pr-handoff" title="Permanent link">&para;</a></h3>
+<p>A new application/installation normally spans multiple repositories. Open and review those changes as a numbered change set in dependency order rather than presenting reviewers with unrelated PRs. Prefix each PR title with <code>[app-onboard N/M]</code>, where <code>N</code> is its merge order and <code>M</code> is the number of required PRs (omit conditional entries such as PostgreSQL when they do not apply).</p>
+<p>Use the table above as the default order: <code>1</code> GitHub repository, <code>2</code> ECR, <code>3</code> Kubernetes namespace, <code>4</code> PostgreSQL when needed, <code>5</code> Vault, <code>6</code> Kubernetes security, <code>7</code> application source, <code>8</code> AppProject when needed, and <code>9</code> application GitOps. The application-source PR may be prepared once its repository exists, but do not merge a dependent deployment PR ahead of the namespace, Vault/security, and published-chart prerequisites. The GitOps deployment PR is last because it pins an artifact that must already exist.</p>
+<p>Every PR description must state:</p>
+<ul>
+<li><code>Change set: N/M — &lt;application&gt;</code> and the intended environment(s).</li>
+<li><code>Prerequisites: #&lt;PR links&gt;</code> and whether their Terraform, render, or release checks have passed.</li>
+<li><code>Next approval: N+1/M — &lt;repository&gt; — &lt;PR link or “not opened; create after &lt;condition&gt;”&gt;</code>.</li>
+<li><code>Reviewer action: approve now</code> or <code>wait for &lt;named check/PR/artifact&gt;</code>.</li>
+<li><code>Rollback/hold point</code>: the last merged PR that can safely remain without deploying a workload.</li>
+</ul>
+<p>Update the prior PR’s <code>Next approval</code> line with the real link once the next PR is opened. This creates a reviewer-visible queue: approve one PR, wait for its checks and reconciliation, then approve exactly the named next PR. Keep release automation PRs (<code>version-packages</code>, <code>chart-release</code>, and GitOps chart bump) in the same format; their next step is the protected environment approval or GitOps PR specified by the <a href="application-cicd-standard.html">CI/CD standard</a>.</p>
+<h2 id="6-vault-and-vso-model-access-per-workload">6. Vault and VSO: model access per workload<a class="headerlink" href="#6-vault-and-vso-model-access-per-workload" title="Permanent link">&para;</a></h2>
+<p>Use VSO to materialize the minimum secret data a workload needs into a Kubernetes Secret. VSO authenticates to Vault through a <code>VaultAuth</code> resource; for Kubernetes auth the service account used by <code>VaultAuth</code> must be in the consuming namespace. <a href="https://developer.hashicorp.com/vault/docs/deploy/kubernetes/vso/sources/vault/auth">HashiCorp's VSO authentication documentation</a> describes that namespace constraint, and its <a href="https://developer.hashicorp.com/vault/docs/deploy/kubernetes/vso">VSO overview</a> describes the source-to-destination Secret reconciliation model.</p>
+<p>Recommended access model:</p>
+<ol>
+<li>Define a dedicated VSO/<code>VaultAuth</code> identity in the application chart for each approved privilege boundary. Do not let every application pod authenticate to Vault directly unless that is an explicit platform decision.</li>
+<li>In Vault management, create a policy constrained to the exact KV paths or dynamic-credential roles required, and a Kubernetes auth role bound to that ServiceAccount <strong>and</strong> namespace. Never use a wildcard application namespace or broad KV mount policy as a shortcut.</li>
+<li>Template <code>VaultAuth</code> and the required <code>VaultStaticSecret</code>/<code>VaultDynamicSecret</code> in the application chart. Keep templates generic. Supply role, auth mount, secret-engine mount/path, destination Secret, refresh/rotation, and environment-specific values from the group application GitOps repository.</li>
+<li>Mount/reference only the destination Secret in the workload that needs it. Add exact destination Secret names to the Pod-template annotation <code>secret.reloader.stakater.com/reload</code>; add consumed ConfigMap names to <code>configmap.reloader.stakater.com/reload</code>. Reloader rolls the workload after VSO or configuration updates, preventing stale database credentials, environment values, and mounted content.</li>
+<li>Give migration/one-shot Jobs a separate service account and Vault role when their credentials or permissions differ from the long-running worker. The Context Cluster file reference uses this separation for its database migration Job and worker.</li>
+</ol>
+<p>Do not put secret values in Git, ConfigMaps, Helm values, workflow inputs, logs, or Temporal search attributes. Keep Vault paths, destination Secret names, consuming workloads, and rotation/reload behavior in the app's operations documentation.</p>
+<p>For PostgreSQL specifically, use the Vault database engine and <code>VaultDynamicSecret</code>, not static application passwords. Dev/stage use the CNPG-hosted shared PostgreSQL service and prod uses RDS, so create the database and its three group roles through the shared PostgreSQL bootstrap/grant jobs rather than through an application CNPG or AWS database resource. See <a href="postgres-database-provisioning.html">PostgreSQL Database Provisioning</a> for the exact cross-repository contract.</p>
+<h3 id="vso-review-checklist">VSO review checklist<a class="headerlink" href="#vso-review-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>VaultAuth</code> service account, Vault role, policy paths, and Kubernetes namespace exactly agree.</li>
+<li>Every <code>VaultStaticSecret</code>/<code>VaultDynamicSecret</code> has an explicit destination Secret and an owning workload.</li>
+<li>Every Deployment, StatefulSet, WorkerDeployment, and long-running Job that consumes a VSO Secret or non-hot-reloaded ConfigMap has the exact resource name in the appropriate Reloader Pod-template annotation.</li>
+<li>PostgreSQL credentials are issued through the Vault database engine and <code>VaultDynamicSecret</code>; do not replace them with a static KV application password.</li>
+<li>Pre-install/pre-upgrade Jobs that require generated credentials account for asynchronous VSO reconciliation (or are sequenced with an approved hook/readiness pattern).</li>
+<li>The AppProject permits <code>secrets.hashicorp.com</code> resources.</li>
+</ul>
+<h2 id="7-kubernetes-roles-and-security">7. Kubernetes roles and security<a class="headerlink" href="#7-kubernetes-roles-and-security" title="Permanent link">&para;</a></h2>
+<p>Most Temporal workers do not need Kubernetes API access. Give them no Kubernetes RBAC by default. When a component genuinely needs it (for example, a Kubernetes-resource component), declare the exact resource, verb, namespace/cluster scope, and reason in its design doc.</p>
+<ul>
+<li>Prefer a namespaced <code>Role</code>/<code>RoleBinding</code> for one namespace. Use <code>ClusterRole</code>/<code>ClusterRoleBinding</code> only when the workload must access cluster-scoped resources or multiple namespaces.</li>
+<li>Put hand-scoped cluster RBAC in <code>k8s-security/v1/objects/rbac/cluster/manifests/&lt;ns&gt;/</code> and add it to the parent <code>kustomization.yaml</code>, as documented in <a href="repos-and-app-model.html#4-k8s-security--everything-that-governs-the-namespace-not-whats-deployed-in-it">Repos &amp; the App Model</a>.</li>
+<li>Use a distinct ServiceAccount for each materially different privilege set. Do not reuse the VSO ServiceAccount as an application worker identity unless the platform explicitly approves it.</li>
+<li>Start with default-deny ingress, DNS, Istio control-plane/mTLS, and approved Temporal egress. Add database, OTEL, Kubernetes API, external, and cross-namespace paths only for a documented need. Add <code>STRICT</code> PeerAuthentication for every new application namespace according to <a href="network-policy-and-mtls.html">Network Policy &amp; mTLS</a>. Every deployed pod needs the dedicated <code>budybot.io/netpol</code> label used by those policies.</li>
+<li>Set a distinct, stable <code>budybot.io/netpol: &lt;component&gt;</code> label on every component Pod template, including worker deployments and Jobs with their own traffic policy. Standard <code>app.kubernetes.io/*</code> labels and the legacy plain <code>app</code> label do not replace this selector. Use the exact same value in the matching <code>NetworkPolicy</code> and Cilium <code>k8s:budybot.io/netpol</code> selector. Add the namespace's deny-mode <code>BudyNetpolIdentity</code> allow-list constraint in <code>k8s-security</code> before onboarding the namespace; it is the admission control for this standard.</li>
+<li>If a Kubernetes API caller or other non-mesh client must reach an app webhook, add only the required port-level mTLS exception and test it.</li>
+</ul>
+<h2 id="8-deploy-through-argocd">8. Deploy through ArgoCD<a class="headerlink" href="#8-deploy-through-argocd" title="Permanent link">&para;</a></h2>
+<p>Add the ArgoCD <code>Application</code> to the correct group GitOps repository: <code>de-v2</code>, <code>design-services</code>, <code>execution-services</code>, or <code>shared-services</code> for an application used by multiple groups. <code>shared-services</code> has the same application/profile Kustomize and human-approved promotion shape as the group release repositories. Application charts are published as OCI artifacts in the shared <code>ecr-1</code> account. <code>argocd-eks-stack</code> remains the workload/configuration repo for shared infrastructure applications, not the canonical home for product application releases.</p>
+<p>The <code>app.yaml</code> should:</p>
+<ul>
+<li>use the application-tier AppProject (extend/reuse it rather than creating a broad new project);</li>
+<li>target the Terraform-created namespace;</li>
+<li>pin the application chart/image release—never <code>latest</code>;</li>
+<li>layer <code>base.values.yaml</code> then <code>{{profile}}.values.yaml</code>, using environment overlays only for real per-environment differences;</li>
+<li>enable automated reconcile only under the existing policy; and</li>
+<li>include all non-secret configuration references required for the app to start.</li>
+</ul>
+<p>The application AppProject must whitelist the application GitOps/chart source, destination namespace, and application-owned namespaced resource kinds such as Temporal and VSO CRDs. Allow cluster-scoped kinds only by explicit name; deny all other cluster-scoped resources. RBAC, network, Cilium, Istio, OPA, and other externally governed security policy reconcile through the security GitOps path and are denied from the application project. Render the final chart before opening the GitOps PR, then test ArgoCD health plus a Nexus call and each dependency path after reconcile.</p>
+<h2 id="9-definition-of-done">9. Definition of done<a class="headerlink" href="#9-definition-of-done" title="Permanent link">&para;</a></h2>
+<p>An application is scaffolded when all of the following are true:</p>
+<ul>
+<li>Repository, ownership, protections, CI, release automation, and runbooks exist.</li>
+<li>The entrypoint/worker boundaries, task queues, Temporal namespace, and Nexus contract are documented and tested.</li>
+<li>Namespace, AppProject, ArgoCD app, and profile values reconcile cleanly from Git.</li>
+<li>Vault policy/role, VSO resources, and destination Secret consumers are least-privilege and tested without plaintext secrets in Git.</li>
+<li>Kubernetes RBAC is absent unless justified, then least-privilege; netpol/mTLS rules permit only required paths.</li>
+<li>Image/chart versions and Temporal worker build/version rollout are observable and have a tested rollback path.</li>
+<li>Dev smoke tests include one external Nexus request (where applicable), worker/task-queue readiness, Secret/VSO readiness, and each protected dependency.</li>
+<li>Apps listed in the GitOps repo's <code>.github/kargo-managed-apps</code> are promoted dev → stage → prod by their own Kargo release train with bake checks; any app not yet listed still uses bulk human approval. Enabling an app's train also needs its Project in the <code>kargo.akuity.io/github-token-scopes</code> annotation of <code>kargo-github-app.vss.yaml</code> (<code>v1/objects/scrt/vso-secrets/infra-1/manifests/kargo-shared-resources-ns-1/</code> in <code>ob1_mn_github_k8s-security_gitops_repo_1</code>).</li>
+</ul>
+<h2 id="related-documents">Related documents<a class="headerlink" href="#related-documents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="repos-and-app-model.html">Repos &amp; the App Model</a></li>
+<li><a href="adding-a-new-operator.html">Adding a New Operator</a></li>
+<li><a href="network-policy-and-mtls.html">Network Policy &amp; mTLS</a></li>
+<li><a href="application-cicd-standard.html">Application Cluster CI/CD Standard</a></li>
+<li><a href="postgres-database-provisioning.html">PostgreSQL Database Provisioning</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3379 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="postgres-database-provisioning.html">
+      
+      
+        <link rel="next" href="authorization-module-standard.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Application Cluster CI/CD Standard - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#application-cluster-cicd-standard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Application Cluster CI/CD Standard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="application-cicd-standard.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-artifact-and-version-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Artifact and version model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-required-github-variables-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Required GitHub variables and secrets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-component-manifest-one-source-of-release-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Component manifest: one source of release metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pull-request-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pull request validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pull request validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detect-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detect once
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-selected-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate selected components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-release-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Release state machine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Release state machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-code-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application-code release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chart-only-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart-only release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-release-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid release loops
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-efficient-matrix-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Efficient matrix architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-approvals-concurrency-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Approvals, concurrency, and permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-tags-and-kargo-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Tags and Kargo discovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-idempotency-and-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Idempotency and rollback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Idempotency and rollback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reviewer-pr-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reviewer PR handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-target-workflow-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Target workflow inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-current-reference-gaps-and-adoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Current reference gaps and adoption
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Current reference gaps and adoption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendation-centralize-only-proven-reusable-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation: centralize only proven reusable workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primary-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary references
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-artifact-and-version-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Artifact and version model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-required-github-variables-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Required GitHub variables and secrets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-component-manifest-one-source-of-release-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Component manifest: one source of release metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pull-request-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pull request validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pull request validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detect-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detect once
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-selected-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate selected components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-release-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Release state machine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Release state machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-code-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application-code release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chart-only-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart-only release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-release-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoid release loops
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-efficient-matrix-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Efficient matrix architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-approvals-concurrency-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Approvals, concurrency, and permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-tags-and-kargo-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Tags and Kargo discovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-idempotency-and-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Idempotency and rollback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Idempotency and rollback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reviewer-pr-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reviewer PR handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-target-workflow-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Target workflow inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-current-reference-gaps-and-adoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Current reference gaps and adoption
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Current reference gaps and adoption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendation-centralize-only-proven-reusable-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendation: centralize only proven reusable workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primary-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary references
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="application-cluster-cicd-standard">Application Cluster CI/CD Standard<a class="headerlink" href="#application-cluster-cicd-standard" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document</strong></td>
+<td>Application Cluster CI/CD Standard</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Draft target standard — current applications should converge incrementally</td>
+</tr>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Application engineers, platform engineers, release approvers, and Kargo operators</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Define efficient validation, versioning, image/module/chart release, GitOps update, tags, approvals, and rollback.</td>
+</tr>
+<tr>
+<td><strong>Last Updated</strong></td>
+<td>July 2026</td>
+</tr>
+</tbody>
+</table>
+<p>This document standardizes CI/CD for self-contained application clusters containing approximately 6–10 releasable units: one Nexus Go contract module, one parent Helm chart, and normally 5–7 component images in a single application ECR image repository.</p>
+<p>The current Context Cluster pipeline is the functional reference. The common Go modules repository is the structural reference for dynamic change detection, JSON matrices, and reusable validation/release workflows.</p>
+<h2 id="1-artifact-and-version-model">1. Artifact and version model<a class="headerlink" href="#1-artifact-and-version-model" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Count per application cluster</th>
+<th>Version/tag rule</th>
+<th>Registry/repository</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container image repository</td>
+<td>Exactly one</td>
+<td>All components share it</td>
+<td>Application image ECR repo in <code>ecr-1</code></td>
+</tr>
+<tr>
+<td>Component image</td>
+<td>One per deployable component</td>
+<td><code>&lt;component&gt;-&lt;component-version&gt;-&lt;short-sha&gt;</code></td>
+<td>Shared application image repo</td>
+</tr>
+<tr>
+<td>Parent Helm chart</td>
+<td>Exactly one published chart</td>
+<td><code>Chart.yaml</code> <code>version</code> and <code>appVersion</code> are identical</td>
+<td>Application Helm ECR repo</td>
+</tr>
+<tr>
+<td>Local Helm subchart</td>
+<td>One per component where useful</td>
+<td>Bundled into parent; not published independently</td>
+<td>Application source repo</td>
+</tr>
+<tr>
+<td>Nexus Go contract module</td>
+<td>Normally one public contract module</td>
+<td>SemVer plus module-directory-prefixed Git tag</td>
+<td>Application Git repository</td>
+</tr>
+<tr>
+<td>Component Git release tag</td>
+<td>One per released image component</td>
+<td><code>&lt;component&gt;/v&lt;component-version&gt;</code></td>
+<td>Application Git repository</td>
+</tr>
+<tr>
+<td>Parent chart Git tag</td>
+<td>One per published chart</td>
+<td><code>charts/&lt;parent-chart&gt;/v&lt;chart-version&gt;</code></td>
+<td>Application Git repository</td>
+</tr>
+</tbody>
+</table>
+<p>Image tags and Git tags are immutable. Never move an existing tag to another commit or digest.</p>
+<p>For Go modules below the repository root, Go requires the relative module directory to prefix the semantic version tag. A module at <code>shared/contract</code> version <code>v1.4.0</code> therefore uses <code>shared/contract/v1.4.0</code>. This is required for consumers to resolve the Nexus contract correctly, not merely a naming preference. See the <a href="https://go.dev/doc/modules/managing-source#multiple-module-source">Go multi-module repository guidance</a>.</p>
+<h2 id="2-required-github-variables-and-secrets">2. Required GitHub variables and secrets<a class="headerlink" href="#2-required-github-variables-and-secrets" title="Permanent link">&para;</a></h2>
+<p>Use the Context Cluster names as the current organization contract.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GLOBAL_REFPACKAGE_APP_1_ID</code></td>
+<td>Organization/repository variable</td>
+<td>GitHub App client ID for private Go modules/contracts</td>
+</tr>
+<tr>
+<td><code>GLOBAL_REFPACKAGE_APP_1_PEM</code></td>
+<td>Organization/repository secret</td>
+<td>GitHub App private key for private Go modules/contracts</td>
+</tr>
+<tr>
+<td><code>GLOBAL_GITOPS_APP_1_ID</code></td>
+<td>Organization/repository variable</td>
+<td>GitHub App client ID for GitOps PRs</td>
+</tr>
+<tr>
+<td><code>GLOBAL_GITOPS_APP_1_PEM</code></td>
+<td>Organization/repository secret</td>
+<td>GitHub App private key for GitOps PRs</td>
+</tr>
+<tr>
+<td><code>AWS_ECR_1</code></td>
+<td>Variable</td>
+<td>Central ECR account ID</td>
+</tr>
+<tr>
+<td><code>AWS_REGION_MAIN</code></td>
+<td>Variable</td>
+<td>ECR region</td>
+</tr>
+<tr>
+<td><code>GLOBAL_VAR_AWS_ECR_IMAGE_BUILDER_2_ROLE_1_ARN</code></td>
+<td>Variable</td>
+<td>AWS OIDC role for image/chart publication</td>
+</tr>
+<tr>
+<td><code>GLOBAL_ECR_HELM_REPO_V1</code></td>
+<td>Variable</td>
+<td>Helm OCI root/prefix; append the parent chart name</td>
+</tr>
+</tbody>
+</table>
+<p>Generate a short-lived token with <code>actions/create-github-app-token</code> from the REF PACKAGE App. Pass it into Docker only as BuildKit secret <code>github_token</code>. Consume it in <code>RUN --mount=type=secret,id=github_token</code>; never persist it through <code>ARG</code>, <code>ENV</code>, copied credential files, final image layers, logs, or exported cache.</p>
+<h2 id="3-component-manifest-one-source-of-release-metadata">3. Component manifest: one source of release metadata<a class="headerlink" href="#3-component-manifest-one-source-of-release-metadata" title="Permanent link">&para;</a></h2>
+<p>Do not repeat component names and paths across every workflow. Keep a machine-readable component catalog in the application repository, for example <code>.github/components.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;components&quot;: [
+    {
+      &quot;name&quot;: &quot;gateway&quot;,
+      &quot;path&quot;: &quot;components/gateway&quot;,
+      &quot;packageFile&quot;: &quot;components/gateway/package.json&quot;,
+      &quot;dockerTarget&quot;: &quot;components/gateway&quot;,
+      &quot;imageValuesPath&quot;: &quot;.gateway.image.tag&quot;,
+      &quot;goModule&quot;: false
+    },
+    {
+      &quot;name&quot;: &quot;file&quot;,
+      &quot;path&quot;: &quot;components/file&quot;,
+      &quot;packageFile&quot;: &quot;components/file/package.json&quot;,
+      &quot;dockerTarget&quot;: &quot;components/file&quot;,
+      &quot;imageValuesPath&quot;: &quot;.\&quot;file\&quot;.image.tag&quot;,
+      &quot;goModule&quot;: false
+    },
+    {
+      &quot;name&quot;: &quot;nexus-contract&quot;,
+      &quot;path&quot;: &quot;shared/contract&quot;,
+      &quot;packageFile&quot;: &quot;shared/contract/package.json&quot;,
+      &quot;goModule&quot;: true,
+      &quot;publishImage&quot;: false
+    }
+  ],
+  &quot;parentChart&quot;: {
+    &quot;path&quot;: &quot;charts/context-cluster&quot;,
+    &quot;name&quot;: &quot;context-cluster-1-repo-1&quot;
+  }
+}
+</code></pre>
+<p>A detector reads this catalog plus the PR/main diff and Changesets, then emits JSON matrices for validation, image publication, Go module tags, and chart-value updates. Adding component 8 should normally require one catalog entry—not edits to six workflow files.</p>
+<h2 id="4-pull-request-validation">4. Pull request validation<a class="headerlink" href="#4-pull-request-validation" title="Permanent link">&para;</a></h2>
+<p>Every PR targeting <code>main</code> proves the eventual release is buildable before approval.</p>
+<h3 id="detect-once">Detect once<a class="headerlink" href="#detect-once" title="Permanent link">&para;</a></h3>
+<p>Create one <code>detect-changes</code> job that outputs:</p>
+<ul>
+<li><code>changed_components</code>: component matrix selected by changed paths;</li>
+<li><code>release_components</code>: components named by Changesets;</li>
+<li><code>changed_go_modules</code> and <code>changed_contract_modules</code>;</li>
+<li><code>chart_changed</code>: parent or local subchart/chart-library changes;</li>
+<li><code>workflow_changed</code>: forces validation of all components;</li>
+<li><code>requires_changeset</code>: application/module changes that need a version bump.</li>
+</ul>
+<p>Use the PR merge base, not only the previous commit. Workflow/catalog changes validate all components because they can break the entire release mechanism.</p>
+<h3 id="validate-selected-components">Validate selected components<a class="headerlink" href="#validate-selected-components" title="Permanent link">&para;</a></h3>
+<p>Use a matrix job or a matrix calling a reusable workflow. Each selected component performs the checks relevant to it:</p>
+<ul>
+<li>private dependency resolution using the REF PACKAGE GitHub App;</li>
+<li><code>go mod download</code>, build, vet/lint, unit tests, workflow replay/contract tests;</li>
+<li>Docker build with <code>push: false</code> and the real Dockerfile/target/platform;</li>
+<li>generated-code/schema consistency checks;</li>
+<li>changeset-to-component validation.</li>
+</ul>
+<p>Validate the parent chart once after component jobs:</p>
+<ul>
+<li>Helm dependencies resolve;</li>
+<li><code>helm lint</code> and <code>helm template</code> succeed with CI-safe values;</li>
+<li>all image values paths in the component catalog exist;</li>
+<li><code>Chart.yaml</code> <code>version == appVersion</code>;</li>
+<li>no subchart is configured for independent publication;</li>
+<li>rendered Temporal/VSO/RBAC labels and references are internally consistent.</li>
+</ul>
+<p>The required branch-protection check should be a stable aggregate job such as <code>ci-required</code>, which depends on detection, matrix validation, chart validation, and consistency checks. Individual matrix job names can evolve without constantly rewriting branch protection.</p>
+<h2 id="5-release-state-machine">5. Release state machine<a class="headerlink" href="#5-release-state-machine" title="Permanent link">&para;</a></h2>
+<p>Release workflows run only from <code>main</code> or from temporary automation branches created by the workflow. Do not use <code>release/</code> in ephemeral branch names because those branches match protected long-lived release rules and may not be deleted after merge.</p>
+<p>Use names such as:</p>
+<ul>
+<li><code>automation/version-packages</code>;</li>
+<li><code>automation/chart-release/&lt;chart-name&gt;</code>;</li>
+<li><code>automation/gitops-chart-bump/&lt;application&gt;</code>.</li>
+</ul>
+<h3 id="application-code-release">Application-code release<a class="headerlink" href="#application-code-release" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Feature PR approved and merged
+  → version-packages PR created/updated from Changesets
+  → version-packages PR approved and merged
+  → detect released components
+  → matrix builds/pushes only released component images
+  → publish only changed Nexus Go module tags/releases
+  → create component Git tags/releases
+  → chart-release PR updates released image tags
+     and bumps parent chart version + appVersion together
+  → chart-release PR approved and merged
+  → publish parent chart + chart Git tag/release
+  → create GitOps chart-version PR
+  → GitOps PR approved and merged
+</code></pre>
+<p>Publication runs from <code>main</code> after the version-packages / chart-release PR merges; that merge is the human gate. A component that has no consumed Changeset is not rebuilt or republished.</p>
+<h3 id="chart-only-release">Chart-only release<a class="headerlink" href="#chart-only-release" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">Chart PR approved and merged
+  → chart-release PR generates a Git-style chart-file changelog
+     and bumps parent chart version + appVersion together
+  → chart-release PR approved and merged
+  → publish parent chart + chart Git tag/release
+  → create GitOps chart-version PR
+  → GitOps PR approved and merged
+</code></pre>
+<p>No component image or Go module is published. This path has one application-repository chart-release PR plus the GitOps PR.</p>
+<h3 id="avoid-release-loops">Avoid release loops<a class="headerlink" href="#avoid-release-loops" title="Permanent link">&para;</a></h3>
+<p>Classify the merge before acting:</p>
+<ul>
+<li>ordinary merge with Changesets → create/update version-packages PR;</li>
+<li>version-packages PR merge → application publication;</li>
+<li>ordinary chart-only merge → create/update chart-release PR;</li>
+<li>chart-release PR merge → chart publication and GitOps PR;</li>
+<li>workflow-generated metadata/tag commits → no new version PR.</li>
+</ul>
+<p>Use explicit PR labels or a machine-readable release marker, plus changed-file validation, instead of guessing solely from commit-message text.</p>
+<h2 id="6-efficient-matrix-architecture">6. Efficient matrix architecture<a class="headerlink" href="#6-efficient-matrix-architecture" title="Permanent link">&para;</a></h2>
+<p>Use three layers:</p>
+<ol>
+<li>Thin event workflows: <code>pr-ci.yml</code>, <code>main-version.yml</code>, <code>publish-application.yml</code>, <code>publish-chart.yml</code>.</li>
+<li>The organization shared library <code>Budybot/ob1_mn_github_platform-actions_repo_1</code>: <code>validate-go-module.yml</code>, <code>build-image.yml</code>, <code>publish-go-module.yml</code>, <code>publish-chart.yml</code>, and <code>gitops-update.yml</code>; retain a same-repository wrapper only when it expresses application-specific release state.</li>
+<li>Component catalog and detector script/action that emit matrices.</li>
+</ol>
+<p>GitHub supports a matrix job calling a reusable workflow. This is the right fit for 5–7 similar images: the top-level workflow remains readable, components run in parallel, and each receives explicit catalog inputs. Pin third-party actions to immutable SHAs or reviewed release tags, and pin the organization's platform-actions library to its moving major tag <code>@v1</code> (<code>@v1.x.y</code> only to freeze a caller deliberately). The organization setting lets GitHub fetch private reusable workflow YAML with its scoped ephemeral token; the REF PACKAGE App is only for private Go source/module access. Pass the GitOps App key only to the GitOps update call. <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/reusing-workflow-configurations">GitHub recommends reusable workflows to avoid duplication</a>.</p>
+<p>For Go multi-module repositories, enable <code>actions/setup-go</code> cache with a <code>cache-dependency-path</code> covering every <code>**/go.sum</code> and <code>**/go.work.sum</code> file. Do not rely on the default root-only lookup, which produces warnings or stale cache keys when <code>go.mod</code> files are below the repository root. A module-specific override is allowed only when that module has no workspace or cross-module dependency input.</p>
+<p>Recommended matrix controls:</p>
+<ul>
+<li><code>fail-fast: false</code> on PR validation so all failing components are visible;</li>
+<li><code>max-parallel</code> tuned to runner/ECR capacity;</li>
+<li>image publish matrix includes only consumed Changeset packages;</li>
+<li>separate contract-module and image matrices because tag semantics differ;</li>
+<li>one chart-update aggregation job after all image builds, because concurrent matrix jobs must not each edit the same values file/branch.</li>
+</ul>
+<h2 id="7-approvals-concurrency-and-permissions">7. Approvals, concurrency, and permissions<a class="headerlink" href="#7-approvals-concurrency-and-permissions" title="Permanent link">&para;</a></h2>
+<p>There are no per-release approval environments. The human gate is merging the version-packages PR and the chart-release PR; promotion between environments is gated by Kargo bake checks; and the platform-actions release-PR sweeper auto-merges the automation PRs. The only protected GitHub Environment in the flow is <code>release-automation</code> (limited to <code>main</code>), which holds the sweeper's GitHub App key. GitOps write credentials remain isolated to the GitOps PR job/App.</p>
+<p>GitHub environment jobs cannot access environment secrets until protection rules pass. Use least-privilege job-level permissions and OIDC for AWS rather than stored AWS keys. See <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments">GitHub deployment environments</a>.</p>
+<p>Concurrency:</p>
+<ul>
+<li>cancel stale PR CI for the same PR;</li>
+<li>serialize version-PR mutation per repository;</li>
+<li>serialize application publication per application cluster without canceling an in-progress publish;</li>
+<li>serialize chart publication per parent chart;</li>
+<li>serialize GitOps PR updates per application path.</li>
+</ul>
+<p>Do not reuse the exact same concurrency group in caller and called reusable workflows; GitHub warns this can cancel the caller. <a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency">GitHub concurrency groups</a> allow <code>matrix</code> and <code>needs</code> contexts.</p>
+<h2 id="8-tags-and-kargo-discovery">8. Tags and Kargo discovery<a class="headerlink" href="#8-tags-and-kargo-discovery" title="Permanent link">&para;</a></h2>
+<p>Create tags only after the artifact exists and its digest/version has been verified.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Format</th>
+<th>Consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component image</td>
+<td><code>&lt;component&gt;-&lt;version&gt;-&lt;short-sha&gt;</code></td>
+<td>Helm values and Kargo image subscription</td>
+</tr>
+<tr>
+<td>Component Git tag</td>
+<td><code>&lt;component&gt;/v&lt;version&gt;</code></td>
+<td>Audit/release history</td>
+</tr>
+<tr>
+<td>Nexus module Git tag</td>
+<td><code>&lt;module-dir&gt;/v&lt;version&gt;</code></td>
+<td>Other Go applications importing the contract</td>
+</tr>
+<tr>
+<td>Parent chart version/tag</td>
+<td>SemVer and <code>charts/&lt;parent&gt;/v&lt;version&gt;</code></td>
+<td>ArgoCD/Kargo chart subscription</td>
+</tr>
+</tbody>
+</table>
+<p>Because prefixed component image tags are not pure SemVer, Kargo configuration must use one image subscription per component with an anchored allow-regex and a strategy compatible with immutable build tags. Do not let one subscription select another component's tags from the shared image repository. The concrete Kargo strategy, regex, and discovery limit will be added during Kargo implementation in <a href="kargo-promotion-design.html">Kargo Promotion Design</a>.</p>
+<p>The parent chart remains SemVer and is the preferred aggregate release signal after all selected component image tags are written into chart values.</p>
+<h2 id="9-idempotency-and-rollback">9. Idempotency and rollback<a class="headerlink" href="#9-idempotency-and-rollback" title="Permanent link">&para;</a></h2>
+<p>Every publication job must be rerun-safe:</p>
+<ul>
+<li>if an image tag exists, verify it points to the expected digest or fail;</li>
+<li>if a Go/chart/component Git tag exists, verify its commit or fail;</li>
+<li>if a chart version exists, compare expected metadata and skip or fail safely;</li>
+<li>update an existing automation PR rather than opening duplicates;</li>
+<li>use immutable prior chart versions for rollback;</li>
+<li>never overwrite ECR tags or Git tags.</li>
+</ul>
+<p>The GitOps PR is the deployment handoff. Publishing an artifact does not deploy it.</p>
+<h3 id="reviewer-pr-handoff">Reviewer PR handoff<a class="headerlink" href="#reviewer-pr-handoff" title="Permanent link">&para;</a></h3>
+<p>For every generated or human release PR, put the release sequence directly in the PR description. Use <code>[release N/M]</code> in the title and include <code>Prerequisites</code>, <code>Next approval</code>, <code>Reviewer action</code>, and <code>Rollback/hold point</code>. Name the precise next state: for example, <code>version-packages PR #12 in &lt;application repo&gt;</code>, <code>chart-release PR #123 in &lt;application repo&gt;</code>, or <code>GitOps PR #456 in &lt;group GitOps repo&gt;</code>. A reviewer should never need to infer whether to approve now, wait for a workflow, or move to another repository.</p>
+<p>When the next PR does not yet exist, say which workflow creates it and the condition that triggers it; replace that text with its link as soon as it is opened. For a chart-only release this produces one application-repository chart-release PR followed by one GitOps PR. For an application release it produces the version-packages PR, the chart-release PR, then the GitOps PR, with only changed components in the matrix.</p>
+<h2 id="10-target-workflow-inventory">10. Target workflow inventory<a class="headerlink" href="#10-target-workflow-inventory" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Trigger</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pr-ci.yml</code></td>
+<td>PR to <code>main</code></td>
+<td>Detect, matrix validate/build without push, chart render, aggregate required check</td>
+</tr>
+<tr>
+<td><code>main-version.yml</code></td>
+<td>Ordinary merge to <code>main</code></td>
+<td>Create/update version-packages PR or chart-release PR</td>
+</tr>
+<tr>
+<td><code>publish-application.yml</code></td>
+<td>Version-packages PR merge</td>
+<td>Approval, matrix image/module publication, tags, then chart-release PR</td>
+</tr>
+<tr>
+<td><code>publish-chart.yml</code></td>
+<td>Chart-release PR merge</td>
+<td>Approval, parent chart publication/tag/release, then GitOps PR</td>
+</tr>
+<tr>
+<td><code>reusable-validate-component.yml</code></td>
+<td><code>workflow_call</code></td>
+<td>Validate one catalog component</td>
+</tr>
+<tr>
+<td><code>reusable-build-image.yml</code></td>
+<td><code>workflow_call</code></td>
+<td>Build/push/verify one selected image</td>
+</tr>
+<tr>
+<td><code>reusable-publish-go-module.yml</code></td>
+<td><code>workflow_call</code></td>
+<td>Test and tag/release one selected Go module</td>
+</tr>
+<tr>
+<td><code>gitops-update.yml</code></td>
+<td><code>workflow_call</code></td>
+<td>Update pinned chart version and open/update GitOps PR</td>
+</tr>
+</tbody>
+</table>
+<p>The exact filenames may vary, but the state boundaries and responsibilities should remain recognizable.</p>
+<h2 id="11-current-reference-gaps-and-adoption">11. Current reference gaps and adoption<a class="headerlink" href="#11-current-reference-gaps-and-adoption" title="Permanent link">&para;</a></h2>
+<p>Context Cluster currently proves the release mechanics but hand-wires gateway/file/k8scr/execution-system inputs and build jobs. Converging to this standard should first introduce the component catalog and detection matrix without changing artifact names or approval behavior, then replace repeated build jobs with reusable matrix calls.</p>
+<p>Chart-only source changes do not require a Changeset. The chart-release workflow creates the patch version, derives a Git-style changelog from changed chart files, and opens the chart-release PR with that generated changelog. Component Git tags use <code>&lt;component&gt;/v&lt;version&gt;</code>.</p>
+<p>The shared-workflow home is <code>ob1_mn_github_platform-actions_repo_1</code>, managed by <code>github-infra</code> and configured for organization-level reusable-workflow access. Kargo selection details belong in <a href="kargo-promotion-design.html">Kargo Promotion Design</a>, where they will be decided with the implementation.</p>
+<h3 id="recommendation-centralize-only-proven-reusable-workflows">Recommendation: centralize only proven reusable workflows<a class="headerlink" href="#recommendation-centralize-only-proven-reusable-workflows" title="Permanent link">&para;</a></h3>
+<p>Use the dedicated private Actions repository <code>ob1_mn_github_platform-actions_repo_1</code>, managed by <code>github-infra</code>. Keep caller-specific event workflows and the component catalog in each application repository; centralize only tested <code>workflow_call</code> workflows and composite actions. Release that library with semver tags plus a moving major tag, pin callers to <code>@v1</code>, grant organization access explicitly, and keep permissions/credentials scoped to the caller job. GitHub requires a private reusable-workflow repository to be explicitly accessible to its callers; sharing also makes its workflow logs indirectly visible to callers, so it must contain no secrets. See <a href="https://docs.github.com/en/actions/how-tos/reuse-automations/share-across-private-repositories">GitHub's private workflow sharing guidance</a>.</p>
+<p>Do not use the REF PACKAGE GitHub App to retrieve reusable workflow YAML. GitHub Actions provides the caller runner a scoped, short-lived installation token when the called repository's Actions access level allows it. Retain the REF PACKAGE App only for private Go-module/source access. A separate GitHub App is needed only for explicit API automation outside <code>workflow_call</code>, such as a centrally owned cross-repository PR or release operation; grant it only the specific API permissions it needs.</p>
+<h2 id="primary-references">Primary references<a class="headerlink" href="#primary-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.github.com/en/actions/reference/workflows-and-actions/reusing-workflow-configurations">GitHub reusable workflows</a></li>
+<li><a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency">GitHub workflow concurrency</a></li>
+<li><a href="https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments">GitHub deployment environments and approvals</a></li>
+<li><a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches">GitHub protected branches</a></li>
+<li><a href="https://go.dev/doc/modules/managing-source#multiple-module-source">Go multi-module source and tags</a></li>
+<li><a href="https://docs.kargo.io/user-guide/how-to-guides/working-with-warehouses">Kargo Warehouses and image selection</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

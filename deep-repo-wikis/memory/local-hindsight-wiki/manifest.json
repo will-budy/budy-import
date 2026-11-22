@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2026-07-15T06:39:23.301Z",
+  "title": "Hindsight Developer Reference Wiki",
+  "description": "Hindsight is an agent memory system that gives AI agents biomimetic long-term memory (world facts, experience facts, and consolidated mental models) through a retain/recall/reflect API. This wiki covers the core Python engine, its API surfaces, client tooling, and the extensive integrations library, all designed to be portable across LLM, storage, and deployment providers (BYOC/BYOK).",
+  "repository": "local/hindsight",
+  "branch": null,
+  "generatedAt": "2026-07-14T22:08:34.361Z",
+  "format": "obsidian-markdown-vault",
+  "privacy": "local-export",
+  "pages": [
+    {
+      "id": "page-overview",
+      "title": "Technical Orientation",
+      "description": "What Hindsight is, its monorepo layout, the retain/recall/reflect mental model, and how the rest of this developer reference is organized.",
+      "path": "pages/01-technical-orientation.md",
+      "sourceFiles": [
+        "README.md",
+        "CLAUDE.md",
+        "pyproject.toml",
+        "package.json",
+        "hindsight-api-slim/hindsight_api/main.py",
+        "hindsight-api-slim/hindsight_api/engine/memory_engine.py"
+      ]
+    },
+    {
+      "id": "page-deployment-and-config",
+      "title": "Deployment Modes & Hierarchical Configuration",
+      "description": "Running Hindsight via Docker (embedded pg0 or external PostgreSQL/Oracle), the global/tenant/bank configuration hierarchy, environment variables, and database migrations via Alembic.",
+      "path": "pages/02-deployment-modes-hierarchical-configuration.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/config.py",
+        ".env.example",
+        "hindsight-api-slim/hindsight_api/alembic/versions",
+        "docker/docker-compose",
+        "scripts/dev/start.sh",
+        "scripts/dev/start-api.sh"
+      ]
+    },
+    {
+      "id": "page-memory-engine",
+      "title": "MemoryEngine — Central Orchestrator",
+      "description": "The MemoryEngine class that coordinates retain/recall/reflect, task and operation lifecycle, background task execution, webhook firing, and connection/pool management.",
+      "path": "pages/03-memoryengine-central-orchestrator.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/engine/memory_engine.py",
+        "hindsight-api-slim/hindsight_api/engine/interface.py",
+        "hindsight-api-slim/hindsight_api/engine/task_backend.py",
+        "hindsight-api-slim/hindsight_api/worker/main.py",
+        "hindsight-api-slim/hindsight_api/worker/poller.py",
+        "hindsight-api-slim/hindsight_api/worker/stage.py"
+      ]
+    },
+    {
+      "id": "page-retain-pipeline",
+      "title": "Retain Pipeline — Ingestion, Extraction & Linking",
+      "description": "How raw content becomes memory: the retain orchestrator, LLM-based fact extraction, entity resolution/processing, entity-link creation, chunking, and embedding generation.",
+      "path": "pages/04-retain-pipeline-ingestion-extraction-linking.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/engine/retain/orchestrator.py",
+        "hindsight-api-slim/hindsight_api/engine/retain/fact_extraction.py",
+        "hindsight-api-slim/hindsight_api/engine/retain/entity_processing.py",
+        "hindsight-api-slim/hindsight_api/engine/retain/link_creation.py",
+        "hindsight-api-slim/hindsight_api/engine/retain/chunk_storage.py",
+        "hindsight-api-slim/hindsight_api/engine/retain/embedding_processing.py"
+      ]
+    },
+    {
+      "id": "page-search-retrieval",
+      "title": "Recall Pipeline — Multi-Strategy Retrieval & Fusion",
+      "description": "The four parallel retrieval strategies (semantic, BM25, graph, temporal), reciprocal rank fusion, cross-encoder reranking, query intent analysis, and link-expansion graph traversal.",
+      "path": "pages/05-recall-pipeline-multi-strategy-retrieval-fusion.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/engine/search/retrieval.py",
+        "hindsight-api-slim/hindsight_api/engine/search/fusion.py",
+        "hindsight-api-slim/hindsight_api/engine/search/reranking.py",
+        "hindsight-api-slim/hindsight_api/engine/search/graph_retrieval.py",
+        "hindsight-api-slim/hindsight_api/engine/search/link_expansion_retrieval.py",
+        "hindsight-api-slim/hindsight_api/engine/query_analyzer.py"
+      ]
+    },
+    {
+      "id": "page-reflect-mental-models",
+      "title": "Reflect — Disposition-Aware Reasoning & Mental Models",
+      "description": "The reflect agent loop, tool-calling over memories, delta operations for updating consolidated mental models, structured document synthesis, and disposition traits (skepticism, literalism, empathy) plus behavioral directives.",
+      "path": "pages/06-reflect-disposition-aware-reasoning-mental-models.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/engine/reflect/agent.py",
+        "hindsight-api-slim/hindsight_api/engine/reflect/delta_ops.py",
+        "hindsight-api-slim/hindsight_api/engine/reflect/structured_doc.py",
+        "hindsight-api-slim/hindsight_api/engine/reflect/tools.py",
+        "hindsight-api-slim/hindsight_api/engine/reflect/prompts.py",
+        "hindsight-api-slim/hindsight_api/engine/directives/models.py"
+      ]
+    },
+    {
+      "id": "page-consolidation-maintenance",
+      "title": "Consolidation & Graph Maintenance",
+      "description": "Background consolidation of raw facts into mental models, entity-link graph maintenance, and periodic maintenance/cache-refresh routines that keep bank statistics current.",
+      "path": "pages/07-consolidation-graph-maintenance.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/engine/consolidation/consolidator.py",
+        "hindsight-api-slim/hindsight_api/engine/consolidation/prompts.py",
+        "hindsight-api-slim/hindsight_api/engine/graph_maintenance.py",
+        "hindsight-api-slim/hindsight_api/engine/maintenance.py",
+        "hindsight-api-slim/hindsight_api/engine/bank_stats_cache.py"
+      ]
+    },
+    {
+      "id": "page-http-api",
+      "title": "HTTP API Surface",
+      "description": "The FastAPI router covering banks, memories/recall, reflect, entities, mental models, directives, documents, tags, operations, webhooks, audit logs, and per-bank config endpoints under `/v1/default/banks/{bank_id}/...`.",
+      "path": "pages/08-http-api-surface.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/api/http.py",
+        "hindsight-api-slim/hindsight_api/engine/response_models.py",
+        "hindsight-api-slim/hindsight_api/engine/schema.py",
+        "hindsight-api-slim/hindsight_api/engine/transfer/importer.py",
+        "hindsight-api-slim/hindsight_api/engine/transfer/export.py"
+      ]
+    },
+    {
+      "id": "page-mcp-server",
+      "title": "Model Context Protocol (MCP) Server",
+      "description": "The FastMCP-based server exposing retain/recall/reflect as MCP tools, argument coercion for tolerant tool calls, and MCP-layer auth middleware — a provider-neutral way for any MCP-capable agent to reach Hindsight.",
+      "path": "pages/09-model-context-protocol-mcp-server.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/api/mcp.py",
+        "hindsight-api-slim/hindsight_api/extensions/mcp.py",
+        "hindsight-api-slim/hindsight_api/extensions/context.py"
+      ]
+    },
+    {
+      "id": "page-llm-providers",
+      "title": "LLM Wrapper, Providers & Embeddings",
+      "description": "The drop-in LLM wrapper that auto-retains/recalls around any chat completion call, the pluggable provider abstraction (OpenAI, Anthropic, Gemini, Groq, MiniMax, Ollama, LM Studio, LiteLLM, Claude Code, and more), and local vs. TEI embeddings/reranking — all BYOK/BYOC by design.",
+      "path": "pages/10-llm-wrapper-providers-embeddings.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/engine/llm_wrapper.py",
+        "hindsight-api-slim/hindsight_api/engine/providers/anthropic_llm.py",
+        "hindsight-api-slim/hindsight_api/engine/providers/litellm_llm.py",
+        "hindsight-api-slim/hindsight_api/engine/providers/claude_code_llm.py",
+        "hindsight-api-slim/hindsight_api/engine/embeddings.py",
+        "hindsight-api-slim/hindsight_api/engine/cross_encoder.py"
+      ]
+    },
+    {
+      "id": "page-extensions-tenancy",
+      "title": "Extensions & Multi-Tenancy",
+      "description": "The extension-point system (tenant resolution, operation validators, memory-defense guards) that lets deployments plug in custom auth/tenancy without forking core code, plus the built-in Supabase-tenant and regex memory-defense implementations.",
+      "path": "pages/11-extensions-multi-tenancy.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/extensions/base.py",
+        "hindsight-api-slim/hindsight_api/extensions/tenant.py",
+        "hindsight-api-slim/hindsight_api/extensions/loader.py",
+        "hindsight-api-slim/hindsight_api/extensions/memory_defense.py",
+        "hindsight-api-slim/hindsight_api/extensions/builtin/supabase_tenant.py",
+        "hindsight-api-slim/hindsight_api/extensions/builtin/memory_defense_regex.py"
+      ]
+    },
+    {
+      "id": "page-cli",
+      "title": "Rust CLI (hindsight-cli)",
+      "description": "The `hindsight` command-line tool: bank/memory/document/entity/webhook/audit subcommands, the interactive k9s-style TUI explorer, profile-based connection configuration, and how it wraps the generated Rust API client.",
+      "path": "pages/12-rust-cli-hindsight-cli.md",
+      "sourceFiles": [
+        "hindsight-cli/src/main.rs",
+        "hindsight-cli/src/api.rs",
+        "hindsight-cli/src/config.rs",
+        "hindsight-cli/src/ui.rs",
+        "hindsight-cli/src/output.rs"
+      ]
+    },
+    {
+      "id": "page-control-plane",
+      "title": "Control Plane (Admin UI)",
+      "description": "The Next.js admin UI: dashboard/bank pages, its API route layer that proxies to the dataplane (recall, reflect, retain, memories, entities, stats), and the typed client in `lib/api.ts` that both must stay in sync with.",
+      "path": "pages/13-control-plane-admin-ui.md",
+      "sourceFiles": [
+        "hindsight-control-plane/src/app/[locale]/dashboard/page.tsx",
+        "hindsight-control-plane/src/app/[locale]/banks/[bankId]/page.tsx",
+        "hindsight-control-plane/src/app/api/recall",
+        "hindsight-control-plane/src/app/api/reflect",
+        "hindsight-control-plane/src/lib/api.ts"
+      ]
+    },
+    {
+      "id": "page-sdk-clients",
+      "title": "Generated SDK Clients & OpenAPI Pipeline",
+      "description": "How the OpenAPI spec is regenerated from the FastAPI app and used to generate the Python, TypeScript, Rust (progenitor), and Go client SDKs, and the workflow for keeping them all current after an endpoint change.",
+      "path": "pages/14-generated-sdk-clients-openapi-pipeline.md",
+      "sourceFiles": [
+        "scripts/generate-openapi.sh",
+        "scripts/generate-clients.sh",
+        "hindsight-clients/python",
+        "hindsight-clients/typescript",
+        "hindsight-clients/rust",
+        "hindsight-clients/go"
+      ]
+    },
+    {
+      "id": "page-integrations-library",
+      "title": "Integrations Library — Adapters Across Agent Ecosystems",
+      "description": "How the ~40 first-party integrations in hindsight-integrations are organized by category (coding-agent hooks like Claude Code/Codex/Cursor CLI, agent frameworks like CrewAI/LangGraph/Pydantic AI/AG2, and proxy/automation adapters like LiteLLM/Zapier/n8n), and the shared contract each must satisfy (tests exercising the external system, its own CI job, release-script registration).",
+      "path": "pages/15-integrations-library-adapters-across-agent-ecosystems.md",
+      "sourceFiles": [
+        "hindsight-integrations/README.md",
+        "hindsight-integrations/claude-code",
+        "hindsight-integrations/litellm",
+        "hindsight-integrations/langgraph",
+        "hindsight-integrations/pydantic-ai",
+        "scripts/release-integration.sh"
+      ]
+    },
+    {
+      "id": "page-operations-and-next-steps",
+      "title": "Operational Boundaries, Extension Points & What to Inspect Next",
+      "description": "Closing synthesis: dual-dialect (PostgreSQL/Oracle) migration discipline, the storage backend abstraction (local/S3/GCS/Azure), benchmark tooling, testing conventions (MockLLM vs. LLM-judge tests), and where a new contributor should look first when extending the system — kept provider-neutral throughout.",
+      "path": "pages/16-operational-boundaries-extension-points-what-to-inspect-next.md",
+      "sourceFiles": [
+        "hindsight-api-slim/hindsight_api/alembic/versions",
+        "hindsight-api-slim/hindsight_api/engine/storage/base.py",
+        "hindsight-api-slim/hindsight_api/engine/storage/s3.py",
+        "scripts/benchmarks/run-perf-test.sh",
+        "hindsight-api-slim/tests",
+        ".claude/skills/code-review/SKILL.md"
+      ]
+    }
+  ]
+}

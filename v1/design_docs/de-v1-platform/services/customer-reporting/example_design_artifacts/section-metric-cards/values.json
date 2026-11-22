@@ -1,0 +1,16 @@
+{
+  "scope": {
+    "name": "Janine",
+    "community": "Fairhaven"
+  },
+  "period": {
+    "start": "April 6, 2026",
+    "end": "April 12, 2026"
+  },
+  "metrics": {
+    "assigned": 20,
+    "completed": 6,
+    "open": 14,
+    "allOpen": 14
+  }
+}

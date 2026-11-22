@@ -1,0 +1,25 @@
+{
+  "config": {
+    "trendWindowPeriods": 3
+  },
+  "trends": [
+    { "weekLabel": "Mar 16", "completed": 10, "assigned": 10 },
+    { "weekLabel": "Mar 23", "completed": 10, "assigned": 10 },
+    { "weekLabel": "Mar 30", "completed": 10, "assigned": 10 }
+  ],
+  "metrics": {
+    "lastWeek": {
+      "weekLabel": "Apr 6",
+      "completed": 6,
+      "assigned": 20,
+      "open": 14
+    }
+  },
+  "rates": {
+    "previousAvgPct": "100.0",
+    "currentPct": "76.7",
+    "trend": "down",
+    "previousCompleted": 30,
+    "previousAssigned": 30
+  }
+}

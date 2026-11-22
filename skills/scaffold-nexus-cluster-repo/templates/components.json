@@ -1,0 +1,72 @@
+{
+  "chart": {
+    "name": "CLUSTER-repo-1",
+    "path": "charts/CLUSTER",
+    "app_path": "CLUSTER"
+  },
+  "release": {
+    "name": "CLUSTER",
+    "ecr_repository": "ob1-ecr-repo-v2/ob1_tf_aws_ecr_CLUSTER_repo-1",
+    "cache_image": "ghcr.io/budybot/CLUSTER_repo-1-buildcache"
+  },
+  "defaults": {
+    "private_repositories": "CLUSTER_repo-1\nob1_tf_gh_budy-common-modules-1_repo_1"
+  },
+  "components": [
+    {
+      "name": "contract",
+      "path": "shared/contract",
+      "package_json": "shared/contract/package.json",
+      "publishes_image": false,
+      "go_module": {
+        "module_dir": "shared/contract",
+        "module_import_path": "github.com/Budybot/CLUSTER_repo-1/shared/contract"
+      },
+      "validation": {
+        "kind": "go"
+      }
+    },
+    {
+      "name": "gateway",
+      "path": "components/gateway",
+      "package_json": "components/gateway/package.json",
+      "publishes_image": true,
+      "docker": {
+        "context": ".",
+        "dockerfile": "Dockerfile",
+        "build_args": {
+          "COMPONENT": "components/gateway",
+          "BINARY_TARGET": "worker"
+        }
+      },
+      "chart_values_image_tag_path": ".gateway.image.tag",
+      "validation": {
+        "kind": "go"
+      },
+      "depends_on": [
+        "contract"
+      ]
+    },
+    {
+      "name": "FIRST",
+      "path": "components/FIRST",
+      "package_json": "components/FIRST/package.json",
+      "publishes_image": true,
+      "docker": {
+        "context": ".",
+        "dockerfile": "Dockerfile",
+        "build_args": {
+          "COMPONENT": "components/FIRST",
+          "BINARY_TARGET": "worker"
+        }
+      },
+      "chart_values_image_tag_path": ".\"FIRST\".image.tag",
+      "validation": {
+        "kind": "go"
+      },
+      "depends_on": [
+        "contract"
+      ]
+    }
+  ]
+}

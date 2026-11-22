@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manage OB Application CI/CD"
+  short_description: "Manage efficient multi-component releases"
+  default_prompt: "Use $manage-ob-application-cicd to design, implement, or debug an OB application cluster CI/CD pipeline."

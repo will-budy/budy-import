@@ -1,0 +1,63 @@
+{
+  "title": "Care operations review",
+  "date": "yesterday",
+  "question": {
+    "time": "10:00",
+    "text": "Megan, looking across care operations this quarter, what should I be paying attention to? Look for anything that is trending the wrong way, and anything that is out of line with the other communities. Tell me what you would raise first, and why."
+  },
+  "ack": {
+    "time": "10:01",
+    "audio": "01-megan-clarifying-question.mp3",
+    "text": "Got it. I'll look across care operations this quarter. When we last talked, you said resident safety and costs were on your mind. Is there anything specific you want me to start with?"
+  },
+  "answer": {
+    "time": "10:03",
+    "text": "Resident safety first. And I want things we can fix quickly."
+  },
+  "confirm": {
+    "time": "10:04",
+    "audio": "02-megan-confirmation.mp3",
+    "text": "Understood. Resident safety, and things we can fix quickly. I'll compare falls, staffing and call-outs across all five communities, July to September. I'll send you what stands out in the full report when it's ready."
+  },
+  "report": {
+    "time": "16:20",
+    "workedFor": "6 hours",
+    "audio": "03-megan-report.mp3",
+    "text": "I checked into what you asked. For resident safety and quick fixes, I compared falls, shift staffing and the call-out log for all five communities, July to September. I emailed you the full report, and here's a quick summary.\n\nI'd start with one thing: the evening shift at Cedar Point.\n\nIn September, it was understaffed on nineteen out of thirty evenings. Back in July, that was only four. And it's just Cedar Point. No other community had more than three.\n\nHere's why it matters. Cedar Point had seventeen falls that month, and fourteen of them happened on those understaffed evenings. The eleven evenings with a full team had three. So an understaffed evening gets almost three times as many falls.\n\nWhat I found is that the schedule itself is fine. The gaps start when someone calls out after one in the afternoon. Those open shifts went unfilled almost four times out of five. When they were posted before noon, only one out of eleven went unfilled. And every Friday, Saturday and Sunday evening was understaffed.",
+    "card": {
+      "title": "Cedar Point evenings are understaffed",
+      "subtitle": "Evening shift, 3 to 11 pm · falls per evening, September",
+      "graphic": {
+        "type": "columns",
+        "columns": [
+          {
+            "label": "Fully staffed",
+            "value": 0.27
+          },
+          {
+            "label": "Understaffed",
+            "value": 0.74
+          }
+        ]
+      },
+      "figures": [
+        {
+          "value": "19 of 30",
+          "label": "evenings were understaffed, up from 4 of 31 in July."
+        },
+        {
+          "value": "18 of 19",
+          "label": "gaps were open shifts posted after 1 pm. Those went unfilled 78 percent of the time."
+        }
+      ],
+      "file": "report.html"
+    }
+  },
+  "followUp": {
+    "question": "Why do the gaps open on weekends?",
+    "ack": {
+      "audio": "follow-up-ack.mp3",
+      "text": "Let me look into that. If I have more questions, I will let you know."
+    }
+  }
+}

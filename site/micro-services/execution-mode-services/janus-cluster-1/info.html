@@ -1,0 +1,3212 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="../events-cluster-1/info.html">
+      
+      
+        <link rel="next" href="../studio-services-cluster-1/info.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>janus-cluster-1 - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#janus-cluster-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              janus-cluster-1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="info.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#decisions-owner-2026-11-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisions (owner, 2026-11-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-built-decisions-2026-11-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As-built decisions (2026-11-17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shape-as-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shape (as built)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Names
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-callers-and-callees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces, callers and callees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions (summary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#decisions-owner-2026-11-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisions (owner, 2026-11-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-built-decisions-2026-11-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As-built decisions (2026-11-17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shape-as-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shape (as built)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Names
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-callers-and-callees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces, callers and callees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions (summary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<hr />
+<p>name: janus-cluster-1
+kind: service
+description: Connection manager for the platform: manages connections to external systems and their secrets in a dedicated Vault, decides which tenant workflows and activities may use them, brokers them to DT Dynamo workers, and controls and rate-limits their outbound calls.
+part_of_subsystem: execution-mode-services
+primary_owner: tbd
+github_repo: Budybot/janus-cluster-1_repo-1
+status: active
+tags: [execution-mode, application-cluster, go, temporal, secrets, connections, vault, authorization, egress]
+interfaces: [nexus, http]
+runtime:
+  language: go
+  framework: temporal
+  deployment: eks
+links:
+  design: [prd.md, hld.md, trd.md, nexus-contracts.md, docs/content/handover.md, docs/content/architecture.md, docs/content/nango-keys.md, docs/content/outbound-egress-control.md]
+  runbooks: []
+  dashboards: []
+  api_contracts: []
+  builds: []
+  release_candidates: []</p>
+<hr />
+<h1 id="janus-cluster-1">janus-cluster-1<a class="headerlink" href="#janus-cluster-1" title="Permanent link">&para;</a></h1>
+<p>janus-cluster-1 is the platform's <strong>connection manager</strong>. It manages connections to external systems, keeps the secrets behind them in its own Vault, decides which tenant workflows and activities may use each connection, brokers connections to the Temporal workers that run tenant work, and applies policy checks and rate limits to the outbound calls those workers make.</p>
+<p>Its main callers are <strong>DT Dynamo workers</strong>: the per-tenant Temporal workers that run Digital Teammate workflows, deployed and versioned by <a href="../nainai-cluster-1/info.html">nainai-cluster-1</a>.</p>
+<blockquote>
+<p><strong>Status: connections work end to end in dev (2026-11-17); outbound enforcement is designed and not enforced.</strong> Built and running in dev: the connection registry with its type, provider and connection catalog and an admin editor, the connect page (intake-1) for API key, basic and bearer connections and for Nango-backed OAuth connections, the Nexus gateway, the console (tenant and platform scope, with sign out), the DT tools and skills (catalog), the Janus Vault, Janus's own OpenFGA with its bootstrap, publish and Vault-manager components. Stage and prod run the service at earlier chart versions (0.1.18 and 0.1.17, as reported by the owner on 2026-11-17). Not enforced: outbound calls from DT Dynamo workers do not yet pass through the policy check (the ext_authz listener is off), and run attestation, the worker hook, rotation and Nango-side deletion on revoke are not built. The owner is taking over outbound enforcement; its design is <code>docs/content/outbound-egress-control.md</code> in the repository. The owner decisions below were taken from 2026-11-05 on; what was built and how it behaves is in the PRD, HLD, TRD and Nexus contracts linked under Detailed Docs.</p>
+</blockquote>
+<h2 id="decisions-owner-2026-11-05">Decisions (owner, 2026-11-05)<a class="headerlink" href="#decisions-owner-2026-11-05" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>Janus is the platform's connection manager: connection management, permissions on connections, brokering to DT Dynamo workers, outbound rate limiting, and policy checks and routing on outbound calls.</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Janus manages every kind of connection: secrets it stores itself (Janus-managed) and connections held by third-party connection providers (provider-managed; Nango today).</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>The existing <code>connections-1</code> (credential intake in the auth cluster, <code>auth-service-1</code>) and the connections UI (<code>frontend-cluster-1</code>, <code>apps/connections</code>) move into Janus.</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Janus gets a dedicated HA Vault, <code>janus-vault-cluster-1</code> (Raft, same structure as <code>vault-cluster-2</code>, nothing shared with it). Connections are stored in KV v2. The connection storage in <code>vault-cluster-2</code> (<code>user-connections-1</code>) is deprecated after migration.</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>No human access to the Janus Vault; only Janus uses and manages it. A break-glass admin path may exist.</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>Janus manages its Vault's configuration itself, operator-style, with desired state in its own Postgres (<code>ob1-janus-db-1</code>). Not Crossplane CRs, not <code>vault-gitops</code> Terraform.</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>The Vault chart and any other third-party chart Janus needs deploy through the de-v2 GitOps repository as their own Applications, like gitjib's <code>gitlab-1</code>, so Kargo promotes them.</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>No Vault JWT plugin (the outfoxx plugin is deprecated upstream and being removed platform-wide). JWT signing for workers becomes a capability in the auth cluster or in Janus (open).</td>
+</tr>
+<tr>
+<td>D9</td>
+<td>Janus owns its own OpenFGA model (now in its own OpenFGA, D40). The existing <code>connections</code> and <code>credentials</code> modules are V0 and are not the base for Janus.</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>Authorization is per published workflow and per activity within a tenant. Tuples are written at publish time (into Janus's own OpenFGA, D40).</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>Inbound rate limiting stays on <code>api-gateway-1</code>. Janus owns outbound control for DT Dynamo workers; the mechanism (Envoy preferred, in-image inspection before TLS as a candidate) is open.</td>
+</tr>
+<tr>
+<td>D12</td>
+<td>DT Dynamo workers hold no credentials. Authority is per workflow run: a token is issued for the Temporal run id when the run is triggered and flows down through the run's context.</td>
+</tr>
+<tr>
+<td>D13</td>
+<td>Published workflows and their activities have globally unique ids (prefixed UUIDs). Publishing registers worker → workflow within the tenant and workflow → activity.</td>
+</tr>
+<tr>
+<td>D14</td>
+<td>The Janus Vault is auto-unsealed by the environment's main Vault (<code>vault-cluster-2</code>) through Transit. The deployed Vault also takes its TLS certificates from <code>vault-cluster-2</code>'s PKI (open question 3), so the main Vault is a dependency for both the seal and TLS.</td>
+</tr>
+<tr>
+<td>D15</td>
+<td>A proxy injects credentials only where that is a standard pattern across many APIs; otherwise the credential is passed in the run's context at execution time.</td>
+</tr>
+<tr>
+<td>D16</td>
+<td>Single seal: Transit auto-unseal from the parent Vault only, no multi-seal.</td>
+</tr>
+<tr>
+<td>D17</td>
+<td>STS signs run tokens. Janus attests a run on its first outbound call (with Temporal and the publish records) and has STS mint the token; the trigger does not mint.</td>
+</tr>
+<tr>
+<td>D18</td>
+<td>Temporal type names are the published ids: workflow types are published workflow ids (<code>pwf_</code>), activity types published activity ids (<code>pact_</code>). A publication names one of its workflows as its automation, the root of the runs its triggers start.</td>
+</tr>
+<tr>
+<td>D19</td>
+<td>Published ids belong to one tenant and one DT and are never used by another DT, tenant or kind. The same DT keeps an id when the code changes and may reuse it in later publications; an id is in the tree of only one live publication of a DT at a time (v1).</td>
+</tr>
+<tr>
+<td>D20</td>
+<td>DT Consulting Services runs the publish step. A publish declares per activity the concrete connection id and type it needs, and may carry request rules (hosts, paths, methods; Rego candidate).</td>
+</tr>
+<tr>
+<td>D21</td>
+<td>Internal services are treated as external: a Nexus call to another cluster (LLM router, context cluster) is a connection; the run token is never forwarded and a target-specific STS token is issued under the same grants and limits.</td>
+</tr>
+<tr>
+<td>D22</td>
+<td>One Janus outbound service does rate limiting, allowed hosts and paths, credential handling and inspection. DT Dynamo workers move to Istio ambient (no sidecars).</td>
+</tr>
+<tr>
+<td>D23</td>
+<td>DT Dynamo workers run TypeScript and Go; hooks are built for both in parallel, TypeScript tested first.</td>
+</tr>
+<tr>
+<td>D24</td>
+<td>Ambient is a prerequisite for DT Dynamo, DT Workbench and the namespaces sandboxes run in (tenant namespaces; the operator namespace <code>ob1-tf-eks-de-v2-sandbox-1-ns-1</code> is ambient too) (Karpenter spot pools get the ztunnel and istio-cni DaemonSets); sidecars are disabled there.</td>
+</tr>
+<tr>
+<td>D25</td>
+<td>DT Consulting Services' agents write the request rules with the publish, accepted under guidelines at first.</td>
+</tr>
+<tr>
+<td>D26</td>
+<td>Request bodies are inspectable with IAM-style conditional rules (example: a workflow may delete only Salesforce records it is entitled to).</td>
+</tr>
+<tr>
+<td>D27</td>
+<td>One outbound gateway per environment, shared by tenants.</td>
+</tr>
+<tr>
+<td>D28</td>
+<td>The publication registry is not a runtime dependency; runtimes (Janus, nainai, events-cluster) keep their own slice of each publication.</td>
+</tr>
+<tr>
+<td>D29</td>
+<td>The publication registry is its own service and database, built in DT Consulting Services and kept separable; publishing is a Temporal saga workflow (idempotent steps, compensation on failure) that fans out to each runtime.</td>
+</tr>
+<tr>
+<td>D30</td>
+<td>Phase 1 rules are stateless (request, response, caller only); ownership checks come later for supported providers.</td>
+</tr>
+<tr>
+<td>D31</td>
+<td>Rules are written in Rego (OPA), written and audited by LLMs, shipped with their own tests and checked at publish.</td>
+</tr>
+<tr>
+<td>D32</td>
+<td>The first provider is Google Calendar.</td>
+</tr>
+<tr>
+<td>D33</td>
+<td>TypeScript workers first, Go next phase; Go workers build HTTP requests from the activity's context.</td>
+</tr>
+<tr>
+<td>D34</td>
+<td>A credential reaches a call either injected by the outbound gateway (header or query) or in the activity's context for that call; only Janus reads its Vault, through just-in-time tokens scoped to the activity's connections.</td>
+</tr>
+<tr>
+<td>D35</td>
+<td>Connection types and connection providers are separate: each type (for example Google Calendar) can have several providers (Janus internal OAuth, Nango, other third parties), exactly one active for new connections, others available or deprecated.</td>
+</tr>
+<tr>
+<td>D36</td>
+<td>Janus's internal providers hold refresh tokens in the Janus Vault and refresh access tokens themselves.</td>
+</tr>
+<tr>
+<td>D37</td>
+<td>Two UIs: a system-scope admin UI (types, providers, active provider, health, audit) and a tenant UI (the tenant's connections). No UI ever reveals a secret; secrets are write-only.</td>
+</tr>
+<tr>
+<td>D38</td>
+<td>The publication registry is the Mission registry (<code>mission-registry-1</code>, database <code>ob1-mission-registry-db-1</code>); "mission" is the umbrella term for what is published.</td>
+</tr>
+<tr>
+<td>D39</td>
+<td>Publish grants name connection ids, not types; a different connection means a republish.</td>
+</tr>
+<tr>
+<td>D40</td>
+<td>Janus runs its own OpenFGA for publish-time and run-scoped checks; the platform STS and shared OpenFGA stay for tenant-level questions. Replaces the shared-store and <code>authz-manager-1</code> parts of D9 and D10.</td>
+</tr>
+<tr>
+<td>D41</td>
+<td>Connections exist before an engagement: their ids are a prerequisite of the engagement request, and anything missing goes back to the DT as a feedback request.</td>
+</tr>
+<tr>
+<td>D42</td>
+<td>Two rights on a connection, in Janus's OpenFGA: creator (the user who connected it, or later a DT) and use, shared at most between a DT and its DT manager, who may use but never see it. No tenant-wide sharing.</td>
+</tr>
+<tr>
+<td>D43</td>
+<td>No automatic migration between providers; new connections use the new active provider.</td>
+</tr>
+<tr>
+<td>D44</td>
+<td>Google Calendar launches on Nango with our own, Google-verified OAuth client; Janus's internal Google provider follows.</td>
+</tr>
+<tr>
+<td>D45</td>
+<td>Janus's OpenFGA uses its own database, <code>ob1-openfga-janus-db-1</code>, separate from <code>ob1-janus-db-1</code>.</td>
+</tr>
+<tr>
+<td>D46</td>
+<td>Delivery in four large phases: 0 baseline (Vault and OpenFGA charts, ambient, stub components, admin console, databases), 1 connections, 2 missions and outbound, 3 migration and expansion.</td>
+</tr>
+<tr>
+<td>D47</td>
+<td>The old connection service (<code>connections-1</code>) is deprecated now; nobody uses it. <code>intake-1</code> takes the connection routes directly, with no coexistence period.</td>
+</tr>
+<tr>
+<td>D48</td>
+<td>Console at <code>janus.&lt;env&gt;.orangebox.ai</code>, system scope, visible to the platform-dev user group. The owner writes the session key (<code>v1/de-v2/ob1-tf-eks-de-v2-janus-1-ns-1/janus-cluster-1-console-1/session</code>, key <code>sessionSecret</code>) before the console PR merges.</td>
+</tr>
+<tr>
+<td>D49</td>
+<td>The outbound gateway starts as a small plain-Envoy de-v2 app (ConfigMap, deny-all). Envoy Gateway is a different product from Istio's gateway; moving to a chart later is open.</td>
+</tr>
+<tr>
+<td>D50</td>
+<td>Four layers: credential kind (<code>oauth2</code>, <code>api_key</code>, <code>basic</code>, <code>bearer</code>), connection type (for example <code>google-calendar</code>), connection provider (<code>vault-static-1</code> internal, <code>nango-1</code> third-party), and one active type–provider binding per type. A connection is a tenant's instance of a type.</td>
+</tr>
+<tr>
+<td>D51</td>
+<td>Every read has two scopes: tenant (taken from the gateway-fixed identity) and system (platform admin only). The console is read-only in both and never sees a secret.</td>
+</tr>
+<tr>
+<td>D52</td>
+<td>Secrets enter by two paths: form kinds post to <code>intake-1</code>, which writes the Janus Vault; redirect kinds go through a Nango connect session and webhook. The registry never sees a secret value.</td>
+</tr>
+<tr>
+<td>D53</td>
+<td>Janus uses the platform's existing Nango instance. Without its configuration, calls fail closed with <code>provider_not_configured</code>.</td>
+</tr>
+<tr>
+<td>D54</td>
+<td>A connection is requested with a reason and no name; the user finishes it through a one-time link in another tab; a repeat request within 60 minutes returns the same pending connection (details: <code>docs/content/build-spec.md</code> D54 and the PRD).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="as-built-decisions-2026-11-17">As-built decisions (2026-11-17)<a class="headerlink" href="#as-built-decisions-2026-11-17" title="Permanent link">&para;</a></h2>
+<p>Decisions taken while building and testing in dev. The numbered decisions above stand; these refine them.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B1</td>
+<td><strong>Providers are code, types are data.</strong> A connection provider (where a credential is read from and how it is refreshed) is added in code through a registry migration and is read-only in the console. Platform staff with an editor session manage connection types, their links to providers, and which provider is active; every change is audited. A type is retired while connections use it and can be deleted only when nothing uses it.</td>
+</tr>
+<tr>
+<td>B2</td>
+<td><strong>A type has a common name and a description.</strong> Digital Teammates see one name (for example <code>google-calendar</code>) and a plain-text description. The provider behind it is not shown to tenants; a type can have several providers with exactly one active for new connections (D35). Changing the active provider affects new connections only and moves none (D43); the editor says so and asks for an acknowledgement.</td>
+</tr>
+<tr>
+<td>B3</td>
+<td><strong>A connection says why it exists.</strong> A request needs a reason (one concrete sentence, kept on the connection and in the audit) and never a name. The registry names connections itself: the type name, then numbered ("Google Calendar", "Google Calendar 2"); a generic type is named after its host ("API key – welcomehome.com"). Names are unique per tenant and type and a number is never reused.</td>
+</tr>
+<tr>
+<td>B4</td>
+<td><strong>Requests are repeat-safe.</strong> The same user asking again within 60 minutes for the same type (and host) gets the same pending connection with a fresh link and a message saying so; <code>forceNew</code> starts another and leaves the pending one. A user and a Digital Teammate go through the same capability, so the console's Connect button and the DT tool behave alike (the console needs an editor session).</td>
+</tr>
+<tr>
+<td>B5</td>
+<td><strong>Connections carry display metadata.</strong> A key/value set per connection (for example an account label that a provider supplies later), visible in reads, never a secret. Writers and renaming are later work.</td>
+</tr>
+<tr>
+<td>B6</td>
+<td><strong>Two Nango secrets.</strong> Nango's API key (scoped per component) and its webhook signing key are different and are stored separately; neither stands in for the other (<code>docs/content/nango-keys.md</code>).</td>
+</tr>
+<tr>
+<td>B7</td>
+<td><strong>Calls to the gateway are asynchronous.</strong> <code>ConnectionServiceV1.Execute</code> starts a workflow: callers receive the answer on their own callback listener (console-1, intake-1 and outbound-policy-1 each have one), reachable by Temporal's history service only.</td>
+</tr>
+<tr>
+<td>B8</td>
+<td><strong>Log levels are set per environment.</strong> intake-1 and the registry read <code>LOG_LEVEL</code> (default info; dev runs debug). Routine per-request events are debug; logs hold ids, outcomes and fixed-word causes, never a secret, session or link.</td>
+</tr>
+<tr>
+<td>B9</td>
+<td><strong>One OpenFGA bootstrap.</strong> A Job at each sync and an hourly check create Janus's OpenFGA store by name and keep its model; clients find the store by name.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">Boundary<a class="headerlink" href="#boundary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Owns</th>
+<th>Does not own</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connection types, providers, tenant connections and their revisions</td>
+<td>The external systems themselves</td>
+</tr>
+<tr>
+<td>Secret custody in <code>janus-vault-cluster-1</code>, and that Vault's configuration</td>
+<td>Platform secret infrastructure for other services (<code>vault-cluster-2</code>, <code>vault-gitops</code>)</td>
+</tr>
+<tr>
+<td>The Janus authorization model and its own OpenFGA: which workflow and activity may use which connection</td>
+<td>Caller authentication and tenant roles (the auth cluster's STS and shared OpenFGA)</td>
+</tr>
+<tr>
+<td>Brokering connections to DT Dynamo workers</td>
+<td>Building and deploying DT Dynamo workers (gitjib, nainai)</td>
+</tr>
+<tr>
+<td>Outbound policy, credential injection, rate limiting and audit of connection use</td>
+<td>Inbound rate limiting (<code>api-gateway-1</code>)</td>
+</tr>
+<tr>
+<td>Credential intake from people and providers (from <code>connections-1</code>)</td>
+<td>Tenant-facing UI framework (<code>frontend-cluster-1</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="shape-as-built">Shape (as built)<a class="headerlink" href="#shape-as-built" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Repository type</strong></td>
+<td>Nexus-first: gateway + components, one umbrella chart</td>
+</tr>
+<tr>
+<td><strong>Components</strong></td>
+<td><code>gateway-1</code> (the Nexus front: validates a call, routes it to a component's task queue); <code>connection-registry-1</code> (types, providers, connections, the editor, the request flow, audit); <code>intake-1</code> (HTTP: the connect page's session routes, credential form, Nango connect session and webhook); <code>oauth-provider-1</code> (Janus's internal OAuth providers; present, no provider enabled yet); <code>publish-1</code> (writes Janus's slice of each publication and its OpenFGA tuples); <code>vault-manager-1</code> (keeps the Janus Vault's desired state and destroys revoked secret versions); <code>outbound-policy-1</code> (the Envoy ext_authz engine: grants, rules, credentials; built, listener off); <code>outbound-gateway-1</code> (placeholder deny-all Envoy, in de-v2); <code>openfga-bootstrap-1</code> (Job and drift check for Janus's OpenFGA); <code>console-1</code> (admin and tenant console); <code>janus-catalog-1</code> (the DT tools and skills)</td>
+</tr>
+<tr>
+<td><strong>Stores</strong></td>
+<td>Postgres <code>ob1-janus-db-1</code> (metadata, grants, audit, Vault desired state); <code>janus-vault-cluster-1</code> (secret values); Janus's OpenFGA (its own database); Nango (provider-managed connections)</td>
+</tr>
+<tr>
+<td><strong>Third-party charts</strong></td>
+<td>HashiCorp Vault and OpenFGA as de-v2 Applications (the <code>gitlab-1</code> pattern)</td>
+</tr>
+<tr>
+<td><strong>Not built</strong></td>
+<td>Outbound enforcement (listener off, real Envoy configuration unvalidated, rules and connections ConfigMaps without a producer, STS run tokens, workers not forced through the gateway), run attestation and the worker hook, rotation and needs-reauth, Nango-side deletion on revoke, connection rename and metadata writers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="names">Names<a class="headerlink" href="#names" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes namespace</td>
+<td><code>ob1-tf-eks-de-v2-janus-1-ns-1</code></td>
+</tr>
+<tr>
+<td>Vault</td>
+<td><code>janus-vault-cluster-1</code>, namespace <code>ob1-tf-eks-de-v2-janus-vault-1-ns-1</code> (deployed)</td>
+</tr>
+<tr>
+<td>OpenFGA</td>
+<td><code>janus-openfga-1</code>, namespace <code>ob1-tf-eks-de-v2-janus-openfga-1-ns-1</code> (deployed); database <code>ob1-openfga-janus-db-1</code></td>
+</tr>
+<tr>
+<td>Argo CD project (Vault and OpenFGA)</td>
+<td><code>apps-janus-supporting-1-acd-proj-1</code></td>
+</tr>
+<tr>
+<td>Nexus endpoint (control surface)</td>
+<td><code>ob1-nexus-janus-cluster-1-endpoint-1</code></td>
+</tr>
+<tr>
+<td>Nexus service (decided)</td>
+<td><code>ConnectionServiceV1</code></td>
+</tr>
+<tr>
+<td>Gateway component, task queue</td>
+<td><code>gateway-1</code>, <code>janus-cluster-1-gateway-1-tq</code></td>
+</tr>
+<tr>
+<td>Netpol label, Vault Transit role</td>
+<td><code>budybot.io/netpol: janus-gateway-1</code>, <code>ob1_crossplane_vault_transit_janus_gateway_1</code></td>
+</tr>
+<tr>
+<td>Database</td>
+<td><code>ob1-janus-db-1</code></td>
+</tr>
+<tr>
+<td>Umbrella chart</td>
+<td><code>janus-cluster-1-repo-1</code></td>
+</tr>
+<tr>
+<td>Image repository</td>
+<td><code>ob1-ecr-repo-v2/ob1_tf_aws_ecr_janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Helm repository</td>
+<td><code>ob1-helm-chart-repo-v1/janus-cluster-1-repo-1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="interfaces-callers-and-callees">Interfaces, callers and callees<a class="headerlink" href="#interfaces-callers-and-callees" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Nexus (control surface):</strong> endpoint <code>ob1-nexus-janus-cluster-1-endpoint-1</code>, service <code>ConnectionServiceV1</code>, operations <code>Execute</code> and <code>DescribeCapabilities</code>. The caller sends <code>{component, capability, payload, auth}</code>; the gateway checks the caller's STS token, the registry checks scope and session boundary. Callers: Digital Teammates (through the catalog tools, tenant scope), the console (as the signed-in user), intake-1 and outbound-policy-1 (workload identities). See <a href="nexus-contracts.html">Nexus contracts</a>.</li>
+<li><strong>HTTP behind <code>api-gateway-1</code>:</strong> <code>POST /v1/connections/session/inspect</code>, <code>/session/connect</code>, <code>/session/status</code>, <code>/credentials</code> (capability authentication: a signed one-time session in the body, no app bearer token) and <code>POST /v1/connections/webhooks/nango</code> (signature authentication), all to <code>intake-1</code>. The connect page itself is served by <code>frontend-cluster-1</code> at <code>/connections/connect</code>.</li>
+<li><strong>Console:</strong> <code>janus.&lt;env&gt;.orangebox.ai</code>, tenant and system scope, entered from the platform UI.</li>
+<li><strong>Dependencies:</strong> Temporal cluster and the Janus namespace (Nexus, workflows); STS and authz-config (identities, scope <code>janus-platform-1</code>, session boundary); <code>janus-vault-cluster-1</code> (secrets) and <code>vault-cluster-2</code> (seal, TLS, the Vault Secrets Operator's keys); Postgres; <code>janus-openfga-1</code>; Nango (hosted); <code>api-gateway-1</code> (routes and open paths); k8s-security and ArgoCD projects (network policy, destinations).</li>
+<li><strong>Callees on behalf of workers (not yet enforced):</strong> the external systems behind connections.</li>
+</ul>
+<h2 id="open-questions-summary">Open questions (summary)<a class="headerlink" href="#open-questions-summary" title="Permanent link">&para;</a></h2>
+<p>The full list, with notes, is section 7 of <code>docs/content/handover.md</code> in the repository. The main ones now:</p>
+<ol>
+<li><strong>Outbound enforcement</strong> (owner-led): the real Envoy configuration, certificates per host, rules and connections ConfigMaps, run tokens, forcing workers through the gateway, and what a new connection type must trigger there.</li>
+<li>A way to <strong>rename</strong> a connection, and which component writes display metadata such as an account label when a provider connects.</li>
+<li>Whether the registry's editor-time Nango check should keep reading integration credentials (it needs a credential-reading scope only to see an integration's OAuth scopes).</li>
+<li>How to keep <code>publish-1</code> the only writer of tuples in Janus's OpenFGA (mesh identity with an <code>AuthorizationPolicy</code>, a read-only proxy, or both).</li>
+<li>The typed publish capabilities in nainai and events-cluster that the publication registry's saga calls. The registry is the <a href="../dt-consulting-services-1/mission-registry.html">Mission registry</a> (<code>mission-registry-1</code>); its saga calls <code>registerPublication</code> here, with the worker identity of D72.</li>
+<li>How the DT and its DT manager are identified in Janus's OpenFGA, and the later flow for moving connections between providers.</li>
+<li>Stage and prod rollout: the secrets, the Janus Vault bootstrap, the RDS security group and ECR access must exist before promotion.</li>
+</ol>
+<h2 id="detailed-docs">Detailed Docs<a class="headerlink" href="#detailed-docs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phases 0–3</td>
+<td>plan</td>
+<td>section 4b of <code>docs/content/handover.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Handover: decisions, workstreams, cross-repository changes, open questions</td>
+<td>design</td>
+<td><code>docs/content/handover.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Proposed architecture</td>
+<td>design</td>
+<td><code>docs/content/architecture.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Outbound egress control options</td>
+<td>design</td>
+<td><code>docs/content/outbound-egress-control.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>PRD</td>
+<td>design</td>
+<td><a href="prd.html">Product Requirements</a></td>
+</tr>
+<tr>
+<td>HLD</td>
+<td>design</td>
+<td><a href="hld.html">High Level Design</a></td>
+</tr>
+<tr>
+<td>TRD</td>
+<td>design</td>
+<td><a href="trd.html">Technical Requirements</a></td>
+</tr>
+<tr>
+<td>Nexus contracts</td>
+<td>api contract</td>
+<td><a href="nexus-contracts.html">Nexus contracts</a></td>
+</tr>
+<tr>
+<td>Nango keys and scopes</td>
+<td>design</td>
+<td><code>docs/content/nango-keys.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Admin editor and console</td>
+<td>design</td>
+<td><code>docs/content/admin-editor.md</code>, <code>docs/content/console.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Connect page and intake</td>
+<td>design</td>
+<td><code>docs/content/intake.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>DT tools and skills</td>
+<td>design</td>
+<td><code>docs/content/catalog.md</code> in <code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>source</td>
+<td><code>Budybot/janus-cluster-1_repo-1</code></td>
+</tr>
+<tr>
+<td>Group index</td>
+<td>index</td>
+<td><a href="../info.html">Execution Mode Services</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3334 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Janus Cluster — Nexus Contracts - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#janus-cluster-nexus-contracts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Janus Cluster — Nexus Contracts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint and operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint and operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request envelope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result-envelope-and-error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result envelope and error codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calling-execute-asynchronous-with-a-callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calling Execute: asynchronous, with a callback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-workflow-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and workflow ids
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-session-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and session rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capabilities-connection-registry-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities: connection-registry-1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capabilities: connection-registry-1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-types-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection types (reads)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tenant-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenant reads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tenant-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenant writes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal capabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-and-catalog-editor-platform-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System and catalog editor (platform scope)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dt-tools-and-skills-catalog-path-janus-audience-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DT tools and skills (catalog path /janus, audience global)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intake-1-public-http-the-connect-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        intake-1 public HTTP (the connect page)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#console-1-http-api-platform-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        console-1 HTTP API (platform console)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timeouts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caller-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caller guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#not-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not verified
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="janus-cluster-nexus-contracts">Janus Cluster — Nexus Contracts<a class="headerlink" href="#janus-cluster-nexus-contracts" title="Permanent link">&para;</a></h1>
+<p>How other clusters, the Janus console, intake-1 and Digital Teammates (DTs) call janus-cluster-1. This is the <strong>as-built</strong> contract of 2026-11-17. The authoritative sources are the capability manifests in <code>charts/gateway-1/files/capabilities/*.yaml</code> (request schemas) and the Go types in <code>shared/contract</code> (answers); this file records them for callers and marks what is not verified.</p>
+<p>What is <strong>not</strong> covered: outbound enforcement. <code>outbound-policy-1</code> is built as an Envoy external-authorization service, but the listener is off and its only Nexus capability is a phase 0 stub (see "Other components"). Outbound is owned separately and is not a contract here.</p>
+<h2 id="endpoint-and-operations">Endpoint and operations<a class="headerlink" href="#endpoint-and-operations" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nexus endpoint</td>
+<td><code>ob1-nexus-janus-cluster-1-endpoint-1</code> (never versioned; its server-assigned id is delivered to callers in a Secret, and the HTTP path uses that id, not the name)</td>
+</tr>
+<tr>
+<td>Service</td>
+<td><code>ConnectionServiceV1</code></td>
+</tr>
+<tr>
+<td>Operations</td>
+<td><code>Execute</code> and <code>DescribeCapabilities</code></td>
+</tr>
+<tr>
+<td>STS audience</td>
+<td><code>urn:budy:nexus:ob1-nexus-janus-cluster-1-endpoint-1:ConnectionServiceV1</code></td>
+</tr>
+<tr>
+<td>Temporal namespace</td>
+<td><code>ob1-temporal-janus-cluster-1-ns-1</code></td>
+</tr>
+<tr>
+<td>Gateway worker</td>
+<td><code>gateway-1</code>, task queue <code>janus-cluster-1-gateway-1-tq</code>, workflow <code>GatewayExecuteWorkflow</code></td>
+</tr>
+<tr>
+<td>Components behind it</td>
+<td><code>connection-registry-1</code> (25 capabilities), <code>publish-1</code> (3), <code>outbound-policy-1</code> (1, stub), <code>vault-manager-1</code> (1)</td>
+</tr>
+</tbody>
+</table>
+<p><code>Execute</code> takes the envelope below and returns <code>{ok, data?, error?: {code, message}}</code>. The caller's <strong>tenant, user, scope type and session boundary come only from the verified STS token</strong>; a payload never carries a tenant. <code>DescribeCapabilities</code> returns the capability list and, on request, each capability's JSON Schema; it needs a valid token and nothing else.</p>
+<h3 id="request-envelope">Request envelope<a class="headerlink" href="#request-envelope" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+  &quot;component&quot;: &quot;connection-registry-1&quot;,
+  &quot;capability&quot;: &quot;requestConnection&quot;,
+  &quot;payload&quot;: { &quot;typeCode&quot;: &quot;google-calendar&quot;, &quot;reason&quot;: &quot;Book the sales calendar&quot; },
+  &quot;idempotencyKey&quot;: &quot;optional, see below&quot;,
+  &quot;auth&quot;: { &quot;token&quot;: &quot;&lt;STS access token&gt;&quot; }
+}
+</code></pre>
+<p>The gateway validates <code>payload</code> against the capability's JSON Schema (every schema is closed: <code>additionalProperties: false</code>), starts a <code>GatewayExecuteWorkflow</code>, and runs the component as a child workflow on its own task queue. Unknown capability: <code>UNIMPLEMENTED</code>.</p>
+<h3 id="result-envelope-and-error-codes">Result envelope and error codes<a class="headerlink" href="#result-envelope-and-error-codes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th><code>error.code</code></th>
+<th>Meaning</th>
+<th>Retry?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNAUTHORIZED</code></td>
+<td>The token is missing, expired or not accepted.</td>
+<td>Fetch a new token, then retry once.</td>
+</tr>
+<tr>
+<td><code>PERMISSION_DENIED</code></td>
+<td>The token is valid but the caller may not call this capability (wrong scope, session boundary too low, not an internal caller). Surfaced to Temporal as a non-retryable application failure.</td>
+<td>No.</td>
+</tr>
+<tr>
+<td><code>INVALID_ARGUMENT</code></td>
+<td>The request failed schema or business validation. The message starts with the field (<code>reason: ...</code>, <code>name: ...</code>, <code>type_retired: ...</code>, <code>conflict: ...</code>).</td>
+<td>No: fix the request.</td>
+</tr>
+<tr>
+<td><code>NOT_FOUND</code></td>
+<td>The connection, type or link does not exist for this caller (a tenant cannot see another tenant's connection).</td>
+<td>No.</td>
+</tr>
+<tr>
+<td><code>FAILED_PRECONDITION</code></td>
+<td>A stale <code>expectedUpdatedAt</code> (the row changed since it was read), or a concurrent write lost. Only the catalog editor capabilities.</td>
+<td>Reload, then retry with the new version.</td>
+</tr>
+<tr>
+<td><code>UNAVAILABLE</code></td>
+<td>A dependency is not ready or not configured (no database, <code>CONNECT_BASE_URL</code> unset, a name could not be chosen after 5 clashes).</td>
+<td>Yes, with backoff.</td>
+</tr>
+<tr>
+<td><code>INTERNAL</code></td>
+<td>Unexpected failure.</td>
+<td>Once, with backoff.</td>
+</tr>
+<tr>
+<td><code>UNIMPLEMENTED</code></td>
+<td>The capability is not offered by that component.</td>
+<td>No.</td>
+</tr>
+</tbody>
+</table>
+<p>A failed gateway call can also surface as an HTTP 500 from Temporal's Nexus handler <strong>instead of</strong> a result envelope, for example <code>Workflow execution is already running</code> (see idempotency).</p>
+<h2 id="calling-execute-asynchronous-with-a-callback">Calling <code>Execute</code>: asynchronous, with a callback<a class="headerlink" href="#calling-execute-asynchronous-with-a-callback" title="Permanent link">&para;</a></h2>
+<p><code>Execute</code> is a workflow-run operation. <code>POST &lt;temporal frontend&gt;:7243/nexus/endpoints/&lt;endpoint id&gt;/services/ConnectionServiceV1/Execute?callback=&lt;url&gt;</code> does not return the result:</p>
+<ol>
+<li>Temporal answers <strong>201</strong> with <code>{"token": "&lt;operation token&gt;"}</code> immediately (a 200 with the result is also valid and is used as is).</li>
+<li>When the operation finishes, Temporal <strong>POSTs the result</strong> to the <code>callback</code> URL with headers <code>Nexus-Operation-Token</code> (must equal the token from the 201) and <code>Nexus-Operation-State</code> (<code>succeeded</code>, <code>failed</code> or <code>canceled</code>). On <code>succeeded</code> the body is the result envelope above.</li>
+<li>The caller must register the callback <strong>before</strong> sending the request (the completion can arrive before the 201).</li>
+</ol>
+<p>Requirements for a caller:</p>
+<ul>
+<li>A <strong>callback listener</strong>, reachable from Temporal's history service, on its own port (the Janus callers use 3001) with a <strong>per-call signed URL</strong> so only a call this process started can be completed. One replica per callback Service, or a shared signing key.</li>
+<li>The callback address must be in Temporal's <code>component.callbacks.allowedAddresses</code> (eks-stack, <code>temporal-cluster-3</code> values). Janus callers already listed: <code>console-1-callback</code>, <code>janus-intake-1-callback</code> and <code>janus-outbound-policy-1-callback</code>, all in <code>ob1-tf-eks-de-v2-janus-1-ns-1</code>, port 3001.</li>
+<li>Network policy: egress to the Temporal frontend on 7243 (and the STS for tokens), and ingress to the callback port from Temporal's history service. In an Istio namespace with an <code>ALLOW</code> AuthorizationPolicy on the caller, the policy must also admit Temporal's service account (<code>ob1-acd-eks-temporal-cluster-3-sa-1</code>) on the callback port, or Temporal gets a 403 and reports "handler error (UNAUTHORIZED)".</li>
+<li>Send <code>Operation-Timeout</code> in <strong>whole seconds</strong>, and make the local wait no shorter than it. intake-1 waits 10 s per try (up to 3 tries) and the console 20 s for reads and longer for writes. The registry's default execution timeout is 30 s (<code>defaults.executionTimeout</code> in the manifests).</li>
+<li>Callbacks are delivered at least once; a repeat or late callback for a finished call is acknowledged and dropped.</li>
+</ul>
+<h2 id="idempotency-and-workflow-ids">Idempotency and workflow ids<a class="headerlink" href="#idempotency-and-workflow-ids" title="Permanent link">&para;</a></h2>
+<p>The gateway derives the <strong>workflow id</strong> from the tenant, the user, the capability, the session boundary and either <code>idempotencyKey</code> or a hash of the payload. Consequences for callers:</p>
+<ul>
+<li><strong>Two identical calls in flight at once share a workflow id</strong> and the second fails with <code>Workflow execution is already running</code> (HTTP 500). This includes a retry after a timeout and a page that polls while it reads. <strong>Send a fresh <code>idempotencyKey</code> on every try of a call that is only a read</strong> (the console and intake-1 send a random one per try).</li>
+<li><strong>For a write that must land once, send the same key on every retry</strong> so the retry finds the same run (the key becomes the workflow id). The registry also keeps its own idempotency for writes (below).</li>
+<li>The registry reads <code>idempotencyKey</code> from the call; for the catalog editor writes it is the audit's replay key, otherwise <code>run:&lt;workflow run id&gt;</code>. A key reused for a different request (caller, capability or payload) is refused with <code>INVALID_ARGUMENT</code> <code>idempotencyKey: ...</code>.</li>
+</ul>
+<h2 id="scope-and-session-rules">Scope and session rules<a class="headerlink" href="#scope-and-session-rules" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Token scope</th>
+<th>Session boundary</th>
+<th>Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type reads</td>
+<td>any valid token</td>
+<td>any</td>
+<td><code>describeConnectionTypes</code>, <code>listConnectionTypes</code>, <code>getConnectionType</code> (tenant-shaped answers: no <code>normaliser</code>, <code>updatedAt</code>, <code>links</code> or <code>activeProvider</code>)</td>
+</tr>
+<tr>
+<td>Tenant</td>
+<td>Tenant (<code>tenantId</code> in the token)</td>
+<td>any</td>
+<td><code>listConnections</code>, <code>getConnection</code>, <code>listConnectionRevisions</code>, <code>listConnectionAudit</code>, <code>listPublications</code>, <code>createConnection</code>, <code>requestConnection</code>, <code>revokeConnection</code>; <code>describePublications</code></td>
+</tr>
+<tr>
+<td>System reads</td>
+<td>Platform</td>
+<td>any</td>
+<td><code>systemListConnectionTypes</code>, <code>systemListProviders</code>, <code>systemConnectionTypeUsage</code>, <code>systemCheckTypeProvider</code>, <code>systemListCatalogAudit</code>, <code>describeVaultState</code></td>
+</tr>
+<tr>
+<td>System writes (catalog editor)</td>
+<td>Platform</td>
+<td><code>editor</code> or <code>admin</code> (checked by the registry itself)</td>
+<td><code>systemUpsertConnectionType</code>, <code>systemSetConnectionTypeState</code>, <code>systemDeleteConnectionType</code>, <code>systemSetTypeProvider</code>, <code>systemRemoveTypeProvider</code></td>
+</tr>
+<tr>
+<td>Internal</td>
+<td>Platform, caller's user id in the registry's <code>INTERNAL_CALLERS</code> (<code>janus-intake-1</code>, <code>janus-outbound-policy-1</code>)</td>
+<td>any</td>
+<td><code>completeConnection</code>, <code>inspectConnection</code>, <code>setConnectionMetadata</code>, <code>recordCredentialUse</code></td>
+</tr>
+<tr>
+<td>Publishing service</td>
+<td>the publishing service's identity</td>
+<td>any</td>
+<td><code>registerPublication</code>, <code>retirePublication</code></td>
+</tr>
+</tbody>
+</table>
+<p>Session boundaries are <code>viewer</code>, <code>editor</code> and <code>admin</code>, ordered. Janus enforces <code>editor</code> on the catalog writes in the registry (not only in the console) and on the console's Connect action (console only, see "console-1").</p>
+<h2 id="capabilities-connection-registry-1">Capabilities: <code>connection-registry-1</code><a class="headerlink" href="#capabilities-connection-registry-1" title="Permanent link">&para;</a></h2>
+<p>Every call is <code>Execute</code> with <code>component: "connection-registry-1"</code>. Ids: connection ids are <code>conn_&lt;ULID&gt;</code>. Timestamps are RFC 3339.</p>
+<h3 id="connection-types-reads">Connection types (reads)<a class="headerlink" href="#connection-types-reads" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Payload</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>describeConnectionTypes</code>, <code>listConnectionTypes</code></td>
+<td>none</td>
+<td><code>{connectionTypes: ConnectionType[]}</code></td>
+</tr>
+<tr>
+<td><code>getConnectionType</code></td>
+<td><code>code</code> (1-64)</td>
+<td><code>ConnectionType</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ConnectionType</code> (tenant shape): <code>id</code>, <code>code</code>, <code>name</code>, <code>description</code>, <code>category</code>, <code>credentialKind</code> (<code>oauth2</code> | <code>api_key</code> | <code>basic</code> | <code>bearer</code>), <code>host?</code>, <code>pathPrefix?</code>, <code>scopes?</code>, <code>defaultScopes[]</code>, <code>placement {in: header\|query\|context, name?, format?}</code>, <code>state</code> (<code>active</code> | <code>retired</code>). Platform-only fields: <code>normaliser?</code>, <code>updatedAt</code>, <code>links[]</code>, <code>activeProvider?</code>. The provider behind a type is <strong>not</strong> shown to tenants. Retired types stay readable.</p>
+<h3 id="tenant-reads">Tenant reads<a class="headerlink" href="#tenant-reads" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Payload</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listConnections</code></td>
+<td><code>typeCode?</code>, <code>state?</code> (<code>pending</code> | <code>active</code> | <code>needs-reauth</code> | <code>revoked</code>), <code>limit?</code> (1-200), <code>cursor?</code></td>
+<td><code>{connections: Connection[], nextCursor?}</code></td>
+</tr>
+<tr>
+<td><code>getConnection</code></td>
+<td><code>connectionId</code></td>
+<td><code>Connection</code></td>
+</tr>
+<tr>
+<td><code>listConnectionRevisions</code></td>
+<td><code>connectionId</code></td>
+<td><code>{revisions: [{revision, vaultPath?, createdAt, createdBy}]}</code>, newest first; versions and times, never values</td>
+</tr>
+<tr>
+<td><code>listConnectionAudit</code></td>
+<td><code>connectionId?</code>, <code>limit?</code> (1-200)</td>
+<td><code>{entries: [{at, connectionId, actor, action, runId?, activity?, decision?}]}</code>, newest first</td>
+</tr>
+<tr>
+<td><code>listPublications</code></td>
+<td><code>automation?</code>, <code>limit?</code> (1-200)</td>
+<td><code>{publications: [{id, tenant, automation, activities{activityId: connectionId[]}, state, refusalReason?, publishedAt}]}</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Connection</code>: <code>id</code>, <code>tenant</code>, <code>name</code>, <code>typeCode</code>, <code>providerCode</code>, <code>providerRef?</code>, <code>state</code>, <code>currentRevision</code>, <code>host?</code>, <code>pathPrefix?</code> (generic types), <code>createdBy</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>lastUsedAt?</code>, <code>reason?</code> (why it was requested; empty on older rows), <code>metadata?</code> (a string map for display, see <code>setConnectionMetadata</code>). No secret value is ever in an answer.</p>
+<h3 id="tenant-writes">Tenant writes<a class="headerlink" href="#tenant-writes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Payload</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>requestConnection</code></td>
+<td><code>typeCode</code> (1-64), <code>reason</code> (required, 1-500, plain text, no control characters), <code>idempotencyKey?</code> (up to 128), <code>host?</code> (up to 253) and <code>pathPrefix?</code> (up to 200) for generic types, <code>forceNew?</code> (boolean, or the strings <code>"true"</code>/<code>"false"</code>)</td>
+<td><code>{connection, link: {url, message, expiresAt}, reused, reusedFromRequestedAt?}</code></td>
+</tr>
+<tr>
+<td><code>createConnection</code></td>
+<td><code>typeCode</code>, <code>name</code> (1-200, unused for the tenant and type in any state, else <code>name: ...</code>), <code>host?</code>, <code>pathPrefix?</code></td>
+<td><code>{connection, collection: {mode: form\|redirect, intakeSession?, intakeUrl?, connectUrl?, expiresAt}}</code></td>
+</tr>
+<tr>
+<td><code>revokeConnection</code></td>
+<td><code>connectionId</code></td>
+<td><code>Connection</code> (state <code>revoked</code>); queues destruction of the stored secret versions; idempotent</td>
+</tr>
+</tbody>
+</table>
+<p><code>requestConnection</code> is what callers use. It creates a <strong>pending</strong> connection and mints a link <strong>the user opens</strong> to finish it (a form for <code>api_key</code>, <code>basic</code> and <code>bearer</code>; the provider's redirect for <code>oauth2</code>). Rules:</p>
+<ul>
+<li>There is <strong>no name</strong>: the registry names and numbers connections per tenant and type. Types with a fixed host: <code>Google Calendar</code>, <code>Google Calendar 2</code>. Generic types (no fixed host): <code>&lt;Type name&gt; – &lt;host&gt;&lt;path&gt;</code> (the path only when it is not empty or <code>/</code>), for example <code>API key – welcomehome.com</code>, with a number only on a repeat of the same type, host and path. A number is never reused, even after a revoke. A request that still sends <code>name</code> is refused (<code>name: not accepted</code>).</li>
+<li><strong>Reuse.</strong> If the same user already has a connection of that type (and host and path prefix) still <code>pending</code> from the last 60 minutes, the answer is a <strong>fresh link for that same connection</strong> with <code>reused: true</code> and <code>reusedFromRequestedAt</code>, and <code>link.message</code> begins by saying so. Tell the user it is the same pending connection. Older links to it stay valid until they expire.</li>
+<li><code>forceNew: true</code> starts another connection and leaves the pending one as it is; use it only when the user explicitly asks for another.</li>
+<li><strong>The same <code>idempotencyKey</code> for the same type always finds the same connection again</strong> (a retry), even with <code>forceNew</code>, and mints a fresh link; it is not reported as a reuse.</li>
+<li>The link lives <strong>60 minutes</strong>, its session is single use, and it only lets the holder store a credential into this one pending connection. Pass <code>link.message</code> and <code>link.url</code> to the user unchanged, <strong>including the <code>#</code> fragment</strong>. A refused type is <code>INVALID_ARGUMENT</code> <code>type_retired: ...</code>.</li>
+<li><code>reason</code> is kept on the connection and in the audit.</li>
+<li>Fails <code>UNAVAILABLE</code> while the registry has no <code>CONNECT_BASE_URL</code>; <code>UNAVAILABLE</code> <code>could not pick a free connection name; try again</code> after 5 name clashes.</li>
+</ul>
+<h3 id="internal-capabilities">Internal capabilities<a class="headerlink" href="#internal-capabilities" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Caller</th>
+<th>Payload</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>completeConnection</code></td>
+<td>intake-1, oauth-provider-1</td>
+<td><code>connectionId</code>, <code>providerRef?</code>, <code>vaultPath?</code> (up to 512) with <code>vaultVersion?</code> (&gt;= 1), <code>actor?</code></td>
+<td><code>Connection</code> (now <code>active</code>). A connection that is not <code>pending</code> is refused (that makes a session single use); repeating the same completion is harmless.</td>
+</tr>
+<tr>
+<td><code>inspectConnection</code></td>
+<td>intake-1</td>
+<td><code>connectionId</code></td>
+<td><code>{connection, type, provider: {code, kind, integrationKey?}}</code> (metadata only; never a provider reference)</td>
+</tr>
+<tr>
+<td><code>setConnectionMetadata</code></td>
+<td><code>INTERNAL_CALLERS</code>, platform scope</td>
+<td><code>connectionId</code>, <code>set?</code> (1-20 keys), <code>remove?</code> (up to 20 keys); at least one, no key in both</td>
+<td><code>{connectionId, metadata}</code> after the change</td>
+</tr>
+<tr>
+<td><code>recordCredentialUse</code></td>
+<td>outbound-policy-1</td>
+<td><code>events[]</code> (1-100): <code>tenant</code>, <code>connectionId?</code>, <code>runId?</code>, <code>activity?</code>, <code>host?</code>, <code>method?</code>, <code>path?</code> (no query string), <code>decision</code> (<code>allow</code> | <code>deny</code>), <code>code?</code>, <code>at</code></td>
+<td><code>{recorded}</code>; all or nothing; never a credential, header or token</td>
+</tr>
+</tbody>
+</table>
+<p><code>setConnectionMetadata</code>: keys match <code>^[a-z][a-z0-9_.-]{0,63}$</code>; a value is plain text of 1-500 characters without control characters; at most 20 keys per connection; repeating a call changes nothing; the change is audited with key names only. <strong>Metadata is shown to tenants and platform alike and is never a place for a secret.</strong> Nothing writes it yet (for example an <code>account_label</code> from a provider is the intended later use).</p>
+<h3 id="system-and-catalog-editor-platform-scope">System and catalog editor (platform scope)<a class="headerlink" href="#system-and-catalog-editor-platform-scope" title="Permanent link">&para;</a></h3>
+<p>Reads (any session boundary): <code>systemListConnectionTypes</code> (<code>{connectionTypes}</code> with <code>links</code>, <code>normaliser</code>, <code>updatedAt</code>, <code>activeProvider</code>), <code>systemListProviders</code> (<code>{providers: [{id, code, kind, credentialKinds[], state, name, configRef, updatedAt?}]}</code>; <code>configRef</code> is a Vault path, never a value), <code>systemConnectionTypeUsage</code> (<code>{usage: [{typeCode, tenants, connections, active, providers[{providerId, connections, active}]}]}</code>).</p>
+<p>Writes (session boundary <code>editor</code> or <code>admin</code>; each is audited, with the row before and after, and replays by its idempotency key). Providers are <strong>not</strong> editable through Nexus: a provider is added in code through a registry migration.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Payload</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>systemUpsertConnectionType</code></td>
+<td><code>id</code> (<code>^[a-z0-9][a-z0-9-]{0,62}$</code>), <code>name</code> (1-120), <code>description</code> (required, 1-1000, plain text, newlines allowed), <code>credentialKind</code>, <code>placement {in: header\|query, name, format}</code> (format holds exactly the kind's placeholder: <code>{token}</code> for oauth2 and bearer, <code>{key}</code> for api_key, <code>{base64(username:password)}</code> for basic), <code>category?</code>, <code>defaultScopes?</code> (up to 50), <code>normaliser?</code>, <code>host?</code> + <code>pathPrefix?</code> (both or neither), <code>expectedUpdatedAt?</code></td>
+<td>the type as stored, with its links. <code>credentialKind</code> cannot change once a connection of the type exists. A type with no description is refused on edit until one is given.</td>
+</tr>
+<tr>
+<td><code>systemSetConnectionTypeState</code></td>
+<td><code>id</code>, <code>state</code> (<code>active</code> | <code>retired</code>), <code>expectedUpdatedAt?</code></td>
+<td>the type with its links. A retired type is refused for new connections; existing ones keep working.</td>
+</tr>
+<tr>
+<td><code>systemDeleteConnectionType</code></td>
+<td><code>id</code>, <code>expectedUpdatedAt</code> (required)</td>
+<td><code>{id, deleted}</code>. Refused (<code>id: ...</code>) if any connection of the type exists in any state: retire it instead. Deletes its links.</td>
+</tr>
+<tr>
+<td><code>systemSetTypeProvider</code></td>
+<td><code>connectionTypeId</code>, <code>providerId</code>, <code>state</code> (<code>active</code> | <code>available</code> | <code>deprecated</code> | <code>retired</code>), <code>settings?</code> <code>{integrationKey}</code> (<code>^[A-Za-z0-9._-]*$</code>, up to 128), <code>expectedUpdatedAt?</code></td>
+<td>the link as stored. <code>active</code> demotes the type's other active link in the same transaction; only <strong>new</strong> connections use the new provider. <code>integrationKey</code> is required for <code>nango-1</code> and refused for any other provider.</td>
+</tr>
+<tr>
+<td><code>systemRemoveTypeProvider</code></td>
+<td><code>connectionTypeId</code>, <code>providerId</code>, <code>expectedUpdatedAt?</code></td>
+<td><code>{connectionTypeId, providerId, removed}</code>. A link any connection uses cannot be removed: retire it.</td>
+</tr>
+<tr>
+<td><code>systemCheckTypeProvider</code> (read only, any boundary)</td>
+<td><code>connectionTypeId</code>, <code>providerId</code>, <code>integrationKey?</code> (checks that key before the link is saved)</td>
+<td><code>{ok, checks: [{name, ok, detail}]}</code>; for a Nango link: the integration exists, is for this type, and allows the type's default scopes. Details are fixed sentences, never Nango's text.</td>
+</tr>
+<tr>
+<td><code>systemListCatalogAudit</code> (read only, any boundary)</td>
+<td><code>limit?</code> (1-200, default 50), <code>cursor?</code></td>
+<td><code>{entries: [{id, at, actor, action, subject, before?, after?, requestId?}], nextCursor?}</code>, newest first</td>
+</tr>
+</tbody>
+</table>
+<p><code>expectedUpdatedAt</code>: when sent it must equal the stored <code>updatedAt</code>, else <code>FAILED_PRECONDITION</code>.</p>
+<h2 id="other-components">Other components<a class="headerlink" href="#other-components" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Capability</th>
+<th>Caller</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>publish-1</code></td>
+<td><code>describePublications</code></td>
+<td>Tenant scope</td>
+<td>Same answer as <code>listPublications</code>.</td>
+</tr>
+<tr>
+<td><code>publish-1</code></td>
+<td><code>registerPublication</code></td>
+<td>The publishing service only</td>
+<td><code>publicationId</code>, <code>tenant</code>, <code>dt</code>, <code>automation</code> (required), <code>activities</code> (activity id to connection ids, up to 500 activities, 50 connections each), <code>hosts[]</code> (up to 200), <code>rules</code>. Validates that every connection belongs to the tenant and is <code>active</code>, records the publication and writes its tuples to Janus's OpenFGA. Idempotent per <code>publicationId</code>. A request naming a missing or inactive connection is recorded as refused with the reason and writes nothing.</td>
+</tr>
+<tr>
+<td><code>publish-1</code></td>
+<td><code>retirePublication</code></td>
+<td>The publishing service only</td>
+<td><code>publicationId</code>. Marks it retired and deletes the tuples no other live publication of the automation needs; idempotent.</td>
+</tr>
+<tr>
+<td><code>vault-manager-1</code></td>
+<td><code>describeVaultState</code></td>
+<td>Platform scope</td>
+<td>What it keeps in the Janus Vault (KV mounts, fixed policies), the queued destroy requests and the last reconcile; never a secret value.</td>
+</tr>
+<tr>
+<td><code>outbound-policy-1</code></td>
+<td><code>describePolicy</code></td>
+<td>any</td>
+<td>Phase 0 stub: answers <code>stub: true</code>. Outbound decisions are not made through Nexus.</td>
+</tr>
+</tbody>
+</table>
+<p>Not published and not callable by tenants or DTs: <code>createConnection</code>, <code>completeConnection</code>, <code>registerPublication</code>, <code>retirePublication</code> and every <code>system*</code> capability (the catalog lint fails the build if a DT tool names any of them).</p>
+<h2 id="dt-tools-and-skills-catalog-path-janus-audience-global">DT tools and skills (catalog path <code>/janus</code>, audience global)<a class="headerlink" href="#dt-tools-and-skills-catalog-path-janus-audience-global" title="Permanent link">&para;</a></h2>
+<p>Published by <code>janus-catalog-1</code> as <code>Tool</code> and <code>Skill</code> resources. Every tool calls <code>Execute</code> on this endpoint as the signed-in user, so the gateway fixes tenant and user from the token; <strong>no tool has a tenant argument</strong>. Parameters are strict and every parameter is required (a tool template can only send strings).</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Capability</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list_connection_types</code></td>
+<td><code>listConnectionTypes</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>get_connection_type</code></td>
+<td><code>getConnectionType</code></td>
+<td><code>code</code></td>
+</tr>
+<tr>
+<td><code>list_connections</code></td>
+<td><code>listConnections</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>list_connections_by_type</code></td>
+<td><code>listConnections</code></td>
+<td><code>typeCode</code></td>
+</tr>
+<tr>
+<td><code>list_connections_by_state</code></td>
+<td><code>listConnections</code></td>
+<td><code>state</code></td>
+</tr>
+<tr>
+<td><code>get_connection</code></td>
+<td><code>getConnection</code></td>
+<td><code>connectionId</code></td>
+</tr>
+<tr>
+<td><code>list_connection_revisions</code></td>
+<td><code>listConnectionRevisions</code></td>
+<td><code>connectionId</code></td>
+</tr>
+<tr>
+<td><code>list_connection_audit</code></td>
+<td><code>listConnectionAudit</code></td>
+<td><code>connectionId</code></td>
+</tr>
+<tr>
+<td><code>list_publications</code></td>
+<td><code>listPublications</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>list_publications_for_automation</code></td>
+<td><code>listPublications</code></td>
+<td><code>automation</code></td>
+</tr>
+<tr>
+<td><code>revoke_connection</code></td>
+<td><code>revokeConnection</code></td>
+<td><code>connectionId</code> (only on an explicit user request for that exact connection)</td>
+</tr>
+<tr>
+<td><code>request_connection</code></td>
+<td><code>requestConnection</code></td>
+<td><code>typeCode</code>, <code>reason</code> (one concrete sentence on why; required), <code>forceNew</code> (<code>"true"</code> or <code>"false"</code>; <code>"false"</code> unless the user explicitly asked for another connection)</td>
+</tr>
+</tbody>
+</table>
+<p><code>request_connection</code> sends <code>idempotencyKey</code> from the runtime placeholder <code>{{runtime.workflowToolCallIdempotencyKey}}</code>, so a retried tool call lands on the same connection. Its answer is <code>requestConnection</code>'s: the DT shows <code>link.message</code> and <code>link.url</code> to the user unchanged and, when <code>reused</code> is true, says it is the same pending connection from earlier.</p>
+<p>Skills: <code>janus-using-connections</code> (plan around the user's connections, request the missing ones, hand over the link, read back), <code>janus-diagnosing-connections</code> and <code>janus-publishing-with-connections</code>.</p>
+<h2 id="intake-1-public-http-the-connect-page">intake-1 public HTTP (the connect page)<a class="headerlink" href="#intake-1-public-http-the-connect-page" title="Permanent link">&para;</a></h2>
+<p>Routes under <code>/v1/connections</code> on the public API host, routed to intake-1 by api-gateway-1 <strong>without an app bearer token</strong>: the credential is the <strong>signed intake session</strong> in the body (<code>capability</code> auth), except the webhook. All are <code>POST</code> with <code>Content-Type: application/json</code>; each answers <code>Cache-Control: no-store</code> and a closed Content-Security-Policy. Errors are <code>{"error": {"code", "message"}}</code>; a link that is not valid, expired (410) or already completed (409) says so without revealing why a forged one failed.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Request</th>
+<th>Success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session/inspect</code></td>
+<td><code>{session}</code></td>
+<td>200 <code>{connection: {id, name, state}, type: {code, name, credentialKind, host?, pathPrefix?}, provider: {code, kind}, mode: form\|redirect, fields: [{name, label, input: secret\|text, required}], expiresAt}</code></td>
+</tr>
+<tr>
+<td><code>credentials</code></td>
+<td><code>{session, fields}</code> (the exact field set of the kind: <code>key</code>; <code>username</code> + <code>password</code>; <code>token</code>; each up to 4 KiB, no control characters)</td>
+<td>201 <code>{state: "active"}</code></td>
+</tr>
+<tr>
+<td><code>session/connect</code></td>
+<td><code>{session}</code></td>
+<td>200 <code>{connectUrl, expiresAt}</code> (the provider's hosted connect page, created now so it is fresh)</td>
+</tr>
+<tr>
+<td><code>session/status</code></td>
+<td><code>{session}</code></td>
+<td>200 <code>{state, completed, typeName, completedAt?}</code></td>
+</tr>
+<tr>
+<td><code>webhooks/nango</code></td>
+<td>Nango's event</td>
+<td>verified by the <code>X-Nango-Hmac-Sha256</code> header: hex HMAC-SHA256 of the raw body keyed with the environment's <strong>webhook signing key</strong> (a key of its own, not the API key); a good event completes the connection</td>
+</tr>
+</tbody>
+</table>
+<p>Errors seen by the page: <code>session_invalid</code> (401), <code>session_expired</code> (410), <code>already_completed</code> (409), <code>connection_not_found</code> (404), <code>invalid_request</code> and <code>unsupported_kind</code> (400), <code>not_a_redirect_connection</code> (400), <code>provider_not_configured</code> (503), <code>provider_unavailable</code> (502), <code>registry_unavailable</code> (503), <code>vault_unavailable</code> (502), <code>origin_not_allowed</code> (403), <code>unsupported_media_type</code> (415) and <code>rate_limited</code> (429, with <code>Retry-After</code>).</p>
+<h2 id="console-1-http-api-platform-console">console-1 HTTP API (platform console)<a class="headerlink" href="#console-1-http-api-platform-console" title="Permanent link">&para;</a></h2>
+<p>The console's own browser API, behind the console-kit session cookie. It calls this endpoint <strong>as the signed-in user</strong> with that user's token. A tenant session gets 403 from <code>/api/system/*</code>, a platform session gets 403 from every tenant route; neither reaches the gateway. A gateway failure reaches the browser as a status class only (401, 403, 404, 503), never the gateway's text.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Scope</th>
+<th>Boundary</th>
+<th>Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/connection-types</code>, <code>/:typeCode</code></td>
+<td>tenant</td>
+<td>any</td>
+<td><code>listConnectionTypes</code>, <code>getConnectionType</code></td>
+</tr>
+<tr>
+<td><code>GET /api/connections</code>, <code>/:connectionId</code></td>
+<td>tenant</td>
+<td>any</td>
+<td><code>listConnections</code>, <code>getConnection</code></td>
+</tr>
+<tr>
+<td><code>GET /api/audit</code>, <code>GET /api/publications</code></td>
+<td>tenant</td>
+<td>any</td>
+<td><code>listConnectionAudit</code>, <code>listPublications</code></td>
+</tr>
+<tr>
+<td><code>POST /api/connections/request</code> (<code>Idempotency-Key</code> required; body <code>{typeCode, reason, host?, pathPrefix?, forceNew?}</code>)</td>
+<td>tenant</td>
+<td><code>editor</code></td>
+<td><code>requestConnection</code></td>
+</tr>
+<tr>
+<td><code>GET /api/system/types</code>, <code>/providers</code>, <code>/usage</code></td>
+<td>system</td>
+<td>any</td>
+<td><code>systemListConnectionTypes</code>, <code>systemListProviders</code>, <code>systemConnectionTypeUsage</code></td>
+</tr>
+<tr>
+<td><code>GET /api/system/audit</code></td>
+<td>system</td>
+<td><code>viewer</code></td>
+<td><code>systemListCatalogAudit</code></td>
+</tr>
+<tr>
+<td><code>PUT /api/system/types/:id</code>, <code>/:id/state</code>; <code>DELETE /api/system/types/:id</code></td>
+<td>system</td>
+<td><code>editor</code></td>
+<td><code>systemUpsertConnectionType</code>, <code>systemSetConnectionTypeState</code>, <code>systemDeleteConnectionType</code></td>
+</tr>
+<tr>
+<td><code>PUT</code> and <code>DELETE /api/system/types/:id/providers/:providerId</code>; <code>POST .../check</code></td>
+<td>system</td>
+<td><code>editor</code></td>
+<td><code>systemSetTypeProvider</code>, <code>systemRemoveTypeProvider</code>, <code>systemCheckTypeProvider</code></td>
+</tr>
+</tbody>
+</table>
+<p>Every console write requires an <code>Idempotency-Key</code> that it forwards as the gateway's <code>idempotencyKey</code>; the catalog editor's writes are also optimistic (<code>expectedUpdatedAt</code>, 409 on a stale edit).</p>
+<h2 id="timeouts">Timeouts<a class="headerlink" href="#timeouts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capability execution timeout</td>
+<td>30 s (<code>defaults.executionTimeout</code> in each manifest)</td>
+</tr>
+<tr>
+<td><code>Operation-Timeout</code> header</td>
+<td>whole seconds, never shorter than the caller's local wait</td>
+</tr>
+<tr>
+<td>Link / intake session lifetime</td>
+<td>60 minutes (<code>requestConnection</code>)</td>
+</tr>
+<tr>
+<td>Reuse window for a pending connection</td>
+<td>the same 60 minutes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="caller-guidance">Caller guidance<a class="headerlink" href="#caller-guidance" title="Permanent link">&para;</a></h2>
+<pre><code class="language-go">// Go: a read that may be retried. A new idempotency key per try, so a retry never collides with a run still going.
+body := Execute{Component: &quot;connection-registry-1&quot;, Capability: &quot;inspectConnection&quot;,
+    Payload: json.RawMessage(`{&quot;connectionId&quot;:&quot;conn_...&quot;}`),
+    IdempotencyKey: randomKey(), Auth: Auth{Token: token}}
+cbURL, wait, release := callbacks.Register()        // before the request
+defer release()
+resp := post(endpoint + &quot;?callback=&quot; + url.QueryEscape(cbURL), body, &quot;Operation-Timeout: 10s&quot;)
+if resp.StatusCode == 201 { result = wait(ctx, resp.Body) }  // the completion arrives at cbURL
+// result is {ok, data | error{code, message}}
+</code></pre>
+<ul>
+<li>A write that must land once (a catalog edit, <code>requestConnection</code>): send <strong>one</strong> key per intended action and reuse it on retries; do not retry <code>INVALID_ARGUMENT</code> or <code>PERMISSION_DENIED</code>.</li>
+<li><code>FAILED_PRECONDITION</code>: reload the row and retry with its new <code>updatedAt</code>.</li>
+<li>Never log <code>link.url</code>, <code>link.message</code>, an intake session, a token or a credential: the link's fragment is a one-time bearer for entering a secret.</li>
+</ul>
+<h2 id="versioning-policy">Versioning policy<a class="headerlink" href="#versioning-policy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The endpoint (<code>ob1-nexus-janus-cluster-1-endpoint-1</code>) is never versioned; the service is <code>ConnectionServiceV1</code>. A breaking change is a new service version, not an edited one.</li>
+<li>Capability schemas are <strong>closed</strong>: an added optional field is non-breaking, a removed or renamed field is refused by the gateway for old callers. Example: <code>requestConnection</code> dropped <code>name</code> and made <code>reason</code> required on 2026-11-17; the console, the DT tool and the skills changed in the same release.</li>
+<li><code>shared/contract</code> (Go) carries the types; the manifests carry the schemas; a component's own test (<code>capabilitytest.Verify</code>) fails if its manifest and worker drift.</li>
+<li>Component and chart versions follow changesets (<code>connection-registry-1</code>, <code>contract</code>, <code>gateway-1</code>, <code>intake-1</code>, <code>console-1</code>, the Janus chart).</li>
+</ul>
+<h2 id="not-verified">Not verified<a class="headerlink" href="#not-verified" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The gateway's exact workflow-id derivation and the maximum length of the envelope's <code>idempotencyKey</code> (only <code>requestConnection</code>'s key is bounded, at 128) were read from the registry's documentation and callers, not from the gateway's source.</li>
+<li>Which of the error codes Temporal treats as non-retryable beyond <code>PERMISSION_DENIED</code> (observed in a failed workflow) was not checked.</li>
+<li><code>describePublications</code> is listed as a tenant read from its manifest text and the publish-1 source comment; its scope check in code was not read line by line. The type reads (<code>describeConnectionTypes</code>, <code>listConnectionTypes</code>, <code>getConnectionType</code>) were read: they need a valid token and no particular scope.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

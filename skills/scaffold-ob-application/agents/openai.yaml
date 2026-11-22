@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scaffold OB Application"
+  short_description: "Scaffold a secure OB application cluster"
+  default_prompt: "Use $scaffold-ob-application to scaffold a new OB application cluster across all required repositories."

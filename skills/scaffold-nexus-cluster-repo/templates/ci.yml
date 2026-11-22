@@ -1,0 +1,26 @@
+# PR validation. Copy to .github/workflows/ci.yml unchanged.
+# All logic lives in the platform-actions entry workflow and in .github/components.json;
+# adding a component edits the catalog, not this file. No `paths:` filter: a required
+# check from a path-filtered workflow never reports when the filter misses.
+# Required status check on main: `ci / ci-required`.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: write
+  packages: read
+  id-token: write
+
+jobs:
+  ci:
+    uses: Budybot/ob1_mn_github_platform-actions_repo_1/.github/workflows/app-cluster-ci.yml@v1
+    secrets: inherit

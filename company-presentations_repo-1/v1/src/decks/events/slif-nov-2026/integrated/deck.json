@@ -1,0 +1,91 @@
+{
+  "title": "Integrated Solutions",
+  "description": "Integrated Solutions demo deck, 26 slides. Reps open it by address.",
+  "order": 3,
+  "listed": false,
+  "app": {
+    "teammate": "claire",
+    "name": "Claire",
+    "text": "Coming in 2027"
+  },
+  "slides": [
+    {
+      "alt": "More move-ins. Higher NOI. Less guesswork. The same team."
+    },
+    {
+      "alt": "A teammate, not a chatbot"
+    },
+    {
+      "alt": "Works with your existing systems"
+    },
+    {
+      "alt": "Pick the missions that matter to your team"
+    },
+    {
+      "alt": "Gold in the Cold"
+    },
+    {
+      "alt": "Gold in the Cold in action: the 50 pound dog"
+    },
+    {
+      "alt": "Task Enrichment"
+    },
+    {
+      "alt": "Tour Follow-up: 3 in 3"
+    },
+    {
+      "alt": "Tour Follow-up in action"
+    },
+    {
+      "alt": "Regional Coaching"
+    },
+    {
+      "alt": "One dated coaching play per counselor, every week"
+    },
+    {
+      "alt": "Ambassador Matching"
+    },
+    {
+      "alt": "Ambassador Matching in action"
+    },
+    {
+      "alt": "Task Assignment"
+    },
+    {
+      "alt": "Revenue Management: in-place rent increases"
+    },
+    {
+      "alt": "Smart Campaign Matching"
+    },
+    {
+      "alt": "Claire finds each stalled prospect and enrolls them in the right campaign"
+    },
+    {
+      "alt": "Personalized nurture outperforms standard emails"
+    },
+    {
+      "alt": "On-Demand ICP Builder"
+    },
+    {
+      "alt": "Three profiles of who actually moves in, from 86 residents"
+    },
+    {
+      "alt": "And why they chose the community"
+    },
+    {
+      "alt": "SEO Keywords and GEO / AEO"
+    },
+    {
+      "alt": "What families asked, and where the community shows up"
+    },
+    {
+      "live": true
+    },
+    {
+      "alt": "Drive execution."
+    },
+    {
+      "alt": "Simple to start. Fast to show results."
+    }
+  ]
+}

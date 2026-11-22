@@ -1,0 +1,2821 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Kargo Implementation Plan - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kargo-implementation-plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kargo Implementation Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#decision-topology-and-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision: topology and ownership
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-implementation-state-july-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current implementation state — July 2026
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#immediate-next-step-reconcile-and-access-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immediate next step — reconcile and access checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target-release-trains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target release trains
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staged-delivery-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staged delivery plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Staged delivery plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-0-design-and-access-decisions-foundation-merged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 0 — design and access decisions (foundation merged)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-install-the-secure-central-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1 — install the secure central control plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-connect-environment-local-controller-shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2 — connect environment-local controller shards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-visibility-only-temporal-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3 — visibility-only: Temporal Cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-4-visibility-only-context-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4 — visibility-only: Context Cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-5-manual-gitops-pr-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 5 — manual, GitOps PR promotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-6-progressive-verification-and-wider-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 6 — progressive verification and wider onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pr-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PR sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-required-before-visibility-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information required before visibility onboarding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="kargo-implementation-plan">Kargo Implementation Plan<a class="headerlink" href="#kargo-implementation-plan" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Status</strong></td>
+<td>Foundation merged; awaiting prod-2 reconciliation and UI-access validation — do not enable promotion yet</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>One prod-2-hosted Kargo control plane; visibility of one Temporal cluster and Context Cluster across dev, stage, and prod</td>
+</tr>
+<tr>
+<td><strong>Goal</strong></td>
+<td>Establish trustworthy release visibility first, then add narrowly scoped, human-approved GitOps promotion</td>
+</tr>
+</tbody>
+</table>
+<h2 id="decision-topology-and-ownership">Decision: topology and ownership<a class="headerlink" href="#decision-topology-and-ownership" title="Permanent link">&para;</a></h2>
+<p>Kargo is a promotion control plane, not a per-application controller. Install one Kargo control plane in the <code>prod-2</code> EKS cluster in a dedicated system namespace. Its API/UI, CRDs, Projects, Warehouses, Stages, Freight, PromotionTasks, and promotion history are all Kubernetes resources in that central control plane. The sole user interface is <code>https://kargo.prod-2.orangebox.ai</code>, exposed through a direct ALB ingress using the established ArgoCD pattern; controller shards do not expose their own UI.</p>
+<p>That does <strong>not</strong> mean only prod participates. To observe ArgoCD health and safely run promotions for all three independent ArgoCD installations, deploy one narrowly scoped Kargo controller shard in each of dev-1, stage-1, and prod-2. Each controller talks to the central control plane but is permitted to interact with at most its local ArgoCD control plane. The central control plane therefore has visibility without holding a multi-cluster administrator credential.</p>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Recommended location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kargo Helm release, central namespace, control-plane security, prod bootstrap</td>
+<td><code>argocd-critical-stack</code>, prod-2 only</td>
+</tr>
+<tr>
+<td>Kargo control-plane AppProject</td>
+<td><code>argocd-critical-stack</code>; owns the Helm release, CRDs, RBAC, admission webhooks, and only the Kargo system namespaces</td>
+</tr>
+<tr>
+<td>Kargo configuration AppProject</td>
+<td><code>argocd-critical-stack</code>; source-restricted to <code>kargo-config</code>, allowed all Kargo CRDs across Project namespaces but no non-Kargo Kubernetes resources</td>
+</tr>
+<tr>
+<td>Dev/stage/prod controller shards and their local network/RBAC</td>
+<td>corresponding environment configuration, installed only after the control plane is healthy</td>
+</tr>
+<tr>
+<td>Kargo Projects, Warehouses, Stages, PromotionTasks, and verified Git credentials</td>
+<td>a dedicated <code>kargo-config</code> GitOps repository reconciled only by prod-2 ArgoCD</td>
+</tr>
+<tr>
+<td>Temporal and Context desired-state changes</td>
+<td>their existing GitOps repositories; Kargo changes only a pinned artifact/version reference</td>
+</tr>
+</tbody>
+</table>
+<p>The dedicated configuration repository is <code>ob1_mn_github_kargo-config_gitops_repo_1</code>. It has one protected <code>main</code> branch, reconciled by prod-2 ArgoCD. Do <strong>not</strong> create a fake <code>release/stage</code> or <code>release/prod</code> lifecycle for Kargo configuration itself: it is one global prod-hosted control plane, and a protected reviewed <code>main</code> gives the intended extra PR gate without pretending Kargo has separate environment installations. Individual Kargo Stages still model dev, stage, and prod.</p>
+<p>Keep two AppProjects rather than one. The control-plane chart necessarily creates CRDs, cluster RBAC, admission webhooks, and system resources; allowing the day-to-day Kargo configuration repository to do the same would make a release-train change a control-plane administration path. The configuration AppProject may allow all <code>kargo.akuity.io</code> CRDs across Project namespaces so new release trains do not require a project-policy change, but it must not permit non-Kargo Kubernetes resources such as RBAC, Ingress, NetworkPolicy, or arbitrary Kubernetes resources. Visibility-only is enforced by the reviewed Kargo configuration: no Git credentials or Git-mutating PromotionTasks are present until the rollout gates are approved.</p>
+<p>Kargo promotions are not deployments. A Stage promotion updates the exact allowed desired-state reference in the application GitOps repository; that environment's ArgoCD then deploys it. This preserves Git history, normal reconciliation, and rollback.</p>
+<h2 id="current-implementation-state-july-2026">Current implementation state — July 2026<a class="headerlink" href="#current-implementation-state-july-2026" title="Permanent link">&para;</a></h2>
+<p>The following foundation changes are merged and awaiting observation in prod-2:</p>
+<ul>
+<li>Kargo control-plane, shared-resources, and system-resources namespaces;</li>
+<li>scoped Vault/VSO access, including the shared VSO global-auth namespace allow-list and the ALB OIDC destination Secret;</li>
+<li>a namespace-local, resource-name-scoped Role and RoleBinding allowing only the AWS Load Balancer Controller ServiceAccount to <code>get</code> that OIDC Secret. The Secret stays in the Kargo namespace; it must not be copied to <code>kube-system</code>.</li>
+<li>separate Kargo control-plane and Kargo-configuration AppProjects;</li>
+<li>prod-2 ArgoCD Applications for the pinned <code>1.10.8</code> Kargo control-plane chart and <code>kargo-config</code> repository, ordered so configuration follows CRD installation;</li>
+<li>the <code>temporal-cluster-2</code> and <code>context-cluster-1</code> Kargo Project baseline resources; and</li>
+<li>Google SSO through bundled Dex, using the existing VSO-managed Google web-client Secret, with ALB OIDC retained as the outer access gate. Dex performs the confidential Google token exchange; Kargo consumes Dex's PKCE-compatible OIDC session. For AWS Load Balancer Controller, set <code>api.ingress.pathType: Prefix</code>; the chart default <code>ImplementationSpecific</code> can route <code>/</code> while returning 404 for UI assets and API paths.</li>
+</ul>
+<p>These changes are <strong>not yet live-validated</strong>. No Warehouse, Stage, Git credential, or Git-mutating PromotionTask has been added.</p>
+<h2 id="immediate-next-step-reconcile-and-access-checkpoint">Immediate next step — reconcile and access checkpoint<a class="headerlink" href="#immediate-next-step-reconcile-and-access-checkpoint" title="Permanent link">&para;</a></h2>
+<p>Before adding any release-train resources, perform and record this prod-2 checkpoint:</p>
+<ol>
+<li>Confirm the <code>kargo-control-plane-1</code> ArgoCD Application is Synced/Healthy and <code>kargo-config-1</code> follows it successfully.</li>
+<li>Inspect the Kargo namespace for ready API, controller, management-controller, webhooks-server, and garbage-collector Pods. Confirm the expected Kargo CRDs and the Kargo Project namespaces exist.</li>
+<li>Confirm the Kargo OIDC <code>VaultStaticSecret</code> is Ready and its destination Secret exists; never print Secret data in terminal output or PR evidence. Confirm that <code>kube-system/ob1-acd-eks-aws-alb-controller-irsa-1</code> can <code>get</code> only <code>ob1-mn-eks-kargo-google-oidc-secret-1</code> in the Kargo namespace. An ALB OIDC Ingress fails to reconcile when this namespace-local RBAC is absent.</li>
+<li>Confirm the ALB target is healthy and open <code>https://kargo.prod-2.orangebox.ai</code>. Test Google login as <code>ksamay@budy.bot</code> or <code>jae@budy.bot</code>; separately confirm a system user has only the intended non-admin access.</li>
+<li>Record the ArgoCD application status, Pod readiness, VSO condition, ingress result, and login result in the implementation PR/runbook. Stop and diagnose any failed item before adding Warehouses or Stages.</li>
+</ol>
+<h2 id="target-release-trains">Target release trains<a class="headerlink" href="#target-release-trains" title="Permanent link">&para;</a></h2>
+<p>Use two deliberately different first visibility cases:</p>
+<table>
+<thead>
+<tr>
+<th>Release train</th>
+<th>Type</th>
+<th>Initial Freight signal</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>temporal-cluster-2</code></td>
+<td>Infrastructure Helm release</td>
+<td>immutable parent Helm chart version/digest</td>
+<td>Validates promotion of a platform chart with dev/stage/prod profiles and stricter operational gates</td>
+</tr>
+<tr>
+<td>Context Cluster</td>
+<td>Multi-component application cluster</td>
+<td>parent Helm chart version first; component image tags/digests recorded as supporting evidence</td>
+<td>Validates application release visibility without prematurely letting Kargo independently choose tags from a shared image repository</td>
+</tr>
+</tbody>
+</table>
+<p>For Context Cluster, do not subscribe to all component image tags in the first phase. Its one shared image ECR repository contains prefixed tags for multiple components. Start with the parent chart as the release unit; add one anchored image subscription per component only after the discovery regex, tag strategy, and chart/image consistency checks are tested.</p>
+<h2 id="staged-delivery-plan">Staged delivery plan<a class="headerlink" href="#staged-delivery-plan" title="Permanent link">&para;</a></h2>
+<h3 id="stage-0-design-and-access-decisions-foundation-merged">Stage 0 — design and access decisions (foundation merged)<a class="headerlink" href="#stage-0-design-and-access-decisions-foundation-merged" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Record <code>temporal-cluster-2</code> and Context Cluster's exact ArgoCD Application names and GitOps paths/branches in dev-1, stage-1, and prod-2.</li>
+<li>Expose only the central UI/API at <code>kargo.prod-2.orangebox.ai</code> through the existing direct ALB ingress pattern. The shared Google client needs both callbacks: ALB uses <code>/oauth2/idpresponse</code>; Kargo native PKCE uses <code>/login</code>. Provision the ALB client secret to the Kargo namespace through Vault/VSO. The built-in admin account is not acceptable for production operation.</li>
+<li>Create a dedicated Kargo GitHub App, separate from the REF PACKAGE App and GitOps App. Give it only <code>Contents: read/write</code> and <code>Pull requests: read/write</code> for the GitOps repositories it must update. Store its key through Vault/VSO; never place a personal token in Kargo configuration.</li>
+<li>Define retention, backup/restore, alerting, SLO, resource sizing, PodDisruptionBudget, NetworkPolicy/Cilium, <code>STRICT</code> mTLS, and incident ownership.</li>
+</ol>
+<p><strong>Exit:</strong> a reviewed design PR records all identities, application names, repository paths, artifact signals, and rollback owner.</p>
+<h3 id="stage-1-install-the-secure-central-control-plane">Stage 1 — install the secure central control plane<a class="headerlink" href="#stage-1-install-the-secure-central-control-plane" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create the prod-2 Kargo system namespace, dedicated AppProject, and <code>argocd-critical-stack</code> Helm application with an immutable Kargo chart version. Keep that exact chart's unmodified <code>default.values.yaml</code> beside Kargo's environment values and refresh it whenever the pinned version changes.</li>
+<li>Configure direct ALB TLS termination, bundled Dex with a Google connector, a disabled built-in admin account, and direct ALB ingress at <code>kargo.prod-2.orangebox.ai</code>. The Google web client must allow both ALB's <code>/oauth2/idpresponse</code> callback and Dex's <code>/dex/callback</code>; its VSO-provisioned <code>clientSecret</code> is mounted only into Dex. Initial system administrators are <code>ksamay@budy.bot</code> and <code>jae@budy.bot</code>; initial system users are <code>prateik@budy.bot</code> and <code>lan@budy.bot</code>. The external-webhook endpoint stays disabled until GitHub webhooks are explicitly approved.</li>
+<li>Add least-privilege security policies in <code>k8s-security</code>, including the dedicated <code>budybot.io/netpol: kargo</code> Pod label, VSO authentication, a namespace-scoped <code>BudyNetpolIdentity</code> constraint, and (where ALB OIDC reads a VSO Secret) a namespace-local Role/RoleBinding granting the AWS Load Balancer Controller only <code>get</code> on that exact Secret.</li>
+<li>Bootstrap the <code>kargo-config</code> repository through <code>github-infra</code>, then create its prod-2 ArgoCD Application. Its AppProject must allow only Kargo CRDs and secrets delivered through VSO in the Kargo project namespaces.</li>
+</ol>
+<p><strong>Exit:</strong> Kargo UI is reachable only through approved authentication, control-plane health is green, backup restore is rehearsed, and no promotion-capable Project exists yet.</p>
+<h3 id="stage-2-connect-environment-local-controller-shards">Stage 2 — connect environment-local controller shards<a class="headerlink" href="#stage-2-connect-environment-local-controller-shards" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Deploy one controller shard in dev-1, stage-1, and prod-2 as part of the initial installation, with separate service accounts and a separate central-control-plane token for each shard.</li>
+<li>Limit each shard to one local ArgoCD instance and its approved applications; do not give it direct credentials to another EKS cluster.</li>
+<li>Verify central UI/CLI can see all controller shards and can report local ArgoCD health without any Git write credential.</li>
+</ol>
+<p><strong>Exit:</strong> loss of any one shard cannot grant cross-cluster access, and central Kargo remains the single record of Freight history.</p>
+<h3 id="stage-3-visibility-only-temporal-cluster">Stage 3 — visibility-only: Temporal Cluster<a class="headerlink" href="#stage-3-visibility-only-temporal-cluster" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create one Kargo Project namespace for the Temporal release train in <code>kargo-config</code>.</li>
+<li>Add a Warehouse that discovers only the approved immutable Temporal chart signal.</li>
+<li>Add <code>dev</code>, <code>stage</code>, and <code>prod</code> Stages: dev accepts Warehouse Freight; stage accepts only verified dev Freight; prod accepts only verified stage Freight.</li>
+<li>Seed each Stage with the chart revision already deployed in its corresponding Git branch so the first dashboard view is truthful.</li>
+<li>Configure health observation only. Do not add a PromotionTask that edits Git and do not add Git write credentials.</li>
+</ol>
+<p><strong>Exit:</strong> Kargo correctly shows the currently deployed Temporal Freight and health across all three environments for at least one ordinary release cycle.</p>
+<h3 id="stage-4-visibility-only-context-cluster">Stage 4 — visibility-only: Context Cluster<a class="headerlink" href="#stage-4-visibility-only-context-cluster" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create a separate Kargo Project namespace for Context Cluster; do not share Project RBAC or credentials with Temporal.</li>
+<li>Subscribe to the parent Helm chart release only; correlate its chart values with the published component image digests/tags.</li>
+<li>Create and seed dev/stage/prod Stages as above, then verify the visual Freight lineage matches Context Cluster's actual GitOps revisions.</li>
+<li>Document the future component-image subscriptions: one subscription per component, anchored to <code>&lt;component&gt;-&lt;version&gt;-&lt;short-sha&gt;</code>, with a bounded discovery limit and chart-version consistency test.</li>
+</ol>
+<p><strong>Exit:</strong> both pilot release trains are visible, but Kargo still has no ability to mutate Git.</p>
+<h3 id="stage-5-manual-gitops-pr-promotion">Stage 5 — manual, GitOps PR promotion<a class="headerlink" href="#stage-5-manual-gitops-pr-promotion" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Add a PromotionTask that modifies only the approved chart-version/value path for the target application and creates a PR—never a broad branch merge or direct protected-branch push.</li>
+<li>Make dev promotion manually initiated and require ArgoCD health. Keep stage/prod promotion manually initiated: Kargo opens a narrow PR but never auto-merges it; one Platform/SRE CODEOWNER approves after the required evidence is attached.</li>
+<li>Require these first gates: Temporal needs ArgoCD Healthy/Synced, Temporal frontend/namespace reachability, and a non-destructive test workflow start/completion; Context needs ArgoCD Healthy/Synced, all entrypoint/worker readiness, one authorized Nexus contract call, and an agreed error-rate/availability check. Record the exact runnable checks before enabling each pilot.</li>
+<li>Preserve the numbered cross-repository PR handoff standard: Kargo-created PRs state prerequisites, next approval, reviewer action, and rollback point.</li>
+<li>Disable or scope existing broad <code>main → release/stage</code> / <code>release/stage → release/prod</code> automation for a pilot once Kargo owns that application's narrow version path, preventing races.</li>
+</ol>
+<p><strong>Exit:</strong> a successful and a rollback promotion are rehearsed for Temporal before Context Cluster is permitted to automate beyond visibility.</p>
+<h3 id="stage-6-progressive-verification-and-wider-onboarding">Stage 6 — progressive verification and wider onboarding<a class="headerlink" href="#stage-6-progressive-verification-and-wider-onboarding" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Add Kargo verification steps: ArgoCD health first, then smoke tests, GitHub Actions evidence, SLO/metrics checks, and approved production change-control gates.</li>
+<li>Add Context Cluster component-image Freight only after each tag-selection regex and image-to-chart consistency check is proven.</li>
+<li>Onboard additional release trains one at a time using the same Project, Stage, credential, security, observability, and rollback checklist.</li>
+</ol>
+<h2 id="pr-sequence">PR sequence<a class="headerlink" href="#pr-sequence" title="Permanent link">&para;</a></h2>
+<p>Follow the numbered PR handoff standard. The initial installation sequence is:</p>
+<ol>
+<li><code>github-infra</code>: create <code>kargo-config</code> and, if approved, the dedicated Kargo GitHub App integration declaration.</li>
+<li><code>budy-cloud-management</code>: create the Kargo control-plane, shared-resources, and system-resources namespaces.</li>
+<li><code>vault-management-1</code>: grant the Kargo namespace's VSO service account read-only access to its scoped Kargo Vault KV path.</li>
+<li><code>k8s-security</code>: Kargo namespace VSO authentication and ALB-OIDC secret materialization. When using <code>shared-vso-1</code>, add <code>ob1-tf-eks-kargo-ns-1</code> to <code>shared-vso-1-global-vault-auth-1.spec.allowedNamespaces</code>; without it, the namespace-local <code>VaultAuth</code> is rejected even when the Vault-side role and policy are correct. Also add the Kargo namespace to <code>pfm-security-infra-acd-proj-1.spec.destinations</code> in <code>argocd-critical-stack</code>; otherwise ArgoCD rejects the <code>VaultStaticSecret</code> before VSO can create the OIDC destination Secret. Network policy and mTLS enforcement must be merged before applying the Kargo ArgoCD Application.</li>
+<li><code>argocd-critical-stack</code>: Kargo AppProject, pinned Kargo Helm Application, and prod-2 bootstrap wiring.</li>
+<li><code>kargo-config</code>: control-plane Project configuration and visibility-only Temporal/Context resources.</li>
+<li>Existing Temporal/Context GitOps repositories: only after visibility is proven, add Kargo authorization annotations and narrowly scoped promotion paths.</li>
+</ol>
+<p>Each PR links its prerequisites, the next PR, required checks, and the last safe hold point. Do not approve a Git-mutating PromotionTask until every visibility-only exit criterion is evidenced.</p>
+<h2 id="information-required-before-visibility-onboarding">Information required before visibility onboarding<a class="headerlink" href="#information-required-before-visibility-onboarding" title="Permanent link">&para;</a></h2>
+<p>The foundation is merged. These decisions are still required before adding Warehouses, Stages, or Git-mutating promotion:</p>
+<ol>
+<li>Confirm the exact ArgoCD Application names and GitOps paths for <code>temporal-cluster-2</code> and Context Cluster in each environment.</li>
+<li>Confirm the Platform/SRE GitHub team that is the required CODEOWNER for Kargo-created stage/prod promotion PRs.</li>
+<li>Convert the approved Temporal and Context smoke-gate descriptions into runnable commands/workflows before Git mutation is enabled.</li>
+</ol>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="kargo-promotion-design.html">Kargo Promotion Design</a></li>
+<li><a href="kargo-topology-decision.html">Kargo Topology Decision</a></li>
+<li><a href="https://docs.kargo.io/operator-guide/architecture">Kargo architecture</a></li>
+<li><a href="https://docs.kargo.io/user-guide/core-concepts">Kargo core concepts</a></li>
+<li><a href="https://docs.kargo.io/operator-guide/security">Kargo secure-installation guidance</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

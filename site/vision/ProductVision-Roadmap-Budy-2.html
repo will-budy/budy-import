@@ -1,0 +1,3193 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="../index.html">
+      
+      
+        <link rel="next" href="../micro-services/execution-mode-services/info.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Product Vision - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#budy-2-product-vision-guiding-principles" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Product Vision
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ProductVision-Roadmap-Budy-2.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#read-this-after-the-launch-narrative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read this after the launch narrative
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-vision-a-new-personal-computer-for-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Vision: a New Personal Computer for Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-budy-2-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who Budy 2 Is For
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-job-budy-is-hired-to-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Job Budy Is Hired to Do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-persistent-personal-and-long-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Persistent, Personal, and Long-Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tools-for-builders-not-prescriptions-for-buyers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tools for Builders, Not Prescriptions for Buyers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-powerful-but-legible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Powerful, but Legible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-reliability-is-the-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Reliability Is the Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-safe-scoped-and-accountable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Safe, Scoped, and Accountable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-ai-delivered-white-glove-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. AI-Delivered White-Glove Experience
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-inspire-then-compound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Inspire, Then Compound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-premium-by-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Premium by Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-adoption-should-feel-natural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Adoption Should Feel Natural
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-budy-2-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Budy 2 Experience
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Budy 2 Experience">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discover-and-evaluate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discover and Evaluate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-and-teach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Up and Teach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegate-and-observe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegate and Observe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grow-beyond-the-first-win" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grow Beyond the First Win
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commercial-and-go-to-market-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commercial and Go-to-Market Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-will-not-be" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What We Will Not Be
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-we-know-we-are-succeeding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How We Know We Are Succeeding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-internal-architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Internal Architecture Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#read-this-after-the-launch-narrative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read this after the launch narrative
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-vision-a-new-personal-computer-for-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Vision: a New Personal Computer for Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-budy-2-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who Budy 2 Is For
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-job-budy-is-hired-to-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Job Budy Is Hired to Do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-persistent-personal-and-long-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Persistent, Personal, and Long-Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tools-for-builders-not-prescriptions-for-buyers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tools for Builders, Not Prescriptions for Buyers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-powerful-but-legible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Powerful, but Legible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-reliability-is-the-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Reliability Is the Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-safe-scoped-and-accountable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Safe, Scoped, and Accountable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-ai-delivered-white-glove-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. AI-Delivered White-Glove Experience
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-inspire-then-compound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Inspire, Then Compound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-premium-by-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Premium by Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-adoption-should-feel-natural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Adoption Should Feel Natural
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-budy-2-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Budy 2 Experience
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Budy 2 Experience">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discover-and-evaluate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discover and Evaluate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-and-teach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Up and Teach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegate-and-observe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegate and Observe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grow-beyond-the-first-win" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grow Beyond the First Win
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commercial-and-go-to-market-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commercial and Go-to-Market Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-will-not-be" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What We Will Not Be
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-we-know-we-are-succeeding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How We Know We Are Succeeding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-internal-architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Internal Architecture Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="budy-2-product-vision-guiding-principles">Budy 2: Product Vision &amp; Guiding Principles<a class="headerlink" href="#budy-2-product-vision-guiding-principles" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document</strong></td>
+<td>Product Vision &amp; Guiding Principles for Budy 2</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>2.0</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Living document</td>
+</tr>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Internal team</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Defines who Budy 2 is for, the category we are creating, and the principles that guide product, commercial, and operational decisions. Every team member should read this after the Budy 2 press release and FAQ.</td>
+</tr>
+<tr>
+<td><strong>Last updated</strong></td>
+<td>August 2026</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="read-this-after-the-launch-narrative">Read this after the launch narrative<a class="headerlink" href="#read-this-after-the-launch-narrative" title="Permanent link">&para;</a></h2>
+<p>The recommended reading order is:</p>
+<ol>
+<li><a href="Budy-2-Press-Release.html">Budy 2 Press Release</a> — the product we want the world to understand and want.</li>
+<li><a href="Budy-2-FAQ.html">Budy 2 FAQ</a> — the questions, trade-offs, and implications behind that launch narrative.</li>
+<li>This document — the durable choices that should guide our decisions after launch.</li>
+</ol>
+<hr />
+<h2 id="the-vision-a-new-personal-computer-for-work">The Vision: a New Personal Computer for Work<a class="headerlink" href="#the-vision-a-new-personal-computer-for-work" title="Permanent link">&para;</a></h2>
+<p>Budy 2 is a Digital Teammate: a new kind of personal computer for work. It is a long-running, capable AI counterpart that a professional can teach, delegate to, and grow with over time.</p>
+<p>Today’s AI products are powerful, but most leave the user as the orchestrator. The user must supervise separate chats and tools, decide which thread matters, carry context between them, turn an impressive output into a working process, and keep the work moving. Basic AI workflows can help, but they are difficult for non-technical people to build and too unreliable to become a trusted part of meaningful work.</p>
+<p>We believe there is a better model. A Budy has enduring context, a working identity, tools, memory, permissions, and a visible operating state. It can be taught how its owner works, take work forward within agreed boundaries, and improve through the relationship. It is not a chatbot, an assistant feature inside someone else’s platform, or a pre-packaged vertical agent. It is an agnostic platform for doing work.</p>
+<p>The personal-computer analogy matters. Personal computers did not tell every person exactly what to make; they gave capable people an accessible, general-purpose tool and let them create value in ways the maker could not predict. Budy should do the same for work.</p>
+<p>Many people have had the same experience with modern AI: an analysis, dashboard, or prototype produces a genuine “wow”—perhaps it even appears to make existing software unnecessary—then the promise fades when they try to implement it in the real world. The hard part is not generating a compelling answer. It is turning that answer into reliable, ongoing work. Budy 2 is built to close that gap. It is not a slightly better AI agent or another way to prompt an LLM; it is a fundamentally different architecture for creating business impact after the initial wow.</p>
+<h2 id="who-budy-2-is-for">Who Budy 2 Is For<a class="headerlink" href="#who-budy-2-is-for" title="Permanent link">&para;</a></h2>
+<p>We are not building for an industry, a job title, or every knowledge worker. We are building for a disposition: the <strong>high-agency, non-technical builder</strong>.</p>
+<p>These people are analytical, creative, and strongly biased toward action. They see what needs to get done and enjoy figuring out how to make it happen. They may not write code or build AI workflows, but they have experimented with AI and understand its potential. They do not need us to prescribe every use case or decide what value means for them. They need to be inspired, equipped, and able to build.</p>
+<p>They can be startup founders, owner-operators of service businesses, functional leaders, or executives in low-bureaucracy companies. A CMO, CFO, sales leader, or operations leader may all be a strong fit. Their teams can be small or large. What matters is that they can move quickly, have meaningful work to improve, and have authority to invest in a powerful solution.</p>
+<p>This is intentionally a narrow intersection:</p>
+<ul>
+<li>non-technical enough that building reliable AI systems alone is not realistic;</li>
+<li>builder-minded enough to recognize and create value with a flexible platform;</li>
+<li>action-oriented enough to teach, direct, and refine a Budy; and</li>
+<li>sufficiently resourced to pay for a premium, reliable experience.</li>
+</ul>
+<p>This focus is a product choice, not merely a marketing choice. A broad, cheap, generic product would force us to compromise on reliability, experience, and the depth of value we can deliver.</p>
+<h2 id="the-job-budy-is-hired-to-do">The Job Budy Is Hired to Do<a class="headerlink" href="#the-job-budy-is-hired-to-do" title="Permanent link">&para;</a></h2>
+<p>Our user’s central need is simple:</p>
+<blockquote>
+<p>“Give me a capable, persistent teammate that understands my world, lets me teach it how I work, and reliably takes work forward without making me re-explain everything.”</p>
+</blockquote>
+<p>Budy should create a first-day realization: <em>this already moves meaningful work forward, and I can see how much further it can grow with me.</em> The experience should feel like the moment an early computer user first encountered a computer that was genuinely usable and extensible—not another novelty to experiment with, but a new source of leverage.</p>
+<p>We do not define every use case, every workflow, or every measure of value for the user. We provide a safe, legible, capable system; examples that spark ideas; and a way for users to teach Budy what matters. Some uses will have direct ROI and some will be personally or strategically valuable in ways only the user can judge. That is the point of a general-purpose tool.</p>
+<h2 id="product-principles">Product Principles<a class="headerlink" href="#product-principles" title="Permanent link">&para;</a></h2>
+<h3 id="1-persistent-personal-and-long-running">1. Persistent, Personal, and Long-Running<a class="headerlink" href="#1-persistent-personal-and-long-running" title="Permanent link">&para;</a></h3>
+<p>Budy builds useful working context over time. It should know the owner’s goals, preferences, environment, past decisions, and active work without asking them to reconstruct that context every session. Context is valuable only when it is accurate, inspectable, and operationally useful; Budy must learn deliberately rather than accumulate noise.</p>
+<p>Budy also has an enduring role and responsibilities. It should not treat work as a series of isolated requests: it uses what it has learned to connect tasks, notice recurring patterns, and reflect on how it could make future work faster, better, or more efficient. Meaningful changes to direction, scope, or authority remain the owner’s decision.</p>
+<h3 id="2-tools-for-builders-not-prescriptions-for-buyers">2. Tools for Builders, Not Prescriptions for Buyers<a class="headerlink" href="#2-tools-for-builders-not-prescriptions-for-buyers" title="Permanent link">&para;</a></h3>
+<p>We help users see what is possible and make it easy to begin. We do not require a sales or solutions team to determine what every customer should build. Budy earns adoption by helping its owner discover, teach, and extend valuable work themselves.</p>
+<h3 id="3-powerful-but-legible">3. Powerful, but Legible<a class="headerlink" href="#3-powerful-but-legible" title="Permanent link">&para;</a></h3>
+<p>The owner must be able to see what Budy is doing, what it has produced, what it needs, what it believes it knows, and where it needs approval. Chat can be a useful entry point, but it is not the product. The product needs a workspace where work, context, activity, decisions, access, and progress are visible.</p>
+<h3 id="4-reliability-is-the-product">4. Reliability Is the Product<a class="headerlink" href="#4-reliability-is-the-product" title="Permanent link">&para;</a></h3>
+<p>Users will delegate meaningful work only when Budy is dependable. We choose predictable execution, disciplined handoffs, clear escalation, and quality over superficial feature breadth or low cost. A Budy that does less reliably is more valuable than one that promises everything and cannot be trusted.</p>
+<h3 id="5-safe-scoped-and-accountable">5. Safe, Scoped, and Accountable<a class="headerlink" href="#5-safe-scoped-and-accountable" title="Permanent link">&para;</a></h3>
+<p>Budy always acts as Budy; it does not impersonate its owner or another person. Access and write permissions are explicit, scoped, and visible. Budy operates like a good employee: it takes decisions where it has clarity and where the impact is limited or readily reversible; it seeks clarification when a decision is ambiguous, consequential, or difficult to undo. It maintains an understandable trail of its work and never treats broad access as a default.</p>
+<h3 id="6-ai-delivered-white-glove-experience">6. AI-Delivered White-Glove Experience<a class="headerlink" href="#6-ai-delivered-white-glove-experience" title="Permanent link">&para;</a></h3>
+<p>The experience must feel unusually personal, thoughtful, and high-touch without requiring customer interaction with a salesperson, consultant, or human operator. We will use models, compute, and product intelligence liberally where they improve onboarding, teaching, guidance, quality, and time to value. Internal Agent Success review may support reliability where appropriate, but it is an operational safeguard—not the customer-facing product or a substitute for Budy's judgment.</p>
+<h3 id="7-inspire-then-compound">7. Inspire, Then Compound<a class="headerlink" href="#7-inspire-then-compound" title="Permanent link">&para;</a></h3>
+<p>The first session must produce a credible “wow”: Budy understands enough context and completes enough meaningful work to earn continued attention. From there, the relationship compounds. Each taught preference, approved action, and completed project should make Budy more useful and expand what its owner believes is possible.</p>
+<h3 id="8-premium-by-design">8. Premium by Design<a class="headerlink" href="#8-premium-by-design" title="Permanent link">&para;</a></h3>
+<p>We will not compromise the experience to fit a commodity AI subscription. Persistent context, dependable work, secure access, sophisticated models, and an exceptional first-use experience have a real cost. Budy is deliberately for people with high-leverage work and the budget to invest in it.</p>
+<h3 id="9-adoption-should-feel-natural">9. Adoption Should Feel Natural<a class="headerlink" href="#9-adoption-should-feel-natural" title="Permanent link">&para;</a></h3>
+<p>People who have historically avoided systems, processes, chatbots, and copilots do not adopt them merely because they are capable. Too often, those tools ask the person to become the operator: to maintain the process, supervise the threads, and translate outputs into action. Budy should instead fit the familiar model of working with a teammate. When it is done right, people begin using AI and more disciplined ways of working almost immediately because it feels like the way work should always have been done.</p>
+<h2 id="the-budy-2-experience">The Budy 2 Experience<a class="headerlink" href="#the-budy-2-experience" title="Permanent link">&para;</a></h2>
+<h3 id="discover-and-evaluate">Discover and Evaluate<a class="headerlink" href="#discover-and-evaluate" title="Permanent link">&para;</a></h3>
+<p>Users should be able to understand Budy, see credible examples, buy an evaluation tier with a credit card, and reach a meaningful result without a sales-led implementation process. Explore should feel like trying a powerful new computer in a store, through a friend, or at a library: enough real use to decide whether they need one of their own. The product and website must make both the promise and the intended user unmistakably clear.</p>
+<h3 id="set-up-and-teach">Set Up and Teach<a class="headerlink" href="#set-up-and-teach" title="Permanent link">&para;</a></h3>
+<p>Onboarding is not a configuration burden handed to the user. Budy should actively help establish goals, gather relevant context, connect tools securely, suggest a valuable first project, and explain what it is learning. It should make sophisticated capability accessible without pretending the user is a workflow engineer.</p>
+<h3 id="delegate-and-observe">Delegate and Observe<a class="headerlink" href="#delegate-and-observe" title="Permanent link">&para;</a></h3>
+<p>The owner can assign work, give feedback, and redirect Budy through the interface that is most natural for the moment. Budy then makes its work visible in a dedicated workspace: active work, completed outputs, decisions, questions, permissions, context, and next steps. Reports and notifications should drive decisions, not become an additional dashboard to maintain.</p>
+<h3 id="grow-beyond-the-first-win">Grow Beyond the First Win<a class="headerlink" href="#grow-beyond-the-first-win" title="Permanent link">&para;</a></h3>
+<p>Budy should make it easy to add projects, tools, knowledge, and collaborators as trust grows. It can work with teams, but team collaboration is an extension of an owner’s relationship with Budy—not a prerequisite for receiving value. This matters especially for collaborators who have not adopted systems, processes, chatbots, or copilots in the past: Budy should make their participation feel like working with a teammate, not learning another system to operate.</p>
+<h2 id="commercial-and-go-to-market-principles">Commercial and Go-to-Market Principles<a class="headerlink" href="#commercial-and-go-to-market-principles" title="Permanent link">&para;</a></h2>
+<p>Our model is <strong>product-led acquisition and activation</strong>, not an industry-first sales motion. We will win by making a precise user feel immediately understood and by letting the product demonstrate exceptional value.</p>
+<p>Product-led does not mean cheap, free, or low-touch in experience. It means that the product—not a salesperson, consultant, or human operator—is responsible for making the promise real.</p>
+<p>We expect a paid <strong>Explore</strong> tier in the $200–$500/month range, with roughly one-tenth of the capacity of the Part-Time tier. It is a serious evaluation experience, not a freemium giveaway or a lower version of the product: a user with authority to spend $60k–$180k annually should be able to try Budy with a credit card, see real value quickly, and decide whether to buy their own full-capacity Budy. Explore may operate at break-even or a small loss because it is designed to prove the product’s potential.</p>
+<p>The core offerings are premium monthly tiers:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th style="text-align: right;">Indicative price</th>
+<th>Intended role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Part-Time</td>
+<td style="text-align: right;">$5k/month</td>
+<td>The entry point for buying Budy: a full Budy with capacity for focused, high-leverage ongoing work</td>
+</tr>
+<tr>
+<td>Full-Time</td>
+<td style="text-align: right;">$10k/month</td>
+<td>A full Budy with roughly 2× Part-Time capacity</td>
+</tr>
+<tr>
+<td>Heavy / Max</td>
+<td style="text-align: right;">$20k+/month</td>
+<td>A full Budy at roughly 4× Part-Time capacity or higher</td>
+</tr>
+</tbody>
+</table>
+<p>These names and prices are directional until the package boundaries are defined; “Heavy” or “Max” remains to be selected as the customer-facing name for the highest tier. A tenant may hold multiple Budy subscriptions, but each Budy remains a separate, evolving Digital Teammate with its own identity and capacity. The enduring principle is that Budy’s price must sustain the experience and the compute required to make it trustworthy.</p>
+<h2 id="what-we-will-not-be">What We Will Not Be<a class="headerlink" href="#what-we-will-not-be" title="Permanent link">&para;</a></h2>
+<ul>
+<li>An industry-specific AI solution with a separate sales playbook for every vertical.</li>
+<li>A low-cost chatbot or a collection of disposable prompts.</li>
+<li>A consulting-led service that tells customers which use cases they should value.</li>
+<li>An opaque agent that acts without boundaries, visibility, or accountability.</li>
+<li>A human-operated service presented as autonomous software.</li>
+</ul>
+<h2 id="how-we-know-we-are-succeeding">How We Know We Are Succeeding<a class="headerlink" href="#how-we-know-we-are-succeeding" title="Permanent link">&para;</a></h2>
+<p>We will measure whether the right users reach value and deepen their relationship with Budy:</p>
+<ul>
+<li>time to first meaningful outcome, especially on day one;</li>
+<li>repeat delegation and continued use after the initial novelty;</li>
+<li>the number and quality of new ways owners teach Budy to help;</li>
+<li>trust signals: approvals, appropriate autonomy, and low need for corrective intervention;</li>
+<li>retention, expansion, and willingness to recommend Budy to other high-agency builders; and</li>
+<li>reliability and quality of completed work.</li>
+</ul>
+<p>We will not confuse task volume, generic engagement, or a neatly calculated ROI claim with success. The true test is whether Budy becomes a source of compounding leverage that its owner would not want to give up.</p>
+<h2 id="appendix-internal-architecture-principles">Appendix: Internal Architecture Principles<a class="headerlink" href="#appendix-internal-architecture-principles" title="Permanent link">&para;</a></h2>
+<p>The user experiences one coherent Budy. Internally, we may separate reasoning and planning from predictable execution in order to protect reliability, cost, and safety.</p>
+<ul>
+<li><strong>Thinking Mode</strong> reasons about goals, context, learning, and how work should be approached. It has minimal direct execution capability by design.</li>
+<li><strong>Muscle Memory Mode</strong> performs defined, repeatable work predictably within the permissions and approach it has been given.</li>
+</ul>
+<p>The handoff between these modes is a high-scrutiny boundary. It must turn intention into dependable execution without silently broadening scope, permissions, or authority. This architecture is a means to the product promise—not the product story itself.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

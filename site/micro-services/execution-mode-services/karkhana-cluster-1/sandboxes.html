@@ -1,0 +1,3653 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="info.html">
+      
+      
+        <link rel="next" href="console.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sandboxes - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sandboxes-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sandboxes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="sandboxes.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-capabilities-sandbox-manager-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Capabilities (sandbox-manager-1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sandboxtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SandboxType
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-the-operator-creates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What the operator creates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. What the operator creates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operator-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operator-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-billing-entity-and-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Billing entity and usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-data-database-ob1-karkhana-db-1-schema-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Data (database ob1-karkhana-db-1, schema sandbox)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-how-dt-consulting-services-is-meant-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. How dt-consulting-services is meant to use it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-not-in-this-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Not in this design
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-capabilities-sandbox-manager-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Capabilities (sandbox-manager-1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sandboxtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SandboxType
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-the-operator-creates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What the operator creates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. What the operator creates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operator-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operator-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-billing-entity-and-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Billing entity and usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-data-database-ob1-karkhana-db-1-schema-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Data (database ob1-karkhana-db-1, schema sandbox)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-how-dt-consulting-services-is-meant-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. How dt-consulting-services is meant to use it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-not-in-this-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Not in this design
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sandboxes-design">Sandboxes: design<a class="headerlink" href="#sandboxes-design" title="Permanent link">&para;</a></h1>
+<p>How a caller gets a sandbox from Karkhana, what runs it, and what is recorded. This page is the contract the
+components are built against and, since the first build, describes them as they are on each repository's <code>main</code>
+(checked 2026-11-13). The service page is <a href="info.html">karkhana-cluster-1</a>.</p>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Checked against <code>origin/main</code> of each repository on 2026-11-13. "Pinned in dev" means what the de-v2 GitOps repository's
+<code>main</code> asks Argo CD for in dev; whether Argo CD has synced it was not verified. There is no end-to-end test of the whole
+path on a cluster yet.</p>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operator <code>sandbox-operator-1</code> 0.4.0</td>
+<td>Released as chart <code>sandbox-service-1-repo-1</code> 0.3.6 (image <code>sandbox-operator-1-0.4.0-1075142</code>), the first release of the new operator. Pinned in dev (<code>sandbox-service-1-app</code>); stage and prod still pin 0.3.5, the earlier sandbox-service-1 chart.</td>
+</tr>
+<tr>
+<td><code>SandboxType</code> <code>claude-coder-1</code></td>
+<td>In platform-crs <code>v1/stacks/de-v2-sandbox-type</code>, image <code>claude-code-1-0.1.0</code>.</td>
+</tr>
+<tr>
+<td>Runner and image</td>
+<td><code>sandbox-runner-1</code> and image type <code>claude-code-1</code> 0.1.0 are in sandbox-shell-1 (the type names the image <code>...sandbox-shell-1_repo-1:claude-code-1-0.1.0</code>; that the image is pushed was not verified).</td>
+</tr>
+<tr>
+<td>Network profile <code>sandbox-coder-1</code>, operator and manager policies</td>
+<td>Merged in k8s-security. No GitLab rule (see Pending).</td>
+</tr>
+<tr>
+<td>Authorization model</td>
+<td>Merged in authz-config: the conditional coder grant, the <code>glassbox</code> relation, the <code>sandbox-operator-1</code> service user, the <code>KarkhanaServiceV1</code> topology.</td>
+</tr>
+<tr>
+<td>Billing entity and workload sessions</td>
+<td>auth-cluster-1 0.1.101 (STS <code>glassboxId</code>, authz-manager-1 <code>/v1/workload-sessions</code>) is pinned in dev. The <code>workload-session</code> UserType and the coder role's <code>workload_session</code> class are in platform-crs <code>authz-types/profile/dev</code> only.</td>
+</tr>
+<tr>
+<td><code>sandbox-manager-1</code></td>
+<td>Released in the karkhana-cluster-1 chart 0.1.3 (<code>sandbox-manager-1-0.1.0</code>). Dev values enable it, but dev still pins chart 0.1.1, so it has not been promoted to dev. Its migration Job creates the <code>sandbox</code> tables the operator needs.</td>
+</tr>
+</tbody>
+</table>
+<p>Pending (not done, or open and not merged):</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Repository and number</th>
+<th>Effect until done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox-1</code> workload session kind (dev only) and the operator's token audience <code>authz-manager-1</code></td>
+<td>de-v2 #2414 (open)</td>
+<td>authz-manager-1 has no <code>sandbox-1</code> kind, and the operator's token for it carries the audience of the released chart's default (<code>auth.budy.internal</code>), which authz-manager-1 does not accept for workload callers. The chart default itself was corrected in sandbox-service-1 #59 (merged, not yet released; the next chart release carries it).</td>
+</tr>
+<tr>
+<td>GitLab from sandboxes</td>
+<td>de-v2 #2415 (token-broker-1 in dev), de-v2 #2418 (dev sandboxes clone through token-broker-1), k8s-security #589 (sandbox egress to GitLab), all open</td>
+<td>No GitLab proxy in front of token-broker-1 is deployed, the operator's <code>git.url</code> is empty, token-broker-1 is not enabled in dev and <code>sandbox-coder-1</code> has no GitLab egress. <code>putFiles</code> works; the <code>git</code> source of <code>requestSandbox</code> is stored but nothing clones.</td>
+</tr>
+<tr>
+<td>Promote the karkhana-cluster-1 chart with <code>sandbox-manager-1</code> (0.1.3) to dev</td>
+<td>Kargo release train <code>karkhana-cluster-1</code></td>
+<td>No sandbox can be requested.</td>
+</tr>
+<tr>
+<td>Manager fixes</td>
+<td>karkhana-cluster-1 #8 and #9 (open; titles: "limits, queued work and resume against the observed phase", "a sandbox with an identity must name its teammate")</td>
+<td>Not described on this page; not verified.</td>
+</tr>
+<tr>
+<td>Session credentials in a side container</td>
+<td>sandbox-service-1 #58, sandbox-shell-1 #17 (open)</td>
+<td>Not described on this page; the runner and pod are as in sections 6 and 8.</td>
+</tr>
+<tr>
+<td>Removal of the old sandbox path</td>
+<td>context-cluster-1 #608 (shell provider, ContextServiceV2 sandbox operations, SandboxServiceV2), crossplane-providers-mono #391 (per-tenant sandbox identity), dt-workbench #364 (sandbox tools in the catalog; published Retain records need a retirement step), all open</td>
+<td>The old operations still exist. Held until the new path works in dev.</td>
+</tr>
+<tr>
+<td>A caller</td>
+<td>dt-consulting-services-1 <code>delivery-lead-1</code> is planned (its README, phase 2)</td>
+<td>Nothing in the repositories checked calls <code>KarkhanaServiceV1</code> yet.</td>
+</tr>
+</tbody>
+</table>
+<p>What each environment needs before the operator works there. Stage and prod pin older charts and have none of the
+Karkhana pieces switched on: the stage and prod karkhana-cluster-1 profiles set <code>global.enabled: false</code>, and the OpenFGA
+store id for the manager is set for dev-1 only. The release trains (kargo-config, projects <code>sandbox-service-1</code> and
+<code>karkhana-cluster-1</code>) auto-promote dev to stage to prod after a bake of 1 hour in dev, 4 hours in stage and 15 minutes
+after prod, and nothing in them waits for the rows below, so check them before a promotion.</p>
+<table>
+<thead>
+<tr>
+<th>Needed in the environment</th>
+<th>Where it lives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The <code>sandbox</code> schema and its three roles (<code>-sandbox-rw-role</code>, <code>-sandbox-ro-role</code>, <code>-sandbox-operator-rw-role</code>), then the manager's migration Job (admin credentials), which creates the tables and grants</td>
+<td>argocd-eks-stack <code>standard-db-custom-grants-1</code> (<code>ob1-karkhana-db-1.sql</code>); karkhana-cluster-1 chart <code>sandbox-manager-1</code>. The DB host differs per tier: CNPG in dev and stage, RDS in prod (de-v2 <code>profiles/*</code>).</td>
+</tr>
+<tr>
+<td>Vault roles for the operator, the manager and the migration Job; the VSO global auth <code>sandbox-shared-vso-1-global-vault-auth-1</code> (operator) and <code>karkhana-shared-vso-1-global-vault-auth-1</code> (manager)</td>
+<td>vault-gitops <code>services.catalog.tf</code> (<code>sandbox_operator_1</code>, <code>karkhana_cluster_1_sandbox_manager_1</code>, <code>..._job</code>); k8s-security</td>
+</tr>
+<tr>
+<td>The Claude Code OAuth token, written by hand: Vault <code>app-kv-secrets-1</code>, <code>v1/de-v2/ob1-tf-eks-de-v2-sandbox-1-ns-1/sandbox-operator-1/claude-code-oauth-1</code>, key <code>token</code></td>
+<td>Vault of that environment</td>
+</tr>
+<tr>
+<td>The <code>SandboxType</code> resource and the CRD (the operator chart's <code>crds/</code>)</td>
+<td>platform-crs <code>de-v2-sandbox-type</code>; chart</td>
+</tr>
+<tr>
+<td>The karkhana-cluster-1 chart with <code>sandbox-manager-1</code> enabled, its OpenFGA store id, and the authorization model with <code>active_svcrole_dtcs_coder_1</code></td>
+<td>de-v2 <code>charts/apps/karkhana-cluster-1</code> (<code>profiles/*</code>, <code>env/*</code>); authz-config</td>
+</tr>
+<tr>
+<td>auth-cluster-1 0.1.100 or later running there, then <code>config.workloadSessionKinds</code> with <code>sandbox-1</code>, then the platform-crs <code>workload-session</code> UserType and the coder role's <code>workload_session</code> class (today <code>authz-types/profile/dev</code> only)</td>
+<td>de-v2 <code>charts/apps/auth-cluster-1</code> (dev only, #2414); platform-crs <code>authz-types</code>. stage and prod pin auth-cluster-1 0.1.94.</td>
+</tr>
+<tr>
+<td>The operator's token audience set to <code>authz-manager-1</code> (until a chart release carries the new default)</td>
+<td>de-v2 <code>charts/apps/sandbox-service-1</code> <code>identity.tokenAudience</code> (#2414)</td>
+</tr>
+<tr>
+<td>Network policy (sandbox profile, operator, manager), the OPA reservation of the <code>sandbox-coder-1</code> label</td>
+<td>k8s-security</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-summary">1. Summary<a class="headerlink" href="#1-summary" title="Permanent link">&para;</a></h2>
+<p>A caller asks <code>KarkhanaServiceV1</code> for a sandbox of a named type. <code>sandbox-manager-1</code> checks the caller and writes one row
+of desired state to Postgres. <code>sandbox-operator-1</code> watches those rows and makes Kubernetes match them: a pod with a
+persistent workspace in the tenant's namespace, under its own ServiceAccount. The operator writes back status, an event
+trail and usage. There is no custom resource per sandbox, no Service and no ingress: nothing calls into a sandbox.</p>
+<pre><code class="language-text">caller ── STS token ──▶ gateway-1 ──▶ sandbox-manager-1 ──▶ Postgres (schema sandbox)
+                                                              ▲   │ LISTEN/NOTIFY + resync
+                                              status, usage   │   ▼
+                                                        sandbox-operator-1 ──▶ pod, PVC, ServiceAccount, Secret
+                                                                                (tenant namespace)
+</code></pre>
+<h2 id="2-decisions">2. Decisions<a class="headerlink" href="#2-decisions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>Desired state lives in Postgres, written only by <code>sandbox-manager-1</code>. The operator reconciles from it. Temporal carries the request to the manager and nothing else: no lifecycle workflow.</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>The only custom resource is <code>SandboxType</code> (<code>karkhana.budy/v1alpha1</code>, cluster-scoped): the catalog of what a sandbox can be.</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Sandboxes run in the tenant's namespace. The operator resolves it from the <code>UserOrg</code> whose <code>spec.userOrgShortName</code> is the tenant (<code>status.tenantNamespace.name</code>) and refuses a namespace that is not labelled <code>platform.budy.ob1.ai/managed-by: user-org</code> or is terminating. The manager has no Kubernetes access.</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Tenant and requester come from the verified STS token the gateway passes (tenant scope only; platform-scoped callers are refused), never from the payload. The billing entity is the token's <code>glassboxId</code>, or the tenant when the token carries none (section 9).</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Each sandbox has its own ServiceAccount and its own short-lived platform user, homed in the tenant (section 8). A sandbox never holds more than its requester and its type allow.</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>A sandbox has a persistent workspace volume. Pausing deletes the pod and keeps the volume; resuming starts a pod in the same zone.</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>Zone and region are recorded from the first schedule. A resume never moves a sandbox to another zone.</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>Network reach is a property of the type: <code>networkProfile</code> becomes the pod's <code>budybot.io/netpol</code> label and one cluster-wide policy per profile grants the destinations.</td>
+</tr>
+<tr>
+<td>D9</td>
+<td>The operator is the only writer of Kubernetes objects. Its ClusterRole is fenced by an admission policy to tenant namespaces and to objects it labels (with one exception for <code>pods/exec</code>, section 6).</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>Usage is metered by the operator in the platform's standard record (<a href="../../../ref/usage-metering-standard.html">usage metering standard</a>). Karkhana does not price or enforce.</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>Only holders of a role listed in the type's <code>allowedRoles</code>, in an editor session, may use it. Today that is the dt-consulting-services coder (<code>svcrole-dtcs-coder-1</code>). Only that service role may call <code>KarkhanaServiceV1</code> at all (authz-config <code>entities/services/nexus-topology.yaml</code>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-components">3. Components<a class="headerlink" href="#3-components" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Repository</th>
+<th>Runs in</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gateway-1</code></td>
+<td>karkhana-cluster-1</td>
+<td><code>ob1-tf-eks-de-v2-karkhana-1-ns-1</code></td>
+<td>Verifies the STS token, validates the payload against the capability schema, dispatches.</td>
+</tr>
+<tr>
+<td><code>sandbox-manager-1</code></td>
+<td>karkhana-cluster-1 (<code>components/sandbox-manager-1</code>, sub-chart <code>sandbox-manager-1</code> of the umbrella chart <code>karkhana-cluster-1-repo-1</code>)</td>
+<td>same</td>
+<td>Authorization, limits, writes desired state, reads status. Owns the database migrations (a Job with the admin credentials). Temporal worker, task queue <code>karkhana-cluster-1-sandbox-manager-1-tq</code>.</td>
+</tr>
+<tr>
+<td><code>sandbox-operator-1</code></td>
+<td><code>ob1_mn_gh_sandbox-service-1_repo-1</code> (chart <code>sandbox-service-1-repo-1</code>)</td>
+<td><code>ob1-tf-eks-de-v2-sandbox-1-ns-1</code></td>
+<td>Reconciles Postgres rows into Kubernetes objects; status, events, usage; cleanup; validates <code>SandboxType</code> objects.</td>
+</tr>
+<tr>
+<td><code>sandbox-runner-1</code></td>
+<td><code>ob1_mn_gh_sandbox-shell-1_repo-1</code> (<code>cmd/sandbox-runner-1</code>, in every image type, for example <code>claude-code-1</code>)</td>
+<td>the sandbox pod</td>
+<td>Process 1 of the sandbox: runs commands detached, writes files, keeps the sandbox's STS tokens fresh, clones the git source on first start when configured.</td>
+</tr>
+</tbody>
+</table>
+<p>The row types, state names and capability payloads are Go types in the karkhana contract module
+(<code>github.com/Budybot/karkhana-cluster-1_repo-1/shared/contract</code>). The operator does not import that module yet: it keeps
+a mirror in <code>internal/model</code> (name for name, field for field) to be replaced by an import. The mirror's <code>file_1</code> row
+does not carry <code>request_key</code> and <code>ordinal</code>, which only the manager reads.</p>
+<h2 id="4-capabilities-sandbox-manager-1">4. Capabilities (<code>sandbox-manager-1</code>)<a class="headerlink" href="#4-capabilities-sandbox-manager-1" title="Permanent link">&para;</a></h2>
+<p>The manifest is <code>charts/gateway-1/files/capabilities/sandbox-manager-1.yaml</code> (workflow <code>SandboxManagerWorkflowV1</code>, default
+execution timeout 30 s); the manager's activities and the manifest must offer exactly the nine capabilities below.</p>
+<p>All are tenant scope. All check that the caller holds a role in the type's <code>allowedRoles</code> on the tenant, in an editor
+session (see Authorization). A sandbox belongs to its requester: every capability that names a sandbox or a command also
+requires that the caller is that sandbox's requester in that tenant, and answers "not found" otherwise. There is no
+administrative access to another requester's sandbox.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Input</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>requestSandbox</code></td>
+<td><code>type</code>, <code>idempotencyKey</code>, <code>ttlSeconds?</code>, <code>zone?</code>, <code>git? {projectPath, branch}</code>, <code>labels?</code></td>
+<td><code>sandboxId</code>, <code>phase</code>, <code>created</code>. The same key from the same requester with the same type returns the existing sandbox (<code>created</code> false). The same key with another type, or a key another requester of the tenant used, is a conflict.</td>
+</tr>
+<tr>
+<td><code>getSandbox</code></td>
+<td><code>sandboxId</code></td>
+<td><code>sandboxId</code>, <code>type</code>, <code>desiredState</code>, <code>phase</code>, <code>generation</code>, <code>observedGeneration</code>, <code>ttlSeconds</code>, <code>runningSeconds</code>, <code>zone</code>, <code>region</code>, <code>expiresAt</code>, <code>lastCommandAt</code>, <code>lastError</code>, <code>git</code>, <code>labels</code>, <code>createdAt</code>, <code>updatedAt</code>.</td>
+</tr>
+<tr>
+<td><code>listSandboxes</code></td>
+<td><code>phase?</code>, <code>limit?</code> (default 50, at most 200)</td>
+<td>The caller's sandboxes in the tenant, newest first. A sandbox is listed when its type is served and the caller holds a role for it, or when its type was retired. The eligibility is part of the SQL query, so the limit counts eligible rows only.</td>
+</tr>
+<tr>
+<td><code>pauseSandbox</code> / <code>resumeSandbox</code> / <code>deleteSandbox</code></td>
+<td><code>sandboxId</code></td>
+<td><code>sandboxId</code>, <code>desiredState</code>, <code>phase</code>, <code>generation</code>. Repeating a request changes nothing, except that a resume of an idle-paused sandbox (phase <code>paused</code> or <code>pausing</code>, desired state still <code>running</code>) is a change. A deleted sandbox cannot be paused or resumed (conflict). <code>deleteSandbox</code> frees the sandbox's place against the type's limits; the workspace is removed.</td>
+</tr>
+<tr>
+<td><code>runCommand</code></td>
+<td><code>sandboxId</code>, <code>script</code>, <code>env?</code>, <code>timeoutSeconds?</code>, <code>idempotencyKey</code></td>
+<td><code>commandId</code>, <code>state</code>, <code>created</code>. Refused unless the sandbox's desired state is <code>running</code>. The same key in the same sandbox returns the same command. Commands of one sandbox run one at a time, in the order queued.</td>
+</tr>
+<tr>
+<td><code>getCommand</code></td>
+<td><code>commandId</code></td>
+<td><code>commandId</code>, <code>sandboxId</code>, <code>state</code> (<code>queued</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code>, <code>timed_out</code>, <code>cancelled</code>), <code>exitCode</code>, <code>outputTail</code> (64 KiB at most), <code>logPath</code> (in the workspace), <code>timeoutSeconds</code>, <code>cancelRequested</code>, <code>createdAt</code>, <code>startedAt</code>, <code>finishedAt</code>.</td>
+</tr>
+<tr>
+<td><code>putFiles</code></td>
+<td><code>sandboxId</code>, <code>files[] {path, content, mode?}</code></td>
+<td><code>sandboxId</code>, <code>files[] {fileId, path, state}</code>. The files are queued; the operator writes them.</td>
+</tr>
+</tbody>
+</table>
+<p>Payload limits (the manifest schema and the manager both enforce them):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>idempotencyKey</code></td>
+<td>1 to 128 characters of letters, digits and <code>. _ : / @ = -</code>, starting with a letter or digit.</td>
+</tr>
+<tr>
+<td><code>ttlSeconds</code></td>
+<td>Positive, at most the type's <code>maxTTLSeconds</code>; 0 or absent means the type's <code>defaultTTLSeconds</code>.</td>
+</tr>
+<tr>
+<td><code>zone</code></td>
+<td>An availability zone such as <code>us-west-2b</code>.</td>
+</tr>
+<tr>
+<td><code>git.projectPath</code></td>
+<td>A GitLab project path: at least two segments of letters, digits, <code>_</code>, <code>-</code>, <code>.</code>, each starting with a letter, digit or <code>_</code>, none ending in <code>.</code>, <code>.git</code> or <code>.atom</code>, no <code>..</code>; at most 255 characters.</td>
+</tr>
+<tr>
+<td><code>git.branch</code></td>
+<td>Valid by the rules of <code>git check-ref-format --branch</code> (no control characters, space or <code>~ ^ : ? * [ \</code>, no leading <code>-</code> or <code>/</code>, no <code>//</code>, <code>..</code>, <code>@{</code>, trailing <code>.</code>, component starting with <code>.</code> or ending in <code>.lock</code>, not <code>@</code>); at most 255 characters.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>At most 16; key 1 to 63 characters (letters, digits, <code>. _ / -</code>), value at most 128 printable characters.</td>
+</tr>
+<tr>
+<td><code>script</code></td>
+<td>At most 64 KiB, UTF-8 text without NUL.</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td>At most 64 entries, name <code>[A-Za-z_][A-Za-z0-9_]*</code> of at most 128 characters, value at most 4096 bytes, 32 KiB in total, names starting <code>SANDBOX_</code> reserved. Non-secret only: it is stored with the command and readable with it.</td>
+</tr>
+<tr>
+<td><code>timeoutSeconds</code></td>
+<td>1 to 86400; default 3600.</td>
+</tr>
+<tr>
+<td><code>putFiles</code></td>
+<td>1 to 64 files, 256 KiB of content in total; <code>path</code> relative, clean, at most 1024 characters, inside the workspace and not under <code>.sandbox/</code>, no duplicates; <code>mode</code> a string of octal permission bits from <code>0400</code> to <code>0777</code> (for example <code>"0644"</code>, the default), no setuid, setgid or sticky bit. Accepted for any sandbox that is not deleted, including a paused one; the files are written when the pod is running.</td>
+</tr>
+</tbody>
+</table>
+<p>Limits enforced by the manager before a row is written: the type's <code>limits.maxPerTenant</code> and <code>limits.maxPerRequester</code>
+(sandboxes of that type whose desired state is not <code>deleted</code>; counted and inserted under a per-tenant advisory lock), and
+<code>ttlSeconds</code> no greater than the type's maximum.</p>
+<p><code>putFiles</code> queues its files once per request. The manager's own key for a request is the workflow id, run id and activity
+id; it is stored in <code>file_1.request_key</code> with the file's <code>ordinal</code>, so when the manager retries the activity it finds the
+rows and queues nothing new. <code>putFiles</code> takes no caller key: a caller that repeats the request queues the files again.</p>
+<p><strong>Authorization.</strong> The type's catalog entry maps each allowed role to an OpenFGA relation on <code>tenant:&lt;t&gt;</code> (for
+<code>svcrole-dtcs-coder-1</code>, <code>active_svcrole_dtcs_coder_1</code>, which is the coder grant and an editor session). The caller passes
+when it holds any one of the relations, checked with <code>go/authz</code> against the read-only OpenFGA proxy, with the session of
+its token. The coder grant is conditional (<code>non_expired_grant</code>, for workload sessions), so every check carries
+<code>current_time</code> (UTC, RFC 3339, to the second); the same holds for the token broker. A check that cannot be answered is
+refused, never allowed. The manager reads the catalog (per type: <code>allowedRoles</code> with their relations, <code>limits</code>,
+<code>lifetime</code>) from a file rendered from the chart's <code>catalog</code> values and mounted at <code>/etc/sandbox-manager/catalog.json</code>; it
+cannot read <code>SandboxType</code> objects, so <strong>the catalog values and the <code>SandboxType</code> resources must be kept in step by hand</strong>.</p>
+<p><strong>Retired types.</strong> A sandbox whose type has left the catalog stays reachable by its requester for <code>getSandbox</code>,
+<code>getCommand</code>, <code>listSandboxes</code>, <code>pauseSandbox</code> and <code>deleteSandbox</code> (ownership is enough); <code>resumeSandbox</code>, <code>runCommand</code> and
+<code>putFiles</code> are refused.</p>
+<p>No capability cancels a command yet: <code>command_1.cancel_requested</code> exists, the manager may set it, and the operator
+honours it, but no capability sets it.</p>
+<h2 id="5-sandboxtype">5. <code>SandboxType</code><a class="headerlink" href="#5-sandboxtype" title="Permanent link">&para;</a></h2>
+<p>The CRD is in the operator chart (<code>crds/karkhana.budy_sandboxtypes.yaml</code>, short name <code>sbxtype</code>). The deployed instance is
+platform-crs <code>v1/stacks/de-v2-sandbox-type/claude-coder-1.yaml</code>:</p>
+<pre><code class="language-yaml">apiVersion: karkhana.budy/v1alpha1
+kind: SandboxType
+metadata:
+  name: claude-coder-1
+spec:
+  description: Claude Code for the dt-consulting-services coder
+  image: 745404749629.dkr.ecr.us-west-2.amazonaws.com/ob1-ecr-repo-v2/ob1_tf_aws_ecr_sandbox-shell-1_repo-1:claude-code-1-0.1.0
+  workspace: {path: /workspace, size: 20Gi, storageClassName: sandbox-gp3-1}
+  resources:
+    requests: {cpu: &quot;1&quot;, memory: 2Gi}
+    limits: {cpu: &quot;2&quot;, memory: 4Gi}
+  lifetime:
+    defaultTTLSeconds: 14400      # 4 hours
+    maxTTLSeconds: 28800          # 8 hours
+    idleTimeoutSeconds: 1800      # pause after 30 minutes without a running command
+    pausedRetentionSeconds: 604800  # delete a paused sandbox after 7 days
+  placement:
+    nodeSelector: {budy.io/nodepool: &quot;true&quot;, budy.io/compute-type: standard}
+    tolerations: [{key: budy.io/nodepool-required, operator: Exists, effect: NoSchedule}]
+  networkProfile: sandbox-coder-1
+  secrets:
+    - name: claude-oauth-token
+      secretRef: {name: claude-code-oauth-1, key: token}   # a Secret in the operator's namespace (VSO)
+      env: CLAUDE_CODE_OAUTH_TOKEN
+  identity:
+    kind: sandbox-1
+    roles: [svcrole-dtcs-coder-1]
+    audiences: [&quot;urn:budy:nexus:ob1-nexus-gitjib-cluster-1-endpoint-1:GitjibBrokerV1&quot;]
+  allowedRoles: [svcrole-dtcs-coder-1]
+  limits: {maxPerTenant: 10, maxPerRequester: 10}
+</code></pre>
+<p>Schema notes: a <code>secrets</code> entry sets exactly one of <code>env</code> (an environment variable) or <code>file</code> (an absolute path, mounted
+read-only, mode 0400); at most 16 entries. <code>networkProfile</code> matches <code>sandbox-&lt;name&gt;-&lt;n&gt;</code>. <code>requests</code> for cpu and memory
+are required, because usage is metered from them.</p>
+<p>The TTL bounds a sandbox's total running time; time spent paused does not count, and a paused sandbox is removed after
+<code>pausedRetentionSeconds</code>. The idle timeout is measured from the later of the last command and the start of the run, and a
+sandbox with a queued or running command is never idle. Every field is validated by the CRD schema, and the operator's
+<code>SandboxType</code> controller sets a <code>Validated</code> condition for the spec's generation after the checks a schema cannot make:
+requests positive and not above limits, a positive workspace size, default TTL not above the maximum, unique secret names,
+environment names and files, no <code>SANDBOX_</code> environment name, no file under <code>/run/budy</code>, <code>/tmp</code>, <code>/var/run/secrets/budy</code> or
+the workspace, <code>maxPerRequester</code> not above <code>maxPerTenant</code>. The operator refuses to start a sandbox of a type that is
+missing or not validated (phase <code>failed</code>, reason <code>sandbox type</code>); pause and delete still work. Types are deployed from
+platform-crs.</p>
+<h2 id="6-what-the-operator-creates">6. What the operator creates<a class="headerlink" href="#6-what-the-operator-creates" title="Permanent link">&para;</a></h2>
+<p>All in the tenant namespace, all named from the sandbox id (<code>sbx-</code> and 20 lower-case base32 characters, <code>[a-z2-7]</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Name</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ServiceAccount</td>
+<td><code>&lt;id&gt;-sa-1</code></td>
+<td><code>automountServiceAccountToken: false</code>. The pod mounts one projected token, audience <code>auth.budy.internal</code>, at <code>/var/run/secrets/budy/sts/token</code> (lifetime <code>sts.sandboxTokenExpirationSeconds</code>, 3600 by default, at least 600).</td>
+</tr>
+<tr>
+<td>PersistentVolumeClaim</td>
+<td><code>&lt;id&gt;-pvc-1</code></td>
+<td>ReadWriteOnce; size and class from the type. Kept across pauses, deleted with the sandbox.</td>
+</tr>
+<tr>
+<td>Secret</td>
+<td><code>&lt;id&gt;-secret-1</code></td>
+<td>Created only when the type has <code>secrets</code>: a copy of the values they name, keyed by the entry name. Deleted on pause and on delete.</td>
+</tr>
+<tr>
+<td>Pod</td>
+<td><code>&lt;id&gt;-pod-1</code></td>
+<td>One container <code>sandbox</code>, the type's image, command <code>sandbox-runner-1 init</code>. uid and gid 1000 (<code>fsGroup</code> 1000), non-root, no privilege escalation, all capabilities dropped, read-only root, seccomp <code>RuntimeDefault</code>, restart policy <code>Always</code>, termination grace 30 s, no service links. Volumes: the workspace at the type's path, <code>emptyDir</code> <code>/run/budy</code> (64 Mi) and <code>/tmp</code> (1 Gi), the projected token. Ready when <code>sandbox-runner-1 ready</code> answers. Node selector and tolerations from the type; a required node affinity for the recorded zone (or the requested one) when there is one.</td>
+</tr>
+</tbody>
+</table>
+<p>Environment of the container: <code>SANDBOX_ID</code>, <code>SANDBOX_TENANT</code>, <code>SANDBOX_TYPE</code>, <code>SANDBOX_WORKSPACE</code>; when the operator has an
+STS URL, <code>SANDBOX_STS_URL</code>, <code>SANDBOX_STS_AUDIENCES</code> (the type's identity audiences, as JSON), <code>SANDBOX_STS_SESSION</code>
+(<code>editor</code>) and <code>SANDBOX_K8S_TOKEN_FILE</code>; when the request has a <code>git</code> source and the operator has a git URL,
+<code>SANDBOX_GIT_URL</code>, <code>SANDBOX_GIT_PROJECT</code>, <code>SANDBOX_GIT_BRANCH</code> and <code>SANDBOX_GIT_AUDIENCE</code> (the operator's <code>git.audience</code>,
+else the type's first audience); then the type's secrets.</p>
+<p>Labels on every object: <code>app.kubernetes.io/managed-by: sandbox-operator-1</code>, <code>karkhana.budy/sandbox-id</code>,
+<code>karkhana.budy/sandbox-type</code>. The pod also carries <code>budybot.io/netpol: &lt;networkProfile&gt;</code> and
+<code>budy.io/user-org-short-name: &lt;tenant&gt;</code> (the tenant namespace denies egress to pods without it).</p>
+<h3 id="operator-behaviour">Operator behaviour<a class="headerlink" href="#operator-behaviour" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ownership.</strong> When a create finds the object already there, the operator adopts it only if it carries all three labels
+  (managed-by, sandbox id, sandbox type). Otherwise the sandbox fails with reason <code>name conflict</code>, the object is left
+  untouched, and the periodic resync looks again (no backoff). The Secret is written with a JSON patch whose <code>test</code>
+  operations require the labels, so the API server checks ownership atomically; the operator never reads Secrets in tenant
+  namespaces. Teardown and the sweep never delete an object without the labels, and a Secret delete carries the UID
+  recorded when it was created.</li>
+<li><strong>Phase changes.</strong> A phase change and its <code>event_1</code> row are written in one transaction. A failed step records phase
+  <code>failed</code> with the reason in <code>last_error</code> and is retried with the controller's backoff; the move out of <code>failed</code> happens
+  when a step succeeds.</li>
+<li><strong>Runs.</strong> A run opens when the pod is ready (start time: the pod's Ready transition) and closes when the pod stops. The
+  measured totals stay in memory until the close has succeeded, so a failed close finds them on the retry. The meterer
+  updates the cumulative totals of open runs only. Measured usage of a run is counted only while the run is open: it
+  starts from zero when the run opens and is re-attached to the open run after an operator restart.</li>
+<li><strong>Provision timeout.</strong> A pod not ready 10 minutes after creation is deleted and the sandbox fails (<code>pod not ready</code>, with
+  the scheduling or container reason).</li>
+<li><strong>Concurrency.</strong> One active replica (leader election by a Lease); four sandboxes reconciled in parallel.</li>
+</ul>
+<h3 id="operator-permissions">Operator permissions<a class="headerlink" href="#operator-permissions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A ClusterRole with: pods (create, delete, get, list, watch), <code>pods/exec</code> (create), persistentvolumeclaims and
+  serviceaccounts (create, delete, get, list, watch), secrets (create, patch, delete only: no read outside its own
+  namespace), <code>sandboxtypes</code> (get, list, watch) and <code>sandboxtypes/status</code> (get, update, patch), <code>userorgs</code> (get, list,
+  watch), namespaces and nodes (get, list, watch), persistentvolumes (get, to read the CSI volume handle), and
+  <code>metrics.k8s.io</code> pods (get, list).</li>
+<li>A <code>ValidatingAdmissionPolicy</code> <code>sandbox-operator-1-fence</code>, matched to the operator's ServiceAccount: create, update and
+  delete of pods, persistentvolumeclaims, serviceaccounts and secrets are admitted only in a namespace labelled
+  <code>platform.budy.ob1.ai/managed-by: user-org</code> and only on an object labelled <code>app.kubernetes.io/managed-by:
+  sandbox-operator-1</code> (an update also needs the label on the stored object). <code>pods/exec</code> is a CONNECT request whose object is
+  the exec options, not the pod, so the pod's labels cannot be checked: it is admitted only in such a namespace and only for
+  a pod named <code>&lt;sandbox id&gt;-pod-1</code>.</li>
+<li>A Role in its own namespace: Secrets (get, list, watch: the ones the types name), its leader-election Lease, and Events.</li>
+</ul>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h3>
+<p>The caller's command is a row. The operator starts it in the pod through <code>sandbox-runner-1 exec</code> (a short <code>pods/exec</code>, 30 s
+at most, SPDY transport by default), which runs it detached and writes its output and exit code under
+<code>&lt;workspace&gt;/.sandbox/commands/&lt;commandId&gt;/</code>. The operator polls with <code>sandbox-runner-1 status</code> and copies the state, the
+exit code and the output tail to the row; a command that ends by itself records a <code>command</code> event. A command therefore
+survives an operator restart, and a long run holds no stream open. Commands run in <code>seq</code> order, one at a time. A command
+the runner does not know after a pod replacement ends <code>failed</code>; one the pod restart interrupted carries a note. When a
+sandbox is deleted, queued commands end <code>cancelled</code> and a running one <code>failed</code>. Files from <code>putFiles</code> are written with
+<code>sandbox-runner-1 put</code> while the pod is running, and their content is removed from the database once written or failed.</p>
+<h2 id="7-lifecycle">7. Lifecycle<a class="headerlink" href="#7-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Desired state (<code>sandbox_1.desired_state</code>): <code>running</code>, <code>paused</code>, <code>deleted</code>.
+Observed phase (<code>sandbox_status_1.phase</code>):</p>
+<pre><code class="language-text">pending → provisioning → running ⇄ pausing → paused ⇄ resuming → running
+   any ── desired deleted, TTL reached or paused retention reached ──▶ deleting → deleted
+   failed: a step could not complete; the reason is in last_error and the operator retries with backoff
+</code></pre>
+<ul>
+<li><strong>Provisioning:</strong> resolve and verify the namespace, check the type, create the workload session (section 8) and wait
+  until it is active, create ServiceAccount, PVC and Secret, then the pod. If the request names a zone the pod is required
+  there; otherwise the scheduler chooses. When the pod is scheduled the operator records region and zone from the node and
+  never changes them. When the pod is ready the run opens, <code>expires_at</code> is set to the run's start plus the remaining running
+  budget, and the phase is <code>running</code>. Without an identity service URL the sandbox starts without an identity and without
+  STS environment, and an <code>identity</code> event says so.</li>
+<li><strong>Pause:</strong> by request (<code>desired_state</code> <code>paused</code>), or by the operator when no command has run for <code>idleTimeoutSeconds</code>
+  (the desired state stays <code>running</code>; <code>observed_generation</code> is held at the generation seen when the pause began). The pod and
+  the Secret are deleted, the run closes (stop reason <code>paused</code> or <code>idle</code>) and the identity is released. The volume stays.</li>
+<li><strong>Resume:</strong> the same steps as provisioning with the existing volume and a node affinity for the recorded zone. An
+  idle-paused sandbox resumes when the manager writes a newer generation (<code>resumeSandbox</code>) or a command is queued. A pod
+  that cannot be scheduled in the zone is not moved: after the provision timeout the sandbox is <code>failed</code>.</li>
+<li><strong>Interruption:</strong> a pod lost to a node (spot reclaim, drain) is recreated in the recorded zone; the run that ended is
+  closed (<code>interrupted</code>), an <code>error</code> event <code>pod lost</code> is written, the phase goes back to <code>provisioning</code> and a new run opens.
+  A pod that ended <code>Failed</code> or <code>Succeeded</code> (evicted, finished) is deleted and recreated.</li>
+<li><strong>Expiry:</strong> the running budget (<code>ttl_seconds</code>, the closed runs plus the open one) is used up: the sandbox is deleted (stop
+  reason <code>expired</code>). A paused sandbox is deleted <code>pausedRetentionSeconds</code> after <code>paused_at</code> (stop reason <code>deleted</code>).</li>
+<li><strong>Delete:</strong> the pod is removed, the run closed, the commands finished (queued ones cancelled, a running one failed), the
+  identity released, then the Secret, ServiceAccount and PVC are removed; the row is kept for the record and its usage stays.</li>
+<li><strong>Cleanup:</strong> every object and every volume the operator creates, and the workload session, is a row in <code>resource_1</code>. A
+  sweep every 10 minutes compares the rows with the labelled pods, volumes and ServiceAccounts in the cluster, both ways:
+  labelled objects of a deleted or unknown sandbox older than 10 minutes are deleted; a row whose object is gone is
+  released; the Secret of a deleted or paused sandbox is deleted by its row (Secrets cannot be listed); and an object
+  carrying the label but no row is reported once as a <code>cleanup</code> event. Objects without the sandbox-id label are never
+  touched.</li>
+</ul>
+<p>The operator learns of changes by <code>LISTEN</code> on the channel <code>sandbox_1</code> (a trigger notifies with the sandbox id on every
+insert or update of <code>sandbox_1</code>, every insert of <code>command_1</code> or update of its <code>cancel_requested</code>, and every insert of
+<code>file_1</code>), by watches on the pods and volumes it labels, and by a full resync of every sandbox that is not <code>deleted</code>, every
+60 seconds and after every reconnect of the listener, which is also how it recovers after a restart. Each sandbox row has
+a <code>generation</code> the manager increments and the operator echoes as <code>observed_generation</code>.</p>
+<h2 id="8-identity">8. Identity<a class="headerlink" href="#8-identity" title="Permanent link">&para;</a></h2>
+<p>A sandbox acts as itself, not as its requester and not with a token handed to it.</p>
+<ol>
+<li>On start the operator asks authz-manager-1 (<code>POST /v1/workload-sessions</code>, authenticated with the operator's projected
+   ServiceAccount token whose audience is <code>authz-manager-1</code>, <code>identity.tokenAudience</code>) for a <strong>workload session</strong> of kind
+   <code>sandbox-1</code>: the tenant, the namespace, the ServiceAccount, the requester, the roles the type lists, the <code>glassboxId</code>,
+   an expiry and the sandbox id as the reference. The expiry is the remaining running budget plus 5 minutes of grace. It
+   polls <code>GET /v1/workload-sessions/{id}</code> until the state is <code>active</code>.</li>
+<li>authz-manager-1 creates a user of the <code>workload-session</code> UserType homed in that tenant whose only identity is that
+   ServiceAccount, and grants it the roles with that expiry (a conditional grant, <code>non_expired_grant</code>, so OpenFGA ends it by
+   itself). A role is granted only if the kind's configuration allows it and the requester holds it on the tenant now and
+   until the expiry; the namespace must be the tenant's; the ServiceAccount must be bound to no other user. The user has no
+   access to any other tenant. A session whose requester later loses a role, or whose tenant is retired, is ended by the
+   maintenance task.</li>
+<li>In the pod, <code>sandbox-runner-1</code> exchanges the projected Kubernetes token (audience <code>auth.budy.internal</code>) at the STS
+   (<code>POST /v2/oauth2/token</code>, token exchange, tenant scope, session <code>editor</code>) for STS tokens for the audiences the type
+   lists, writes them under <code>/run/budy/tokens/</code> (an <code>index.json</code> maps each audience to its file) and renews them at two
+   thirds of their lifetime, with exponential backoff from 1 s to 60 s on failure. Tools read them from there. The runner's
+   git credential helper hands the token of <code>SANDBOX_GIT_AUDIENCE</code> to git for the host of <code>SANDBOX_GIT_URL</code>; once a GitLab
+   proxy exists, GitLab access uses that STS token through gitjib's token broker and no GitLab credential reaches the
+   sandbox. That path is not deployed yet (Status).</li>
+<li>On pause and on delete the operator releases the session (a resume creates a new one for the same reference). If the
+   operator is down, the expiry ends it.</li>
+</ol>
+<p>The workload session is a general authz-manager-1 capability: <code>sandbox-1</code> is one entry of its configuration
+(<code>config.workloadSessionKinds</code>: the callers that may create, read and release, the roles a session may carry, its maximum
+lifetime from creation, and the namespaces). The entry for <code>sandbox-1</code> is: caller the operator's ServiceAccount
+(<code>system:serviceaccount:ob1-tf-eks-de-v2-sandbox-1-ns-1:sandbox-operator-1</code>), roles <code>[svcrole-dtcs-coder-1]</code>,
+<code>maxLifetime: 8h5m</code> (the type's maximum TTL of 8 hours plus the operator's 5-minute grace), namespaces <code>["$tenant"]</code>. It is
+written in de-v2 #2414 (open), for dev only. authz-manager-1 refuses a <code>workload-session</code> UserType that has creators or is
+tenant-managed. A create for a kind and reference whose earlier session is past its expiry but not yet swept ends that
+session and creates the replacement. The operator's service user <code>sandbox-operator-1</code> holds the <code>requester</code> relation on the
+create and release operations (authz-config <code>bundles/authz-manager-policy.yaml</code>).</p>
+<h2 id="9-billing-entity-and-usage">9. Billing entity and usage<a class="headerlink" href="#9-billing-entity-and-usage" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>glassboxId</code> is a standard STS claim: the entity that pays for what a session does. It is a digital teammate of the
+  tenant (the default for a teammate's own session) or the tenant itself. A service acting in a tenant names it when it
+  exchanges, and the STS checks that it belongs to the tenant. For a workload session it is fixed: authz-manager-1 records
+  it as a <code>glassbox</code> tuple on the session's user (the tenant, or a digital teammate of it that is neither admin nor owner)
+  and the STS stamps that value on every session it mints for that user. An OpenFGA model without <code>user#glassbox</code> (OpenFGA
+  <code>relation_not_found</code>) means "no fixed billing entity" and the default applies; any other OpenFGA error fails closed.</li>
+<li>The manager stores the caller's <code>glassboxId</code> on the sandbox, or the tenant when the token carries none; the workload
+  session carries it, so the sandbox's own sessions are stamped with it too. gitjib's token broker uses the claim to pick the
+  teammate: it is matched against a DigitalTeammate's <code>spec.name</code> (the generated teammate id), and the tenant id leaves the
+  teammate to the request.</li>
+<li>The operator writes <code>usage_1</code> rows with service <code>karkhana-cluster-1</code>, resource reference <code>sandbox/&lt;id&gt;</code> and attributes
+  <code>type</code>, <code>zone</code> and <code>region</code>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Meter</th>
+<th>Unit</th>
+<th>Written for a window when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox.cpu-request-seconds</code></td>
+<td><code>seconds</code></td>
+<td>a pod held its CPU request: the request in cores times the seconds a run overlapped the window</td>
+</tr>
+<tr>
+<td><code>sandbox.memory-request-gib-seconds</code></td>
+<td><code>gib-seconds</code></td>
+<td>the same, for the memory request in GiB</td>
+</tr>
+<tr>
+<td><code>sandbox.storage-gib-seconds</code></td>
+<td><code>gib-seconds</code></td>
+<td>the volume existed, also while the sandbox is paused (from the volume's <code>resource_1</code> row)</td>
+</tr>
+<tr>
+<td><code>sandbox.cpu-used-seconds</code>, <code>sandbox.memory-used-gib-seconds</code></td>
+<td><code>seconds</code>, <code>gib-seconds</code></td>
+<td><code>metrics.k8s.io</code> answered and a sample fell in the window</td>
+</tr>
+</tbody>
+</table>
+<p>Windows are five minutes, aligned to the clock (:00, :05, ...) in UTC, and a window is written once it has closed, at the
+  next check (the operator checks every 30 seconds, <code>usage.interval</code>, which is also the metrics sampling interval). The
+  idempotency key is <code>sandbox/&lt;id&gt;/&lt;meter&gt;/&lt;window start, RFC 3339 UTC&gt;</code>; an existing key is skipped. At start the operator
+  writes the windows closed while it was down, up to 288 windows per sandbox per pass, and it keeps writing for a sandbox for
+  2 hours after its last run or volume. Used meters are sampled in memory, so a restart loses the measured usage of the
+  windows still open; the request and storage meters are recomputed from <code>run_1</code> and <code>resource_1</code>. <code>run_1</code> holds one row per
+  run (from a pod start to its stop) with the same totals, refreshed while the run is open.
+- Glassbox reads <code>usage_1</code> with the schema's read-only role. Rating and enforcement are Glassbox's.</p>
+<h2 id="10-data-database-ob1-karkhana-db-1-schema-sandbox">10. Data (database <code>ob1-karkhana-db-1</code>, schema <code>sandbox</code>)<a class="headerlink" href="#10-data-database-ob1-karkhana-db-1-schema-sandbox" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Writer</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox_1</code></td>
+<td>manager</td>
+<td>id, tenant, requester, glassbox_id, type, idempotency_key (unique per tenant), desired_state, ttl_seconds, requested_zone, git, labels, generation, created_at, updated_at</td>
+</tr>
+<tr>
+<td><code>sandbox_status_1</code></td>
+<td>operator</td>
+<td>sandbox_id, phase, observed_generation, namespace, region, zone, pod, service_account, workload_session_id, running_seconds (the closed runs), expires_at, paused_at, last_command_at, last_error, updated_at</td>
+</tr>
+<tr>
+<td><code>command_1</code></td>
+<td>manager inserts and sets <code>cancel_requested</code>; operator completes</td>
+<td>id, seq, sandbox_id, script, env, timeout_seconds, idempotency_key (unique per sandbox), state, cancel_requested, exit_code, output_tail, log_path, created_at, started_at, finished_at. The operator writes state, exit_code, output_tail, log_path, started_at and finished_at.</td>
+</tr>
+<tr>
+<td><code>file_1</code></td>
+<td>manager inserts, operator completes</td>
+<td>id, seq, sandbox_id, request_key and ordinal (the manager's own identity for one <code>putFiles</code> execution, derived from its workflow run and step, and the file's place in it; unique per sandbox when the key is set), path, mode, content (removed once the operator has finished the file), state, error, created_at, written_at</td>
+</tr>
+<tr>
+<td><code>run_1</code></td>
+<td>operator</td>
+<td>id, sandbox_id, started_at, stopped_at, stop_reason (<code>paused</code>, <code>idle</code>, <code>expired</code>, <code>deleted</code>, <code>interrupted</code>, <code>failed</code>), node, zone, cpu_request_millis, memory_request_bytes, storage_bytes, and the cumulative meters cpu_request_seconds, memory_request_gib_seconds, cpu_used_seconds, memory_used_gib_seconds (the last two null without metrics)</td>
+</tr>
+<tr>
+<td><code>usage_1</code></td>
+<td>operator</td>
+<td>the standard usage record</td>
+</tr>
+<tr>
+<td><code>resource_1</code></td>
+<td>operator</td>
+<td>id, sandbox_id, kind (<code>Pod</code>, <code>PersistentVolumeClaim</code>, <code>ServiceAccount</code>, <code>Secret</code>, <code>WorkloadSession</code>), namespace, name, uid, external_id (the EBS volume), region, zone, size_bytes, state (<code>active</code>, <code>released</code>), created_at, released_at</td>
+</tr>
+<tr>
+<td><code>event_1</code></td>
+<td>operator</td>
+<td>id, sandbox_id, at, kind (<code>phase</code>, <code>error</code>, <code>cleanup</code>, <code>identity</code>, <code>command</code>), from_phase, to_phase, reason, detail</td>
+</tr>
+</tbody>
+</table>
+<p>Roles: <code>sandbox-manager-1</code> uses <code>ob1-karkhana-db-1-sandbox-rw-role</code>; the operator uses
+<code>ob1-karkhana-db-1-sandbox-operator-rw-role</code>; readers use <code>ob1-karkhana-db-1-sandbox-ro-role</code>. These are
+per-schema roles, not the database's three standard roles: the platform's database grants job creates them and the schema
+(the database's entry in <code>standard-db-custom-grants-1</code>, argocd-eks-stack) and gives Vault the right to issue credentials in
+them, and each workload's Vault catalog entry names its role. The migration (<code>00001_init.sql</code>) runs as the admin role,
+creates no role, and fails if the manager or operator role is missing. It then revokes everything from the manager and
+operator roles on the eight tables and grants exactly:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Grants</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manager</td>
+<td>SELECT on all eight tables; INSERT and UPDATE on <code>sandbox_1</code>; INSERT on <code>command_1</code> and UPDATE of <code>cancel_requested</code>; INSERT on <code>file_1</code>; the sequences of <code>command_1</code> and <code>file_1</code></td>
+</tr>
+<tr>
+<td>operator</td>
+<td>SELECT on all eight tables; INSERT and UPDATE on <code>sandbox_status_1</code>, <code>run_1</code>, <code>resource_1</code>, <code>event_1</code>; UPDATE of <code>state</code>, <code>exit_code</code>, <code>output_tail</code>, <code>log_path</code>, <code>started_at</code>, <code>finished_at</code> on <code>command_1</code>; UPDATE of <code>content</code>, <code>state</code>, <code>error</code>, <code>written_at</code> on <code>file_1</code>; INSERT on <code>usage_1</code>; the sequence of <code>event_1</code></td>
+</tr>
+<tr>
+<td>read-only</td>
+<td>SELECT (default privileges)</td>
+</tr>
+</tbody>
+</table>
+<p>No role can DELETE. The trigger function <code>sandbox.notify_sandbox_1</code> sends the sandbox id on the channel <code>sandbox_1</code>.</p>
+<h2 id="11-network">11. Network<a class="headerlink" href="#11-network" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Destinations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sandbox-coder-1</code></td>
+<td>DNS; the STS (sts-service, over HBONE); the npm proxy (npm-proxy-1, over HBONE); <code>api.anthropic.com</code> and <code>platform.claude.com</code> on 443. Nothing else, and no ingress. It denies the kube-apiserver, the node and other nodes, and the instance metadata address. There is no rule for GitLab yet: no GitLab proxy exists (Status).</td>
+</tr>
+</tbody>
+</table>
+<p>A profile is a <code>CiliumClusterwideNetworkPolicy</code> in k8s-security (<code>egress-tenant-sandbox-coder-1-allow-required</code>, under
+<code>v1/objects/rbac/cluster/manifests/tenant-sandbox-netpol/</code>) that selects the label in namespaces managed by a UserOrg.
+Tenant namespaces are Istio ambient, so a call to an in-mesh service leaves the pod as HBONE and the destination's own
+policy limits tenant callers to one port. The label value <code>sandbox-coder-1</code> is reserved by an OPA constraint to pods
+labelled <code>app.kubernetes.io/managed-by: sandbox-operator-1</code>. Ingress to a sandbox is denied by the namespace; the operator
+reaches it with <code>pods/exec</code>, which does not use the pod network.</p>
+<p>The operator's own policy allows the kube-apiserver, Postgres (CNPG in dev and stage, RDS in prod) and the
+authz-manager-1 API; the manager's allows Temporal, the read-only OpenFGA proxy and Postgres.</p>
+<h2 id="12-how-dt-consulting-services-is-meant-to-use-it">12. How dt-consulting-services is meant to use it<a class="headerlink" href="#12-how-dt-consulting-services-is-meant-to-use-it" title="Permanent link">&para;</a></h2>
+<p>Planned: <code>delivery-lead-1</code> (phase 2 of dt-consulting-services-1; not built) would run as the coder service user and
+exchange into the engagement's tenant, naming the requesting teammate as <code>glassboxId</code>. Then:</p>
+<ol>
+<li><code>requestSandbox {type: claude-coder-1, idempotencyKey: &lt;engagement id&gt;, git: {projectPath, branch}}</code>.</li>
+<li><code>getSandbox</code> until <code>running</code>.</li>
+<li><code>putFiles</code> with the PRD and the HLD.</li>
+<li><code>runCommand</code> with the Claude Code invocation; <code>getCommand</code> until it ends; repeat for each round of the compile and CI
+   loop.</li>
+<li><code>pauseSandbox</code> while a review is pending, <code>resumeSandbox</code> to continue, <code>deleteSandbox</code> when the engagement closes.</li>
+</ol>
+<p>The <code>git</code> source needs the GitLab path in Status; until then, put the files with <code>putFiles</code>.</p>
+<h2 id="13-not-in-this-design">13. Not in this design<a class="headerlink" href="#13-not-in-this-design" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Archiving a paused workspace to a snapshot (the cluster has no snapshot controller).</li>
+<li>Sandbox types other than <code>claude-coder-1</code>.</li>
+<li>Callers other than the coder service role.</li>
+<li>Cancelling a command through a capability.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

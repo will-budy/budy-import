@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add App to Platform UI"
+  short_description: "Put an internal UI behind the platform portal"
+  default_prompt: "Use $add-app-to-platform-ui to add an internal web UI or Nexus service to the platform portal."

@@ -1,0 +1,10 @@
+{
+  "name": "Budy",
+  "short_name": "Budy",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    { "src": "/budy-icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/budy-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

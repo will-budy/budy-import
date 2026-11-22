@@ -1,0 +1,3476 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="application-cicd-standard.html">
+      
+      
+        <link rel="next" href="network-policy-and-mtls.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Component Authorization Module Standard - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#component-authorization-module-standard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Component Authorization Module Standard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="authorization-module-standard.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-exists-today-verified-in-the-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What exists today (verified in the repositories)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-identity-rule-no-token-in-the-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Identity rule: no token in the module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-module-goauthz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The module (go/authz)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-where-checks-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Where checks run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Where checks run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gateway-coarse-declared-in-the-capability-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Gateway (coarse), declared in the capability manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-component-activity-fine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Component activity (fine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-models-in-the-component-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Models in the component repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Models in the component repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-rules-for-modules-in-a-shared-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Rules for modules in a shared store
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-how-a-model-reaches-the-store-proposed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 How a model reaches the store (proposed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-one-reference-for-code-manifest-and-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 One reference for code, manifest and tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-temporal-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Temporal rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Packaging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-unverified-or-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Unverified or open
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-what-has-to-be-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. What has to be built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-conditional-grants-pass-current_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Conditional grants: pass current_time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-workload-sessions-and-the-glassboxid-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Workload sessions and the glassboxId claim
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Workload sessions and the glassboxId claim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-workload-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Workload sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-the-glassboxid-sts-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 The glassboxId STS claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ref/usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Decisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-exists-today-verified-in-the-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What exists today (verified in the repositories)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-identity-rule-no-token-in-the-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Identity rule: no token in the module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-module-goauthz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The module (go/authz)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-where-checks-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Where checks run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Where checks run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gateway-coarse-declared-in-the-capability-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Gateway (coarse), declared in the capability manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-component-activity-fine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Component activity (fine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-models-in-the-component-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Models in the component repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Models in the component repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-rules-for-modules-in-a-shared-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Rules for modules in a shared store
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-how-a-model-reaches-the-store-proposed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 How a model reaches the store (proposed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-one-reference-for-code-manifest-and-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 One reference for code, manifest and tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Network
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-temporal-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Temporal rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Packaging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-unverified-or-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Unverified or open
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-what-has-to-be-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. What has to be built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-conditional-grants-pass-current_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Conditional grants: pass current_time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-workload-sessions-and-the-glassboxid-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Workload sessions and the glassboxId claim
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Workload sessions and the glassboxId claim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-workload-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Workload sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-the-glassboxid-sts-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 The glassboxId STS claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="component-authorization-module-standard">Component Authorization Module Standard<a class="headerlink" href="#component-authorization-module-standard" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document</strong></td>
+<td>Component Authorization Module Standard</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>0.2</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Draft for research and review. New standard for new repositories; no compatibility with context-cluster or dt-manager is planned.</td>
+</tr>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Component engineers, platform engineers who approve authorization models, and k8s-security owners</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>One shared Go module that every component inserts to ask "may subject S have relation R on object O?" against its own OpenFGA model.</td>
+</tr>
+<tr>
+<td><strong>Last Updated</strong></td>
+<td>November 2026</td>
+</tr>
+</tbody>
+</table>
+<p>Authentication is already standard: an STS bearer token is verified at the gateway (<code>go/capability/gateway/stsauth</code>), and the tenant and user come only from that token. This document standardizes what happens next: <strong>authorization</strong>. It reflects the owner's decisions of October 2026 and the evidence listed in section 2.</p>
+<h2 id="1-decisions">1. Decisions<a class="headerlink" href="#1-decisions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>One shared Go module, <code>go/authz</code> in budy-common-modules. Any component, in any cluster, inserts it and tells it which relation to check on which object.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>No policy decision service.</strong> The module calls the existing read-only OpenFGA proxy (<code>openfga-1-readonly-proxy</code>) over HTTP. It does not use Nexus and does not call <code>sts-service</code>.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>No service identity and no token handling in the module.</strong> The proxy is unauthenticated by design; admission is by network policy. The subject comes from the identity the gateway already fixed (<code>ComponentRequest</code>), never from a payload.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>One shared store with one OpenFGA module per service</strong> (the current model of <code>auth-store-2</code>). The platform team approves model changes.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>The component's model lives in its own repository</strong> and is the single reference for the relations the component checks.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Authorization is strict.</strong> Every capability declares an <code>authorize:</code> block. There is no way to mark a capability public. The only operation without an authorization check is capability discovery (<code>DescribeCapabilities</code>), which still requires a valid token.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Checks run at the gateway (coarse, from the manifest) and in component activities (fine, per object). Both use this module.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>OpenFGA will be locked down, so the read-only proxy becomes the only access path for readers. Models are moving out of <code>argocd-eks-stack</code> into a shared models repository in a parallel workstream; this standard targets "the models repository" and does not depend on which one.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>OpenFGA module names end in <code>-1</code>, like every platform entity. The 12 existing modules are renamed (argocd-eks-stack PR 1365); nothing else references them.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Fail closed. A deny and an outage are different results, and neither is ever read as allow.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-what-exists-today-verified-in-the-repositories">2. What exists today (verified in the repositories)<a class="headerlink" href="#2-what-exists-today-verified-in-the-repositories" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>One store, modular model.</strong> <code>argocd-eks-stack</code>, <code>v2/apps/platform/authz/openfga-1/manifests/v2/models/fga.mod</code> (schema 1.2) lists 12 modules: <code>platform-roles</code>, <code>identity</code>, <code>tenant-roles</code>, <code>audience</code>, <code>conditions</code>, <code>context-cluster</code>, <code>infrastructure</code>, <code>credentials</code>, <code>service-access</code>, <code>connections</code>, <code>authz-manager</code>, <code>feature</code>. <code>stores/README.md</code> states there is <strong>one</strong> OpenFGA store, <code>auth-store-2</code>; the folders under <code>stores/</code> are tuple seeds, not stores.</li>
+<li><strong>A service model is a module that extends shared types.</strong> <code>context-cluster.fga</code> owns <code>context_scope</code> and <code>context_type</code> and extends <code>platform</code>, <code>tenant</code> and <code>audience</code> with its own relations. Object ids carry the scope, for example <code>context_scope:tenant/acme/meeting</code>.</li>
+<li><strong>Adding a module touches three hand-maintained lists:</strong> <code>fga.mod</code>, the <code>openfga-1-model-v2</code> ConfigMap generator in <code>v2/kustomization.yaml</code>, and the explicit <code>cp</code> list in <code>jobs/model-bootstrap.job.yaml</code>. The Job also folds every tuple seed into its digest; a changed digest writes a new model and moves the environment's model binding. <code>authz-config_gitops_repo-1</code> is currently a README only, so today the models are owned by <code>argocd-eks-stack</code>.</li>
+<li><strong>Read-only proxy.</strong> <code>openfga-1-readonly-proxy.yaml</code> is plain nginx. It forwards only <code>POST /stores/&lt;store&gt;/check</code>, <code>/list-objects</code> and <code>/list-users</code> for the one store (port 8080, used by <code>sts-service</code> and <code>sts-service-external</code>) and adds <code>/read</code> on port 8081 (<code>authz-provider</code>). Everything else, including writes, model reads and other stores, gets 403. OpenFGA itself runs with <code>authn.method: none</code>. Callers are admitted per listener by Cilium rules in <code>k8s-security</code> (<code>authz-1-ns-1/ingress/openfga-1-readonly-proxy.allow-*.yaml</code>, matching on namespace and the <code>budybot.io/netpol</code> pod label).</li>
+<li><strong>Tuples are written only by <code>authz-manager-1</code>.</strong> Components never write tuples.</li>
+<li><strong>The Go side.</strong> <code>ComponentRequest</code> carries <code>ScopeType</code>, <code>TenantID</code>, <code>User</code> and <code>SessionBoundary</code>, set by the gateway from the verified token. The manifest has no authorization field today (<code>go/capability/manifest.go</code>), and <code>dispatch.ExecuteWorkflow</code> has no authorization step.</li>
+</ul>
+<h2 id="3-identity-rule-no-token-in-the-module">3. Identity rule: no token in the module<a class="headerlink" href="#3-identity-rule-no-token-in-the-module" title="Permanent link">&para;</a></h2>
+<p>The module never sees or forwards a bearer token. The gateway has already verified it. The module builds the subject from the verified identity:</p>
+<ul>
+<li>Subject <code>user:&lt;User&gt;</code> from <code>ComponentRequest.User</code> (or <code>dispatch.Command.User</code> at the gateway).</li>
+<li>Tenant objects use <code>ComponentRequest.TenantID</code>, built with <code>authz.TenantObjectOf</code> (which refuses a <code>/</code> in the tenant or the id, so two pairs never name one object).</li>
+<li>The session fact is <code>ComponentRequest.SessionBoundary</code>, added to every check that reaches an <code>active_*</code> relation with <code>CheckRequest.WithSession(tenant, user, boundary)</code>. An empty boundary adds nothing and the check denies.</li>
+<li>A component that needs a non-user subject (for example <code>tenant:acme</code> against a service-access relation) passes it explicitly in code. It is never read from the request payload.</li>
+</ul>
+<p>Consequence, accepted by the owner: the proxy does not authenticate callers, so any pod the network policy admits can ask about any subject. Subject discipline is enforced by the module's API shape, code review and per-component admission, not by the infrastructure. <code>CallerToken</code> is not needed for authorization and must not be passed to authorization calls.</p>
+<h2 id="4-the-module-goauthz">4. The module (<code>go/authz</code>)<a class="headerlink" href="#4-the-module-goauthz" title="Permanent link">&para;</a></h2>
+<p>Signatures only. Names are a proposal.</p>
+<pre><code class="language-go">package authz
+
+type Subject string // &quot;user:u1&quot;, &quot;tenant:acme&quot;
+type Object string  // &quot;deployment_1:acme/d1&quot;; ObjectOf(type, id) validates both parts
+
+type Tuple struct{ Subject Subject; Relation string; Object Object }
+
+type CheckRequest struct {
+    Subject     Subject          // required: build with UserSubject(identity)
+    Relation    string
+    Object      Object
+    Contextual  []Tuple          // validated against the model, never persisted
+    Context     map[string]any   // OpenFGA condition context
+    Consistency Consistency      // Default | HigherConsistency
+}
+type Decision struct{ Allowed bool; ModelID string }
+
+type ListRequest struct {
+    Subject    Subject
+    Relation   string
+    ObjectType string
+    Contextual []Tuple
+    Context    map[string]any
+}
+type ListResult struct{ Objects []Object; Truncated bool }
+
+type Checker interface {
+    Check(ctx context.Context, r CheckRequest) (Decision, error)
+    BatchCheck(ctx context.Context, rs []CheckRequest) ([]Decision, error) // same length and order as the input
+    ListObjects(ctx context.Context, r ListRequest) (ListResult, error)
+}
+
+func UserSubject(userID string) (Subject, error) // from ComponentRequest.User; rejects an empty or malformed id
+func ObjectOf(typ, id string) (Object, error)
+func TenantObjectOf(typ, tenant, id string) (Object, error) // type:&lt;tenant&gt;/&lt;id&gt;; refuses '/' in tenant or id
+func SessionTuples(tenant, user, boundary string) ([]Tuple, error) // the contextual session_&lt;boundary&gt; fact; none for an empty boundary
+func (r CheckRequest) WithSession(tenant, user, boundary string) (CheckRequest, error) // replaces any session_* tuple the request carried
+func Require(ctx context.Context, c Checker, r CheckRequest) error // nil, *DeniedError or ErrUnavailable
+// package authztemporal:
+func ToTemporalError(err error) error // denied: non-retryable PERMISSION_DENIED; invalid: non-retryable INTERNAL; unavailable: retryable UNAVAILABLE
+
+var ErrUnavailable, ErrInvalid error
+
+type Config struct { BaseURL, StoreID, ModelID string; Timeout time.Duration; Cache CacheConfig; HTTPClient *http.Client }
+func New(cfg Config) (*Client, error)
+func ConfigFromEnv(getenv func(string) string) Config // AUTHZ_OPENFGA_URL, AUTHZ_STORE_ID, AUTHZ_MODEL_ID, AUTHZ_TIMEOUT
+</code></pre>
+<p>Behaviour that is part of the standard:</p>
+<ul>
+<li><strong>Fail closed.</strong> The zero <code>Decision</code> is a deny. Empty relation, subject or object is <code>ErrInvalid</code>. There is no bypass switch in production code; tests inject a different <code>Checker</code>.</li>
+<li><strong>Deny is not an error; outage is.</strong> <code>Check</code> returns <code>Decision{Allowed:false}, nil</code> for a deny, and <code>ErrUnavailable</code> for timeouts, 5xx, an unknown model or any malformed answer. No method returns allow together with an error.</li>
+<li><strong>Retries belong to Temporal.</strong> The module does not retry; default timeout 2s per call. Activity retry policy handles <code>ErrUnavailable</code>.</li>
+<li><strong>Cache: off by default.</strong> Opt-in in-process cache, TTL capped at 30s, keyed on everything that can change the answer: subject, relation, object, the contextual tuples, the condition <code>Context</code> and the consistency level (plus the model id, fixed per client). A check evaluated with a different <code>Context</code> (a <code>current_time</code> before and after a conditional grant expires) never shares an entry. A time-based condition can still expire inside the TTL, which is another reason the TTL is short. Duplicate identical calls in flight are collapsed; a cancelled caller never receives a cached or joined decision. Errors are never cached. Revocation lag equals the TTL, which is why it is off by default.</li>
+<li><strong><code>ListObjects</code> is a lower bound, never an exhaustive answer.</strong> OpenFGA stops a list at its result limit (default 1000) or its deadline and returns what it has, with no completion indicator. The module sets <code>Truncated</code> when the result reaches the limit, but a list cut short by the deadline looks complete, so <code>Truncated == false</code> does not prove completeness. A list can only miss objects the subject may access, never add one, so it is safe for showing a user their items; it must not be used to decide that an object is absent or that a decision is final. Decisions use <code>Check</code> or <code>BatchCheck</code> on candidate rows. Raising the server's limit and deadline is a platform setting.</li>
+<li><strong><code>Expand</code> is not part of v1.</strong> No service in the evidence needs it.</li>
+<li><strong>Model and store come from the environment's binding.</strong> The model id is the one the bootstrap Job publishes to the versioned binding ConfigMap (the same source <code>sts-service</code> reads: <code>OPENFGA_STORE_ID</code>, <code>OPENFGA_AUTHORIZATION_MODEL_ID</code>). The chart exposes them to components as env.</li>
+</ul>
+<h2 id="5-where-checks-run">5. Where checks run<a class="headerlink" href="#5-where-checks-run" title="Permanent link">&para;</a></h2>
+<h3 id="51-gateway-coarse-declared-in-the-capability-manifest">5.1 Gateway (coarse), declared in the capability manifest<a class="headerlink" href="#51-gateway-coarse-declared-in-the-capability-manifest" title="Permanent link">&para;</a></h3>
+<p>Every capability has an <code>authorize:</code> block. A manifest without one fails to load.</p>
+<pre><code class="language-yaml">capabilities:
+  getTransitionStatus:
+    description: Read the status of a worker transition.
+    authorize:
+      relation: can_view                 # must exist on the object's type in the component's model
+      object: &quot;deployment_1:{tenant}&quot;    # templates: {tenant}, {user}, {payload.&lt;field&gt;}
+    schema: { ... }
+</code></pre>
+<p>Rules:</p>
+<ul>
+<li><code>{payload.&lt;field&gt;}</code> may name only a top-level string field that the capability's schema marks <code>required</code>. This is checked when the manifest loads.</li>
+<li><code>{tenant}</code> against a platform-scope token (no tenant) is rejected.</li>
+<li>No <code>public</code> option, no expressions, one check per capability. Anything richer is a component-level check in code.</li>
+<li>The gateway runs the check in a new activity after <code>ValidateSchema</code> and before the child workflow starts, using the identity from the token. A deny returns <code>PERMISSION_DENIED</code>; an outage returns <code>UNAVAILABLE</code>.</li>
+<li><code>DescribeCapabilities</code> stays authentication-only. It reveals capability names and schemas, not tenant data.</li>
+</ul>
+<p><code>go/capability</code> stays free of a dependency on <code>go/authz</code>: <code>dispatch</code> defines a small <code>Authorizer</code> interface, as it does for <code>Authenticator</code>, and the gateway wires <code>authz.Client</code> into it.</p>
+<h3 id="52-component-activity-fine">5.2 Component activity (fine)<a class="headerlink" href="#52-component-activity-fine" title="Permanent link">&para;</a></h3>
+<p>Per-object decisions, ownership, negative checks and list filtering stay in component code. The check runs in the same activity that touches the data, immediately after the tenant assertion:</p>
+<pre><code class="language-go">func (a *Activities) GetTransitionStatus(ctx context.Context, req dispatch.ComponentRequest) (contract.TransitionStatus, error) {
+    if err := assertTenant(req); err != nil { return ..., err }
+    subject, _ := authz.UserSubject(identityOf(req))
+    object, _ := authz.TenantObjectOf(example.TransitionType, req.TenantID, in.TransitionID)
+    check, _ := authz.CheckRequest{Subject: subject, Relation: example.RelCanViewTransition, Object: object}.
+        WithSession(req.TenantID, req.User, req.SessionBoundary) // the token's live tier; empty means no tier
+    if err := authz.Require(ctx, a.Authz, check); err != nil { return ..., authz.ToTemporalError(err) }
+    ...
+}
+</code></pre>
+<h2 id="6-models-in-the-component-repository">6. Models in the component repository<a class="headerlink" href="#6-models-in-the-component-repository" title="Permanent link">&para;</a></h2>
+<h3 id="61-layout">6.1 Layout<a class="headerlink" href="#61-layout" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">components/&lt;component&gt;-1/authz/       # &lt;component&gt;-1: every platform entity ends in -1
+  &lt;component&gt;-1.fga         # OpenFGA module file; first line `module &lt;component&gt;-1`
+  tests.store.fga.yaml      # fga model test fixtures: tuples + assertions
+  relations.gen.go          # generated typed constants (types, relations)
+</code></pre>
+<h3 id="62-rules-for-modules-in-a-shared-store">6.2 Rules for modules in a shared store<a class="headerlink" href="#62-rules-for-modules-in-a-shared-store" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Module names end in <code>-1</code></strong>, like every platform entity (owner decision, October 2026): <code>module &lt;component&gt;-1</code>, in a file of the same name. The 12 existing modules were renamed to follow it (<code>context-cluster-1</code>, <code>tenant-roles-1</code>, ...). The names inside the module carry the generation too (next bullet).</li>
+<li><strong>Names inside the module end in <code>_1</code></strong> (snake_case, like the existing types): every type the module owns (<code>deployment_1</code>) and every relation it adds to a shared type (<code>can_view_deployment_1</code> on <code>tenant</code>). Types and added relations are global across the store, so this is what lets a <code>-2</code> generation run beside <code>-1</code> without colliding. Relations on a module's own types need no suffix, since the type already carries it. Shared types (<code>tenant</code>, <code>platform</code>, <code>audience</code>, <code>user</code>) are owned by the platform modules and are never suffixed. Object ids in tuples follow the type: <code>deployment_1:acme/d1</code>. The 12 existing modules keep their type names: unlike the module name, a type name is stored in every tuple and used by <code>auth-service</code> code, so renaming it is a data migration, not a rename.</li>
+<li>Type names and any relation added to a shared type are global across the store. A module must not redeclare another module's names. CI composes the candidate module with the current <code>fga.mod</code> and runs <code>fga model validate</code>.</li>
+<li>Service objects carry the tenant in the id (<code>deployment_1:acme/d1</code>) and relate to <code>tenant</code>, following <code>context_scope</code>.</li>
+<li>A module never defines tenant membership or platform roles. It extends <code>tenant-roles</code> and <code>platform-roles</code>.</li>
+<li><strong>Models change additively.</strong> Pinned worker versions finish on the build they started on and keep asking the old relations. Publish the additive model first, ship the component after, remove a relation only after the last build that uses it is sunset. A removed relation is rejected by OpenFGA and the module returns <code>ErrUnavailable</code> (deny), never allow.</li>
+</ul>
+<h3 id="63-how-a-model-reaches-the-store-proposed">6.3 How a model reaches the store (proposed)<a class="headerlink" href="#63-how-a-model-reaches-the-store-proposed" title="Permanent link">&para;</a></h3>
+<ol>
+<li>The component repo validates <code>&lt;module&gt;.fga</code> and <code>tests.store.fga.yaml</code> in CI (<code>fga model validate</code>, <code>fga model test</code>).</li>
+<li>On release, the platform-actions workflow <code>authz-model-pr.yml</code> (section 12) opens a PR against the repository that owns the models, adding the module file and its <code>fga.mod</code> entry. The platform team approves it. This is the existing review path for changes to <code>auth-store-2</code>.</li>
+<li>Argo CD syncs, the bootstrap Job writes a new model, and the binding ConfigMap moves to the new model id.</li>
+</ol>
+<p>The bootstrap Job now copies <code>*.fga</code> (PR 1365), so a module is one new file, one <code>fga.mod</code> line and one entry in the ConfigMap generator's file list. Kustomize has no glob for generator files, so that list stays until the models move to the shared models repository. Which repository owns the models (<code>argocd-eks-stack</code> today, <code>authz-config_gitops_repo-1</code> as intended) is open question 1.</p>
+<h3 id="64-one-reference-for-code-manifest-and-tests">6.4 One reference for code, manifest and tests<a class="headerlink" href="#64-one-reference-for-code-manifest-and-tests" title="Permanent link">&para;</a></h3>
+<p>The model file is the reference for every relation a component checks:</p>
+<ul>
+<li><code>authzgen</code> reads the model with the <code>openfga/language</code> Go transformer (<code>TransformModuleFilesToModel</code>, the call <code>authz-manager-1</code> already makes in <code>internal/model/files.go</code>). It is a separate tool, so <code>go/authz</code> keeps no OpenFGA dependency and writes <code>relations.gen.go</code> with type and relation constants. Code uses <code>deployer.RelCanViewTransition</code>, never a string literal.</li>
+<li><code>capabilitytest.Verify</code> takes the model path and fails if any manifest <code>authorize.relation</code> or the object type of <code>authorize.object</code> is not in the model.</li>
+<li>A test fails if generated constants are stale.</li>
+</ul>
+<h2 id="7-network">7. Network<a class="headerlink" href="#7-network" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add a <strong>component listener</strong> to <code>openfga-1-readonly-proxy</code> (for example port 8082): <code>check</code>, <code>list-objects</code>, <code>list-users</code> and <code>batch-check</code> for the one store. <code>/read</code> stays on 8081 only. The current proxy has no <code>batch-check</code> route.</li>
+<li>In <code>k8s-security</code>, admit each component and gateway pod label (<code>budybot.io/netpol: &lt;prefix&gt;-&lt;component&gt;</code>) to that listener, and add egress from those pods to the proxy.</li>
+<li>The gateway needs the same rule. Its existing egress to <code>sts-service</code> is not used for authorization.</li>
+<li>Helm: the <code>platform-app-cluster</code> WorkerDeployment helper (component pods) and <code>platform-capability</code> (gateway chart) gain env: <code>AUTHZ_OPENFGA_URL</code>, <code>AUTHZ_STORE_ID</code>, <code>AUTHZ_MODEL_ID</code>, sourced from the environment's model binding ConfigMap. This is not verified: the library chart repository was not available to review.</li>
+</ul>
+<h2 id="8-temporal-rules">8. Temporal rules<a class="headerlink" href="#8-temporal-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Checks run in activities, never in workflow code. A check inside the activity that reads the data is preferred. The module also ships <code>authz.Activities</code> (<code>AuthzCheck</code>, <code>AuthzBatchCheck</code>) for the rare workflow-level branch.</li>
+<li>Checks are read-only and safe to retry.</li>
+<li>Activity input carries subject, relation, object and the contextual tuples (the session fact included), never payloads or tokens. The result recorded in history is <code>{allowed, modelId}</code>.</li>
+<li>Audit: structured log from the module with subject, relation, object, result and model id (no tokens). The proxy does not log decisions today; central decision audit is open question 4.</li>
+<li>Right after a grant, use <code>HigherConsistency</code> if read-your-writes matters (<code>GET /v1/requests/{id}</code> on authz-manager reports <code>converged</code>).</li>
+</ul>
+<h2 id="9-testing">9. Testing<a class="headerlink" href="#9-testing" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Interface-level tests with a real implementation.</strong> Module <code>go/authzembedded</code> (separate, so the core stays dependency-light) provides <code>New(t, modelDSL, tuples...)</code> and <code>NewFromModules(t, schema, files, tuples...)</code>: a real OpenFGA v1.22.0 server with an in-memory datastore, the same client code path as production, plus <code>Grant</code> and <code>Revoke</code>. It is built and merged (common-modules PR 27, released with the next version PR) and passes the conformance suite below. The Postgres and OpenFGA containers that <code>authz-manager-1</code> uses remain an alternative.</li>
+<li><code>authztest.Static</code> (package <code>go/authz/authztest</code>, in the core module) is an exact-tuple checker for flat relations. It rejects unknown relations, has no computed-relation semantics, and says so in its docs.</li>
+<li><strong>Conformance suite</strong> <code>authztest.RunConformance(t, newChecker)</code>: deny versus unavailable, timeout and cancel, malformed object, contextual tuples, batch order, list truncation, cache behaviour, tenant isolation (a tuple in tenant A never grants in B), <code>Require</code> mapping. <code>ToTemporalError</code> is tested in <code>authztemporal</code>. The suite is built and passes against both <code>Static</code> and the real server.</li>
+<li>Per-component: <code>fga model test</code> on <code>tests.store.fga.yaml</code>, plus Go tests with <code>authzembedded.NewFromModules</code> loading the component's own model.</li>
+</ul>
+<h2 id="10-packaging">10. Packaging<a class="headerlink" href="#10-packaging" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>go/authz</code> (core client on the standard library; <code>authztemporal</code> adds the Temporal SDK; <code>authztest</code> is in the same module) and <code>go/authzembedded</code> (test-only, OpenFGA server dependency), each its own Go module, tagged <code>go/authz/vX.Y.Z</code> and <code>go/authzembedded/vX.Y.Z</code>, released with changesets like <code>go/capability</code>. <code>authzembedded</code> requires <code>go/authz v0.1.0</code>, the first version, and keeps a local <code>replace</code> for development.</li>
+<li><code>go/capability</code> changes: <code>authorize</code> in the manifest, load-time validation, the model check in <code>capabilitytest.Verify</code>, and the <code>Authorizer</code> step in <code>dispatch</code>.</li>
+<li>A worked example: the first worker component added to the <code>nainai-cluster-1_repo-1</code> reference (one capability, one relation on a tenant-scoped <code>_1</code> type, one model module, one <code>Checker</code> in <code>Activities</code>). Section 12 lists what has to be built first.</li>
+</ul>
+<h2 id="11-unverified-or-open">11. Unverified or open<a class="headerlink" href="#11-unverified-or-open" title="Permanent link">&para;</a></h2>
+<p>Verified by building it: OpenFGA v1.22.0 can be embedded in tests and serves <code>/batch-check</code>, <code>/check</code> and <code>/list-objects</code>; the model language transformer used by <code>authz-manager-1</code> also compiles the renamed modules. Not verified: the server version <code>openfga-1</code> actually runs (so whether its proxy-side <code>/batch-check</code> works), the publishing workflow on GitHub, and the exact <code>platform-app-cluster</code> and <code>platform-capability</code> helper changes.</p>
+<p>Open questions:</p>
+<ol>
+<li>Which repository owns the shared models: <code>argocd-eks-stack</code> (today) or <code>authz-config_gitops_repo-1</code> (intended)? Who reviews at the platform team?</li>
+<li>Are two admitted listeners enough, or do component pods in different clusters need per-cluster ingress rules?</li>
+<li>Should the 12 existing modules' type names also move to <code>_1</code>? That is a tuple migration plus <code>auth-service</code> code changes, so the proposal leaves them.</li>
+<li>Central decision audit: log at the module only, or add access logging to the proxy?</li>
+<li>Should <code>authzgen</code> be a <code>go/authz</code> subcommand or a separate tool?</li>
+</ol>
+<h2 id="12-what-has-to-be-built">12. What has to be built<a class="headerlink" href="#12-what-has-to-be-built" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Where</th>
+<th>Work</th>
+<th>Depends on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>budy-common-modules</code>: <code>go/authz</code></td>
+<td><strong>Built, merged and released</strong> (common-modules PR 27, <code>go/authz</code> v0.1.0; v0.2.0 adds <code>SessionTuples</code>, <code>CheckRequest.WithSession</code> and <code>TenantObjectOf</code>, PR 31): client for the proxy, <code>Checker</code>, <code>Require</code>, <code>UserSubject</code>, <code>ObjectOf</code>, bounded cache, env config, <code>authztemporal</code>. First consumer: studio-services-cluster-1.</td>
+<td>none</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>budy-common-modules</code>: <code>go/authz/authztest</code>, <code>go/authzembedded</code></td>
+<td><strong>Built and merged</strong> (common-modules PR 27; not yet tagged): <code>Static</code>, <code>RunConformance</code>, and the embedded real OpenFGA.</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>budy-common-modules</code>: <code>go/authz/authzgen</code></td>
+<td>Typed constants from a model; the check that manifest relations exist in the model.</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>budy-common-modules</code>: <code>go/capability</code></td>
+<td><code>authorize:</code> on each capability, load-time validation (required, templates, payload fields), <code>capabilitytest.Verify</code> model check, <code>dispatch.Authorizer</code> and the gateway <code>Authorize</code> activity. Breaking: every existing manifest must add <code>authorize:</code> (changeset: minor while 0.x).</td>
+<td>1, 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>platform-actions</code></td>
+<td><strong>Built and merged</strong> (platform-actions PR 58; usable as <code>@v1</code> after the next release, and <code>authz-model-pr.yml</code> has not run on GitHub yet): <code>validate-authz-model</code>, <code>stage-authz-model</code> and <code>authz-model-pr.yml</code>. Still to do: the catalog field and <code>app-cluster-ci</code> call. Original scope: <code>authz-model-pr@v1</code>: validate the module (<code>fga model validate</code>, <code>fga model test</code>), compose it with the current <code>fga.mod</code>, check the additive-only rule against the published model, then open the PR to the models repository. Plus a <code>validation.kind</code> or catalog field so <code>validate-cluster-catalog</code> knows a component ships a model (for example <code>authz: {module: authz/&lt;module&gt;.fga, tests: authz/tests.store.fga.yaml}</code>) and runs the checks in <code>app-cluster-ci</code>.</td>
+<td>3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>EKS stack (<code>openfga-1</code>)</td>
+<td>Component listener and <code>batch-check</code> on the proxy; replace the three hand-kept module lists with a glob. Moves with the models repository when that work lands.</td>
+<td>models repository plan</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>k8s-security</code></td>
+<td>Ingress rules on the component listener for each component and gateway label; egress rules from them. Revisit OpenFGA ingress when it is locked down.</td>
+<td>6</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>ob1-mn-github-helm-charts-repo-1</code></td>
+<td><code>platform-app-cluster</code> and <code>platform-capability</code>: <code>AUTHZ_*</code> env from the model binding ConfigMap.</td>
+<td>6</td>
+</tr>
+<tr>
+<td>4a</td>
+<td><code>budy-common-modules</code>: <code>go/capability</code></td>
+<td><strong>Built, merged and released</strong> (common-modules PR 31, <code>go/capability</code> v0.3.0): the session boundary. <code>stsauth.Identity.SessionBoundary</code> reads the token's <code>sessionBoundary</code> claim (viewer, editor or admin; absent is empty, anything else is rejected), <code>dispatch</code> carries it in <code>ComponentRequest.SessionBoundary</code> and in the gateway workflow id when present. A component sends it to <code>go/authz</code> with <code>WithSession</code>, which adds the contextual <code>user:&lt;u&gt; session_&lt;boundary&gt; tenant:&lt;t&gt;</code> tuple that the platform's <code>active_*</code> tiers need; every check that reaches an <code>active_*</code> relation must carry it, and an empty boundary means no tier (deny).</td>
+<td>1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Wiki</td>
+<td>Update the <code>scaffold-nexus-cluster-repo</code> skill (<code>authorize:</code> required, <code>authz/</code> folder in the layout tree, the nexus checklist) and <code>application-cicd-standard.md</code> (model release step); promote this page from draft.</td>
+<td>after the trial</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Trial</td>
+<td>First worker component in <code>nainai-cluster-1_repo-1</code>, which has only <code>gateway-1</code> today.</td>
+<td>1 to 8</td>
+</tr>
+</tbody>
+</table>
+<p>Trial plan (item 10):</p>
+<ol>
+<li>Add one tenant-scoped worker component with one read capability, a small model module extending <code>tenant</code>, and a <code>Checker</code> in its activities.</li>
+<li>In dev only: publish the model by hand-driven PR first, then through <code>authz-model-pr</code> to prove the action.</li>
+<li>Prove in tests, then in dev: an allowed user, a denied user, a user of another tenant, the proxy stopped (must deny with <code>UNAVAILABLE</code>, never allow), and a model PR that removes a relation (CI must fail).</li>
+<li>Fold what breaks into this page before promoting it.</li>
+</ol>
+<p>Order: 1 and 2 first (nothing else needs infrastructure), 3 and 4 next, 6 to 8 in parallel with them, 5 once 3 exists, the trial last.</p>
+<h2 id="13-conditional-grants-pass-current_time">13. Conditional grants: pass <code>current_time</code><a class="headerlink" href="#13-conditional-grants-pass-current_time" title="Permanent link">&para;</a></h2>
+<p>A relation can be granted with an OpenFGA condition. The one in use is <code>non_expired_grant(current_time, grant_time, grant_duration)</code> (<code>authz-config_gitops_repo-1</code>, <code>models/conditions.fga</code>), which ends a grant by itself when it expires. Example, <code>models/dt-consulting-services.fga</code>:</p>
+<pre><code class="language-text">define svcrole_dtcs_coder_1: [user, user with non_expired_grant]
+</code></pre>
+<p>A standing membership has no condition; a workload session (section 14) holds the role with one. The rule:</p>
+<ul>
+<li><strong>Every check that can reach such a relation must send <code>current_time</code> in the check context.</strong> That includes everything derived from it: here <code>active_svcrole_dtcs_coder_1</code>, <code>service_role_holder</code>, <code>assumable_editor</code> and whatever extends from them. When a check reaches a conditional tuple without the parameter, OpenFGA answers with an error (<code>missing context parameters [current_time]</code>), not a deny.</li>
+<li>Format: the UTC time as RFC 3339, for example <code>2026-11-13T08:30:15Z</code>. It is the form sts-service sends.</li>
+<li>A check that cannot reach a conditional relation does not need it, but sending it is harmless. The reviewer and reader relations of the same model stay <code>[user]</code> only.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Caller</th>
+<th>How it passes the time</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go components on <code>go/authz</code> (sandbox-manager-1)</td>
+<td><code>CheckRequest.Context</code> carries <code>{"current_time": &lt;UTC, truncated to the second, RFC 3339&gt;}</code> on every check of the access gate. The second keeps repeated checks within it shareable in the opt-in cache (section 4), which keys on the context.</td>
+<td>karkhana-cluster-1, <code>components/sandbox-manager-1/internal/access/access.go</code> (<code>currentTime</code>)</td>
+</tr>
+<tr>
+<td>sts-service</td>
+<td>Its authorizer sets <code>current_time</code> from its own clock on every check, and replaces a caller-supplied value on the Check/List endpoint.</td>
+<td>auth-service-1, <code>sts-service/internal/authorizer/authorizer.go</code> (<code>currentTime</code>), <code>authorize.go</code> (<code>conditionContext</code>)</td>
+</tr>
+<tr>
+<td>gitjib <code>token-broker-1</code></td>
+<td>Its own minimal OpenFGA client (no <code>go/authz</code> dependency) puts <code>current_time</code> into the <code>context</code> of every <code>check</code> call.</td>
+<td>gitjib-cluster-1, <code>components/token-broker-1/internal/openfga/client.go</code> (<code>Check</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Consequences for callers:</p>
+<ul>
+<li>A deny is still a deny and an error is still an error (section 4). A missing parameter shows up as an invalid-request error; token-broker-1 turns it into a refusal with the OpenFGA message in its audit line, and sandbox-manager-1 counts a rejected request as a deny for that relation and logs it. Neither reads it as allow.</li>
+<li>A positive result that is cached can outlive the grant by up to the cache TTL (token-broker-1: <code>authz.cacheTtl</code>, default 30s, at most 1m; <code>go/authz</code>: at most 30s). Keep the TTL below any grant lifetime.</li>
+<li>A new component that checks a role relation should send the time from the first version, even if no conditional grant exists yet, because the model can add one without a change in the component.</li>
+</ul>
+<h2 id="14-workload-sessions-and-the-glassboxid-claim">14. Workload sessions and the <code>glassboxId</code> claim<a class="headerlink" href="#14-workload-sessions-and-the-glassboxid-claim" title="Permanent link">&para;</a></h2>
+<p>These are capabilities of <code>authz-manager-1</code> and <code>sts-service</code> (auth-service repository). They are generic; the sandbox service is the first user. Other pages own the details: this section says what a component author needs to know.</p>
+<h3 id="141-workload-sessions">14.1 Workload sessions<a class="headerlink" href="#141-workload-sessions" title="Permanent link">&para;</a></h3>
+<p>A <strong>workload session</strong> is a short-lived identity for one workload that a platform service runs on a tenant's behalf (the sandbox operator, for pods in a tenant namespace). It acts only in that tenant, only for as long as the work, and never with more than the requester holds. Design: <code>docs/provisioning-service-design.md</code>, section 8.2, in <code>ob1_mn_gh_auth-service-1_repo-1</code>; code: <code>providers/authz-manager-1/internal/ops/workload_session.go</code> and <code>internal/api/workload_sessions.go</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API</td>
+<td><code>POST /v1/workload-sessions</code> (kind, tenant, namespace, serviceAccount, requester, roles, glassboxId, expiresAt, reference); <code>GET /v1/workload-sessions/{id}</code> (state <code>pending</code>, <code>active</code>, <code>released</code> or <code>expired</code>); <code>DELETE</code> releases (twice is not an error).</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Kind plus <code>reference</code> name the session. The same pair is one session while it is live (identical request: no-op; later <code>expiresAt</code>: extension, never past <code>maxLifetime</code> after creation; different parameters: conflict). After release or expiry the pair starts another session.</td>
+</tr>
+<tr>
+<td>Kinds are configuration</td>
+<td><code>config.workloadSessionKinds</code> (env <code>WORKLOAD_SESSION_KINDS</code>, empty by default). One reviewed entry per kind: <code>callers</code> (the workload ServiceAccounts that may create, read and release), <code>roles</code> (the only roles a session may carry), <code>maxLifetime</code>, <code>namespaces</code> (names, or <code>$tenant</code>).</td>
+</tr>
+<tr>
+<td>Checks</td>
+<td>All fail closed: the caller is in the kind's <code>callers</code>; every role is in the kind's <code>roles</code>; the requester is active and holds each role on the tenant for at least until <code>expiresAt</code>; the expiry is within <code>maxLifetime</code>; the namespace is allowed; the ServiceAccount is bound to no other user.</td>
+</tr>
+<tr>
+<td>Expiry</td>
+<td>The role tuple carries <code>non_expired_grant</code> with the expiry, so OpenFGA ends it by itself; the 5-minute maintenance sweep also ends sessions that are over, or whose requester lost a role, and withdraws their tuples.</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>The caller releases explicitly when the work stops. A released session frees the ServiceAccount, so a later session can use it.</td>
+</tr>
+<tr>
+<td>Billing entity</td>
+<td>Recorded as a <code>glassbox</code> tuple on the session user (below).</td>
+</tr>
+<tr>
+<td>Opt-in</td>
+<td>A RoleType lists the <code>workload_session</code> user class in <code>allowedUserClasses</code> and must be tenant-scope and gitops-tier.</td>
+</tr>
+</tbody>
+</table>
+<p>Because the role is granted with a condition, every check a receiver makes for such a user needs <code>current_time</code> (section 13).</p>
+<h3 id="142-the-glassboxid-sts-claim">14.2 The <code>glassboxId</code> STS claim<a class="headerlink" href="#142-the-glassboxid-sts-claim" title="Permanent link">&para;</a></h3>
+<p>Every tenant session carries <code>glassboxId</code>: the entity that pays for what the session does, either the tenant id or a digital teammate of that tenant. STS decides it (<code>sts-service/internal/authorizer/glassbox.go</code>, <code>ResolveGlassboxID</code>); a caller cannot set it. Contract: <code>docs/v2-token-claims-contract.md</code>, "Billing entity".</p>
+<ul>
+<li><strong>Fixed for a workload session.</strong> authz-manager-1 records the entity as a tuple that names the session user as its object: <code>tenant:&lt;t&gt; glassbox user:&lt;session user&gt;</code> or <code>user:&lt;teammate&gt; glassbox user:&lt;session user&gt;</code> (<code>authz-config_gitops_repo-1</code>, <code>models/workload-sessions.fga</code>, <code>define glassbox: [tenant, user]</code> on <code>user</code>). STS stamps that value, refuses a different <code>budy_glassbox_id</code>, re-checks at every mint that the entity still belongs to the tenant, and refuses a user with more than one record.</li>
+<li><strong>A model without <code>user#glassbox</code></strong> (OpenFGA <code>relation_not_found</code>) means "no fixed entity" and the default applies; any other OpenFGA error fails closed (<code>temporarily_unavailable</code>).</li>
+<li><strong>Otherwise</strong> the default is the subject when it is a digital teammate of the tenant, else the tenant; a service may name one with <code>budy_glassbox_id</code> on the workload exchange and the user-delegation grant.</li>
+</ul>
+<p>What a component does with it: record it, never derive it. How usage is recorded against it is in the <a href="../ref/usage-metering-standard.html">Usage Metering Standard</a>. A consumer that maps it to something else (token-broker-1 maps it to a DigitalTeammate by <code>spec.name</code>) says so in its own documentation.</p>
+<p>Status: on de-v2 main no workload session kind is configured for authz-manager-1 (<code>charts/apps/auth-cluster-1</code> values hold no <code>workloadSessionKinds</code>). The <code>sandbox-1</code> kind (callers: the sandbox operator ServiceAccount; roles: <code>svcrole-dtcs-coder-1</code>; <code>maxLifetime</code> 8h5m; namespaces <code>$tenant</code>) is proposed for dev in de-v2 PR 2414, open on 13 November 2026. Stage and prod get the kind after the auth chart that accepts the <code>workload_session</code> class (0.1.100) and the <code>workload-session</code> UserType (platform-crs <code>authz-types/profile/dev</code>, dev only for now) reach them; authz-manager-1 refuses to start with a kind whose user type or roles the catalog does not accept.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

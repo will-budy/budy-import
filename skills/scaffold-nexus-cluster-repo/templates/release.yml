@@ -1,0 +1,24 @@
+# Release flow. Copy to .github/workflows/release.yml unchanged.
+# Release PR on every push to main; for the merge of that PR only: images, module tags,
+# git tags, chart PR; when a chart PR merged: chart publish and the GitOps notes PR.
+# kargo_managed: true means Kargo owns the chart version and values/default.values.yaml in
+# the GitOps repo (the case for every de-v2 app with a release train).
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+  packages: write
+
+jobs:
+  release:
+    uses: Budybot/ob1_mn_github_platform-actions_repo_1/.github/workflows/app-cluster-release.yml@v1
+    with:
+      kargo_managed: true
+    secrets: inherit

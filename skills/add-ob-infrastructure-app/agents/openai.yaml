@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add OB Infrastructure App"
+  short_description: "Onboard an OB infrastructure application"
+  default_prompt: "Use $add-ob-infrastructure-app to add a new infrastructure application through the OB GitOps workflow."
