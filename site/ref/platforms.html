@@ -1,0 +1,3389 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central architecture and context repository for Budy platform systems">
+      
+      
+      
+      
+        <link rel="prev" href="platform-ui.html">
+      
+      
+        <link rel="next" href="sts-token-claims.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Platforms and Platform Sessions - OB Platform Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#platforms-and-platform-sessions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="OB Platform Wiki" class="md-header__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OB Platform Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Platforms and Platform Sessions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="OB Platform Wiki" class="md-nav__button md-logo" aria-label="OB Platform Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OB Platform Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/ProductVision-Roadmap-Budy-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Microservices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution Mode Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Execution Mode Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nainai-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    nainai-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/nainai-cluster-1/tenant-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenant provisioning (proposal)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/gitjib-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gitjib-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pitcrew-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pitcrew-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/prd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/trd.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/pitcrew-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dt-consulting-services-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    dt-consulting-services-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/engagement-flow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engagement flow
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/dt-consulting-services-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    karkhana-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    karkhana-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/sandboxes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sandboxes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/karkhana-cluster-1/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/events-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    events-cluster-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--active"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/janus-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    janus-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/glassbox-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    glassbox-1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--not-being-developed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_10" id="__nav_3_1_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    studio-services-cluster-1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    studio-services-cluster-1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/hld.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HLD
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro-services/execution-mode-services/studio-services-cluster-1/nexus-contracts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nexus contracts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../gitops/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitOps
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitOps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../gitops/repositories/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Repository Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/github-infra/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github-infra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/platform-actions/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/budy-cloud-management/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    budy-cloud-management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/vault-management-1/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vault-management-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/k8s-security/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k8s-security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/argocd-critical-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-critical-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/argocd-eks-stack/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    argocd-eks-stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/de-v2/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    de-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/design-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    design-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/execution-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    execution-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/shared-services/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shared-services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repositories/application-source-repositories/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Source Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/repos-and-app-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repos & the App Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/adding-a-new-operator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding a New Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/scaffolding-an-application-repo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scaffolding an Application Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/postgres-database-provisioning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Database Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/application-cicd-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Cluster CI/CD Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/authorization-module-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Authorization Module Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/network-policy-and-mtls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Policy & mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/kargo-promotion-design.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Promotion Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/kargo-topology-decision.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kargo Topology Decision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="platform-console-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Console Standard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="platform-ui.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platforms and Platform Sessions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="platforms.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platforms and Platform Sessions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms-that-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platforms that exist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-meanings-of-audience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two meanings of "audience"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-session-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The session token
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issuing-a-platform-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issuing a platform session
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-portal-per-route-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The portal: per-route needs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The portal: per-route needs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-each-portal-app-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What each portal app needs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateways-and-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gateways and components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-business-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a business platform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tenants-under-a-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenants under a platform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sts-token-claims.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STS Token Claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usage-metering-standard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Metering Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deck-proposition-alignment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Budy 2 Proposition Alignment (demo decks)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#platforms-that-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platforms that exist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-meanings-of-audience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two meanings of "audience"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-session-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The session token
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issuing-a-platform-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issuing a platform session
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-portal-per-route-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The portal: per-route needs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The portal: per-route needs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-each-portal-app-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What each portal app needs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateways-and-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gateways and components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-business-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a business platform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tenants-under-a-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tenants under a platform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="platforms-and-platform-sessions">Platforms and platform sessions<a class="headerlink" href="#platforms-and-platform-sessions" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Document</strong></td>
+<td>Platforms, platform sessions, the <code>platform</code> claim and system audiences</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Design agreed with the owner on 2026-11-20; implementation in progress (see "Rollout")</td>
+</tr>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Platform engineers changing STS, the portal, a cluster gateway or OpenFGA platform policy</td>
+</tr>
+<tr>
+<td><strong>Record</strong></td>
+<td>de-v2 gitops <code>docs/spikes/2026-11-19-platform-and-audience-claims.md</code> (the audit behind this page)</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>platform</strong> groups tenants for management. Only platform staff, who hold a platform role and assume into it, use one.
+Customers and digital teammates work in <strong>tenant</strong> sessions and never see a platform. This page says:</p>
+<ul>
+<li>which platforms exist;</li>
+<li>how a platform session is issued and what its token carries;</li>
+<li>how a path declares that it needs a platform or a system audience;</li>
+<li>how a new platform is added so that it is managed exactly like an existing one.</li>
+</ul>
+<h2 id="platforms-that-exist">Platforms that exist<a class="headerlink" href="#platforms-that-exist" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>What it is</th>
+<th>Tenants under it</th>
+<th>Who uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>budy-sl-platform-1</code></td>
+<td>Business platform: senior living</td>
+<td>customer tenants, and the service tenants <code>dt-manager-1</code>, <code>dt-consulting-services-1</code>, <code>karkhana-cluster-1</code>, <code>pitcrew-cluster-1</code>, <code>communication-cluster-1</code></td>
+<td>staff, provisioning and reviewer services</td>
+</tr>
+<tr>
+<td><code>budy-general-platform-1</code></td>
+<td>Business platform: general (new)</td>
+<td>new customer tenants</td>
+<td>the same staff and services as <code>budy-sl-platform-1</code></td>
+</tr>
+<tr>
+<td><code>budy</code></td>
+<td>Auth Manager's own platform: role administration across platforms (<code>role_management_platform</code>) and a few service grants</td>
+<td>none</td>
+<td>Auth Manager administrators</td>
+</tr>
+<tr>
+<td><code>system-platform-1</code></td>
+<td>Context operator's platform</td>
+<td>none</td>
+<td><code>context-operator</code></td>
+</tr>
+<tr>
+<td><code>janus-platform-1</code></td>
+<td>Janus workloads' platform (viewer only)</td>
+<td>none</td>
+<td><code>janus-intake-1</code>, <code>janus-outbound-policy-1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The two business platforms are parallel and configured identically (see "Adding a business platform"). The other three are
+infrastructure platforms; this page does not change them.</p>
+<h2 id="two-meanings-of-audience">Two meanings of "audience"<a class="headerlink" href="#two-meanings-of-audience" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>OAuth audience</th>
+<th>System audience</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claim</td>
+<td><code>aud</code></td>
+<td><code>system_audience_key</code></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>the receiving service: <code>urn:budy:nexus:&lt;endpoint&gt;:&lt;Service&gt;</code>, an app origin, or <code>authz-manager-1</code></td>
+<td>an OpenFGA <code>audience</code>: <code>global</code>, <code>seniorliving</code>, <code>global-internal</code>, <code>global-early</code>, <code>authz-manager</code></td>
+</tr>
+<tr>
+<td>Set by</td>
+<td>the portal route (<code>resource</code>)</td>
+<td>the person, in system scope, when the route needs one</td>
+</tr>
+<tr>
+<td>Required</td>
+<td>always, by every receiver: it stops a token for one service being replayed at another</td>
+<td>only by paths that act on system-scope Context content</td>
+</tr>
+</tbody>
+</table>
+<p>In the rest of this page, "audience" without a qualifier means the <strong>system audience</strong>.</p>
+<p>An audience is a grouping of tenants, and it has two separate edges:</p>
+<ul>
+<li><strong>Members</strong> (<code>audience#linked_tenant</code>): the tenants in it, set per tenant from the tenant's <code>audiences</code> input. A tenant
+  may be on either platform, so an audience can span both: <code>global</code> holds tenants of both business platforms, while
+  <code>seniorliving</code> holds only the senior-living tenants linked to it. Reading an audience's content
+  (<code>can_view_audience_context</code>) follows membership.</li>
+<li><strong>Manager</strong> (<code>audience#managed_by_platform</code>): exactly one platform, which administers membership
+  (<code>can_manage_audience_membership</code>) and authors and publishes the audience's system-scope Context content
+  (<code>context_scope#system_platform</code>). The STS refuses a system-scope session for an audience with no managing platform or
+  more than one.</li>
+</ul>
+<p>Today all five Context audiences are managed by <code>budy-sl-platform-1</code>, including <code>global</code>, whose members span both business
+platforms. A system-scope Context session for <code>global</code> is therefore opened on <code>budy-sl-platform-1</code>; staff hold the same roles
+on both platforms, so nothing is lost. <code>budy-general-platform-1</code> manages no audience until one of its own is created.</p>
+<h2 id="the-session-token">The session token<a class="headerlink" href="#the-session-token" title="Permanent link">&para;</a></h2>
+<p>Claim names are the standard snake_case names (formerly camelCase: <code>scopeType</code>, <code>scopeId</code>, <code>sessionBoundary</code>, <code>glassboxId</code>,
+<code>systemAudienceKey</code>). See <a href="sts-token-claims.html">STS token claims</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Tenant session</th>
+<th>Platform session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scope_type</code></td>
+<td><code>tenant</code></td>
+<td><code>platform</code></td>
+</tr>
+<tr>
+<td><code>scope_id</code></td>
+<td>the tenant</td>
+<td>the platform</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td>the tenant</td>
+<td>absent</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><strong>absent</strong></td>
+<td>the platform, equal to <code>scope_id</code></td>
+</tr>
+<tr>
+<td><code>system_audience_key</code></td>
+<td>absent</td>
+<td>present only when the route needed an audience and one was chosen</td>
+</tr>
+<tr>
+<td><code>session_boundary</code></td>
+<td><code>viewer</code>, <code>editor</code> or <code>admin</code></td>
+<td><code>viewer</code>, <code>editor</code> or <code>admin</code></td>
+</tr>
+<tr>
+<td><code>glassbox_id</code></td>
+<td>the billing entity</td>
+<td>absent</td>
+</tr>
+<tr>
+<td><code>aud</code></td>
+<td>the receiving service</td>
+<td>the receiving service</td>
+</tr>
+</tbody>
+</table>
+<p>Rules every validator applies:</p>
+<ul>
+<li>A token with both <code>tenant</code> and <code>platform</code> is malformed.</li>
+<li>A token whose <code>platform</code> differs from <code>scope_id</code> is malformed.</li>
+<li>A platform token without a platform is malformed.</li>
+<li><code>system_audience_key</code> on a tenant token is malformed.</li>
+<li><code>platform</code> and <code>system_audience_key</code> are reserved: an exchange policy's receiver <code>claims</code> cannot set them. Only the STS sets
+  them, from a decision it checked in OpenFGA.</li>
+</ul>
+<p>During the rollout, a validator that finds no <code>platform</code> on a platform token reads <code>scope_id</code>. The STS issues one-hour
+sessions, so this fallback is removed one release after every STS is issuing the claim.</p>
+<p>Workload platform sessions, such as Janus intake-1 on <code>janus-platform-1</code> and dt-provisioner-1, carry <code>platform</code> like human
+ones. The rule is "every platform-scope token", not "every human".</p>
+<h2 id="issuing-a-platform-session">Issuing a platform session<a class="headerlink" href="#issuing-a-platform-session" title="Permanent link">&para;</a></h2>
+<p>The portal sends a pushed authorization request with:</p>
+<ul>
+<li><code>budy_scope_type=platform</code></li>
+<li><code>budy_scope_id=&lt;platform&gt;</code></li>
+<li><code>budy_system_audience_key=&lt;audience&gt;</code>, only when the route needs an audience.</li>
+</ul>
+<p>Before it issues a code, the STS checks:</p>
+<ol>
+<li>The person may assume the platform at the chosen boundary: <code>assumable_platform_&lt;boundary&gt;</code> on <code>platform:&lt;id&gt;</code>, from
+   <code>ResolveSessionScope</code>. A platform role needs <code>internal_user</code> on the same platform; Auth Manager writes that marker with
+   each platform membership.</li>
+<li>The resource admits the platform: Nexus <code>can_call</code> through <code>operation#allowed_platform</code>.</li>
+<li>If an audience was sent, the platform manages it: <code>managed_by_platform</code> on <code>audience:&lt;key&gt;</code>. The browser's pair is
+   never trusted.</li>
+</ol>
+<p>The STS repeats these checks at authorize, at code redemption and at handoff. With no audience, step 3 is skipped and the
+token carries no <code>system_audience_key</code>; whether that is acceptable is the receiver's decision, not the STS's.</p>
+<p><code>POST /v2/system-session/query</code> answers the portal:</p>
+<ul>
+<li>With no <code>platformId</code>: <code>{platforms: [{id, sessionBoundaries}]}</code>, the platforms the person may assume for the resource.
+  This is what fills the platform dropdown.</li>
+<li>With a <code>platformId</code> and no <code>audienceKey</code>: <code>{sessionBoundaries}</code> for that platform.</li>
+<li>With both: as before, the boundaries for that platform and audience.</li>
+</ul>
+<h2 id="the-portal-per-route-needs">The portal: per-route needs<a class="headerlink" href="#the-portal-per-route-needs" title="Permanent link">&para;</a></h2>
+<p>A route says what a launch in system scope needs. The flags sit in the route's session block in the platform-ui values,
+next to the session boundaries:</p>
+<pre><code class="language-yaml">context:
+  nexusTarget:
+    temporalNexusEndpoint: ob1-nexus-context-cluster-1-endpoint-1
+    nexusService: ContextServiceV2
+    platformSession:
+      sessionBoundaries: [viewer, editor, admin]
+      needsAudience: true      # system-scope Context acts on one audience's content
+janus-console-1:
+  nexusTarget:
+    platformSession:
+      sessionBoundaries: [viewer, editor, admin]
+      needsAudience: false     # Janus's system views are platform-wide
+</code></pre>
+<ul>
+<li><strong>The platform is always picked in system scope.</strong> The dropdown lists only the platforms the STS says the person can assume
+  for that app, at any boundary. With one platform it is preselected. There is no flag for it: a platform session without
+  a platform cannot exist.</li>
+<li><strong>An audience is picked only when <code>needsAudience: true</code>.</strong> The audience dropdown then lists the audiences of the chosen
+  platform, from the portal configuration <code>platforms: [{id, label, audiences: [{key, label}]}]</code>. It replaces the flat
+  <code>systemAudiences</code> list, whose entries carried their platform.</li>
+<li><strong>Tenant scope is unchanged.</strong> Pick a tenant and a user; no platform and no audience.</li>
+<li>The server re-checks both on launch; the browser's choice is a request, not a fact.</li>
+<li>A route without <code>needsAudience</code> keeps today's behaviour, which requires an audience, until its values say otherwise.</li>
+<li>Auth Manager is not affected: it always launches on <code>budy</code> with the <code>authz-manager</code> audience
+  (<code>authzControlPlane.platformAudience</code>).</li>
+</ul>
+<h3 id="what-each-portal-app-needs">What each portal app needs<a class="headerlink" href="#what-each-portal-app-needs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Scopes</th>
+<th>System scope needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Context Cluster</td>
+<td>tenant, system</td>
+<td>platform <strong>and audience</strong></td>
+</tr>
+<tr>
+<td>Janus</td>
+<td>tenant, system</td>
+<td>platform</td>
+</tr>
+<tr>
+<td>Pit Crew</td>
+<td>system only</td>
+<td>platform</td>
+</tr>
+<tr>
+<td>GitJib</td>
+<td>system only</td>
+<td>platform</td>
+</tr>
+<tr>
+<td>nainai console</td>
+<td>system only</td>
+<td>platform</td>
+</tr>
+<tr>
+<td>DT Consulting, Karkhana, Events, Traces</td>
+<td>tenant only</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Auth Manager</td>
+<td>fixed (<code>budy</code>, <code>authz-manager</code>)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Glass Box</td>
+<td>to confirm when its route is set</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Only Context needs an audience.</p>
+<h2 id="gateways-and-components">Gateways and components<a class="headerlink" href="#gateways-and-components" title="Permanent link">&para;</a></h2>
+<p>The shared Go module <code>go/capability</code> gives a gateway the token's platform:</p>
+<ul>
+<li><code>stsauth.Identity.Platform</code>;</li>
+<li><code>dispatch.Command.Platform</code> and <code>dispatch.ComponentRequest.Platform</code>;</li>
+<li><code>{platform}</code> in a capability's <code>authorize.object</code>.</li>
+</ul>
+<pre><code class="language-yaml">upsertTenant:
+  authorize:
+    relation: may_administer_gitjib_1
+    object: platform:{platform}
+</code></pre>
+<ul>
+<li><code>{platform}</code> with a tenant token renders nothing, and the call is <code>PERMISSION_DENIED</code>, as <code>{tenant}</code> is with a platform
+  token. A path that needs a platform therefore rejects a token without one.</li>
+<li>A capability for platform sessions names its object <code>platform:{platform}</code>, never a literal business platform, so
+  one manifest is correct on every business platform. A literal platform id stays legal for a fixed grant checked with a
+  tenant session: events and nainai check <code>platform:budy#may_register_triggers</code> and <code>#may_view_worker_status</code> that way.</li>
+<li><code>go/authz</code> <code>GatewayAuthorizer</code> states the live session on the <strong>token's</strong> platform. It denies, without asking OpenFGA, a
+  platform-scope check on an object naming another platform. So a platform session on one platform never satisfies a
+  check on another, even when the person holds a role on both.</li>
+</ul>
+<p>A component that checks in its activity reads <code>ComponentRequest.Platform</code>; it never takes a platform from a payload.</p>
+<p>A component that works across one platform's tenants keeps a staff session to that platform. <code>go/authz</code> gives it:</p>
+<ul>
+<li><strong>One tenant:</strong> check <code>tenant:&lt;id&gt;#in_platform_session</code> with the caller's session on its own platform
+  (<code>CheckRequest.WithPlatformSession</code>). It holds only for tenants that platform manages.</li>
+<li><strong>A list:</strong> <code>authz.PlatformTenants(ctx, checker, platform, user, boundary)</code> returns that platform's tenants. A truncated
+  answer is a partial view, never the whole platform.</li>
+</ul>
+<p>GitJib admin-1 is the reference. A call that names a tenant is refused unless the tenant is on the caller's platform. Tenant
+lists, the all-tenant drift audit and the drift report show only that platform's tenants. Settings shared by every tenant
+(the public package allow-list, the admin-token check) are open to a GitJib admin of either platform. Tenant users are not
+affected: they reach GitLab through token-broker-1 with a tenant session. The
+TypeScript <code>console-kit</code> exposes the same as <code>principal.platform</code>. Receivers built on auth-service <code>shared/contract</code>
+(<code>nexusauth</code>) read <code>VerifiedNexusSessionV1.Platform</code>.</p>
+<h2 id="adding-a-business-platform">Adding a business platform<a class="headerlink" href="#adding-a-business-platform" title="Permanent link">&para;</a></h2>
+<p>A new business platform is managed by everyone who manages <code>budy-sl-platform-1</code>, with the same roles. No model change is
+needed: the platform is entities and tuples in <code>authz-config_gitops_repo-1</code>, shared by every environment.</p>
+<ol>
+<li><strong>Declare it.</strong> In <code>entities/services/entities.json</code> <code>tenants</code>, add
+   <code>{"id": "&lt;platform&gt;", "type": "platform", "version": "v2"}</code>. Do not edit <code>entities/profiles/*/authz-bootstrap.json</code>:
+   it is immutable after first apply.</li>
+<li><strong>Role administration.</strong> In <code>entities/services/service-bootstrap.yaml</code>, add
+   <code>platform:budy role_management_platform platform:&lt;platform&gt;</code>. Auth Manager administrators can then grant roles on it.</li>
+<li><strong>Service admissions.</strong> Copy every <code>allowed_platform</code> tuple of <code>budy-sl-platform-1</code>:</li>
+<li><code>service-bootstrap.yaml</code>, <code>shared-policy.yaml</code>;</li>
+<li>the dev-only <code>entities/profiles/dev/profile-provisioning.yaml</code>.</li>
+</ol>
+<p>Also copy <code>may_write_directories</code> for the provisioner.
+4. <strong>Service roles.</strong> In <code>entities.json</code> <code>memberships</code>, copy each service user's roles on <code>budy-sl-platform-1</code>:
+   - dt-provisioner-1: <code>platform-admin</code>, <code>tenant-provisioner</code>, <code>system-context-author</code>;
+   - dt-reviewer-1: <code>system-context-reviewer</code>;
+   - backend-1: <code>tenant-provisioner</code>.</p>
+<p>Auth Manager writes a service user's <code>internal_user</code> marker on every platform where it holds a platform role, so
+   these roles take effect. Until 2026-11 the marker was written on the service's home platform only.
+5. <strong>Staff roles.</strong> Two ways, by how much the role can do:
+   - <strong><code>platform-admin</code>: GitOps.</strong> authz-config <code>entities/profiles/&lt;env&gt;/staff-platform-roles.json</code> lists each environment's
+     staff admins per platform (today Jae and Samay on both business platforms). Add the new platform's lines there. The file
+     sets <code>releaseRemovedMemberships</code>, so removing a line revokes the role. It has no UI assigners on purpose.
+   - <strong><code>platform-maintainer</code>, <code>platform-support</code>, <code>platform-viewer</code>: the Auth Manager UI.</strong> Open Roles and pick the platform as
+     the target; a second authz admin approves, and nobody can assign themselves. The API equivalent is
+     <code>PUT /v1/tenants/&lt;platform&gt;/members/&lt;user&gt;/roles/&lt;role&gt;</code>.</p>
+<p>Auth Manager writes each person's <code>internal_user</code> marker on the platform with the membership. In GitJib, <code>platform-admin</code>
+   opens the admin console (<code>may_administer_gitjib_1</code>, admin session); <code>platform-maintainer</code> manages the public package
+   allow-list (<code>may_administer_gitjib_packages_1</code>, editor session); <code>platform-viewer</code> sees the read-only views. In Janus,
+   <code>platform-maintainer</code> and above manage connection types (<code>may_administer_janus_connection_types_1</code>, editor session).
+6. <strong>Audiences.</strong> Membership: a customer created without <code>audiences</code> gets its platform's default from the <code>customer</code>
+   tenant type (budy-platform-crs <code>customer@v7</code>: <code>global</code> and <code>seniorliving</code> under senior living, <code>global</code> only under
+   general). Platform records cannot change after creation, so the default lives in the type: a further platform needs a
+   new <code>customer</code> version. Management, optional: an audience managed by the new platform, for Context system scope
+   there, is <code>platform:&lt;platform&gt; managed_by_platform audience:&lt;key&gt;</code>, plus the portal's <code>platforms[].audiences</code>. An
+   existing audience keeps its one manager.
+7. <strong>Portal.</strong> Add the platform's label (and audiences) to the platform-ui <code>platforms</code> list.</p>
+<p><code>models/business-platforms-test.store.fga.yaml</code> checks:</p>
+<ul>
+<li>the two business platforms grant the same things;</li>
+<li>a session on one authorizes nothing on the other;</li>
+<li>a role on the other does not help.</li>
+</ul>
+<h2 id="tenants-under-a-platform">Tenants under a platform<a class="headerlink" href="#tenants-under-a-platform" title="Permanent link">&para;</a></h2>
+<p>A tenant belongs to the platform at the top of its parent chain: Auth Manager writes <code>managed_by_platform</code> from it, and
+creating the tenant needs <code>can_create_tenants</code> on that platform.</p>
+<p>An Auth Manager administrator can create a customer tenant under either platform in Auth Manager by choosing the platform as
+its parent. dt-provisioner-1 (<code>provisionTenantProfileV1</code>) creates customer tenants under <code>budy-sl-platform-1</code>; creating them
+under the caller's platform is a dt-manager change that is not released, and dt-provisioner-1 is due to move to nainai.</p>
+<p>A customer created without <code>audiences</code> joins its platform's default audiences (<code>customer@v7</code>): <code>global</code> and <code>seniorliving</code>
+under senior living, <code>global</code> only under general. Audiences given at creation are used as given. Auth Manager stores the
+resolved list on the tenant, so it does not change if a later version defaults differently.</p>
+<h2 id="rollout">Rollout<a class="headerlink" href="#rollout" title="Permanent link">&para;</a></h2>
+<p>Claim names in this table are the ones at the time of each step; they are now the snake_case names (<code>scope_id</code>, ...).</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Repository</th>
+<th>Change</th>
+<th>Backward compatible because</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>authz-config</td>
+<td>declare and mirror <code>budy-general-platform-1</code></td>
+<td>inert until roles are granted</td>
+</tr>
+<tr>
+<td>2</td>
+<td>common-modules</td>
+<td><code>platform</code> in Go and TS, <code>{platform}</code>, authorizer fix</td>
+<td>falls back to <code>scopeId</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>auth-service</td>
+<td>STS <code>platform</code> claim, optional audience, platform listing; <code>nexusauth</code>; Auth Manager service marker</td>
+<td>an audience is still accepted and checked</td>
+</tr>
+<tr>
+<td>4</td>
+<td>dt-manager</td>
+<td>tenant parent from the caller's platform (optional; dt-provisioner-1 moves to nainai)</td>
+<td><code>budy-sl-platform-1</code> callers see no change</td>
+</tr>
+<tr>
+<td>5</td>
+<td>budy-platform-crs</td>
+<td><code>customer@v7</code>: default audiences per platform</td>
+<td>existing tenants keep their stored audiences</td>
+</tr>
+<tr>
+<td>6</td>
+<td>gitjib (done), janus, context</td>
+<td>library bumps; <code>platform:{platform}</code>; tenants of the caller's platform</td>
+<td>a token without <code>platform</code> falls back to <code>scopeId</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>frontend-cluster</td>
+<td>platform picker, <code>needsAudience</code></td>
+<td>a route without the flag behaves as before</td>
+</tr>
+<tr>
+<td>8</td>
+<td>de-v2 gitops</td>
+<td>route flags, <code>platforms</code> list, chart and library versions</td>
+<td>per environment, dev first</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Auth Manager (data)</td>
+<td>grant staff roles on <code>budy-general-platform-1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>common-modules, auth-service</td>
+<td>remove the <code>scopeId</code> fallback</td>
+<td>one release after step 3 everywhere</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="platform-ui.html">Platform UI</a></li>
+<li><a href="../gitops/authorization-module-standard.html">Component Authorization Module Standard</a></li>
+<li>auth-service-1 <code>docs/v2-token-claims-contract.md</code></li>
+<li>authz-config <code>entities/README.md</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

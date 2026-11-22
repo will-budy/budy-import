@@ -1,0 +1,4 @@
+# Build artefacts from tools/exec-summary-deck. Regenerate, never commit.
+out/
+.venv/
+__pycache__/
